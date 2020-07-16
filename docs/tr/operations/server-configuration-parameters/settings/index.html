@@ -1,0 +1,3962 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="tr" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Sunucu Ayarları | ClickHouse Belgeleri</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="Sunucu Ayarları | ClickHouse Belgeleri"/>
+<meta property="og:description" content="Sunucu Ayarları buıltın_dıctıonarıes_reload_ınterval Dahili sözlükleri yeniden yüklemeden önce saniye cinsinden Aralık. " />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/tr/operations/server-configuration-parameters/settings/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/tr/operations/server-configuration-parameters/settings/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/tr/operations/server-configuration-parameters/settings/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "Sunucu Ayarları | ClickHouse Belgeleri",
+"mainEntityOfPage": "https://clickhouse.tech/docs/tr/operations/server-configuration-parameters/settings/",
+
+"datePublished": "2020-04-15T16:56:49+03:00",
+"dateModified": "2020-05-15T16:14:39+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "Sunucu Ayarları | ClickHouse Belgeleri",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="Sunucu Ayarları buıltın_dıctıonarıes_reload_ınterval Dahili sözlükleri yeniden yüklemeden önce saniye cinsinden Aralık. " />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, açık kaynak, ilişkisel, analiz, analitik, Büyük Veri, web-analyt -ics" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/operations/server-configuration-parameters/settings/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/operations/server-configuration-parameters/settings/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        Sunucu Ayarları
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/operations/server-configuration-parameters/settings.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/tr.svg" alt="Türkçe" title="Türkçe" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/tr/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/operations/server-configuration-parameters/settings/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="Çok sayfalı veya tek sayfalı">
+            <a href="../../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="Çok sayfalı sürüm" title="Çok sayfalı sürüm" />
+            </a>
+            <a href="../../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="Tek sayfalık sürüm" title="Tek sayfalık sürüm" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sürüm: <span class="text-light">son</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/tr/">
+                    <span class="text-light">son</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="Giriş" class="nav-link text-light text-wrap dropdown-toggle px-0">Giriş</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/distinctive-features/" title="Ayırt Edici Özellikler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayırt Edici Özellikler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/performance/" title="Performans" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performans</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/history/" title="Tarih" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/adopters/" title="Benimseyenler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Benimseyenler</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="Başlarken" class="nav-link text-light text-wrap dropdown-toggle px-0">Başlarken</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/install/" title="Kurulum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kurulum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="Örnek Veri Kümeleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Örnek Veri Kümeleri</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/metrica/" title="Üye.Metrica Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Üye.Metrica Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/ontime/" title="OnTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">OnTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/nyc-taxi/" title="New York Taksi Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">New York Taksi Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab Büyük Veri Benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab Büyük Veri Benchmark</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/wikistat/" title="WikiStat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WikiStat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/criteo/" title="Criteo'dan Terabyte tıklama günlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteo'dan Terabyte tıklama günlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/star-schema/" title="Yıldız Şema Ben Benchmarkch Benchmarkmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yıldız Şema Ben Benchmarkch Benchmarkmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/tutorial/" title="Öğretici" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Öğretici</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/playground/" title="Bahçe" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bahçe</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="Arabirimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Arabirimler</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/cli/" title="Komut Satırı İstemcisi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Komut Satırı İstemcisi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/tcp/" title="Yerel arabirim (TCP)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yerel arabirim (TCP)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/http/" title="HTTP arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTP arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/mysql/" title="MySQL Arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL Arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/formats/" title="Giriş ve çıkış biçimleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş ve çıkış biçimleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/jdbc/" title="JDBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/odbc/" title="ODBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/cpp/" title="C++ İstemci Kitaplığı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ İstemci Kitaplığı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="Üçüncü Taraf" class="nav-link text-light text-wrap dropdown-toggle px-0">Üçüncü Taraf</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/client-libraries/" title="İstemci Kitaplıkları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İstemci Kitaplıkları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/integrations/" title="Entegrasyonlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Entegrasyonlar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/gui/" title="Görsel Arayüzler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görsel Arayüzler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/proxy/" title="Vekiller" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Vekiller</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="Motorlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Motorlar</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="Masa Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Masa Motorları</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="MergeTree Ailesi" class="nav-link text-light text-wrap dropdown-toggle px-0">MergeTree Ailesi</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/mergetree/" title="MergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/replication/" title="Veri Çoğaltma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Çoğaltma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="Özel Bölümleme Anahtarı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Özel Bölümleme Anahtarı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/replacingmergetree/" title="ReplacingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ReplacingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/collapsingmergetree/" title="CollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="VersionedCollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">VersionedCollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/graphitemergetree/" title="Graphıtemergetree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Graphıtemergetree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="Günlük Aile" class="nav-link text-light text-wrap dropdown-toggle px-0">Günlük Aile</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/log/" title="Günlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Günlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="Entegrasyonlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Entegrasyonlar</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="Özellikli" class="nav-link text-light text-wrap dropdown-toggle px-0">Özellikli</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/distributed/" title="Dağılı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dağılı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/external-data/" title="Dış veri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış veri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/dictionary/" title="Sözlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/merge/" title="Birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/null/" title="Boş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/join/" title="Katmak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Katmak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/view/" title="Görünüm" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görünüm</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/materializedview/" title="MaterializedView" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MaterializedView</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/memory/" title="Hafıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hafıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/buffer/" title="Arabellek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arabellek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="Veritabanı Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Veritabanı Motorları</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/lazy/" title="Tembel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tembel</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="SQL başvurusu" class="nav-link text-light text-wrap dropdown-toggle px-0">SQL başvurusu</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="Deyimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Deyimler</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/" title="Overview" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Overview</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/misc/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/syntax/" title="Sözdizimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözdizimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="İşlevler" class="nav-link text-light text-wrap dropdown-toggle px-0">İşlevler</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/arithmetic-functions/" title="Aritmetik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aritmetik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/comparison-functions/" title="Karşılaştırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karşılaştırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/logical-functions/" title="Mantıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mantıklı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/type-conversion-functions/" title="Tip Dönüştürme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tip Dönüştürme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/date-time-functions/" title="Tarih ve Saatlerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih ve Saatlerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-functions/" title="Dizeleri ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-search-functions/" title="Arama Dizeleri İçin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arama Dizeleri İçin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-replace-functions/" title="Dizelerde değiştirilmesi için" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizelerde değiştirilmesi için</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/conditional-functions/" title="Koşullu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koşullu</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/math-functions/" title="Matematiksel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matematiksel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/rounding-functions/" title="Dönmüş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dönmüş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/array-functions/" title="Dizilerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizilerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/splitting-merging-functions/" title="Dizeleri ve dizileri bölme ve birleştirme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ve dizileri bölme ve birleştirme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/bit-functions/" title="Bitlik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bitlik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/bitmap-functions/" title="Eşlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Eşlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/hash-functions/" title="Karma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/random-functions/" title="Sözde Rasgele Sayılar Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözde Rasgele Sayılar Oluşturma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/encoding-functions/" title="Kodlamış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kodlamış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/uuid-functions/" title="UUID ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/url-functions/" title="URL'ler ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL'ler ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ip-address-functions/" title="IP adresleriyle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IP adresleriyle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/json-functions/" title="Json ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Json ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/higher-order-functions/" title="Yüksek Sipariş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yüksek Sipariş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ext-dict-functions/" title="Harici Sözlüklerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici Sözlüklerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ym-dict-functions/" title="Yandex ile çalışmak.Metrica Sözlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex ile çalışmak.Metrica Sözlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/in-functions/" title="In İşlet theic implementingisinin uygulanması" class="nav-link text-light text-wrap d-inline-block w-100 px-0">In İşlet theic implementingisinin uygulanması</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/array-join/" title="arrayJoin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/geo/" title="Coğrafi koordinatlar ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Coğrafi koordinatlar ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/functions-for-nulls/" title="Null argümanlarla çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null argümanlarla çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/machine-learning-functions/" title="Makine Öğrenme Fonksiyonları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Makine Öğrenme Fonksiyonları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/introspection/" title="İçgözlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İçgözlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/other-functions/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="Toplama Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Toplama Fonksiyonları</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/reference/" title="Başvurma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Başvurma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/combinators/" title="Birleştiriciler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştiriciler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/parametric-functions/" title="Parametrik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Parametrik</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="Tablo Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Tablo Fonksiyonları</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/merge/" title="birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/numbers/" title="şiir" class="nav-link text-light text-wrap d-inline-block w-100 px-0">şiir</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/remote/" title="uzak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">uzak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/hdfs/" title="hdf'ler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdf'ler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/input/" title="girdi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">girdi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="Sözlükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Sözlükler</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="Dış Söz Dictionarieslükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Dış Söz Dictionarieslükler</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="Genel Açıklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Açıklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="Harici bir sözlük yapılandırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici bir sözlük yapılandırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="Sözlükleri bellekte saklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlükleri bellekte saklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="Sözlük Güncellemeleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük Güncellemeleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="Dış Sözlüklerin kaynakları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış Sözlüklerin kaynakları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="Sözlük anahtarı ve alanları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük anahtarı ve alanları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="Hiyerarşik sözlükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiyerarşik sözlükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/internal-dicts/" title="İç Söz Dictionarieslükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç Söz Dictionarieslükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="Operatörler" class="nav-link text-light text-wrap dropdown-toggle px-0">Operatörler</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/operators/" title="Operatörler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Operatörler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/operators/in/" title="IN Operators" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operators</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Veri Türleri</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/int-uint/" title="Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/decimal/" title="Ondalık" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ondalık</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/boolean/" title="Boeanoleanean" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boeanoleanean</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/string/" title="Dize" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dize</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/fixedstring/" title="FixedString(N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FixedString(N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/date/" title="Tarihli" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarihli</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/array/" title="Dizi(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizi(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction (ad, types_of_arguments...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction (ad, types_of_arguments...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/tuple/" title="Tuple (T1, T2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple (T1, T2, ...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-17" title="İç İçe Veri Yapıları" class="nav-link text-light text-wrap dropdown-toggle px-0">İç İçe Veri Yapıları</a>
+<div id="sidebar-sidebar-5-9-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/nested-data-structures/nested/" title="İç İçe (Name1 Type1, Name2 Type2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç İçe (Name1 Type1, Name2 Type2,...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-18" title="Özel Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Özel Veri Türleri</a>
+<div id="sidebar-sidebar-5-9-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/expression/" title="İfade" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İfade</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/nothing/" title="Hiçbir şey" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiçbir şey</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/interval/" title="Aralıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aralıklı</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-19" title="Etkiler" class="nav-link text-light text-wrap dropdown-toggle px-0">Etkiler</a>
+<div id="sidebar-sidebar-5-9-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/ipv4/" title="Ipv44" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ipv44</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/ansi/" title="ANSI uyumluluğu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSI uyumluluğu</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="Kılavuzlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Kılavuzlar</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../guides/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../guides/apply-catboost-model/" title="CatBoost Modellerini Uygulamak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CatBoost Modellerini Uygulamak</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="Harekat" class="nav-link text-light text-wrap dropdown-toggle px-0">Harekat</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/requirements/" title="Gereksinimler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Gereksinimler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/monitoring/" title="İzleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İzleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/troubleshooting/" title="Arıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/update/" title="ClickHouse Güncelleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse Güncelleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/access-rights/" title="Erişim Kontrolü ve hesap yönetimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Erişim Kontrolü ve hesap yönetimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/backup/" title="Veri Yedekleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Yedekleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/configuration-files/" title="Yapılandırma Dosyaları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yapılandırma Dosyaları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/quotas/" title="Kotalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kotalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="Performansı Optimize Etme" class="nav-link text-light text-wrap dropdown-toggle px-0">Performansı Optimize Etme</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/optimizing-performance/sampling-query-profiler/" title="Sorgu Profili Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu Profili Oluşturma</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/system-tables/" title="Sistem Tabloları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sistem Tabloları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/performance-test/" title="Donanım Test" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Donanım Test</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="Sunucu Yapılandırma Parametreleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Sunucu Yapılandırma Parametreleri</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/server-configuration-parameters/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/server-configuration-parameters/settings/" title="Sunucu Ayarları" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">Sunucu Ayarları</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="Ayarlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Ayarlar</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/permissions-for-queries/" title="Sorgular için izinler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgular için izinler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/query-complexity/" title="Sorgu karmaşıklığı üzerindeki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu karmaşıklığı üzerindeki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings-profiles/" title="Ayarlar Profilleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar Profilleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/constraints-on-settings/" title="Ayarlardaki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlardaki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings-users/" title="Kullanıcı Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanıcı Ayarları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings/" title="Ayarlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="Programlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Programlar</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-copier/" title="clickhouse-fotokopi makinesi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-fotokopi makinesi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-local/" title="clickhouse-yerel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-yerel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-benchmark/" title="clickhouse-benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-benchmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/tips/" title="Kullanım Önerileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanım Önerileri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="Gelişme" class="nav-link text-light text-wrap dropdown-toggle px-0">Gelişme</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../development/developer-instruction/" title="Acemi ClickHouse Geliştirici Talimat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Acemi ClickHouse Geliştirici Talimat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/architecture/" title="ClickHouse mimarisine genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse mimarisine genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/browse-code/" title="Kaynak Koduna Gözat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kaynak Koduna Gözat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build/" title="Linux üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Linux üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-osx/" title="Mac OS X üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-cross-osx/" title="Mac OS X için Linux'ta ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X için Linux'ta ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-cross-arm/" title="AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/style/" title="C++ kodu nasıl yazılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ kodu nasıl yazılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/tests/" title="ClickHouse testleri nasıl çalıştırılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse testleri nasıl çalıştırılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/contrib/" title="Kullanılan Üçüncü Taraf Kütüphaneleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanılan Üçüncü Taraf Kütüphaneleri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="Ticari" class="nav-link text-light text-wrap dropdown-toggle px-0">Ticari</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../commercial/cloud/" title="Bulut" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bulut</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../commercial/support/" title="Support" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Support</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="Ne yeni" class="nav-link text-light text-wrap dropdown-toggle px-0">Ne yeni</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="Changelog" class="nav-link text-light text-wrap dropdown-toggle px-0">Changelog</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/roadmap/" title="Yol haritası" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yol haritası</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/security-changelog/" title="Güvenlik Changelog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Güvenlik Changelog</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../faq/general/" title="Genel Sorular" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Sorular</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../../single/clickhouse_tr.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDF versiyonu" title="PDF versiyonu" height="24" class="d-block mr-1 float-left" /><div>PDF versiyonu</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../../" class="text-reset">Harekat</a>
+                            
+                        </li>
+                       
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">Sunucu Yapılandırma Parametreleri</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">Yardım istedi!</p>
+      <p class="lead">Bu Dokümantasyon sayfasının aşağıdaki içeriği makine tarafından çevrilmiştir. Ancak diğer web sitelerinin aksine, anında yapılmaz. Bu çevrilmiş metin, ana ClickHouse kod tabanının yanında GitHub deposunda yaşar ve diğer anadili konuşanların daha insan tarafından okunabilir olmasını bekler. <a href="/docs/en/operations/server-configuration-parameters/settings/" class="alert-link">Orijinal İngilizce sürümünü referans olarak da kullanabilirsiniz.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/operations/server-configuration-parameters/settings.md" target="_blank" rel="external nofollow noreferrer">
+              Bu sayfayı düzenleyerek ClickHouse belgelerine yardım edin
+          </a>
+      </p>
+    </div>
+
+            <h1 id="server-settings">Sunucu Ayarları<a class="headerlink" href="#server-settings" title="Permanent link"> </a></h1>
+<h2 id="builtin-dictionaries-reload-interval">buıltın_dıctıonarıes_reload_ınterval<a class="headerlink" href="#builtin-dictionaries-reload-interval" title="Permanent link"> </a></h2>
+<p>Dahili sözlükleri yeniden yüklemeden önce saniye cinsinden Aralık.</p>
+<p>ClickHouse, her x saniyede bir yerleşik sözlükleri yeniden yükler. Bu, sözlükleri düzenlemeyi mümkün kılar “on the fly” sunucuyu yeniden başlatmadan.</p>
+<p>Varsayılan değer: 3600.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;builtin_dictionaries_reload_interval&gt;</span>3600<span class="nt">&lt;/builtin_dictionaries_reload_interval&gt;</span>
+</code></pre></div>
+<h2 id="server-settings-compression">sıkıştırma<a class="headerlink" href="#server-settings-compression" title="Permanent link"> </a></h2>
+<p>İçin veri sıkıştırma ayarları <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a>- motor masaları.</p>
+<div class="admonition warning alert pb-0 mb-4 alert-warning" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Uyarıcı</p>
+<p>Sadece ClickHouse kullanmaya başladıysanız kullanmayın.</p>
+</div>
+<p>Yapılandırma şablonu:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;compression&gt;</span>
+    <span class="nt">&lt;case&gt;</span>
+      <span class="nt">&lt;min_part_size&gt;</span>...<span class="nt">&lt;/min_part_size&gt;</span>
+      <span class="nt">&lt;min_part_size_ratio&gt;</span>...<span class="nt">&lt;/min_part_size_ratio&gt;</span>
+      <span class="nt">&lt;method&gt;</span>...<span class="nt">&lt;/method&gt;</span>
+    <span class="nt">&lt;/case&gt;</span>
+    ...
+<span class="nt">&lt;/compression&gt;</span>
+</code></pre></div>
+<p><code class="syntax">&lt;case&gt;</code> alanlar:</p>
+<ul>
+<li><code class="syntax">min_part_size</code> – The minimum size of a data part.</li>
+<li><code class="syntax">min_part_size_ratio</code> – The ratio of the data part size to the table size.</li>
+<li><code class="syntax">method</code> – Compression method. Acceptable values: <code class="syntax">lz4</code> veya <code class="syntax">zstd</code>.</li>
+</ul>
+<p>Birden fazla yapılandırabilirsiniz <code class="syntax">&lt;case&gt;</code> bölmeler.</p>
+<p>Koşullar yerine getirildiğinde eylemler:</p>
+<ul>
+<li>Bir veri parçası bir koşul kümesiyle eşleşirse, ClickHouse belirtilen sıkıştırma yöntemini kullanır.</li>
+<li>Bir veri parçası birden çok koşul kümesiyle eşleşirse, ClickHouse ilk eşleşen koşul kümesini kullanır.</li>
+</ul>
+<p>Bir veri bölümü için herhangi bir koşul karşılanmazsa, ClickHouse <code class="syntax">lz4</code> sıkıştırma.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;compression</span> <span class="na">incl=</span><span class="s">"clickhouse_compression"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;case&gt;</span>
+        <span class="nt">&lt;min_part_size&gt;</span>10000000000<span class="nt">&lt;/min_part_size&gt;</span>
+        <span class="nt">&lt;min_part_size_ratio&gt;</span>0.01<span class="nt">&lt;/min_part_size_ratio&gt;</span>
+        <span class="nt">&lt;method&gt;</span>zstd<span class="nt">&lt;/method&gt;</span>
+    <span class="nt">&lt;/case&gt;</span>
+<span class="nt">&lt;/compression&gt;</span>
+</code></pre></div>
+<h2 id="default-database">default_database<a class="headerlink" href="#default-database" title="Permanent link"> </a></h2>
+<p>Varsayılan veritabanı.</p>
+<p>Veritabanlarının bir listesini almak için <a href="../../../sql-reference/statements/show/#show-databases">SHOW DATABASES</a> sorgu.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;default_database&gt;</span>default<span class="nt">&lt;/default_database&gt;</span>
+</code></pre></div>
+<h2 id="default-profile">default_profile<a class="headerlink" href="#default-profile" title="Permanent link"> </a></h2>
+<p>Varsayılan ayarlar profili.</p>
+<p>Ayarlar profilleri parametrede belirtilen dosyada bulunur <code class="syntax">user_config</code>.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;default_profile&gt;</span>default<span class="nt">&lt;/default_profile&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-dictionaries_config">dictionaries_config<a class="headerlink" href="#server_configuration_parameters-dictionaries_config" title="Permanent link"> </a></h2>
+<p>Dış sözlükler için yapılandırma dosyasının yolu.</p>
+<p>Yol:</p>
+<ul>
+<li>Mutlak yolu veya sunucu yapılandırma dosyasına göre yolu belirtin.</li>
+<li>Yol joker karakterler içerebilir * ve ?.</li>
+</ul>
+<p>Ayrıca bakınız “<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts/">Dış söz dictionarieslükler</a>”.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;dictionaries_config&gt;</span>*_dictionary.xml<span class="nt">&lt;/dictionaries_config&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-dictionaries_lazy_load">dictionaries_lazy_load<a class="headerlink" href="#server_configuration_parameters-dictionaries_lazy_load" title="Permanent link"> </a></h2>
+<p>Sözlüklerin tembel yüklenmesi.</p>
+<p>Eğer <code class="syntax">true</code>, sonra her sözlük ilk kullanımda oluşturulur. Sözlük oluşturma başarısız olursa, sözlüğü kullanan işlev bir özel durum atar.</p>
+<p>Eğer <code class="syntax">false</code>, sunucu başladığında tüm sözlükler oluşturulur ve bir hata varsa, sunucu kapanır.</p>
+<p>Varsayılan değer <code class="syntax">true</code>.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;dictionaries_lazy_load&gt;</span>true<span class="nt">&lt;/dictionaries_lazy_load&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-format_schema_path">format_schema_path<a class="headerlink" href="#server_configuration_parameters-format_schema_path" title="Permanent link"> </a></h2>
+<p>Dizin için şemalar gibi giriş verileri için şemaları ile yolu <a href="../../../interfaces/formats/#capnproto">CapnProto</a> biçimli.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax">  <span class="c">&lt;!-- Directory containing schema files for various input formats. --&gt;</span>
+  <span class="nt">&lt;format_schema_path&gt;</span>format_schemas/<span class="nt">&lt;/format_schema_path&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-graphite">grafit<a class="headerlink" href="#server_configuration_parameters-graphite" title="Permanent link"> </a></h2>
+<p>Veri gönderme <a href="https://github.com/graphite-project" rel="external nofollow noreferrer" target="_blank">Grafit</a>.</p>
+<p>Ayarlar:</p>
+<ul>
+<li>host – The Graphite server.</li>
+<li>port – The port on the Graphite server.</li>
+<li>interval – The interval for sending, in seconds.</li>
+<li>timeout – The timeout for sending data, in seconds.</li>
+<li>root_path – Prefix for keys.</li>
+<li>metrics – Sending data from the <a href="../../system-tables/#system_tables-metrics">sistem.metrik</a> Tablo.</li>
+<li>events – Sending deltas data accumulated for the time period from the <a href="../../system-tables/#system_tables-events">sistem.etkinlik</a> Tablo.</li>
+<li>events_cumulative – Sending cumulative data from the <a href="../../system-tables/#system_tables-events">sistem.etkinlik</a> Tablo.</li>
+<li>asynchronous_metrics – Sending data from the <a href="../../system-tables/#system_tables-asynchronous_metrics">sistem.asynchronous_metrics</a> Tablo.</li>
+</ul>
+<p>Birden fazla yapılandırabilirsiniz <code class="syntax">&lt;graphite&gt;</code> yanlar. Örneğin, bunu farklı aralıklarla farklı veri göndermek için kullanabilirsiniz.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;graphite&gt;</span>
+    <span class="nt">&lt;host&gt;</span>localhost<span class="nt">&lt;/host&gt;</span>
+    <span class="nt">&lt;port&gt;</span>42000<span class="nt">&lt;/port&gt;</span>
+    <span class="nt">&lt;timeout&gt;</span>0.1<span class="nt">&lt;/timeout&gt;</span>
+    <span class="nt">&lt;interval&gt;</span>60<span class="nt">&lt;/interval&gt;</span>
+    <span class="nt">&lt;root_path&gt;</span>one_min<span class="nt">&lt;/root_path&gt;</span>
+    <span class="nt">&lt;metrics&gt;</span>true<span class="nt">&lt;/metrics&gt;</span>
+    <span class="nt">&lt;events&gt;</span>true<span class="nt">&lt;/events&gt;</span>
+    <span class="nt">&lt;events_cumulative&gt;</span>false<span class="nt">&lt;/events_cumulative&gt;</span>
+    <span class="nt">&lt;asynchronous_metrics&gt;</span>true<span class="nt">&lt;/asynchronous_metrics&gt;</span>
+<span class="nt">&lt;/graphite&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-graphite-rollup">graphite_rollup<a class="headerlink" href="#server_configuration_parameters-graphite-rollup" title="Permanent link"> </a></h2>
+<p>Grafit için inceltme verileri için ayarlar.</p>
+<p>Daha fazla ayrıntı için bkz. <a href="../../../engines/table-engines/mergetree-family/graphitemergetree/">Graphıtemergetree</a>.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;graphite_rollup_example&gt;</span>
+    <span class="nt">&lt;default&gt;</span>
+        <span class="nt">&lt;function&gt;</span>max<span class="nt">&lt;/function&gt;</span>
+        <span class="nt">&lt;retention&gt;</span>
+            <span class="nt">&lt;age&gt;</span>0<span class="nt">&lt;/age&gt;</span>
+            <span class="nt">&lt;precision&gt;</span>60<span class="nt">&lt;/precision&gt;</span>
+        <span class="nt">&lt;/retention&gt;</span>
+        <span class="nt">&lt;retention&gt;</span>
+            <span class="nt">&lt;age&gt;</span>3600<span class="nt">&lt;/age&gt;</span>
+            <span class="nt">&lt;precision&gt;</span>300<span class="nt">&lt;/precision&gt;</span>
+        <span class="nt">&lt;/retention&gt;</span>
+        <span class="nt">&lt;retention&gt;</span>
+            <span class="nt">&lt;age&gt;</span>86400<span class="nt">&lt;/age&gt;</span>
+            <span class="nt">&lt;precision&gt;</span>3600<span class="nt">&lt;/precision&gt;</span>
+        <span class="nt">&lt;/retention&gt;</span>
+    <span class="nt">&lt;/default&gt;</span>
+<span class="nt">&lt;/graphite_rollup_example&gt;</span>
+</code></pre></div>
+<h2 id="http-porthttps-port">http_port/https_port<a class="headerlink" href="#http-porthttps-port" title="Permanent link"> </a></h2>
+<p>Http(ler) üzerinden sunucuya bağlanmak için bağlantı noktası.</p>
+<p>Eğer <code class="syntax">https_port</code> belirtilen, <a href="#server_configuration_parameters-openssl">openSSL</a> yapılandırılmalıdır.</p>
+<p>Eğer <code class="syntax">http_port</code> belirtilmişse, OpenSSL yapılandırması ayarlanmış olsa bile göz ardı edilir.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;https_port&gt;</span>9999<span class="nt">&lt;/https_port&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-http_server_default_response">http_server_default_response<a class="headerlink" href="#server_configuration_parameters-http_server_default_response" title="Permanent link"> </a></h2>
+<p>ClickHouse HTTP (s) sunucusuna eriştiğinizde varsayılan olarak gösterilen sayfa.<br/>
+Varsayılan değer “Ok.” (sonunda bir çizgi besleme ile)</p>
+<p><strong>Örnek</strong></p>
+<p>Açıyor <code class="syntax">https://tabix.io/</code> eriş whenirken <code class="syntax">http://localhost: http_port</code>.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_server_default_response&gt;</span>
+  <span class="cp">&lt;![CDATA[&lt;html ng-app="SMI2"&gt;&lt;head&gt;&lt;base href="http://ui.tabix.io/"&gt;&lt;/head&gt;&lt;body&gt;&lt;div ui-view="" class="content-ui"&gt;&lt;/div&gt;&lt;script src="http://loader.tabix.io/master.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;]]&gt;</span>
+<span class="nt">&lt;/http_server_default_response&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-include_from">include_from<a class="headerlink" href="#server_configuration_parameters-include_from" title="Permanent link"> </a></h2>
+<p>Değiştirmeleri ile dosyanın yolu.</p>
+<p>Daha fazla bilgi için bölüme bakın “<a href="../../configuration-files/#configuration_files">Yapılandırma dosyaları</a>”.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;include_from&gt;</span>/etc/metrica.xml<span class="nt">&lt;/include_from&gt;</span>
+</code></pre></div>
+<h2 id="interserver-http-port">ınterserver_http_port<a class="headerlink" href="#interserver-http-port" title="Permanent link"> </a></h2>
+<p>ClickHouse sunucuları arasında veri alışverişi için bağlantı noktası.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;interserver_http_port&gt;</span>9009<span class="nt">&lt;/interserver_http_port&gt;</span>
+</code></pre></div>
+<h2 id="interserver-http-host">ınterserver_http_host<a class="headerlink" href="#interserver-http-host" title="Permanent link"> </a></h2>
+<p>Bu sunucuya erişmek için diğer sunucular tarafından kullanılabilecek ana bilgisayar adı.</p>
+<p>Eğer ihmal edilirse, aynı şekilde tanımlanır <code class="syntax">hostname-f</code> komut.</p>
+<p>Belirli bir ağ arayüzünden kopmak için kullanışlıdır.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;interserver_http_host&gt;</span>example.yandex.ru<span class="nt">&lt;/interserver_http_host&gt;</span>
+</code></pre></div>
+<h2 id="server-settings-interserver-http-credentials">ınterserver_http_credentials<a class="headerlink" href="#server-settings-interserver-http-credentials" title="Permanent link"> </a></h2>
+<p>Sırasında kimlik doğrulaması için kullanılan kullanıcı adı ve şifre <a href="../../../engines/table-engines/mergetree-family/replication/">çoğalma</a> çoğaltılan * motorlarla. Bu kimlik bilgileri yalnızca yinelemeler arasındaki iletişim için kullanılır ve ClickHouse istemcileri için kimlik bilgileri ile ilgisizdir. Sunucu, yinelemeleri bağlamak için bu kimlik bilgilerini denetliyor ve diğer yinelemelere bağlanırken aynı kimlik bilgilerini kullanıyor. Bu nedenle, bu kimlik bilgileri kümedeki tüm yinelemeler için aynı şekilde ayarlanmalıdır.<br/>
+Varsayılan olarak, kimlik doğrulama kullanılmaz.</p>
+<p>Bu bölüm aşağıdaki parametreleri içerir:</p>
+<ul>
+<li><code class="syntax">user</code> — username.</li>
+<li><code class="syntax">password</code> — password.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;interserver_http_credentials&gt;</span>
+    <span class="nt">&lt;user&gt;</span>admin<span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;password&gt;</span>222<span class="nt">&lt;/password&gt;</span>
+<span class="nt">&lt;/interserver_http_credentials&gt;</span>
+</code></pre></div>
+<h2 id="keep-alive-timeout">keep_alive_timeout<a class="headerlink" href="#keep-alive-timeout" title="Permanent link"> </a></h2>
+<p>ClickHouse bağlantıyı kapatmadan önce gelen istekleri bekler saniye sayısı. Varsayılan 3 saniye.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;keep_alive_timeout&gt;</span>3<span class="nt">&lt;/keep_alive_timeout&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-listen_host">listen_host<a class="headerlink" href="#server_configuration_parameters-listen_host" title="Permanent link"> </a></h2>
+<p>İsteklerin gelebileceği ana bilgisayarlarda kısıtlama. Sunucunun hepsini yanıtlamasını istiyorsanız, belirtin <code class="syntax">::</code>.</p>
+<p>Örnekler:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;listen_host&gt;</span>::1<span class="nt">&lt;/listen_host&gt;</span>
+<span class="nt">&lt;listen_host&gt;</span>127.0.0.1<span class="nt">&lt;/listen_host&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-logger">kaydedici<a class="headerlink" href="#server_configuration_parameters-logger" title="Permanent link"> </a></h2>
+<p>Günlük ayarları.</p>
+<p>Anahtarlar:</p>
+<ul>
+<li>level – Logging level. Acceptable values: <code class="syntax">trace</code>, <code class="syntax">debug</code>, <code class="syntax">information</code>, <code class="syntax">warning</code>, <code class="syntax">error</code>.</li>
+<li>log – The log file. Contains all the entries according to <code class="syntax">level</code>.</li>
+<li>errorlog – Error log file.</li>
+<li>size – Size of the file. Applies to <code class="syntax">log</code>ve<code class="syntax">errorlog</code>. Dosya ulaştıktan sonra <code class="syntax">size</code>, ClickHouse arşivleri ve yeniden adlandırır ve onun yerine yeni bir günlük dosyası oluşturur.</li>
+<li>count – The number of archived log files that ClickHouse stores.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;logger&gt;</span>
+    <span class="nt">&lt;level&gt;</span>trace<span class="nt">&lt;/level&gt;</span>
+    <span class="nt">&lt;log&gt;</span>/var/log/clickhouse-server/clickhouse-server.log<span class="nt">&lt;/log&gt;</span>
+    <span class="nt">&lt;errorlog&gt;</span>/var/log/clickhouse-server/clickhouse-server.err.log<span class="nt">&lt;/errorlog&gt;</span>
+    <span class="nt">&lt;size&gt;</span>1000M<span class="nt">&lt;/size&gt;</span>
+    <span class="nt">&lt;count&gt;</span>10<span class="nt">&lt;/count&gt;</span>
+<span class="nt">&lt;/logger&gt;</span>
+</code></pre></div>
+<p>Syslog yazma da desteklenmektedir. Yapılandırma örneği:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;logger&gt;</span>
+    <span class="nt">&lt;use_syslog&gt;</span>1<span class="nt">&lt;/use_syslog&gt;</span>
+    <span class="nt">&lt;syslog&gt;</span>
+        <span class="nt">&lt;address&gt;</span>syslog.remote:10514<span class="nt">&lt;/address&gt;</span>
+        <span class="nt">&lt;hostname&gt;</span>myhost.local<span class="nt">&lt;/hostname&gt;</span>
+        <span class="nt">&lt;facility&gt;</span>LOG_LOCAL6<span class="nt">&lt;/facility&gt;</span>
+        <span class="nt">&lt;format&gt;</span>syslog<span class="nt">&lt;/format&gt;</span>
+    <span class="nt">&lt;/syslog&gt;</span>
+<span class="nt">&lt;/logger&gt;</span>
+</code></pre></div>
+<p>Anahtarlar:</p>
+<ul>
+<li>use_syslog — Required setting if you want to write to the syslog.</li>
+<li>address — The host[:port] of syslogd. If omitted, the local daemon is used.</li>
+<li>hostname — Optional. The name of the host that logs are sent from.</li>
+<li>facility — <a href="https://en.wikipedia.org/wiki/Syslog#Facility" rel="external nofollow noreferrer" target="_blank">Syslog tesisi anahtar sözcüğü</a> ile büyük harf inlerle “LOG_” önek: (<code class="syntax">LOG_USER</code>, <code class="syntax">LOG_DAEMON</code>, <code class="syntax">LOG_LOCAL3</code> vb.).<br/>
+    Varsayılan değer: <code class="syntax">LOG_USER</code> eğer <code class="syntax">address</code> belirtilen, <code class="syntax">LOG_DAEMON otherwise.</code></li>
+<li>format – Message format. Possible values: <code class="syntax">bsd</code> ve <code class="syntax">syslog.</code></li>
+</ul>
+<h2 id="macros">makrolar<a class="headerlink" href="#macros" title="Permanent link"> </a></h2>
+<p>Çoğaltılmış tablolar için parametre değiştirmeleri.</p>
+<p>Çoğaltılmış tablolar kullanılmazsa atlanabilir.</p>
+<p>Daha fazla bilgi için bölüme bakın “<a href="../../../engines/table-engines/mergetree-family/replication/">Çoğaltılmış tablolar oluşturma</a>”.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;macros</span> <span class="na">incl=</span><span class="s">"macros"</span> <span class="na">optional=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<h2 id="server-mark-cache-size">mark_cache_size<a class="headerlink" href="#server-mark-cache-size" title="Permanent link"> </a></h2>
+<p>Tablo motorları tarafından kullanılan işaretlerin önbelleğinin yaklaşık boyutu (bayt cinsinden) <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a> aile.</p>
+<p>Önbellek sunucu için paylaşılır ve bellek gerektiği gibi ayrılır. Önbellek boyutu en az 5368709120 olmalıdır.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;mark_cache_size&gt;</span>5368709120<span class="nt">&lt;/mark_cache_size&gt;</span>
+</code></pre></div>
+<h2 id="max-concurrent-queries">max_concurrent_queries<a class="headerlink" href="#max-concurrent-queries" title="Permanent link"> </a></h2>
+<p>Aynı anda işlenen isteklerin maksimum sayısı.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;max_concurrent_queries&gt;</span>100<span class="nt">&lt;/max_concurrent_queries&gt;</span>
+</code></pre></div>
+<h2 id="max-connections">max_connections<a class="headerlink" href="#max-connections" title="Permanent link"> </a></h2>
+<p>En fazla gelen bağlantı sayısı.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;max_connections&gt;</span>4096<span class="nt">&lt;/max_connections&gt;</span>
+</code></pre></div>
+<h2 id="max-open-files">max_open_files<a class="headerlink" href="#max-open-files" title="Permanent link"> </a></h2>
+<p>Maksimum açık dosya sayısı.</p>
+<p>Varsayılan olarak: <code class="syntax">maximum</code>.</p>
+<p>Biz beri Mac OS X bu seçeneği kullanmanızı öneririz <code class="syntax">getrlimit()</code> işlev yanlış bir değer döndürür.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;max_open_files&gt;</span>262144<span class="nt">&lt;/max_open_files&gt;</span>
+</code></pre></div>
+<h2 id="max-table-size-to-drop">max_table_size_to_drop<a class="headerlink" href="#max-table-size-to-drop" title="Permanent link"> </a></h2>
+<p>Tabloları silme konusunda kısıtlama.</p>
+<p>Eğer bir boyutu <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a> tablo aşıyor <code class="syntax">max_table_size_to_drop</code> (bayt cinsinden), bir bırakma sorgusu kullanarak silemezsiniz.</p>
+<p>ClickHouse sunucusunu yeniden başlatmadan tabloyu silmeniz gerekiyorsa, <code class="syntax">&lt;clickhouse-path&gt;/flags/force_drop_table</code> dosya ve bırakma sorgusunu çalıştırın.</p>
+<p>Varsayılan değer: 50 GB.</p>
+<p>0 değeri, herhangi bir kısıtlama olmaksızın tüm tabloları silebileceğiniz anlamına gelir.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;max_table_size_to_drop&gt;</span>0<span class="nt">&lt;/max_table_size_to_drop&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-merge_tree">merge_tree<a class="headerlink" href="#server_configuration_parameters-merge_tree" title="Permanent link"> </a></h2>
+<p>Tablolar için ince ayar <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a>.</p>
+<p>Daha fazla bilgi için bkz: MergeTreeSettings.h başlık dosyası.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;merge_tree&gt;</span>
+    <span class="nt">&lt;max_suspicious_broken_parts&gt;</span>5<span class="nt">&lt;/max_suspicious_broken_parts&gt;</span>
+<span class="nt">&lt;/merge_tree&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-openssl">openSSL<a class="headerlink" href="#server_configuration_parameters-openssl" title="Permanent link"> </a></h2>
+<p>SSL istemci / sunucu yapılandırması.</p>
+<p>SSL desteği tarafından sağlanmaktadır <code class="syntax">libpoco</code> kitaplık. Arayüz dosyada açıklanmıştır <a href="https://github.com/ClickHouse-Extras/poco/blob/master/NetSSL_OpenSSL/include/Poco/Net/SSLManager.h" rel="external nofollow noreferrer" target="_blank">SSLManager.sa</a></p>
+<p>Sunucu/istemci ayarları için tuşlar:</p>
+<ul>
+<li>privateKeyFile – The path to the file with the secret key of the PEM certificate. The file may contain a key and certificate at the same time.</li>
+<li>certificateFile – The path to the client/server certificate file in PEM format. You can omit it if <code class="syntax">privateKeyFile</code> sertifika içerir.</li>
+<li>caConfig – The path to the file or directory that contains trusted root certificates.</li>
+<li>verificationMode – The method for checking the node's certificates. Details are in the description of the <a href="https://github.com/ClickHouse-Extras/poco/blob/master/NetSSL_OpenSSL/include/Poco/Net/Context.h" rel="external nofollow noreferrer" target="_blank">Bağlam</a> sınıf. Olası değerler: <code class="syntax">none</code>, <code class="syntax">relaxed</code>, <code class="syntax">strict</code>, <code class="syntax">once</code>.</li>
+<li>verificationDepth – The maximum length of the verification chain. Verification will fail if the certificate chain length exceeds the set value.</li>
+<li>loadDefaultCAFile – Indicates that built-in CA certificates for OpenSSL will be used. Acceptable values: <code class="syntax">true</code>, <code class="syntax">false</code>. |</li>
+<li>cipherList – Supported OpenSSL encryptions. For example: <code class="syntax">ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH</code>.</li>
+<li>cacheSessions – Enables or disables caching sessions. Must be used in combination with <code class="syntax">sessionIdContext</code>. Kabul edilebilir değerler: <code class="syntax">true</code>, <code class="syntax">false</code>.</li>
+<li>sessionIdContext – A unique set of random characters that the server appends to each generated identifier. The length of the string must not exceed <code class="syntax">SSL_MAX_SSL_SESSION_ID_LENGTH</code>. Bu parametre her zaman sunucu oturumu önbelleğe alır ve istemci önbellekleme istedi, sorunları önlemek yardımcı olduğundan önerilir. Varsayılan değer: <code class="syntax">${application.name}</code>.</li>
+<li>sessionCacheSize – The maximum number of sessions that the server caches. Default value: 1024*20. 0 – Unlimited sessions.</li>
+<li>sessionTimeout – Time for caching the session on the server.</li>
+<li>extendedVerification – Automatically extended verification of certificates after the session ends. Acceptable values: <code class="syntax">true</code>, <code class="syntax">false</code>.</li>
+<li>requireTLSv1 – Require a TLSv1 connection. Acceptable values: <code class="syntax">true</code>, <code class="syntax">false</code>.</li>
+<li>requireTLSv1_1 – Require a TLSv1.1 connection. Acceptable values: <code class="syntax">true</code>, <code class="syntax">false</code>.</li>
+<li>requireTLSv1 – Require a TLSv1.2 connection. Acceptable values: <code class="syntax">true</code>, <code class="syntax">false</code>.</li>
+<li>fips – Activates OpenSSL FIPS mode. Supported if the library's OpenSSL version supports FIPS.</li>
+<li>privateKeyPassphraseHandler – Class (PrivateKeyPassphraseHandler subclass) that requests the passphrase for accessing the private key. For example: <code class="syntax">&lt;privateKeyPassphraseHandler&gt;</code>, <code class="syntax">&lt;name&gt;KeyFileHandler&lt;/name&gt;</code>, <code class="syntax">&lt;options&gt;&lt;password&gt;test&lt;/password&gt;&lt;/options&gt;</code>, <code class="syntax">&lt;/privateKeyPassphraseHandler&gt;</code>.</li>
+<li>invalidCertificateHandler – Class (a subclass of CertificateHandler) for verifying invalid certificates. For example: <code class="syntax">&lt;invalidCertificateHandler&gt; &lt;name&gt;ConsoleCertificateHandler&lt;/name&gt; &lt;/invalidCertificateHandler&gt;</code> .</li>
+<li>disableProtocols – Protocols that are not allowed to use.</li>
+<li>preferServerCiphers – Preferred server ciphers on the client.</li>
+</ul>
+<p><strong>Ayarlar örneği:</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;openSSL&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+        <span class="c">&lt;!-- openssl req -subj "/CN=localhost" -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout /etc/clickhouse-server/server.key -out /etc/clickhouse-server/server.crt --&gt;</span>
+        <span class="nt">&lt;certificateFile&gt;</span>/etc/clickhouse-server/server.crt<span class="nt">&lt;/certificateFile&gt;</span>
+        <span class="nt">&lt;privateKeyFile&gt;</span>/etc/clickhouse-server/server.key<span class="nt">&lt;/privateKeyFile&gt;</span>
+        <span class="c">&lt;!-- openssl dhparam -out /etc/clickhouse-server/dhparam.pem 4096 --&gt;</span>
+        <span class="nt">&lt;dhParamsFile&gt;</span>/etc/clickhouse-server/dhparam.pem<span class="nt">&lt;/dhParamsFile&gt;</span>
+        <span class="nt">&lt;verificationMode&gt;</span>none<span class="nt">&lt;/verificationMode&gt;</span>
+        <span class="nt">&lt;loadDefaultCAFile&gt;</span>true<span class="nt">&lt;/loadDefaultCAFile&gt;</span>
+        <span class="nt">&lt;cacheSessions&gt;</span>true<span class="nt">&lt;/cacheSessions&gt;</span>
+        <span class="nt">&lt;disableProtocols&gt;</span>sslv2,sslv3<span class="nt">&lt;/disableProtocols&gt;</span>
+        <span class="nt">&lt;preferServerCiphers&gt;</span>true<span class="nt">&lt;/preferServerCiphers&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+    <span class="nt">&lt;client&gt;</span>
+        <span class="nt">&lt;loadDefaultCAFile&gt;</span>true<span class="nt">&lt;/loadDefaultCAFile&gt;</span>
+        <span class="nt">&lt;cacheSessions&gt;</span>true<span class="nt">&lt;/cacheSessions&gt;</span>
+        <span class="nt">&lt;disableProtocols&gt;</span>sslv2,sslv3<span class="nt">&lt;/disableProtocols&gt;</span>
+        <span class="nt">&lt;preferServerCiphers&gt;</span>true<span class="nt">&lt;/preferServerCiphers&gt;</span>
+        <span class="c">&lt;!-- Use for self-signed: &lt;verificationMode&gt;none&lt;/verificationMode&gt; --&gt;</span>
+        <span class="nt">&lt;invalidCertificateHandler&gt;</span>
+            <span class="c">&lt;!-- Use for self-signed: &lt;name&gt;AcceptCertificateHandler&lt;/name&gt; --&gt;</span>
+            <span class="nt">&lt;name&gt;</span>RejectCertificateHandler<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;/invalidCertificateHandler&gt;</span>
+    <span class="nt">&lt;/client&gt;</span>
+<span class="nt">&lt;/openSSL&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-part-log">part_log<a class="headerlink" href="#server_configuration_parameters-part-log" title="Permanent link"> </a></h2>
+<p>İlişkili olayları günlüğe kaydetme <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a>. Örneğin, veri ekleme veya birleştirme. Birleştirme algoritmalarını simüle etmek ve özelliklerini karşılaştırmak için günlüğü kullanabilirsiniz. Birleştirme işlemini görselleştirebilirsiniz.</p>
+<p>Sorgular günlüğe kaydedilir <a href="../../system-tables/#system_tables-part-log">sistem.part_log</a> tablo, ayrı bir dosyada değil. Bu tablonun adını aşağıdaki tabloda yapılandırabilirsiniz: <code class="syntax">table</code> parametre (aşağıya bakınız).</p>
+<p>Günlüğü yapılandırmak için aşağıdaki parametreleri kullanın:</p>
+<ul>
+<li><code class="syntax">database</code> – Name of the database.</li>
+<li><code class="syntax">table</code> – Name of the system table.</li>
+<li><code class="syntax">partition_by</code> – Sets a <a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/">özel bölümleme anahtarı</a>.</li>
+<li><code class="syntax">flush_interval_milliseconds</code> – Interval for flushing data from the buffer in memory to the table.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;part_log&gt;</span>
+    <span class="nt">&lt;database&gt;</span>system<span class="nt">&lt;/database&gt;</span>
+    <span class="nt">&lt;table&gt;</span>part_log<span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;partition_by&gt;</span>toMonday(event_date)<span class="nt">&lt;/partition_by&gt;</span>
+    <span class="nt">&lt;flush_interval_milliseconds&gt;</span>7500<span class="nt">&lt;/flush_interval_milliseconds&gt;</span>
+<span class="nt">&lt;/part_log&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-path">yol<a class="headerlink" href="#server_configuration_parameters-path" title="Permanent link"> </a></h2>
+<p>Veri içeren dizinin yolu.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Not</p>
+<p>Sondaki eğik çizgi zorunludur.</p>
+</div>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;path&gt;</span>/var/lib/clickhouse/<span class="nt">&lt;/path&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-prometheus">prometheus<a class="headerlink" href="#server_configuration_parameters-prometheus" title="Permanent link"> </a></h2>
+<p>Kazıma için metrik verilerini açığa çıkarma <a href="https://prometheus.io" rel="external nofollow noreferrer" target="_blank">Prometheus</a>.</p>
+<p>Ayarlar:</p>
+<ul>
+<li><code class="syntax">endpoint</code> – HTTP endpoint for scraping metrics by prometheus server. Start from ‘/’.</li>
+<li><code class="syntax">port</code> – Port for <code class="syntax">endpoint</code>.</li>
+<li><code class="syntax">metrics</code> – Flag that sets to expose metrics from the <a href="../../system-tables/#system_tables-metrics">sistem.metrik</a> Tablo.</li>
+<li><code class="syntax">events</code> – Flag that sets to expose metrics from the <a href="../../system-tables/#system_tables-events">sistem.etkinlik</a> Tablo.</li>
+<li><code class="syntax">asynchronous_metrics</code> – Flag that sets to expose current metrics values from the <a href="../../system-tables/#system_tables-asynchronous_metrics">sistem.asynchronous_metrics</a> Tablo.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"> <span class="nt">&lt;prometheus&gt;</span>
+        <span class="nt">&lt;endpoint&gt;</span>/metrics<span class="nt">&lt;/endpoint&gt;</span>
+        <span class="nt">&lt;port&gt;</span>8001<span class="nt">&lt;/port&gt;</span>
+        <span class="nt">&lt;metrics&gt;</span>true<span class="nt">&lt;/metrics&gt;</span>
+        <span class="nt">&lt;events&gt;</span>true<span class="nt">&lt;/events&gt;</span>
+        <span class="nt">&lt;asynchronous_metrics&gt;</span>true<span class="nt">&lt;/asynchronous_metrics&gt;</span>
+    <span class="nt">&lt;/prometheus&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-query-log">query_log<a class="headerlink" href="#server_configuration_parameters-query-log" title="Permanent link"> </a></h2>
+<p>İle alınan günlük sorgu settinglarının ayarlanması <a href="../../settings/settings/">log_queries = 1</a> ayar.</p>
+<p>Sorgular günlüğe kaydedilir <a href="../../system-tables/#system_tables-query_log">sistem.query_log</a> tablo, ayrı bir dosyada değil. Tablonun adını değiştirebilirsiniz. <code class="syntax">table</code> parametre (aşağıya bakınız).</p>
+<p>Günlüğü yapılandırmak için aşağıdaki parametreleri kullanın:</p>
+<ul>
+<li><code class="syntax">database</code> – Name of the database.</li>
+<li><code class="syntax">table</code> – Name of the system table the queries will be logged in.</li>
+<li><code class="syntax">partition_by</code> – Sets a <a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/">özel bölümleme anahtarı</a> bir masa için.</li>
+<li><code class="syntax">flush_interval_milliseconds</code> – Interval for flushing data from the buffer in memory to the table.</li>
+</ul>
+<p>Tablo yoksa, ClickHouse bunu oluşturur. ClickHouse sunucusu güncelleştirildiğinde sorgu günlüğünün yapısı değiştiyse, eski yapıya sahip tablo yeniden adlandırılır ve otomatik olarak yeni bir tablo oluşturulur.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;query_log&gt;</span>
+    <span class="nt">&lt;database&gt;</span>system<span class="nt">&lt;/database&gt;</span>
+    <span class="nt">&lt;table&gt;</span>query_log<span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;partition_by&gt;</span>toMonday(event_date)<span class="nt">&lt;/partition_by&gt;</span>
+    <span class="nt">&lt;flush_interval_milliseconds&gt;</span>7500<span class="nt">&lt;/flush_interval_milliseconds&gt;</span>
+<span class="nt">&lt;/query_log&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-query-thread-log">query_thread_log<a class="headerlink" href="#server_configuration_parameters-query-thread-log" title="Permanent link"> </a></h2>
+<p>İle alınan sorguların günlük iş parçacıklarının ayarlanması <a href="../../settings/settings/#settings-log-query-threads">log_query_threads = 1</a> ayar.</p>
+<p>Sorgular günlüğe kaydedilir <a href="../../system-tables/#system_tables-query-thread-log">sistem.query_thread_log</a> tablo, ayrı bir dosyada değil. Tablonun adını değiştirebilirsiniz. <code class="syntax">table</code> parametre (aşağıya bakınız).</p>
+<p>Günlüğü yapılandırmak için aşağıdaki parametreleri kullanın:</p>
+<ul>
+<li><code class="syntax">database</code> – Name of the database.</li>
+<li><code class="syntax">table</code> – Name of the system table the queries will be logged in.</li>
+<li><code class="syntax">partition_by</code> – Sets a <a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/">özel bölümleme anahtarı</a> bir sistem tablosu için.</li>
+<li><code class="syntax">flush_interval_milliseconds</code> – Interval for flushing data from the buffer in memory to the table.</li>
+</ul>
+<p>Tablo yoksa, ClickHouse bunu oluşturur. Sorgu iş parçacığı günlüğü yapısını değiştirdiyseniz ClickHouse sunucu güncelleştirildi, tablo eski yapısı ile yeniden adlandırılır ve yeni bir tablo otomatik olarak oluşturulur.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;query_thread_log&gt;</span>
+    <span class="nt">&lt;database&gt;</span>system<span class="nt">&lt;/database&gt;</span>
+    <span class="nt">&lt;table&gt;</span>query_thread_log<span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;partition_by&gt;</span>toMonday(event_date)<span class="nt">&lt;/partition_by&gt;</span>
+    <span class="nt">&lt;flush_interval_milliseconds&gt;</span>7500<span class="nt">&lt;/flush_interval_milliseconds&gt;</span>
+<span class="nt">&lt;/query_thread_log&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-trace_log">trace_log<a class="headerlink" href="#server_configuration_parameters-trace_log" title="Permanent link"> </a></h2>
+<p>İçin ayarlar <a href="../../system-tables/#system_tables-trace_log">trace_log</a> sistem tablosu çalışması.</p>
+<p>Parametre:</p>
+<ul>
+<li><code class="syntax">database</code> — Database for storing a table.</li>
+<li><code class="syntax">table</code> — Table name.</li>
+<li><code class="syntax">partition_by</code> — <a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/">Özel bölümleme anahtarı</a> bir sistem tablosu için.</li>
+<li><code class="syntax">flush_interval_milliseconds</code> — Interval for flushing data from the buffer in memory to the table.</li>
+</ul>
+<p>Varsayılan sunucu yapılandırma dosyası <code class="syntax">config.xml</code> aşağıdaki ayarlar bölümünü içerir:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;trace_log&gt;</span>
+    <span class="nt">&lt;database&gt;</span>system<span class="nt">&lt;/database&gt;</span>
+    <span class="nt">&lt;table&gt;</span>trace_log<span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;partition_by&gt;</span>toYYYYMM(event_date)<span class="nt">&lt;/partition_by&gt;</span>
+    <span class="nt">&lt;flush_interval_milliseconds&gt;</span>7500<span class="nt">&lt;/flush_interval_milliseconds&gt;</span>
+<span class="nt">&lt;/trace_log&gt;</span>
+</code></pre></div>
+<h2 id="query-masking-rules">query_masking_rules<a class="headerlink" href="#query-masking-rules" title="Permanent link"> </a></h2>
+<p>Regexp tabanlı kurallar, sorgulara ve tüm günlük iletilerine sunucu günlüklerinde depolamadan önce uygulanacak,<br/>
+<code class="syntax">system.query_log</code>, <code class="syntax">system.text_log</code>, <code class="syntax">system.processes</code> tablo ve istemciye gönderilen günlüklerde. Önlem allowseyi sağlayan<br/>
+SQL sorgularından hassas veri sızıntısı (isimler, e-postalar, kişisel<br/>
+kimlik veya kredi kartı numaraları) günlükleri için.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;query_masking_rules&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>
+        <span class="nt">&lt;name&gt;</span>hide SSN<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;regexp&gt;</span>(^|\D)\d{3}-\d{2}-\d{4}($|\D)<span class="nt">&lt;/regexp&gt;</span>
+        <span class="nt">&lt;replace&gt;</span>000-00-0000<span class="nt">&lt;/replace&gt;</span>
+    <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/query_masking_rules&gt;</span>
+</code></pre></div>
+<p>Config alanları:<br/>
+- <code class="syntax">name</code> - kuralın adı (isteğe bağlı)<br/>
+- <code class="syntax">regexp</code> - Re2 uyumlu düzenli ifade (zorunlu)<br/>
+- <code class="syntax">replace</code> - hassas veriler için ikame dizesi (isteğe bağlı, varsayılan olarak-altı Yıldız İşareti)</p>
+<p>Maskeleme kuralları tüm sorguya uygulanır (hatalı biçimlendirilmiş / ayrıştırılamayan sorgulardan hassas verilerin sızıntılarını önlemek için).</p>
+<p><code class="syntax">system.events</code> tablo sayacı var <code class="syntax">QueryMaskingRulesMatch</code> hangi sorgu maskeleme kuralları maçları genel bir numarası var.</p>
+<p>Dağıtılmış sorgular için her sunucu ayrı ayrı yapılandırılmalıdır, aksi takdirde alt sorgular diğerine iletilir<br/>
+düğümler maskeleme olmadan saklanır.</p>
+<h2 id="server-settings-remote-servers">remote_servers<a class="headerlink" href="#server-settings-remote-servers" title="Permanent link"> </a></h2>
+<p>Tarafından kullanılan küm ofelerin yapılandırması <a href="../../../engines/table-engines/special/distributed/">Dağılı</a> tablo motoru ve <code class="syntax">cluster</code> tablo işlevi.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;remote_servers</span> <span class="na">incl=</span><span class="s">"clickhouse_remote_servers"</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<p>Değeri için <code class="syntax">incl</code> öznitelik, bölümüne bakın “<a href="../../configuration-files/#configuration_files">Yapılandırma dosyaları</a>”.</p>
+<p><strong>Ayrıca Bakınız</strong></p>
+<ul>
+<li><a href="../../settings/settings/#settings-skip_unavailable_shards">skip_unavailable_shards</a></li>
+</ul>
+<h2 id="server_configuration_parameters-timezone">saat dilimi<a class="headerlink" href="#server_configuration_parameters-timezone" title="Permanent link"> </a></h2>
+<p>Sunucunun saat dilimi.</p>
+<p>UTC saat dilimi veya coğrafi konum (örneğin, Afrika / Abidjan) için bir IANA tanımlayıcısı olarak belirtilir.</p>
+<p>Saat dilimi, datetime alanları metin biçimine (ekranda veya dosyada yazdırıldığında) çıktığında ve datetime'ı bir dizeden alırken dize ve DateTime biçimleri arasındaki dönüşümler için gereklidir. Ayrıca, saat dilimi, giriş parametrelerinde saat dilimini almadıkları takdirde saat ve tarih ile çalışan işlevlerde kullanılır.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;timezone&gt;</span>Europe/Moscow<span class="nt">&lt;/timezone&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-tcp_port">tcp_port<a class="headerlink" href="#server_configuration_parameters-tcp_port" title="Permanent link"> </a></h2>
+<p>TCP protokolü üzerinden istemcilerle iletişim kurmak için bağlantı noktası.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;tcp_port&gt;</span>9000<span class="nt">&lt;/tcp_port&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-tcp_port_secure">tcp_port_secure<a class="headerlink" href="#server_configuration_parameters-tcp_port_secure" title="Permanent link"> </a></h2>
+<p>İstemcilerle güvenli iletişim için TCP bağlantı noktası. İle kullanın <a href="#server_configuration_parameters-openssl">OpenSSL</a> ayarlar.</p>
+<p><strong>Olası değerler</strong></p>
+<p>Pozitif tamsayı.</p>
+<p><strong>Varsayılan değer</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;tcp_port_secure&gt;</span>9440<span class="nt">&lt;/tcp_port_secure&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-mysql_port">mysql_port<a class="headerlink" href="#server_configuration_parameters-mysql_port" title="Permanent link"> </a></h2>
+<p>MySQL protokolü üzerinden istemcilerle iletişim kurmak için bağlantı noktası.</p>
+<p><strong>Olası değerler</strong></p>
+<p>Pozitif tamsayı.</p>
+<p>Örnek</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;mysql_port&gt;</span>9004<span class="nt">&lt;/mysql_port&gt;</span>
+</code></pre></div>
+<h2 id="server-settings-tmp_path">tmp_path<a class="headerlink" href="#server-settings-tmp_path" title="Permanent link"> </a></h2>
+<p>Büyük sorguları işlemek için geçici veri yolu.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Not</p>
+<p>Sondaki eğik çizgi zorunludur.</p>
+</div>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;tmp_path&gt;</span>/var/lib/clickhouse/tmp/<span class="nt">&lt;/tmp_path&gt;</span>
+</code></pre></div>
+<h2 id="server-settings-tmp-policy">tmp_policy<a class="headerlink" href="#server-settings-tmp-policy" title="Permanent link"> </a></h2>
+<p>Politika dan <a href="../../../engines/table-engines/mergetree-family/mergetree/#table_engine-mergetree-multiple-volumes"><code class="syntax">storage_configuration</code></a> geçici dosyaları saklamak için.<br/>
+Set değilse <a href="#server-settings-tmp_path"><code class="syntax">tmp_path</code></a> kullanılır, aksi takdirde göz ardı edilir.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Not</p>
+<ul>
+<li><code class="syntax">move_factor</code> göz ardı edilir</li>
+</ul>
+</div>
+<ul>
+<li><code class="syntax">keep_free_space_bytes</code> göz ardı edilir</li>
+<li><code class="syntax">max_data_part_size_bytes</code> göz ardı edilir</li>
+<li>bu Politikada tam olarak bir cilt olmalı</li>
+</ul>
+<h2 id="server-settings-uncompressed_cache_size">uncompressed_cache_size<a class="headerlink" href="#server-settings-uncompressed_cache_size" title="Permanent link"> </a></h2>
+<p>Tablo motorları tarafından kullanılan sıkıştırılmamış veriler için önbellek boyutu (bayt cinsinden) <a href="../../../engines/table-engines/mergetree-family/mergetree/">MergeTree</a>.</p>
+<p>Sunucu için bir paylaşılan önbellek var. Bellek talep üzerine tahsis edilir. Seçenek varsa önbellek kullanılır <a href="../../settings/settings/#setting-use_uncompressed_cache">use_uncompressed_cache</a> etkindir.</p>
+<p>Sıkıştırılmamış önbellek, tek tek durumlarda çok kısa sorgular için avantajlıdır.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;uncompressed_cache_size&gt;</span>8589934592<span class="nt">&lt;/uncompressed_cache_size&gt;</span>
+</code></pre></div>
+<h2 id="server_configuration_parameters-user_files_path">user_files_path<a class="headerlink" href="#server_configuration_parameters-user_files_path" title="Permanent link"> </a></h2>
+<p>Kullanıcı dosyaları ile dizin. Tablo işlevinde kullanılır <a href="../../../sql-reference/table-functions/file/">Dosya()</a>.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;user_files_path&gt;</span>/var/lib/clickhouse/user_files/<span class="nt">&lt;/user_files_path&gt;</span>
+</code></pre></div>
+<h2 id="users-config">users_config<a class="headerlink" href="#users-config" title="Permanent link"> </a></h2>
+<p>İçeren dosyanın yolu:</p>
+<ul>
+<li>Kullanıcı yapılandırmaları.</li>
+<li>Erişim hakları.</li>
+<li>Ayarlar profilleri.</li>
+<li>Kota ayarları.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;users_config&gt;</span>users.xml<span class="nt">&lt;/users_config&gt;</span>
+</code></pre></div>
+<h2 id="server-settings_zookeeper">zookeeper<a class="headerlink" href="#server-settings_zookeeper" title="Permanent link"> </a></h2>
+<p>ClickHouse ile etkileşim sağlayan ayarları içerir <a href="http://zookeeper.apache.org/" rel="external nofollow noreferrer" target="_blank">ZooKeeper</a> küme.</p>
+<p>ClickHouse, çoğaltılmış tabloları kullanırken kopyaların meta verilerini depolamak için ZooKeeper kullanır. Çoğaltılmış tablolar kullanılmazsa, parametrelerin bu bölümü atlanabilir.</p>
+<p>Bu bölüm aşağıdaki parametreleri içerir:</p>
+<ul>
+<li>
+<p><code class="syntax">node</code> — ZooKeeper endpoint. You can set multiple endpoints.</p>
+<p>Mesela:</p>
+</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax">    <span class="nt">&lt;node</span> <span class="na">index=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;host&gt;</span>example_host<span class="nt">&lt;/host&gt;</span>
+        <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">  <span class="n">The</span> <span class="ss">`index`</span> <span class="n">attribute</span> <span class="n">specifies</span> <span class="n">the</span> <span class="n">node</span> <span class="k">order</span> <span class="k">when</span> <span class="n">trying</span> <span class="k">to</span> <span class="n">connect</span> <span class="k">to</span> <span class="n">the</span> <span class="n">ZooKeeper</span> <span class="n">cluster</span><span class="p">.</span>
+</code></pre></div>
+<ul>
+<li><code class="syntax">session_timeout</code> — Maximum timeout for the client session in milliseconds.</li>
+<li><code class="syntax">root</code> — The <a href="http://zookeeper.apache.org/doc/r3.5.5/zookeeperOver.html#Nodes+and+ephemeral+nodes" rel="external nofollow noreferrer" target="_blank">znode</a> bu, ClickHouse sunucusu tarafından kullanılan znodes için kök olarak kullanılır. İsteğe bağlı.</li>
+<li><code class="syntax">identity</code> — User and password, that can be required by ZooKeeper to give access to requested znodes. Optional.</li>
+</ul>
+<p><strong>Örnek yapılandırma</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;zookeeper&gt;</span>
+    <span class="nt">&lt;node&gt;</span>
+        <span class="nt">&lt;host&gt;</span>example1<span class="nt">&lt;/host&gt;</span>
+        <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
+    <span class="nt">&lt;node&gt;</span>
+        <span class="nt">&lt;host&gt;</span>example2<span class="nt">&lt;/host&gt;</span>
+        <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
+    <span class="nt">&lt;session_timeout_ms&gt;</span>30000<span class="nt">&lt;/session_timeout_ms&gt;</span>
+    <span class="nt">&lt;operation_timeout_ms&gt;</span>10000<span class="nt">&lt;/operation_timeout_ms&gt;</span>
+    <span class="c">&lt;!-- Optional. Chroot suffix. Should exist. --&gt;</span>
+    <span class="nt">&lt;root&gt;</span>/path/to/zookeeper/node<span class="nt">&lt;/root&gt;</span>
+    <span class="c">&lt;!-- Optional. Zookeeper digest ACL string. --&gt;</span>
+    <span class="nt">&lt;identity&gt;</span>user:password<span class="nt">&lt;/identity&gt;</span>
+<span class="nt">&lt;/zookeeper&gt;</span>
+</code></pre></div>
+<p><strong>Ayrıca Bakınız</strong></p>
+<ul>
+<li><a href="../../../engines/table-engines/mergetree-family/replication/">Çoğalma</a></li>
+<li><a href="http://zookeeper.apache.org/doc/current/zookeeperProgrammers.html" rel="external nofollow noreferrer" target="_blank">ZooKeeper programcı Kılavuzu</a></li>
+</ul>
+<h2 id="server-settings-use_minimalistic_part_header_in_zookeeper">use_minimalistic_part_header_in_zookeeper<a class="headerlink" href="#server-settings-use_minimalistic_part_header_in_zookeeper" title="Permanent link"> </a></h2>
+<p>ZooKeeper veri parçası başlıkları için depolama yöntemi.</p>
+<p>Bu ayar yalnızca <code class="syntax">MergeTree</code> aile. Belirt specifiedilebilir:</p>
+<ul>
+<li>
+<p>Küresel olarak <a href="#server_configuration_parameters-merge_tree">merge_tree</a> bu bölüm <code class="syntax">config.xml</code> Dosya.</p>
+<p>ClickHouse sunucudaki tüm tablolar için ayarı kullanır. Ayarı istediğiniz zaman değiştirebilirsiniz. Mevcut tablolar, ayar değiştiğinde davranışlarını değiştirir.</p>
+</li>
+<li>
+<p>Her tablo için.</p>
+<p>Bir tablo oluştururken, karşılık gelen <a href="../../../engines/table-engines/mergetree-family/mergetree/#table_engine-mergetree-creating-a-table">motor ayarı</a>. Genel ayar değişse bile, bu ayara sahip varolan bir tablonun davranışı değişmez.</p>
+</li>
+</ul>
+<p><strong>Olası değerler</strong></p>
+<ul>
+<li>0 — Functionality is turned off.</li>
+<li>1 — Functionality is turned on.</li>
+</ul>
+<p>Eğer <code class="syntax">use_minimalistic_part_header_in_zookeeper = 1</code>, sonraları <a href="../../../engines/table-engines/mergetree-family/replication/">çoğaltıyordu</a> tablolar, veri parçalarının başlıklarını tek bir <code class="syntax">znode</code>. Tablo çok sayıda sütun içeriyorsa, bu depolama yöntemi Zookeeper'da depolanan verilerin hacmini önemli ölçüde azaltır.</p>
+<div class="admonition attention alert pb-0 mb-4 alert-warning" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Dikkat</p>
+<p>Uyguladıktan sonra <code class="syntax">use_minimalistic_part_header_in_zookeeper = 1</code>, ClickHouse sunucusunu bu ayarı desteklemeyen bir sürüme düşüremezsiniz. Bir kümedeki sunucularda ClickHouse yükseltirken dikkatli olun. Tüm sunucuları bir kerede yükseltmeyin. Clickhouse'un yeni sürümlerini bir test ortamında veya bir kümenin yalnızca birkaç sunucusunda test etmek daha güvenlidir.</p>
+<p>Data part headers already stored with this setting can't be restored to their previous (non-compact) representation.</p>
+</div>
+<p><strong>Varsayılan değer:</strong> 0.</p>
+<h2 id="server-settings-disable-internal-dns-cache">disable_internal_dns_cache<a class="headerlink" href="#server-settings-disable-internal-dns-cache" title="Permanent link"> </a></h2>
+<p>İç DNS önbelleğini devre dışı bırakır. Sistemlerinde ClickHouse işletim için tavsiye<br/>
+Kubernetes gibi sık sık değişen altyapı ile.</p>
+<p><strong>Varsayılan değer:</strong> 0.</p>
+<h2 id="server-settings-dns-cache-update-period">dns_cache_update_period<a class="headerlink" href="#server-settings-dns-cache-update-period" title="Permanent link"> </a></h2>
+<p>ClickHouse iç DNS önbelleğinde saklanan IP adreslerini güncelleme süresi (saniye cinsinden).<br/>
+Güncelleştirme, ayrı bir sistem iş parçacığında zaman uyumsuz olarak gerçekleştirilir.</p>
+<p><strong>Varsayılan değer</strong>: 15.</p>
+<h2 id="access_control_path">access_control_path<a class="headerlink" href="#access_control_path" title="Permanent link"> </a></h2>
+<p>ClickHouse sunucusunun SQL komutları tarafından oluşturulan kullanıcı ve rol yapılandırmalarını depoladığı bir klasörün yolu.</p>
+<p>Varsayılan değer: <code class="syntax">/var/lib/clickhouse/access/</code>.</p>
+<p><strong>Ayrıca bakınız</strong></p>
+<ul>
+<li><a href="../../access-rights/#access-control">Erişim Kontrolü ve hesap yönetimi</a></li>
+</ul>
+<p><a href="https://clickhouse.tech/docs/en/operations/server_configuration_parameters/settings/" target="_blank">Orijinal makale</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">Verim: RATING_VALUE - RATING_COUNT oylar</p>
+  <span class="alert-heading display-6">Bu içerik yararlı mıydı?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['Kullanışsız', 'Zavallı', 'OK', 'İyi', 'Mükemmel']"
+     data-documentation="belge"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>Dahili <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, yayınlanan <span title="2020-04-15T16:56:49+03:00">2020-04-15</span>, modifiye on <span title="2020-05-15T16:14:39+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">İçindekiler tablosu</label>
+    
+    
+        
+        
+        <a href="#builtin-dictionaries-reload-interval" title="buıltın_dıctıonarıes_reload_ınterval" class="nav-link text-wrap d-inline-block w-100">
+    buıltın_dıctıonarıes_reload_ınterval
+</a>
+
+    
+        
+        
+        <a href="#server-settings-compression" title="sıkıştırma" class="nav-link text-wrap d-inline-block w-100">
+    sıkıştırma
+</a>
+
+    
+        
+        
+        <a href="#default-database" title="default_database" class="nav-link text-wrap d-inline-block w-100">
+    default_database
+</a>
+
+    
+        
+        
+        <a href="#default-profile" title="default_profile" class="nav-link text-wrap d-inline-block w-100">
+    default_profile
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-dictionaries_config" title="dictionaries_config" class="nav-link text-wrap d-inline-block w-100">
+    dictionaries_config
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-dictionaries_lazy_load" title="dictionaries_lazy_load" class="nav-link text-wrap d-inline-block w-100">
+    dictionaries_lazy_load
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-format_schema_path" title="format_schema_path" class="nav-link text-wrap d-inline-block w-100">
+    format_schema_path
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-graphite" title="grafit" class="nav-link text-wrap d-inline-block w-100">
+    grafit
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-graphite-rollup" title="graphite_rollup" class="nav-link text-wrap d-inline-block w-100">
+    graphite_rollup
+</a>
+
+    
+        
+        
+        <a href="#http-porthttps-port" title="http_port/https_port" class="nav-link text-wrap d-inline-block w-100">
+    http_port/https_port
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-http_server_default_response" title="http_server_default_response" class="nav-link text-wrap d-inline-block w-100">
+    http_server_default_response
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-include_from" title="include_from" class="nav-link text-wrap d-inline-block w-100">
+    include_from
+</a>
+
+    
+        
+        
+        <a href="#interserver-http-port" title="ınterserver_http_port" class="nav-link text-wrap d-inline-block w-100">
+    ınterserver_http_port
+</a>
+
+    
+        
+        
+        <a href="#interserver-http-host" title="ınterserver_http_host" class="nav-link text-wrap d-inline-block w-100">
+    ınterserver_http_host
+</a>
+
+    
+        
+        
+        <a href="#server-settings-interserver-http-credentials" title="ınterserver_http_credentials" class="nav-link text-wrap d-inline-block w-100">
+    ınterserver_http_credentials
+</a>
+
+    
+        
+        
+        <a href="#keep-alive-timeout" title="keep_alive_timeout" class="nav-link text-wrap d-inline-block w-100">
+    keep_alive_timeout
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-listen_host" title="listen_host" class="nav-link text-wrap d-inline-block w-100">
+    listen_host
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-logger" title="kaydedici" class="nav-link text-wrap d-inline-block w-100">
+    kaydedici
+</a>
+
+    
+        
+        
+        <a href="#macros" title="makrolar" class="nav-link text-wrap d-inline-block w-100">
+    makrolar
+</a>
+
+    
+        
+        
+        <a href="#server-mark-cache-size" title="mark_cache_size" class="nav-link text-wrap d-inline-block w-100">
+    mark_cache_size
+</a>
+
+    
+        
+        
+        <a href="#max-concurrent-queries" title="max_concurrent_queries" class="nav-link text-wrap d-inline-block w-100">
+    max_concurrent_queries
+</a>
+
+    
+        
+        
+        <a href="#max-connections" title="max_connections" class="nav-link text-wrap d-inline-block w-100">
+    max_connections
+</a>
+
+    
+        
+        
+        <a href="#max-open-files" title="max_open_files" class="nav-link text-wrap d-inline-block w-100">
+    max_open_files
+</a>
+
+    
+        
+        
+        <a href="#max-table-size-to-drop" title="max_table_size_to_drop" class="nav-link text-wrap d-inline-block w-100">
+    max_table_size_to_drop
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-merge_tree" title="merge_tree" class="nav-link text-wrap d-inline-block w-100">
+    merge_tree
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-openssl" title="openSSL" class="nav-link text-wrap d-inline-block w-100">
+    openSSL
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-part-log" title="part_log" class="nav-link text-wrap d-inline-block w-100">
+    part_log
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-path" title="yol" class="nav-link text-wrap d-inline-block w-100">
+    yol
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-prometheus" title="prometheus" class="nav-link text-wrap d-inline-block w-100">
+    prometheus
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-query-log" title="query_log" class="nav-link text-wrap d-inline-block w-100">
+    query_log
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-query-thread-log" title="query_thread_log" class="nav-link text-wrap d-inline-block w-100">
+    query_thread_log
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-trace_log" title="trace_log" class="nav-link text-wrap d-inline-block w-100">
+    trace_log
+</a>
+
+    
+        
+        
+        <a href="#query-masking-rules" title="query_masking_rules" class="nav-link text-wrap d-inline-block w-100">
+    query_masking_rules
+</a>
+
+    
+        
+        
+        <a href="#server-settings-remote-servers" title="remote_servers" class="nav-link text-wrap d-inline-block w-100">
+    remote_servers
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-timezone" title="saat dilimi" class="nav-link text-wrap d-inline-block w-100">
+    saat dilimi
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-tcp_port" title="tcp_port" class="nav-link text-wrap d-inline-block w-100">
+    tcp_port
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-tcp_port_secure" title="tcp_port_secure" class="nav-link text-wrap d-inline-block w-100">
+    tcp_port_secure
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-mysql_port" title="mysql_port" class="nav-link text-wrap d-inline-block w-100">
+    mysql_port
+</a>
+
+    
+        
+        
+        <a href="#server-settings-tmp_path" title="tmp_path" class="nav-link text-wrap d-inline-block w-100">
+    tmp_path
+</a>
+
+    
+        
+        
+        <a href="#server-settings-tmp-policy" title="tmp_policy" class="nav-link text-wrap d-inline-block w-100">
+    tmp_policy
+</a>
+
+    
+        
+        
+        <a href="#server-settings-uncompressed_cache_size" title="uncompressed_cache_size" class="nav-link text-wrap d-inline-block w-100">
+    uncompressed_cache_size
+</a>
+
+    
+        
+        
+        <a href="#server_configuration_parameters-user_files_path" title="user_files_path" class="nav-link text-wrap d-inline-block w-100">
+    user_files_path
+</a>
+
+    
+        
+        
+        <a href="#users-config" title="users_config" class="nav-link text-wrap d-inline-block w-100">
+    users_config
+</a>
+
+    
+        
+        
+        <a href="#server-settings_zookeeper" title="zookeeper" class="nav-link text-wrap d-inline-block w-100">
+    zookeeper
+</a>
+
+    
+        
+        
+        <a href="#server-settings-use_minimalistic_part_header_in_zookeeper" title="use_minimalistic_part_header_in_zookeeper" class="nav-link text-wrap d-inline-block w-100">
+    use_minimalistic_part_header_in_zookeeper
+</a>
+
+    
+        
+        
+        <a href="#server-settings-disable-internal-dns-cache" title="disable_internal_dns_cache" class="nav-link text-wrap d-inline-block w-100">
+    disable_internal_dns_cache
+</a>
+
+    
+        
+        
+        <a href="#server-settings-dns-cache-update-period" title="dns_cache_update_period" class="nav-link text-wrap d-inline-block w-100">
+    dns_cache_update_period
+</a>
+
+    
+        
+        
+        <a href="#access_control_path" title="access_control_path" class="nav-link text-wrap d-inline-block w-100">
+    access_control_path
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

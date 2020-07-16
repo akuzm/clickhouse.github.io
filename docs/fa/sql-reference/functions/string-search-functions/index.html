@@ -1,0 +1,3384 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="fa" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>برای جستجوی رشتهها | مستندات ClickHouse</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="برای جستجوی رشتهها | مستندات ClickHouse"/>
+<meta property="og:description" content="توابع برای جستجوی رشته ها جستجو به طور پیش فرض در تمام این توابع حساس به حروف است. انواع جداگانه ای برای جستجوی غیر حساس" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/fa/sql-reference/functions/string-search-functions/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/fa/sql-reference/functions/string-search-functions/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/fa/sql-reference/functions/string-search-functions/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "برای جستجوی رشتهها | مستندات ClickHouse",
+"mainEntityOfPage": "https://clickhouse.tech/docs/fa/sql-reference/functions/string-search-functions/",
+
+"datePublished": "2020-04-04T12:15:31+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "برای جستجوی رشتهها | مستندات ClickHouse",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="توابع برای جستجوی رشته ها جستجو به طور پیش فرض در تمام این توابع حساس به حروف است. انواع جداگانه ای برای جستجوی غیر حساس" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, متن باز, رابطه, تجزیه و تحلیل, تحلیلی, داده های بزرگ, تجزیه و تحلیل وب سایت" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/sql-reference/functions/string-search-functions/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/sql-reference/functions/string-search-functions/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="rtl" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        برای جستجوی رشتهها
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/fa/sql-reference/functions/string-search-functions.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/fa.svg" alt="فارسی" title="فارسی" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/tr/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/fa/sql-reference/functions/string-search-functions/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid text-right">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="چند صفحه یا یک صفحه">
+            <a href="../../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="نسخه چند صفحه ای" title="نسخه چند صفحه ای" />
+            </a>
+            <a href="../../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="نسخه تک صفحه ای" title="نسخه تک صفحه ای" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                نسخه: <span class="text-light">جدیدترین</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/fa/">
+                    <span class="text-light">جدیدترین</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="معرفی شرکت" class="nav-link text-light text-wrap dropdown-toggle px-0">معرفی شرکت</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../" title="ClickHouse چیست؟" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse چیست؟</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/history/" title="تاریخچه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاریخچه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/adopters/" title="پذیرا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پذیرا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/performance/" title="Performance" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performance</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../introduction/distinctive-features/" title="ویژگی های برجسته ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ویژگی های برجسته ClickHouse</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="شروع کار" class="nav-link text-light text-wrap dropdown-toggle px-0">شروع کار</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/install/" title="نصب و راه اندازی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نصب و راه اندازی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/tutorial/" title="اموزش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اموزش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-4" title="به عنوان مثال مجموعه داده" class="nav-link text-light text-wrap dropdown-toggle px-0">به عنوان مثال مجموعه داده</a>
+<div id="sidebar-sidebar-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/metrica/" title="یاندکساطلاعات متریکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">یاندکساطلاعات متریکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/ontime/" title="به موقع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به موقع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/nyc-taxi/" title="داده های تاکسی نیویورک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">داده های تاکسی نیویورک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/amplab-benchmark/" title="معیار بزرگ داده های تقویت کننده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معیار بزرگ داده های تقویت کننده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/wikistat/" title="ویکیستات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ویکیستات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/criteo/" title="ترابایت کلیک سیاهههای مربوط از مخلوق" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ترابایت کلیک سیاهههای مربوط از مخلوق</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/example-datasets/star-schema/" title="معیار طرحواره ستاره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معیار طرحواره ستاره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../getting-started/playground/" title="زمین بازی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">زمین بازی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="واسط" class="nav-link text-light text-wrap dropdown-toggle px-0">واسط</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/cli/" title="مشتری خط فرمان" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مشتری خط فرمان</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/tcp/" title="رابط کاربری بومی)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط کاربری بومی)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/http/" title="رابط قام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط قام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/mysql/" title="رابط MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/formats/" title="فرمت های ورودی و خروجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">فرمت های ورودی و خروجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/jdbc/" title="JDBC Driver" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC Driver</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/odbc/" title="ODBC Driver" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC Driver</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/cpp/" title="ج++ کتابخانه مشتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ج++ کتابخانه مشتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="شخص ثالث" class="nav-link text-light text-wrap dropdown-toggle px-0">شخص ثالث</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/client-libraries/" title="کتابخانه های مشتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کتابخانه های مشتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/integrations/" title="یکپارچگی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">یکپارچگی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/gui/" title="رابط های بصری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط های بصری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../interfaces/third-party/proxy/" title="پراکسی ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پراکسی ها</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="موتورها" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورها</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="موتورهای جدول" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورهای جدول</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="ادغام خانواده" class="nav-link text-light text-wrap dropdown-toggle px-0">ادغام خانواده</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/mergetree/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/replication/" title="تکرار داده ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تکرار داده ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="کلید پارتیشن بندی سفارشی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلید پارتیشن بندی سفارشی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/replacingmergetree/" title="جایگزینی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جایگزینی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/summingmergetree/" title="سامینگمرگتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سامینگمرگتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="ریزدانه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ریزدانه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/collapsingmergetree/" title="سقوط غذای اصلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سقوط غذای اصلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="در حال بارگذاری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در حال بارگذاری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/mergetree-family/graphitemergetree/" title="نمودار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نمودار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="ثبت خانواده" class="nav-link text-light text-wrap dropdown-toggle px-0">ثبت خانواده</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/stripelog/" title="خط زدن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خط زدن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/log/" title="ثبت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ثبت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/log-family/tinylog/" title="جمع شدن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جمع شدن</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="یکپارچگی" class="nav-link text-light text-wrap dropdown-toggle px-0">یکپارچگی</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/kafka/" title="کافکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کافکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="ویژه" class="nav-link text-light text-wrap dropdown-toggle px-0">ویژه</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/distributed/" title="توزیع شده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توزیع شده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/external-data/" title="دادههای خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دادههای خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/dictionary/" title="واژهنامه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">واژهنامه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/merge/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/file/" title="پرونده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پرونده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/null/" title="خالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/set/" title="تنظیم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/join/" title="پیوستن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیوستن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/view/" title="نما" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نما</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/materializedview/" title="ماده بینی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ماده بینی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/memory/" title="حافظه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">حافظه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/buffer/" title="بافر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بافر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/table-engines/special/generate/" title="ژنرال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ژنرال</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="موتورهای پایگاه داده" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورهای پایگاه داده</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../engines/database-engines/lazy/" title="تنبل" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنبل</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="مرجع مربع" class="nav-link text-light text-wrap dropdown-toggle px-0">مرجع مربع</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="بیانیه ها" class="nav-link text-light text-wrap dropdown-toggle px-0">بیانیه ها</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/" title="SELECT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SELECT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/union-all/" title="اتحادیه همه بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اتحادیه همه بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/from/" title="از بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">از بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/with/" title="با بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">با بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/format/" title="بند فرمت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند فرمت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/distinct/" title="بند مجزا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند مجزا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/limit/" title="بند محدود" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند محدود</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/sample/" title="بند نمونه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند نمونه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/where/" title="بند کجا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند کجا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/into-outfile/" title="به OUTFILE بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به OUTFILE بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/having/" title="داشتن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">داشتن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/prewhere/" title="در بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/array-join/" title="مجموعه پیوستن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مجموعه پیوستن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/limit-by/" title="محدود کردن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدود کردن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/join/" title="پیوستن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیوستن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/select/group-by/" title="گروه بر اساس بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">گروه بر اساس بند</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/statements/misc/" title="غیره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">غیره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/syntax/" title="نحو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="توابع" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/arithmetic-functions/" title="حساب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">حساب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/comparison-functions/" title="مقایسه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مقایسه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/logical-functions/" title="منطقی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">منطقی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/type-conversion-functions/" title="تبدیل نوع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تبدیل نوع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/date-time-functions/" title="کار با تاریخ و زمان" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با تاریخ و زمان</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-functions/" title="کار با رشته ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با رشته ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-search-functions/" title="برای جستجوی رشتهها" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">برای جستجوی رشتهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/string-replace-functions/" title="برای جایگزینی در رشتهها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">برای جایگزینی در رشتهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/conditional-functions/" title="شرطی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">شرطی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/math-functions/" title="ریاضی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ریاضی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/rounding-functions/" title="گرد کردن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">گرد کردن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/array-functions/" title="کار با ارریس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با ارریس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/splitting-merging-functions/" title="تقسیم و ادغام رشته ها و ارریس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تقسیم و ادغام رشته ها و ارریس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/bit-functions/" title="بیت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بیت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/bitmap-functions/" title="نگاشت بیت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نگاشت بیت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/hash-functions/" title="هش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">هش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/random-functions/" title="تولید اعداد شبه تصادفی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تولید اعداد شبه تصادفی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/encoding-functions/" title="کدبندی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کدبندی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/uuid-functions/" title="کار با یوید" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با یوید</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ip-address-functions/" title="کار با نشانیهای اینترنتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با نشانیهای اینترنتی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/json-functions/" title="کار با جانسون" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با جانسون</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/higher-order-functions/" title="بالاتر سفارش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بالاتر سفارش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ext-dict-functions/" title="کار با واژهنامهها خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با واژهنامهها خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/ym-dict-functions/" title="کار با یاندکس.واژهنامهها متریکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با یاندکس.واژهنامهها متریکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/in-functions/" title="اجرای اپراتور در" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اجرای اپراتور در</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/array-join/" title="ارریجین" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ارریجین</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/geo/" title="کار با مختصات جغرافیایی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با مختصات جغرافیایی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/functions-for-nulls/" title="کار با Nullable استدلال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با Nullable استدلال</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/machine-learning-functions/" title="توابع یادگیری ماشین" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توابع یادگیری ماشین</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/introspection/" title="درون نگری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">درون نگری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/functions/other-functions/" title="غیره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">غیره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="توابع مجموع" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع مجموع</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/reference/" title="مرجع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مرجع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/combinators/" title="ترکیب کنندهها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ترکیب کنندهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/aggregate-functions/parametric-functions/" title="پارامتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پارامتری</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="توابع جدول" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع جدول</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/file/" title="پرونده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پرونده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/merge/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/numbers/" title="اعداد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اعداد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/remote/" title="دور" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دور</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/url/" title="نشانی وب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نشانی وب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/mysql/" title="خروجی زیر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خروجی زیر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/odbc/" title="جستجو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جستجو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/hdfs/" title="hdfs" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdfs</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/input/" title="ورودی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ورودی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/table-functions/generate/" title="ژنرال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ژنرال</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="واژهنامهها" class="nav-link text-light text-wrap dropdown-toggle px-0">واژهنامهها</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="واژهنامهها خارجی" class="nav-link text-light text-wrap dropdown-toggle px-0">واژهنامهها خارجی</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="توضیحات کلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توضیحات کلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="پیکربندی یک فرهنگ لغت خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیکربندی یک فرهنگ لغت خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="ذخیره واژهنامهها در حافظه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ذخیره واژهنامهها در حافظه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="به روز رسانی فرهنگ لغت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به روز رسانی فرهنگ لغت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="منابع لغت نامه های خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">منابع لغت نامه های خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="کلید فرهنگ لغت و زمینه های" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلید فرهنگ لغت و زمینه های</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="لغتنامهها سلسله مراتبی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">لغتنامهها سلسله مراتبی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/dictionaries/internal-dicts/" title="واژهنامهها داخلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">واژهنامهها داخلی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="انواع داده ها" class="nav-link text-light text-wrap dropdown-toggle px-0">انواع داده ها</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/int-uint/" title="UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/decimal/" title="دهدهی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دهدهی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/boolean/" title="بولی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بولی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/string/" title="رشته" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رشته</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/fixedstring/" title="رشته ثابت)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رشته ثابت)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/date/" title="تاریخ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاریخ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/datetime64/" title="طول تاریخ 64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">طول تاریخ 64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/enum/" title="شمارشی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">شمارشی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/array/" title="& توری)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">& توری)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/aggregatefunction/" title="کارکرد(نام و نام خانوادگی..)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کارکرد(نام و نام خانوادگی..)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/tuple/" title="تاپل (تی1, تی2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاپل (تی1, تی2,...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-17" title="ساختارهای داده تو در تو" class="nav-link text-light text-wrap dropdown-toggle px-0">ساختارهای داده تو در تو</a>
+<div id="sidebar-sidebar-5-8-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/nested-data-structures/nested/" title="تو در تو(Name1 Type1, Name2 Type2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تو در تو(Name1 Type1, Name2 Type2, ...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-18" title="انواع داده های ویژه" class="nav-link text-light text-wrap dropdown-toggle px-0">انواع داده های ویژه</a>
+<div id="sidebar-sidebar-5-8-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/expression/" title="عبارت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عبارت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/set/" title="تنظیم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/nothing/" title="هیچی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">هیچی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/special-data-types/interval/" title="فاصله" class="nav-link text-light text-wrap d-inline-block w-100 px-0">فاصله</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-19" title="دامنه" class="nav-link text-light text-wrap dropdown-toggle px-0">دامنه</a>
+<div id="sidebar-sidebar-5-8-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/ipv4/" title="IPv4" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv4</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/data-types/simpleaggregatefunction/" title="عملکرد پلاکتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عملکرد پلاکتی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="اپراتورها" class="nav-link text-light text-wrap dropdown-toggle px-0">اپراتورها</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/operators/" title="اپراتورها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اپراتورها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/operators/in/" title="در اپراتورها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در اپراتورها</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../sql-reference/ansi/" title="سازگاری انسی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سازگاری انسی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="راهنما" class="nav-link text-light text-wrap dropdown-toggle px-0">راهنما</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../guides/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../guides/apply-catboost-model/" title="استفاده از مدل های ادم کودن و احمق" class="nav-link text-light text-wrap d-inline-block w-100 px-0">استفاده از مدل های ادم کودن و احمق</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="عملیات" class="nav-link text-light text-wrap dropdown-toggle px-0">عملیات</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/requirements/" title="الزامات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">الزامات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/monitoring/" title="نظارت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نظارت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/troubleshooting/" title="عیب یابی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عیب یابی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/update/" title="به روز رسانی کلیک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به روز رسانی کلیک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/access-rights/" title="کنترل دسترسی و مدیریت حساب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کنترل دسترسی و مدیریت حساب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/backup/" title="پشتیبان گیری داده ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پشتیبان گیری داده ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/configuration-files/" title="پروندههای پیکربندی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروندههای پیکربندی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/quotas/" title="سهمیه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سهمیه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="بهینه سازی عملکرد" class="nav-link text-light text-wrap dropdown-toggle px-0">بهینه سازی عملکرد</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/optimizing-performance/sampling-query-profiler/" title="پروفایل پرس و جو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروفایل پرس و جو</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/system-tables/" title="جداول سیستم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جداول سیستم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/performance-test/" title="سخت افزار تست" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سخت افزار تست</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="پارامترهای پیکربندی سرور" class="nav-link text-light text-wrap dropdown-toggle px-0">پارامترهای پیکربندی سرور</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/server-configuration-parameters/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/server-configuration-parameters/settings/" title="تنظیمات کارگزار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات کارگزار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="تنظیمات" class="nav-link text-light text-wrap dropdown-toggle px-0">تنظیمات</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/permissions-for-queries/" title="مجوز برای نمایش داده شد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مجوز برای نمایش داده شد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/query-complexity/" title="محدودیت در پیچیدگی پرس و جو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدودیت در پیچیدگی پرس و جو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings-profiles/" title="پروفایل تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروفایل تنظیمات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/constraints-on-settings/" title="محدودیت در تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدودیت در تنظیمات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings-users/" title="تنظیمات کاربر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات کاربر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/settings/settings/" title="تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="تاسیسات" class="nav-link text-light text-wrap dropdown-toggle px-0">تاسیسات</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-copier/" title="تاتر-کپی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاتر-کپی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-local/" title="کلیک-محلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلیک-محلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/utilities/clickhouse-benchmark/" title="کلیک-معیار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلیک-معیار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../operations/tips/" title="توصیه های استفاده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توصیه های استفاده</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="توسعه" class="nav-link text-light text-wrap dropdown-toggle px-0">توسعه</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../development/developer-instruction/" title="دستورالعمل توسعه دهنده کلیک مبتدی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دستورالعمل توسعه دهنده کلیک مبتدی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/architecture/" title="بررسی اجمالی از معماری کلیک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی از معماری کلیک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/browse-code/" title="مرور کد منبع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مرور کد منبع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build/" title="نحوه ساخت کلیک در لینوکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحوه ساخت کلیک در لینوکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-osx/" title="چگونه برای ساخت تاتر در سیستم عامل مک ایکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت تاتر در سیستم عامل مک ایکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-cross-osx/" title="چگونه برای ساخت تاتر در لینوکس برای سیستم عامل مک ایکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت تاتر در لینوکس برای سیستم عامل مک ایکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/build-cross-arm/" title="چگونه برای ساخت ClickHouse در لینوکس برای AARCH64 (ARM64)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت ClickHouse در لینوکس برای AARCH64 (ARM64)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/style/" title="چگونه برای نوشتن ج++ کد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای نوشتن ج++ کد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/tests/" title="نحوه اجرای تست های کلیک خانه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحوه اجرای تست های کلیک خانه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../development/contrib/" title="کتابخانه های شخص ثالث استفاده می شود" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کتابخانه های شخص ثالث استفاده می شود</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="بازرگانی" class="nav-link text-light text-wrap dropdown-toggle px-0">بازرگانی</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../commercial/cloud/" title="ابر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ابر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../commercial/support/" title="پشتیبانی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پشتیبانی</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="چه جدید" class="nav-link text-light text-wrap dropdown-toggle px-0">چه جدید</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="تغییرات" class="nav-link text-light text-wrap dropdown-toggle px-0">تغییرات</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/roadmap/" title="نقشه راه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نقشه راه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../whats-new/security-changelog/" title="تغییرات امنیتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تغییرات امنیتی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../faq/general/" title="سوالات عمومی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سوالات عمومی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../../single/clickhouse_fa.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="نسخه PDF" title="نسخه PDF" height="24" class="d-block mr-1 float-left" /><div>نسخه PDF</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../../" class="text-reset">مرجع مربع</a>
+                            
+                        </li>
+                       
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">توابع</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">راهنما می خواستم!</p>
+      <p class="lead">محتوای زیر از این صفحه اسناد شده است ماشین ترجمه. اما بر خلاف وب سایت های دیگر, این است که در پرواز انجام نمی. این متن ترجمه شده در مخزن گیتهاب در کنار پایگاه داده اصلی خانه کلیک زندگی می کند و منتظر سخنرانان مادری همکار به انسان بیشتر قابل خواندن است. <a href="/docs/en/sql-reference/functions/string-search-functions/" class="alert-link">شما همچنین می توانید نسخه اصلی انگلیسی به عنوان یک مرجع استفاده کنید.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/fa/sql-reference/functions/string-search-functions.md" target="_blank" rel="external nofollow noreferrer">
+              راهنما مستندات تاتر با ویرایش این صفحه
+          </a>
+      </p>
+    </div>
+
+            <h1 id="functions-for-searching-strings">توابع برای جستجوی رشته ها<a class="headerlink" href="#functions-for-searching-strings" title="Permanent link"> </a></h1>
+<p>جستجو به طور پیش فرض در تمام این توابع حساس به حروف است. انواع جداگانه ای برای جستجوی غیر حساس مورد وجود دارد.</p>
+<h2 id="position">موقعیت (انبار کاه, سوزن), تعیین محل (انبار کاه, سوزن)<a class="headerlink" href="#position" title="Permanent link"> </a></h2>
+<p>بازگرداندن موقعیت (به بایت) از رشته پیدا شده است در رشته, با شروع از 1.</p>
+<p>این نسخهها کار میکند با این فرض که رشته شامل مجموعه ای از بایت به نمایندگی از یک متن کد گذاری تک بایت. اگر این فرض ملاقات کرد و یک شخصیت نمی تواند با استفاده از یک بایت تنها نشان داده شود, تابع یک استثنا پرتاب نمی کند و برخی از نتیجه غیر منتظره را برمی گرداند. اگر شخصیت را می توان با استفاده از دو بایت نشان, این دو بایت و غیره استفاده.</p>
+<p>برای یک جستجو غیر حساس به حالت, استفاده از تابع <a href="#positioncaseinsensitive">حساس به حالت</a>.</p>
+<p><strong>نحو</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">position</span><span class="p">(</span><span class="n">haystack</span><span class="p">,</span> <span class="n">needle</span><span class="p">)</span>
+</code></pre></div>
+<p>نام مستعار: <code class="syntax">locate(haystack, needle)</code>.</p>
+<p><strong>پارامترها</strong></p>
+<ul>
+<li><code class="syntax">haystack</code> — string, in which substring will to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+<li><code class="syntax">needle</code> — substring to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+</ul>
+<p><strong>مقادیر بازگشتی</strong></p>
+<ul>
+<li>موقعیت شروع در بایت (شمارش از 1), اگر زیر رشته پیدا شد.</li>
+<li>0, اگر زیر رشته یافت نشد.</li>
+</ul>
+<p>نوع: <code class="syntax">Integer</code>.</p>
+<p><strong>مثالها</strong></p>
+<p>عبارت “Hello, world!” شامل مجموعه ای از بایت به نمایندگی از یک متن کد گذاری تک بایت. تابع بازده برخی از نتیجه انتظار می رود:</p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">position</span><span class="p">(</span><span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─position('Hello, world!', '!')─┐
+│                             13 │
+└────────────────────────────────┘
+</code></pre></div>
+<p>همان عبارت در روسیه شامل شخصیت های که نمی تواند با استفاده از یک بایت نشان داده شود. تابع بازده برخی از نتیجه غیر منتظره (استفاده <a href="#positionutf8">موقعیت 8</a> تابع برای متن چند بایت کد گذاری):</p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">position</span><span class="p">(</span><span class="s1">'Привет, мир!'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─position('Привет, мир!', '!')─┐
+│                            21 │
+└───────────────────────────────┘
+</code></pre></div>
+<h2 id="positioncaseinsensitive">حساس به حالت<a class="headerlink" href="#positioncaseinsensitive" title="Permanent link"> </a></h2>
+<p>همان <a href="#position">موقعیت</a> بازگرداندن موقعیت (به بایت) از رشته پیدا شده است در رشته, با شروع از 1. استفاده از تابع برای یک جستجو غیر حساس به حالت.</p>
+<p>این نسخهها کار میکند با این فرض که رشته شامل مجموعه ای از بایت به نمایندگی از یک متن کد گذاری تک بایت. اگر این فرض ملاقات کرد و یک شخصیت نمی تواند با استفاده از یک بایت تنها نشان داده شود, تابع یک استثنا پرتاب نمی کند و برخی از نتیجه غیر منتظره را برمی گرداند. اگر شخصیت را می توان با استفاده از دو بایت نشان, این دو بایت و غیره استفاده.</p>
+<p><strong>نحو</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">positionCaseInsensitive</span><span class="p">(</span><span class="n">haystack</span><span class="p">,</span> <span class="n">needle</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>پارامترها</strong></p>
+<ul>
+<li><code class="syntax">haystack</code> — string, in which substring will to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+<li><code class="syntax">needle</code> — substring to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+</ul>
+<p><strong>مقادیر بازگشتی</strong></p>
+<ul>
+<li>موقعیت شروع در بایت (شمارش از 1), اگر زیر رشته پیدا شد.</li>
+<li>0, اگر زیر رشته یافت نشد.</li>
+</ul>
+<p>نوع: <code class="syntax">Integer</code>.</p>
+<p><strong>مثال</strong></p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">positionCaseInsensitive</span><span class="p">(</span><span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="s1">'hello'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─positionCaseInsensitive('Hello, world!', 'hello')─┐
+│                                                 1 │
+└───────────────────────────────────────────────────┘
+</code></pre></div>
+<h2 id="positionutf8">موقعیت 8<a class="headerlink" href="#positionutf8" title="Permanent link"> </a></h2>
+<p>بازگرداندن موقعیت (در نقاط یونیکد) از رشته پیدا شده است در رشته, با شروع از 1.</p>
+<p>این نسخهها کار میکند با این فرض که رشته شامل مجموعه ای از بایت به نمایندگی از یک متن کد گذاری شده وزارت مخابرات 8. اگر این فرض ملاقات نمی, تابع یک استثنا پرتاب نمی کند و برخی از نتیجه غیر منتظره را برمی گرداند. اگر شخصیت را می توان با استفاده از دو نقطه یونیکد نشان, این دو و غیره استفاده.</p>
+<p>برای یک جستجو غیر حساس به حالت, استفاده از تابع <a href="#positioncaseinsensitiveutf8">در حال بارگذاری</a>.</p>
+<p><strong>نحو</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">positionUTF8</span><span class="p">(</span><span class="n">haystack</span><span class="p">,</span> <span class="n">needle</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>پارامترها</strong></p>
+<ul>
+<li><code class="syntax">haystack</code> — string, in which substring will to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+<li><code class="syntax">needle</code> — substring to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+</ul>
+<p><strong>مقادیر بازگشتی</strong></p>
+<ul>
+<li>موقعیت شروع در یونیکد امتیاز (شمارش از 1), اگر زیر رشته پیدا شد.</li>
+<li>0, اگر زیر رشته یافت نشد.</li>
+</ul>
+<p>نوع: <code class="syntax">Integer</code>.</p>
+<p><strong>مثالها</strong></p>
+<p>عبارت “Hello, world!” در روسیه شامل مجموعه ای از نقاط یونیکد نمایندگی یک متن کد گذاری تک نقطه. تابع بازده برخی از نتیجه انتظار می رود:</p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">positionUTF8</span><span class="p">(</span><span class="s1">'Привет, мир!'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─positionUTF8('Привет, мир!', '!')─┐
+│                                12 │
+└───────────────────────────────────┘
+</code></pre></div>
+<p>عبارت “Salut, étudiante!”, جایی که شخصیت <code class="syntax">é</code> می توان با استفاده از یک نقطه نشان داد (<code class="syntax">U+00E9</code>) یا دو نقطه (<code class="syntax">U+0065U+0301</code>) تابع را می توان بازگشت برخی از نتیجه غیر منتظره:</p>
+<p>پرسوجو برای نامه <code class="syntax">é</code> که نشان داده شده است یک نقطه یونیکد <code class="syntax">U+00E9</code>:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">positionUTF8</span><span class="p">(</span><span class="s1">'Salut, étudiante!'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─positionUTF8('Salut, étudiante!', '!')─┐
+│                                     17 │
+└────────────────────────────────────────┘
+</code></pre></div>
+<p>پرسوجو برای نامه <code class="syntax">é</code> که به نمایندگی از دو نقطه یونیکد <code class="syntax">U+0065U+0301</code>:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">positionUTF8</span><span class="p">(</span><span class="s1">'Salut, étudiante!'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─positionUTF8('Salut, étudiante!', '!')─┐
+│                                     18 │
+└────────────────────────────────────────┘
+</code></pre></div>
+<h2 id="positioncaseinsensitiveutf8">در حال بارگذاری<a class="headerlink" href="#positioncaseinsensitiveutf8" title="Permanent link"> </a></h2>
+<p>همان <a href="#positionutf8">موقعیت 8</a>, اما غیر حساس به حروف است. بازگرداندن موقعیت (در نقاط یونیکد) از رشته پیدا شده است در رشته, با شروع از 1.</p>
+<p>این نسخهها کار میکند با این فرض که رشته شامل مجموعه ای از بایت به نمایندگی از یک متن کد گذاری شده وزارت مخابرات 8. اگر این فرض ملاقات نمی, تابع یک استثنا پرتاب نمی کند و برخی از نتیجه غیر منتظره را برمی گرداند. اگر شخصیت را می توان با استفاده از دو نقطه یونیکد نشان, این دو و غیره استفاده.</p>
+<p><strong>نحو</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">positionCaseInsensitiveUTF8</span><span class="p">(</span><span class="n">haystack</span><span class="p">,</span> <span class="n">needle</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>پارامترها</strong></p>
+<ul>
+<li><code class="syntax">haystack</code> — string, in which substring will to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+<li><code class="syntax">needle</code> — substring to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+</ul>
+<p><strong>مقدار بازگشتی</strong></p>
+<ul>
+<li>موقعیت شروع در یونیکد امتیاز (شمارش از 1), اگر زیر رشته پیدا شد.</li>
+<li>0, اگر زیر رشته یافت نشد.</li>
+</ul>
+<p>نوع: <code class="syntax">Integer</code>.</p>
+<p><strong>مثال</strong></p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">positionCaseInsensitiveUTF8</span><span class="p">(</span><span class="s1">'Привет, мир!'</span><span class="p">,</span> <span class="s1">'Мир'</span><span class="p">)</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─positionCaseInsensitiveUTF8('Привет, мир!', 'Мир')─┐
+│                                                  9 │
+└────────────────────────────────────────────────────┘
+</code></pre></div>
+<h2 id="multisearchallpositions">چند ضلعی<a class="headerlink" href="#multisearchallpositions" title="Permanent link"> </a></h2>
+<p>همان <a href="./#position">موقعیت</a> اما بازگشت <code class="syntax">Array</code> از موقعیت (به بایت) از بسترهای مربوطه موجود در رشته. موقعیت ها با شروع از نمایه 1.</p>
+<p>جستجو در دنباله ای از بایت بدون توجه به رمزگذاری رشته و میترا انجام می شود.</p>
+<ul>
+<li>برای جستجو اسکی غیر حساس به حالت, استفاده از تابع <code class="syntax">multiSearchAllPositionsCaseInsensitive</code>.</li>
+<li>برای جستجو در یوتف-8, استفاده از تابع <a href="#multiSearchAllPositionsUTF8">چند ضلعی پایگاه داده های8</a>.</li>
+<li>برای غیر حساس به حالت جستجو-8, استفاده از تابع چند تخصیص چندگانه 18.</li>
+</ul>
+<p><strong>نحو</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">multiSearchAllPositions</span><span class="p">(</span><span class="n">haystack</span><span class="p">,</span> <span class="p">[</span><span class="n">needle1</span><span class="p">,</span> <span class="n">needle2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">needlen</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>پارامترها</strong></p>
+<ul>
+<li><code class="syntax">haystack</code> — string, in which substring will to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+<li><code class="syntax">needle</code> — substring to be searched. <a href="../../syntax/#syntax-string-literal">رشته</a>.</li>
+</ul>
+<p><strong>مقادیر بازگشتی</strong></p>
+<ul>
+<li>مجموعه ای از موقعیت های شروع در بایت (شمارش از 1), اگر زیر رشته مربوطه پیدا شد و 0 اگر یافت نشد.</li>
+</ul>
+<p><strong>مثال</strong></p>
+<p>پرسوجو:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">multiSearchAllPositions</span><span class="p">(</span><span class="s1">'Hello, World!'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">,</span> <span class="s1">'world'</span><span class="p">])</span>
+</code></pre></div>
+<p>نتیجه:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─multiSearchAllPositions('Hello, World!', ['hello', '!', 'world'])─┐
+│ [0,13,0]                                                          │
+└───────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h2 id="multiSearchAllPositionsUTF8">چند ضلعی پایگاه داده های8<a class="headerlink" href="#multiSearchAllPositionsUTF8" title="Permanent link"> </a></h2>
+<p>ببینید <code class="syntax">multiSearchAllPositions</code>.</p>
+<h2 id="multisearchfirstposition">ترکیب چندجفتاری (هیستک, [سوزن<sub>1</sub> سوزن<sub>2</sub>, …, needle<sub>نه</sub>])<a class="headerlink" href="#multisearchfirstposition" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">position</code> اما بازده سمت چپ افست از رشته <code class="syntax">haystack</code> که به برخی از سوزن همسان.</p>
+<p>برای یک جستجوی غیر حساس مورد و یا / و در توابع استفاده از فرمت جی تی اف 8 <code class="syntax">multiSearchFirstPositionCaseInsensitive, multiSearchFirstPositionUTF8, multiSearchFirstPositionCaseInsensitiveUTF8</code>.</p>
+<h2 id="multisearchfirstindexhaystack-needle1-needle2-needlen">مقالههای جدید مرتبط با تحقیق این نویسنده<sub>1</sub> سوزن<sub>2</sub>, …, needle<sub>نه</sub>])<a class="headerlink" href="#multisearchfirstindexhaystack-needle1-needle2-needlen" title="Permanent link"> </a></h2>
+<p>بازگرداندن شاخص <code class="syntax">i</code> (شروع از 1) سوزن چپ پیدا شده است<sub>من ... </sub> در رشته <code class="syntax">haystack</code> و 0 در غیر این صورت.</p>
+<p>برای یک جستجوی غیر حساس مورد و یا / و در توابع استفاده از فرمت جی تی اف 8 <code class="syntax">multiSearchFirstIndexCaseInsensitive, multiSearchFirstIndexUTF8, multiSearchFirstIndexCaseInsensitiveUTF8</code>.</p>
+<h2 id="function-multisearchany">مولسیرچانی (هیستک, [سوزن<sub>1</sub> سوزن<sub>2</sub>, …, needle<sub>نه</sub>])<a class="headerlink" href="#function-multisearchany" title="Permanent link"> </a></h2>
+<p>بازده 1, اگر حداقل یک سوزن رشته<sub>من ... </sub> مسابقات رشته <code class="syntax">haystack</code> و 0 در غیر این صورت.</p>
+<p>برای یک جستجوی غیر حساس مورد و یا / و در توابع استفاده از فرمت جی تی اف 8 <code class="syntax">multiSearchAnyCaseInsensitive, multiSearchAnyUTF8, multiSearchAnyCaseInsensitiveUTF8</code>.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p>در همه <code class="syntax">multiSearch*</code> توابع تعداد سوزن ها باید کمتر از 2 باشد<sup>8</sup> به دلیل مشخصات پیاده سازی.</p>
+</div>
+<h2 id="matchhaystack-pattern">همخوانی داشتن (کومه علف خشک, الگو)<a class="headerlink" href="#matchhaystack-pattern" title="Permanent link"> </a></h2>
+<p>بررسی اینکه رشته با <code class="syntax">pattern</code> عبارت منظم. یک <code class="syntax">re2</code> عبارت منظم. این <a href="https://github.com/google/re2/wiki/Syntax" rel="external nofollow noreferrer" target="_blank">نحو</a> از <code class="syntax">re2</code> عبارات منظم محدود تر از نحو عبارات منظم پرل است.</p>
+<p>بازده 0 اگر مطابقت ندارد, یا 1 اگر منطبق.</p>
+<p>توجه داشته باشید که نماد ممیز (<code class="syntax">\</code>) برای فرار در عبارت منظم استفاده می شود. همان نماد برای فرار در لیتر رشته استفاده می شود. بنابراین به منظور فرار از نماد در یک عبارت منظم, شما باید دو بک اسلش ارسال (\) در یک رشته تحت اللفظی.</p>
+<p>عبارت منظم با رشته کار می کند به عنوان اگر مجموعه ای از بایت است. عبارت منظم می تواند بایت پوچ نیست.<br/>
+برای الگوهای به جستجو برای بسترهای در یک رشته, بهتر است به استفاده از مانند و یا ‘position’ از اونجایی که خیلی سریعتر کار میکنن</p>
+<h2 id="multimatchanyhaystack-pattern1-pattern2-patternn">ملتمتچانی (کومه علف خشک, [الگو<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multimatchanyhaystack-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">match</code>, اما بازده 0 اگر هیچ یک از عبارات منظم همسان و 1 اگر هر یک از الگوهای مسابقات. این استفاده می کند <a href="https://github.com/intel/hyperscan" rel="external nofollow noreferrer" target="_blank">hyperscan</a> کتابخونه. برای الگوهای به جستجو بسترهای در یک رشته, بهتر است به استفاده از <code class="syntax">multiSearchAny</code> چون خیلی سریعتر کار میکنه</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p>طول هر یک از <code class="syntax">haystack</code> رشته باید کمتر از 2 باشد<sup>32</sup> بایت در غیر این صورت استثنا پرتاب می شود. این محدودیت صورت می گیرد به دلیل hyperscan API.</p>
+</div>
+<h2 id="multimatchanyindexhaystack-pattern1-pattern2-patternn">مقالههای جدید مرتبط با تحقیق این نویسنده<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multimatchanyindexhaystack-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">multiMatchAny</code>, اما بازگرداندن هر شاخص که منطبق بر انبار کاه.</p>
+<h2 id="multimatchallindiceshaystack-pattern1-pattern2-patternn">اطلاعات دقیق<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multimatchallindiceshaystack-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">multiMatchAny</code>, اما بازگرداندن مجموعه ای از تمام شاخص که مطابقت انبار کاه در هر سفارش.</p>
+<h2 id="multifuzzymatchanyhaystack-distance-pattern1-pattern2-patternn">چندبازیماتچانی (هیستک, فاصله, [الگو<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multifuzzymatchanyhaystack-distance-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">multiMatchAny</code>, اما بازده 1 اگر هر الگوی منطبق انبار کاه در یک ثابت <a href="https://en.wikipedia.org/wiki/Edit_distance" rel="external nofollow noreferrer" target="_blank">ویرایش فاصله</a>. این تابع نیز در حالت تجربی است و می تواند بسیار کند باشد. برای اطلاعات بیشتر نگاه کنید به <a href="https://intel.github.io/hyperscan/dev-reference/compilation.html#approximate-matching" rel="external nofollow noreferrer" target="_blank">hyperscan مستندات</a>.</p>
+<h2 id="multifuzzymatchanyindexhaystack-distance-pattern1-pattern2-patternn">چند شکلی (هیستاک, فاصله, [الگو<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multifuzzymatchanyindexhaystack-distance-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">multiFuzzyMatchAny</code>, اما می گرداند هر شاخص که منطبق بر انبار کاه در فاصله ویرایش ثابت.</p>
+<h2 id="multifuzzymatchallindiceshaystack-distance-pattern1-pattern2-patternn">بازهای چندگانه (انبار کاه, فاصله, [الگو<sub>1</sub> الگو<sub>2</sub>, …, pattern<sub>نه</sub>])<a class="headerlink" href="#multifuzzymatchallindiceshaystack-distance-pattern1-pattern2-patternn" title="Permanent link"> </a></h2>
+<p>همان <code class="syntax">multiFuzzyMatchAny</code>, اما بازگرداندن مجموعه ای از تمام شاخص در هر منظور که مطابقت با انبار کاه در فاصله ویرایش ثابت.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p><code class="syntax">multiFuzzyMatch*</code> توابع از عبارات منظم یونایتد-8 پشتیبانی نمی کنند و چنین عبارات به عنوان بایت به دلیل محدودیت هیپراکسان درمان می شوند.</p>
+</div>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p>برای خاموش کردن تمام توابع است که با استفاده از بیش از حد اسکان, استفاده از تنظیمات <code class="syntax">SET allow_hyperscan = 0;</code>.</p>
+</div>
+<h2 id="extracthaystack-pattern">عصاره (انبار کاه, الگو)<a class="headerlink" href="#extracthaystack-pattern" title="Permanent link"> </a></h2>
+<p>عصاره یک قطعه از یک رشته با استفاده از یک عبارت منظم. اگر ‘haystack’ با ‘pattern’ عبارت منظم, یک رشته خالی بازگشته است. اگر عبارت منظم حاوی وسترن نیست, طول می کشد قطعه که منطبق بر کل عبارت منظم. در غیر این صورت قطعه ای را می گیرد که با اولین زیر دست ساز مطابقت دارد.</p>
+<h2 id="extractallhaystack-pattern">خارج تماس بگیرید)<a class="headerlink" href="#extractallhaystack-pattern" title="Permanent link"> </a></h2>
+<p>عصاره تمام قطعات از یک رشته با استفاده از یک عبارت منظم. اگر ‘haystack’ با ‘pattern’ عبارت منظم, یک رشته خالی بازگشته است. بازگرداندن مجموعه ای از رشته متشکل از تمام مسابقات به عبارت منظم. به طور کلی, رفتار همان است که ‘extract’ تابع (در آن طول می کشد برای اولین بار subpattern یا کل بیان اگر وجود ندارد subpattern).</p>
+<h2 id="function-like">مانند (کومه علف خشک, الگو), کومه علف خشک مانند اپراتور الگوی<a class="headerlink" href="#function-like" title="Permanent link"> </a></h2>
+<p>بررسی اینکه یک رشته منطبق یک عبارت ساده به طور منظم.<br/>
+عبارت منظم می تواند حاوی متسیمبلس باشد <code class="syntax">%</code> و <code class="syntax">_</code>.</p>
+<p><code class="syntax">%</code> نشان می دهد هر مقدار از هر بایت (از جمله صفر شخصیت).</p>
+<p><code class="syntax">_</code> نشان می دهد هر یک بایت.</p>
+<p>از بک اسلش استفاده کنید (<code class="syntax">\</code>) برای فرار از متسیمبلس . توجه داشته باشید در فرار در شرح ‘match’ تابع.</p>
+<p>برای عبارات منظم مانند <code class="syntax">%needle%</code>, کد مطلوب تر است و کار می کند به همان سرعتی که <code class="syntax">position</code> تابع.<br/>
+برای دیگر عبارات منظم, کد همان است که برای است ‘match’ تابع.</p>
+<h2 id="function-notlike">notLike(انبار کاه pattern), انبار کاه نیست مانند الگوی اپراتور<a class="headerlink" href="#function-notlike" title="Permanent link"> </a></h2>
+<p>همان چیزی که به عنوان ‘like’, اما منفی.</p>
+<h2 id="ngramdistancehaystack-needle">نمک زدایی (انبار کاه, سوزن)<a class="headerlink" href="#ngramdistancehaystack-needle" title="Permanent link"> </a></h2>
+<p>محاسبه فاصله 4 گرم بین <code class="syntax">haystack</code> و <code class="syntax">needle</code>: counts the symmetric difference between two multisets of 4-grams and normalizes it by the sum of their cardinalities. Returns float number from 0 to 1 – the closer to zero, the more strings are similar to each other. If the constant <code class="syntax">needle</code> یا <code class="syntax">haystack</code> بیش از 32 کیلوبایت است, می اندازد یک استثنا. اگر برخی از غیر ثابت <code class="syntax">haystack</code> یا <code class="syntax">needle</code> رشته ها بیش از 32 کیلوبایت, فاصله است که همیشه یکی.</p>
+<p>برای جستجوی غیر حساس به حالت یا / و در توابع استفاده از فرمت جی تی اف 8 <code class="syntax">ngramDistanceCaseInsensitive, ngramDistanceUTF8, ngramDistanceCaseInsensitiveUTF8</code>.</p>
+<h2 id="ngramsearchhaystack-needle">نگراماسراچ (هیستک سوزن)<a class="headerlink" href="#ngramsearchhaystack-needle" title="Permanent link"> </a></h2>
+<p>مثل <code class="syntax">ngramDistance</code> اما محاسبه تفاوت غیر متقارن بین <code class="syntax">needle</code> و <code class="syntax">haystack</code> – the number of n-grams from needle minus the common number of n-grams normalized by the number of <code class="syntax">needle</code> مامان بزرگ نزدیک تر به یک, بیشتر احتمال دارد <code class="syntax">needle</code> در <code class="syntax">haystack</code>. می تواند برای جستجو رشته فازی مفید باشد.</p>
+<p>برای جستجوی غیر حساس به حالت یا / و در توابع استفاده از فرمت جی تی اف 8 <code class="syntax">ngramSearchCaseInsensitive, ngramSearchUTF8, ngramSearchCaseInsensitiveUTF8</code>.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p>For UTF-8 case we use 3-gram distance. All these are not perfectly fair n-gram distances. We use 2-byte hashes to hash n-grams and then calculate the (non-)symmetric difference between these hash tables – collisions may occur. With UTF-8 case-insensitive format we do not use fair <code class="syntax">tolower</code> function – we zero the 5-th bit (starting from zero) of each codepoint byte and first bit of zeroth byte if bytes more than one – this works for Latin and mostly for all Cyrillic letters.</p>
+</div>
+<p><a href="https://clickhouse.tech/docs/en/query_language/functions/string_search_functions/" target="_blank">مقاله اصلی</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">درجهبندی: RATING_VALUE - RATING_COUNT رای</p>
+  <span class="alert-heading display-6">این مطالب مفید بود?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['غیرقابل استفاده', 'فقیر', 'OK', 'خوبه', 'عالیه']"
+     data-documentation="مستندات"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>ساخته شده از <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, منتشر شده در <span title="2020-04-04T12:15:31+03:00">2020-04-04</span>, تغییریافته <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">جدول محتویات</label>
+    
+    
+        
+        
+        <a href="#position" title="موقعیت (انبار کاه, سوزن), تعیین محل (انبار کاه, سوزن)" class="nav-link text-wrap d-inline-block w-100">
+    موقعیت (انبار کاه, سوزن), تعیین محل (انبار کاه, سوزن)
+</a>
+
+    
+        
+        
+        <a href="#positioncaseinsensitive" title="حساس به حالت" class="nav-link text-wrap d-inline-block w-100">
+    حساس به حالت
+</a>
+
+    
+        
+        
+        <a href="#positionutf8" title="موقعیت 8" class="nav-link text-wrap d-inline-block w-100">
+    موقعیت 8
+</a>
+
+    
+        
+        
+        <a href="#positioncaseinsensitiveutf8" title="در حال بارگذاری" class="nav-link text-wrap d-inline-block w-100">
+    در حال بارگذاری
+</a>
+
+    
+        
+        
+        <a href="#multisearchallpositions" title="چند ضلعی" class="nav-link text-wrap d-inline-block w-100">
+    چند ضلعی
+</a>
+
+    
+        
+        
+        <a href="#multiSearchAllPositionsUTF8" title="چند ضلعی پایگاه داده های8" class="nav-link text-wrap d-inline-block w-100">
+    چند ضلعی پایگاه داده های8
+</a>
+
+    
+        
+        
+        <a href="#multisearchfirstposition" title="ترکیب چندجفتاری (هیستک, [سوزن1 سوزن2, …, needleنه])" class="nav-link text-wrap d-inline-block w-100">
+    ترکیب چندجفتاری (هیستک, [سوزن1 سوزن2, …, needleنه])
+</a>
+
+    
+        
+        
+        <a href="#multisearchfirstindexhaystack-needle1-needle2-needlen" title="مقالههای جدید مرتبط با تحقیق این نویسنده1 سوزن2, …, needleنه])" class="nav-link text-wrap d-inline-block w-100">
+    مقالههای جدید مرتبط با تحقیق این نویسنده1 سوزن2, …, needleنه])
+</a>
+
+    
+        
+        
+        <a href="#function-multisearchany" title="مولسیرچانی (هیستک, [سوزن1 سوزن2, …, needleنه])" class="nav-link text-wrap d-inline-block w-100">
+    مولسیرچانی (هیستک, [سوزن1 سوزن2, …, needleنه])
+</a>
+
+    
+        
+        
+        <a href="#matchhaystack-pattern" title="همخوانی داشتن (کومه علف خشک, الگو)" class="nav-link text-wrap d-inline-block w-100">
+    همخوانی داشتن (کومه علف خشک, الگو)
+</a>
+
+    
+        
+        
+        <a href="#multimatchanyhaystack-pattern1-pattern2-patternn" title="ملتمتچانی (کومه علف خشک, [الگو1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    ملتمتچانی (کومه علف خشک, [الگو1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#multimatchanyindexhaystack-pattern1-pattern2-patternn" title="مقالههای جدید مرتبط با تحقیق این نویسنده1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    مقالههای جدید مرتبط با تحقیق این نویسنده1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#multimatchallindiceshaystack-pattern1-pattern2-patternn" title="اطلاعات دقیق1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    اطلاعات دقیق1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#multifuzzymatchanyhaystack-distance-pattern1-pattern2-patternn" title="چندبازیماتچانی (هیستک, فاصله, [الگو1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    چندبازیماتچانی (هیستک, فاصله, [الگو1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#multifuzzymatchanyindexhaystack-distance-pattern1-pattern2-patternn" title="چند شکلی (هیستاک, فاصله, [الگو1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    چند شکلی (هیستاک, فاصله, [الگو1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#multifuzzymatchallindiceshaystack-distance-pattern1-pattern2-patternn" title="بازهای چندگانه (انبار کاه, فاصله, [الگو1 الگو2, …, patternنه])" class="nav-link text-wrap d-inline-block w-100">
+    بازهای چندگانه (انبار کاه, فاصله, [الگو1 الگو2, …, patternنه])
+</a>
+
+    
+        
+        
+        <a href="#extracthaystack-pattern" title="عصاره (انبار کاه, الگو)" class="nav-link text-wrap d-inline-block w-100">
+    عصاره (انبار کاه, الگو)
+</a>
+
+    
+        
+        
+        <a href="#extractallhaystack-pattern" title="خارج تماس بگیرید)" class="nav-link text-wrap d-inline-block w-100">
+    خارج تماس بگیرید)
+</a>
+
+    
+        
+        
+        <a href="#function-like" title="مانند (کومه علف خشک, الگو), کومه علف خشک مانند اپراتور الگوی" class="nav-link text-wrap d-inline-block w-100">
+    مانند (کومه علف خشک, الگو), کومه علف خشک مانند اپراتور الگوی
+</a>
+
+    
+        
+        
+        <a href="#function-notlike" title="notLike(انبار کاه pattern), انبار کاه نیست مانند الگوی اپراتور" class="nav-link text-wrap d-inline-block w-100">
+    notLike(انبار کاه pattern), انبار کاه نیست مانند الگوی اپراتور
+</a>
+
+    
+        
+        
+        <a href="#ngramdistancehaystack-needle" title="نمک زدایی (انبار کاه, سوزن)" class="nav-link text-wrap d-inline-block w-100">
+    نمک زدایی (انبار کاه, سوزن)
+</a>
+
+    
+        
+        
+        <a href="#ngramsearchhaystack-needle" title="نگراماسراچ (هیستک سوزن)" class="nav-link text-wrap d-inline-block w-100">
+    نگراماسراچ (هیستک سوزن)
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

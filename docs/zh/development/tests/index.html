@@ -1,0 +1,3631 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="zh" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>ClickHouse 测试 | ClickHouse文档</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="ClickHouse 测试 | ClickHouse文档"/>
+<meta property="og:description" content="ClickHouse 测试 功能性测试 功能性测试是最简便使用的。绝大部分 ClickHouse 的功能可以通过功能性测试来测试，任何代码的更改都必须通过该测试。 每个功能测试会向正在运行的 ClickHouse服 务器发送一个或多个查询，" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/zh/development/tests/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/zh/development/tests/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/zh/development/tests/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "ClickHouse 测试 | ClickHouse文档",
+"mainEntityOfPage": "https://clickhouse.tech/docs/zh/development/tests/",
+
+"datePublished": "2017-10-25T08:27:09+03:00",
+"dateModified": "2020-04-30T21:19:18+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "ClickHouse 测试 | ClickHouse文档",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="ClickHouse 测试 功能性测试 功能性测试是最简便使用的。绝大部分 ClickHouse 的功能可以通过功能性测试来测试，任何代码的更改都必须通过该测试。 每个功能测试会向正在运行的 ClickHouse服 务器发送一个或多个查询，" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, 开源, 关系, 分析, 分析, 大数据, 网络分析" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/development/tests/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/development/tests/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/development/tests/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/development/tests/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/development/tests/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/development/tests/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/development/tests/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/development/tests/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/development/tests/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        ClickHouse 测试
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/zh/development/tests.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/zh.svg" alt="中文" title="中文" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/development/tests/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/zh/development/tests/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/development/tests/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/development/tests/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/development/tests/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/development/tests/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/tr/development/tests/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/development/tests/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="多页或单页">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="多页版本" title="多页版本" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="单页版本" title="单页版本" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                版本: <span class="text-light">最新消息</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/zh/">
+                    <span class="text-light">最新消息</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="导言" class="nav-link text-light text-wrap dropdown-toggle px-0">导言</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="什么是ClickHouse？" class="nav-link text-light text-wrap d-inline-block w-100 px-0">什么是ClickHouse？</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/adopters/" title="采用者" class="nav-link text-light text-wrap d-inline-block w-100 px-0">采用者</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/history/" title="ClickHouse历史" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse历史</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/distinctive-features/" title="ClickHouse的特性" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse的特性</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/performance/" title="性能" class="nav-link text-light text-wrap d-inline-block w-100 px-0">性能</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="引擎" class="nav-link text-light text-wrap dropdown-toggle px-0">引擎</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-2" title="数据库引擎" class="nav-link text-light text-wrap dropdown-toggle px-0">数据库引擎</a>
+<div id="sidebar-sidebar-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="延时引擎" class="nav-link text-light text-wrap d-inline-block w-100 px-0">延时引擎</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="数据库引擎" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数据库引擎</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="表引擎" class="nav-link text-light text-wrap dropdown-toggle px-0">表引擎</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3-1" title="合并树家族" class="nav-link text-light text-wrap dropdown-toggle px-0">合并树家族</a>
+<div id="sidebar-sidebar-2-3-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="版本折叠MergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">版本折叠MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="GraphiteMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GraphiteMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="MergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="折叠树" class="nav-link text-light text-wrap d-inline-block w-100 px-0">折叠树</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="数据副本" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数据副本</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="替换合并树" class="nav-link text-light text-wrap d-inline-block w-100 px-0">替换合并树</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="自定义分区键" class="nav-link text-light text-wrap d-inline-block w-100 px-0">自定义分区键</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3-2" title="日志系列" class="nav-link text-light text-wrap dropdown-toggle px-0">日志系列</a>
+<div id="sidebar-sidebar-2-3-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="日志引擎系列" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日志引擎系列</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="日志" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日志</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3-3" title="集成" class="nav-link text-light text-wrap dropdown-toggle px-0">集成</a>
+<div id="sidebar-sidebar-2-3-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC表引擎" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC表引擎</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3-4" title="特别" class="nav-link text-light text-wrap dropdown-toggle px-0">特别</a>
+<div id="sidebar-sidebar-2-3-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="关联表引擎" class="nav-link text-light text-wrap d-inline-block w-100 px-0">关联表引擎</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="随机数生成" class="nav-link text-light text-wrap d-inline-block w-100 px-0">随机数生成</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="MaterializedView" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MaterializedView</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="Null" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL(URL,格式)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL(URL,格式)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="内存表" class="nav-link text-light text-wrap d-inline-block w-100 px-0">内存表</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="分布" class="nav-link text-light text-wrap d-inline-block w-100 px-0">分布</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="合并" class="nav-link text-light text-wrap d-inline-block w-100 px-0">合并</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字典</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="文件(输入格式)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文件(输入格式)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="用于查询处理的外部数据" class="nav-link text-light text-wrap d-inline-block w-100 px-0">用于查询处理的外部数据</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="缓冲区" class="nav-link text-light text-wrap d-inline-block w-100 px-0">缓冲区</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="视图" class="nav-link text-light text-wrap d-inline-block w-100 px-0">视图</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">设置</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="表引擎" class="nav-link text-light text-wrap d-inline-block w-100 px-0">表引擎</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="SQL参考" class="nav-link text-light text-wrap dropdown-toggle px-0">SQL参考</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="SQL语法" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SQL语法</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-3" title="发言" class="nav-link text-light text-wrap dropdown-toggle px-0">发言</a>
+<div id="sidebar-sidebar-3-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-3-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-3-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-3-3-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="概述" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概述</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="授权操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">授权操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="其他" class="nav-link text-light text-wrap d-inline-block w-100 px-0">其他</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE DATABASE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE DATABASE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-4" title="函数" class="nav-link text-light text-wrap dropdown-toggle px-0">函数</a>
+<div id="sidebar-sidebar-3-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="简介" class="nav-link text-light text-wrap d-inline-block w-100 px-0">简介</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="算术函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">算术函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="比较函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">比较函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="逻辑函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">逻辑函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="类型转换函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">类型转换函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="IN 运算符" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN 运算符</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="自省" class="nav-link text-light text-wrap d-inline-block w-100 px-0">自省</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="GEO函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GEO函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="Hash函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hash函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="IP函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IP函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="JSON函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JSON函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="Nullable处理函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable处理函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/url-functions/" title="URL函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="UUID函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="arrayJoin函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="位图函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">位图函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="位操作函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">位操作函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="其他函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">其他函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="功能与Yandex的工作。梅特里卡词典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">功能与Yandex的工作。梅特里卡词典</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="取整函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">取整函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="字典函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字典函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="字符串函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字符串函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="字符串拆分合并函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字符串拆分合并函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="字符串搜索函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字符串搜索函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="字符串替换函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字符串替换函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="数学函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数学函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="数组函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数组函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="时间日期函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">时间日期函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="机器学习函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">机器学习函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="条件函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">条件函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="编码函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">编码函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="随机函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">随机函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="高阶函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">高阶函数</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-5" title="简介" class="nav-link text-light text-wrap dropdown-toggle px-0">简介</a>
+<div id="sidebar-sidebar-3-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="简介" class="nav-link text-light text-wrap d-inline-block w-100 px-0">简介</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="聚合函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">聚合函数</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="聚合函数组合器" class="nav-link text-light text-wrap d-inline-block w-100 px-0">聚合函数组合器</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="参数聚合函数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">参数聚合函数</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-6" title="表函数" class="nav-link text-light text-wrap dropdown-toggle px-0">表函数</a>
+<div id="sidebar-sidebar-3-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="导言" class="nav-link text-light text-wrap d-inline-block w-100 px-0">导言</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="文件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文件</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="合并" class="nav-link text-light text-wrap d-inline-block w-100 px-0">合并</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="数字" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数字</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="远程" class="nav-link text-light text-wrap d-inline-block w-100 px-0">远程</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="hdfs" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdfs</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="输入" class="nav-link text-light text-wrap d-inline-block w-100 px-0">输入</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-7" title="字典" class="nav-link text-light text-wrap dropdown-toggle px-0">字典</a>
+<div id="sidebar-sidebar-3-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="导言" class="nav-link text-light text-wrap d-inline-block w-100 px-0">导言</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-7-2" title="外部字典" class="nav-link text-light text-wrap dropdown-toggle px-0">外部字典</a>
+<div id="sidebar-sidebar-3-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="概述" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概述</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="配置外部字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">配置外部字典</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="在内存中存储字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">在内存中存储字典</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="字典更新" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字典更新</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="外部字典的来源" class="nav-link text-light text-wrap d-inline-block w-100 px-0">外部字典的来源</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="字典键和字段" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字典键和字段</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="分层字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">分层字典</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="内部字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">内部字典</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="ANSI兼容性" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSI兼容性</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-9" title="操作符" class="nav-link text-light text-wrap dropdown-toggle px-0">操作符</a>
+<div id="sidebar-sidebar-3-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="在运营商" class="nav-link text-light text-wrap d-inline-block w-100 px-0">在运营商</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="操作符" class="nav-link text-light text-wrap d-inline-block w-100 px-0">操作符</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="数据类型" class="nav-link text-light text-wrap dropdown-toggle px-0">数据类型</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/lowcardinality/" title="低基数类型" class="nav-link text-light text-wrap d-inline-block w-100 px-0">低基数类型</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10-4" title="域" class="nav-link text-light text-wrap dropdown-toggle px-0">域</a>
+<div id="sidebar-sidebar-3-10-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="域" class="nav-link text-light text-wrap d-inline-block w-100 px-0">域</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="IPv4" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv4</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction(name, types\_of\_arguments…)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction(name, types\_of\_arguments…)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="Decimal(P,S),Decimal32(S),Decimal64(S),Decimal128(S)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Decimal(P,S),Decimal32(S),Decimal64(S),Decimal128(S)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="Enum8,Enum16" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum8,Enum16</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Float32,Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32,Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="Tuple(T1, T2, …)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple(T1, T2, …)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="UInt8,UInt16,UInt32,UInt64,Int8,Int16,Int32,Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UInt8,UInt16,UInt32,UInt64,Int8,Int16,Int32,Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="可为空（类型名称)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">可为空（类型名称)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="固定字符串" class="nav-link text-light text-wrap d-inline-block w-100 px-0">固定字符串</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="字符串" class="nav-link text-light text-wrap d-inline-block w-100 px-0">字符串</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="布尔值" class="nav-link text-light text-wrap d-inline-block w-100 px-0">布尔值</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="数据类型" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数据类型</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="日期" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日期</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="日期时间" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日期时间</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="阵列(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">阵列(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10-20" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10-20" title="嵌套数据结构" class="nav-link text-light text-wrap dropdown-toggle px-0">嵌套数据结构</a>
+<div id="sidebar-sidebar-3-10-20" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="Nested(Name1 Type1, Name2 Type2, …)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nested(Name1 Type1, Name2 Type2, …)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/" title="嵌套数据结构" class="nav-link text-light text-wrap d-inline-block w-100 px-0">嵌套数据结构</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10-21" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10-21" title="特殊数据类型" class="nav-link text-light text-wrap dropdown-toggle px-0">特殊数据类型</a>
+<div id="sidebar-sidebar-3-10-21" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="间隔" class="nav-link text-light text-wrap d-inline-block w-100 px-0">间隔</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="没什么" class="nav-link text-light text-wrap d-inline-block w-100 px-0">没什么</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/" title="特殊数据类型" class="nav-link text-light text-wrap d-inline-block w-100 px-0">特殊数据类型</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="表达式" class="nav-link text-light text-wrap d-inline-block w-100 px-0">表达式</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">设置</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="指南" class="nav-link text-light text-wrap dropdown-toggle px-0">指南</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="概述" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概述</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="应用CatBoost模型" class="nav-link text-light text-wrap d-inline-block w-100 px-0">应用CatBoost模型</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="操作" class="nav-link text-light text-wrap dropdown-toggle px-0">操作</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="要求" class="nav-link text-light text-wrap d-inline-block w-100 px-0">要求</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="监控" class="nav-link text-light text-wrap d-inline-block w-100 px-0">监控</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="常见问题" class="nav-link text-light text-wrap d-inline-block w-100 px-0">常见问题</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="更新" class="nav-link text-light text-wrap d-inline-block w-100 px-0">更新</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="访问权限和账户管理" class="nav-link text-light text-wrap d-inline-block w-100 px-0">访问权限和账户管理</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="数据备份" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数据备份</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="优化性能" class="nav-link text-light text-wrap dropdown-toggle px-0">优化性能</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="查询分析" class="nav-link text-light text-wrap d-inline-block w-100 px-0">查询分析</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="系统表" class="nav-link text-light text-wrap dropdown-toggle px-0">系统表</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="系统表" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统表</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/asynchronous_metric_log/" title="系统。asynchronous\_metric\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。asynchronous\_metric\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/asynchronous_metrics/" title="系统。asynchronous\_metrics" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。asynchronous\_metrics</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/data_type_families/" title="系统。data\_type\_families" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。data\_type\_families</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/detached_parts/" title="系统。detached\_parts" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。detached\_parts</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/graphite_retentions/" title="系统。graphite\_retentions" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。graphite\_retentions</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/merge_tree_settings/" title="系统。merge\_tree\_settings" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。merge\_tree\_settings</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/metric_log/" title="系统。metric\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。metric\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/numbers_mt/" title="系统。numbers\_mt" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。numbers\_mt</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/part_log/" title="系统。part\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。part\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/query_log/" title="系统。query\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。query\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/query_thread_log/" title="系统。query\_thread\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。query\_thread\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/storage_policies/" title="系统。storage\_policies" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。storage\_policies</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/text_log/" title="系统。text\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。text\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/trace_log/" title="系统。trace\_log" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。trace\_log</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/one/" title="系统。一" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。一</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/columns/" title="系统。列" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。列</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/replicas/" title="系统。副本" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。副本</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/functions/" title="系统。功能" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。功能</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/zookeeper/" title="系统。动物园管理员" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。动物园管理员</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/merges/" title="系统。合并" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。合并</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/dictionaries/" title="系统。字典" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。字典</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/metrics/" title="系统。指标" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。指标</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/numbers/" title="系统。数字" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。数字</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/databases/" title="系统。数据库" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。数据库</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/events/" title="系统。活动" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。活动</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/processes/" title="系统。流程" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。流程</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/disks/" title="系统。磁盘" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。磁盘</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/mutations/" title="系统。突变" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。突变</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/tables/" title="系统。表" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。表</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/table_engines/" title="系统。表\_engines" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。表\_engines</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/settings/" title="系统。设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。设置</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/contributors/" title="系统。贡献者" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。贡献者</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/clusters/" title="系统。集群" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。集群</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/parts/" title="系统。零件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">系统。零件</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="测试硬件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">测试硬件</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="使用建议" class="nav-link text-light text-wrap d-inline-block w-100 px-0">使用建议</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="配置文件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">配置文件</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="配额" class="nav-link text-light text-wrap d-inline-block w-100 px-0">配额</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-14" title="服务器配置参数" class="nav-link text-light text-wrap dropdown-toggle px-0">服务器配置参数</a>
+<div id="sidebar-sidebar-5-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="服务器设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">服务器设置</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="服务器配置参数" class="nav-link text-light text-wrap d-inline-block w-100 px-0">服务器配置参数</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-15" title="设置" class="nav-link text-light text-wrap dropdown-toggle px-0">设置</a>
+<div id="sidebar-sidebar-5-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="查询权限" class="nav-link text-light text-wrap d-inline-block w-100 px-0">查询权限</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="设置配置文件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">设置配置文件</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="对设置的限制" class="nav-link text-light text-wrap d-inline-block w-100 px-0">对设置的限制</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="用户设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">用户设置</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="查询复杂性的限制" class="nav-link text-light text-wrap d-inline-block w-100 px-0">查询复杂性的限制</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="设置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">设置</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-16" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-16" title="ﾂ环板Utilityｮﾂ嘉ｯ" class="nav-link text-light text-wrap dropdown-toggle px-0">ﾂ环板Utilityｮﾂ嘉ｯ</a>
+<div id="sidebar-sidebar-5-16" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="clickhouse-local" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-local</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="性能测试" class="nav-link text-light text-wrap d-inline-block w-100 px-0">性能测试</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="clickhouse-copier" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-copier</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="ﾂ环板Utilityｮﾂ嘉ｯ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ﾂ环板Utilityｮﾂ嘉ｯ</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="商业" class="nav-link text-light text-wrap dropdown-toggle px-0">商业</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="云" class="nav-link text-light text-wrap d-inline-block w-100 px-0">云</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="碌莽禄Support:" class="nav-link text-light text-wrap d-inline-block w-100 px-0">碌莽禄Support:</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="新增内容" class="nav-link text-light text-wrap dropdown-toggle px-0">新增内容</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-2" title="更新日志" class="nav-link text-light text-wrap dropdown-toggle px-0">更新日志</a>
+<div id="sidebar-sidebar-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="路线图" class="nav-link text-light text-wrap d-inline-block w-100 px-0">路线图</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="修复于 ClickHouse Release 18.12.13, 2018-09-10" class="nav-link text-light text-wrap d-inline-block w-100 px-0">修复于 ClickHouse Release 18.12.13, 2018-09-10</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="常见问题" class="nav-link text-light text-wrap d-inline-block w-100 px-0">常见问题</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="ClickHouse 开发" class="nav-link text-light text-wrap dropdown-toggle px-0">ClickHouse 开发</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="浏览源代码" class="nav-link text-light text-wrap d-inline-block w-100 px-0">浏览源代码</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="如何在Linux上构建ClickHouse for AARCH64（ARM64)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">如何在Linux上构建ClickHouse for AARCH64（ARM64)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/" title="ClickHouse 开发" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse 开发</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="ClickHouse 架构概述" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse 架构概述</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="ClickHouse 测试" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">ClickHouse 测试</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="Windows使用指引" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Windows使用指引</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="使用的三方库" class="nav-link text-light text-wrap d-inline-block w-100 px-0">使用的三方库</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="在 Mac OS X 中编译 ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">在 Mac OS X 中编译 ClickHouse</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="如何在Linux中编译Mac OS X ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">如何在Linux中编译Mac OS X ClickHouse</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="如何构建 ClickHouse 发布包" class="nav-link text-light text-wrap d-inline-block w-100 px-0">如何构建 ClickHouse 发布包</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="如何编写 C++ 代码" class="nav-link text-light text-wrap d-inline-block w-100 px-0">如何编写 C++ 代码</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="入门" class="nav-link text-light text-wrap dropdown-toggle px-0">入门</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="教程" class="nav-link text-light text-wrap d-inline-block w-100 px-0">教程</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="示例数据集" class="nav-link text-light text-wrap dropdown-toggle px-0">示例数据集</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="导言" class="nav-link text-light text-wrap d-inline-block w-100 px-0">导言</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="Yandex梅特里卡数据" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex梅特里卡数据</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab大数据基准测试" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab大数据基准测试</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="Criteo TB级别点击日志" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteo TB级别点击日志</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="星型基准测试" class="nav-link text-light text-wrap d-inline-block w-100 px-0">星型基准测试</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="纽约市出租车数据" class="nav-link text-light text-wrap d-inline-block w-100 px-0">纽约市出租车数据</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="维基访问数据" class="nav-link text-light text-wrap d-inline-block w-100 px-0">维基访问数据</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="航班飞行数据" class="nav-link text-light text-wrap d-inline-block w-100 px-0">航班飞行数据</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="♪操场♪" class="nav-link text-light text-wrap d-inline-block w-100 px-0">♪操场♪</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/" title="入门" class="nav-link text-light text-wrap d-inline-block w-100 px-0">入门</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="安装" class="nav-link text-light text-wrap d-inline-block w-100 px-0">安装</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="变更日志" class="nav-link text-light text-wrap dropdown-toggle px-0">变更日志</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../changelog/" title="变更日志" class="nav-link text-light text-wrap d-inline-block w-100 px-0">变更日志</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-12" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-12" title="客户端" class="nav-link text-light text-wrap dropdown-toggle px-0">客户端</a>
+<div id="sidebar-sidebar-12" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="MySQL接口" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL接口</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-12-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-12-2" title="第三方" class="nav-link text-light text-wrap dropdown-toggle px-0">第三方</a>
+<div id="sidebar-sidebar-12-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="来自第三方开发人员的代理服务器" class="nav-link text-light text-wrap d-inline-block w-100 px-0">来自第三方开发人员的代理服务器</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="第三方开发的可视化界面" class="nav-link text-light text-wrap d-inline-block w-100 px-0">第三方开发的可视化界面</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="第三方开发的库" class="nav-link text-light text-wrap d-inline-block w-100 px-0">第三方开发的库</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="第三方集成库" class="nav-link text-light text-wrap d-inline-block w-100 px-0">第三方集成库</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="C ++客户端库" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C ++客户端库</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="HTTP 客户端" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTP 客户端</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="JDBC 驱动" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC 驱动</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="ODBC 驱动" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC 驱动</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="原生客户端接口（TCP）" class="nav-link text-light text-wrap d-inline-block w-100 px-0">原生客户端接口（TCP）</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="命令行客户端" class="nav-link text-light text-wrap d-inline-block w-100 px-0">命令行客户端</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="客户端" class="nav-link text-light text-wrap d-inline-block w-100 px-0">客户端</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="输入输出格式" class="nav-link text-light text-wrap d-inline-block w-100 px-0">输入输出格式</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../single/clickhouse_zh.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDF版本" title="PDF版本" height="24" class="d-block mr-1 float-left" /><div>PDF版本</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">ClickHouse 开发</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+            <h1 id="clickhouse-ce-shi">ClickHouse 测试<a class="headerlink" href="#clickhouse-ce-shi" title="Permanent link"> </a></h1>
+<h2 id="gong-neng-xing-ce-shi">功能性测试<a class="headerlink" href="#gong-neng-xing-ce-shi" title="Permanent link"> </a></h2>
+<p>功能性测试是最简便使用的。绝大部分 ClickHouse 的功能可以通过功能性测试来测试，任何代码的更改都必须通过该测试。</p>
+<p>每个功能测试会向正在运行的 ClickHouse服 务器发送一个或多个查询，并将结果与预期结果进行比较。</p>
+<p>测试用例在 <code class="syntax">tests/queries</code> 目录中。这里有两个子目录：<code class="syntax">stateless</code> 和 <code class="syntax">stateful</code>目录。 无状态的测试无需预加载测试数据集 - 通常是在测试运行期间动态创建小量的数据集。有状态测试需要来自 Yandex.Metrica 的预加载测试数据，而不向一般公众提供。 我们倾向于仅使用«无状态»测试并避免添加新的«有状态»测试。</p>
+<p>每个测试用例可以是两种类型之一：<code class="syntax">.sql</code> 和 <code class="syntax">.sh</code>。<code class="syntax">.sql</code> 测试文件是用于管理<code class="syntax">clickhouse-client --multiquery --testmode</code>的简单SQL脚本。<code class="syntax">.sh</code> 测试文件是一个可以自己运行的脚本。</p>
+<p>要运行所有测试，请使用 <code class="syntax">tests/clickhouse-test</code> 工具，用 <code class="syntax">--help</code> 可以获取所有的选项列表。您可以简单地运行所有测试或运行测试名称中的子字符串过滤的测试子集：<code class="syntax">./clickhouse-test substring</code>。</p>
+<p>调用功能测试最简单的方法是将 <code class="syntax">clickhouse-client</code> 复制到<code class="syntax">/usr/bin/</code>，运行<code class="syntax">clickhouse-server</code>，然后从自己的目录运行<code class="syntax">./ clickhouse-test</code>。</p>
+<p>要添加新测试，请在 <code class="syntax">tests/queries/0_stateless</code> 目录内添加新的 <code class="syntax">.sql</code> 或 <code class="syntax">.sh</code> 文件，手动检查，然后按以下方式生成 <code class="syntax">.reference</code> 文件： <code class="syntax">clickhouse-client -n --testmode &lt; 00000_test.sql &gt; 00000_test.reference</code> 或 <code class="syntax">./00000_test.sh &gt; ./00000_test.reference</code>。</p>
+<p>测试应该只使用（创建，删除等）<code class="syntax">test</code> 数据库中的表，这些表假定是事先创建的; 测试也可以使用临时表。</p>
+<p>如果要在功能测试中使用分布式查询，可以利用 <code class="syntax">remote</code> 表函数和 <code class="syntax">127.0.0.{1..2}</code> 地址为服务器查询自身; 或者您可以在服务器配置文件中使用预定义的测试集群，例如<code class="syntax">test_shard_localhost</code>。</p>
+<p>有些测试在名称中标有 <code class="syntax">zookeeper</code>，<code class="syntax">shard</code> 或 <code class="syntax">long</code>。<code class="syntax">zookeeper</code> 用于使用ZooKeeper的测试; <code class="syntax">shard</code> 用于需要服务器监听<code class="syntax">127.0.0.*</code>的测试。<code class="syntax">long</code> 适用于运行时间稍长一秒的测试。</p>
+<h2 id="yi-zhi-de-bug">已知的bug<a class="headerlink" href="#yi-zhi-de-bug" title="Permanent link"> </a></h2>
+<p>如果我们知道一些可以通过功能测试轻松复制的错误，我们将准备好的功能测试放在 <code class="syntax">tests/queries/bugs</code> 目录中。当修复错误时，这些测试将被移动到 <code class="syntax">tests/queries/0_stateless</code> 目录中。</p>
+<h2 id="ji-cheng-ce-shi">集成测试<a class="headerlink" href="#ji-cheng-ce-shi" title="Permanent link"> </a></h2>
+<p>集成测试允许在集群配置中测试 ClickHouse，并与其他服务器（如MySQL，Postgres，MongoDB）进行 ClickHouse 交互。它们可用于模拟网络拆分，数据包丢弃等。这些测试在Docker 下运行，并使用各种软件创建多个容器。</p>
+<p>参考 <code class="syntax">tests/integration/README.md</code> 文档关于如何使用集成测试。</p>
+<p>请注意，ClickHouse 与第三方驱动程序的集成未经过测试。此外，我们目前还没有与 JDBC 和ODBC 驱动程序进行集成测试。</p>
+<h2 id="dan-yuan-ce-shi">单元测试<a class="headerlink" href="#dan-yuan-ce-shi" title="Permanent link"> </a></h2>
+<p>当您想要测试整个 ClickHouse，而不是单个独立的库或类时，单元测试非常有用。您可以使用<code class="syntax">ENABLE_TESTS</code> CMake 选项启用或禁用测试构建。单元测试（和其他测试程序）位于代码中的<code class="syntax">tests</code> 子目录中。要运行单元测试，请键入 <code class="syntax">ninja test</code>。有些测试使用 <code class="syntax">gtest</code>，但有些只是在测试失败时返回非零状态码。</p>
+<p>如果代码已经被功能测试覆盖（并且功能测试通常使用起来要简单得多），则不一定要进行单元测试。</p>
+<h2 id="xing-neng-ce-shi">性能测试<a class="headerlink" href="#xing-neng-ce-shi" title="Permanent link"> </a></h2>
+<p>性能测试允许测量和比较综合查询中 ClickHouse 的某些独立部分的性能。测试位于<code class="syntax">tests/performance</code> 目录中。每个测试都由 <code class="syntax">.xml</code> 文件表示，并附有测试用例的描述。使用 <code class="syntax">clickhouse performance-test</code> 工具（嵌入在 <code class="syntax">clickhouse</code> 二进制文件中）运行测试。请参阅 <code class="syntax">--help</code> 以进行调用。</p>
+<p>每个测试在循环中运行一个或多个查询（可能带有参数组合），并具有一些停止条件（如«最大执行速度不会在三秒内更改»）并测量一些有关查询性能的指标（如«最大执行速度»））。某些测试可以包含预加载的测试数据集的前提条件。</p>
+<p>如果要在某些情况下提高 ClickHouse 的性能，并且如果可以在简单查询上观察到改进，则强烈建议编写性能测试。在测试过程中使用 <code class="syntax">perf top</code> 或其他 perf 工具总是有意义的。</p>
+<p>性能测试不是基于每个提交运行的。不收集性能测试结果，我们手动比较它们。</p>
+<h2 id="ce-shi-gong-ju-he-jiao-ben">测试工具和脚本<a class="headerlink" href="#ce-shi-gong-ju-he-jiao-ben" title="Permanent link"> </a></h2>
+<p><code class="syntax">tests</code>目录中的一些程序不是准备测试，而是测试工具。例如，对于<code class="syntax">Lexer</code>，有一个工具<code class="syntax">src/Parsers/tests/lexer</code> 标准输出。您可以使用这些工具作为代码示例以及探索和手动测试。</p>
+<p>您还可以将一对文件 <code class="syntax">.sh</code> 和 <code class="syntax">.reference</code> 与工具放在一些预定义的输入上运行它 - 然后可以将脚本结果与 <code class="syntax">.reference</code> 文件进行比较。这些测试不是自动化的。</p>
+<h2 id="za-xiang-ce-shi">杂项测试<a class="headerlink" href="#za-xiang-ce-shi" title="Permanent link"> </a></h2>
+<p>有一些外部字典的测试位于 <code class="syntax">tests/external_dictionaries</code>，机器学习模型在<code class="syntax">tests/external_models</code>目录。这些测试未更新，必须转移到集成测试。</p>
+<p>对于分布式数据的插入，有单独的测试。此测试在单独的服务器上运行 ClickHouse 集群并模拟各种故障情况：网络拆分，数据包丢弃（ClickHouse 节点之间，ClickHouse 和 ZooKeeper之间，ClickHouse 服务器和客户端之间等），进行 <code class="syntax">kill -9</code>，<code class="syntax">kill -STOP</code> 和<code class="syntax">kill -CONT</code> 等操作，类似<a href="https://aphyr.com/tags/Jepsen" rel="external nofollow noreferrer" target="_blank">Jepsen</a>。然后，测试检查是否已写入所有已确认的插入，并且所有已拒绝的插入都未写入。</p>
+<p>在 ClickHouse 开源之前，分布式测试是由单独的团队编写的，但该团队不再使用 ClickHouse，测试是在 Java 中意外编写的。由于这些原因，必须重写分布式测试并将其移至集成测试。</p>
+<h2 id="shou-dong-ce-shi">手动测试<a class="headerlink" href="#shou-dong-ce-shi" title="Permanent link"> </a></h2>
+<p>当您开发了新的功能，做手动测试也是合理的。可以按照以下步骤来进行：</p>
+<p>编译 ClickHouse。在命令行中运行 ClickHouse：进入 <code class="syntax">programs/clickhouse-server</code> 目录并运行 <code class="syntax">./clickhouse-server</code>。它会默认使用当前目录的配置文件 (<code class="syntax">config.xml</code>， <code class="syntax">users.xml</code> 以及在 <code class="syntax">config.d</code> 和 <code class="syntax">users.d</code> 目录的文件)。可以使用 <code class="syntax">programs/clickhouse-client/clickhouse-client</code> 来连接数据库。</p>
+<p>或者，您可以安装 ClickHouse 软件包：从 Yandex 存储库中获得稳定版本，或者您可以在ClickHouse源根目录中使用 <code class="syntax">./release</code> 构建自己的软件包。然后使用 <code class="syntax">sudo service clickhouse-server start</code> 启动服务器（或停止服务器）。在 <code class="syntax">/etc/clickhouse-server/clickhouse-server.log</code> 中查找日志。</p>
+<p>当您的系统上已经安装了 ClickHouse 时，您可以构建一个新的 <code class="syntax">clickhouse</code> 二进制文件并替换现有的二进制文件：</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo service clickhouse-server stop</span>
+<span class="err">sudo cp ./clickhouse /usr/bin/</span>
+<span class="err">sudo service clickhouse-server start</span>
+</code></pre></div>
+<p>您也可以停止 clickhouse-server 并使用相同的配置运行您自己的服务器，日志打印到终端：</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo service clickhouse-server stop</span>
+<span class="err">sudo -u clickhouse /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml</span>
+</code></pre></div>
+<p>使用 gdb 的一个示例:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo -u clickhouse gdb --args /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml</span>
+</code></pre></div>
+<p>如果 clickhouse-server 已经运行并且您不想停止它，您可以更改 <code class="syntax">config.xml</code> 中的端口号（或在 <code class="syntax">config.d</code> 目录中的文件中覆盖它们），配置适当的数据路径，然后运行它。</p>
+<p><code class="syntax">clickhouse</code> 二进制文件几乎没有依赖关系，适用于各种 Linux 发行版。要快速地测试服务器上的更改，您可以简单地将新建的 <code class="syntax">clickhouse</code> 二进制文件 <code class="syntax">scp</code> 到其他服务器，然后按照上面的示例运行它。</p>
+<h2 id="ce-shi-huan-jing">测试环境<a class="headerlink" href="#ce-shi-huan-jing" title="Permanent link"> </a></h2>
+<p>在将版本发布为稳定之前，我们将其部署在测试环境中 测试环境是一个处理[Yandex.Metrica]（<a href="https://metrica.yandex.com/" target="_blank">https://metrica.yandex.com/</a>）总数据的1/39部分大小的集群。 我们与 Yandex.Metrica 团队公用我们的测试环境。ClickHouse 在现有数据的基础上无需停机即可升级。 我们首先看到数据处理成功而不会实时滞后，复制继续工作，并且 Yandex.Metrica 团队无法看到问题。 首先的检查可以通过以下方式完成：</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">SELECT hostName() AS h, any(version()), any(uptime()), max(UTCEventTime), count() FROM remote('example01-01-{1..3}t', merge, hits) WHERE EventDate &gt;= today() - 2 GROUP BY h ORDER BY h;</span>
+</code></pre></div>
+<p>在某些情况下，我们还部署到 Yandex 的合作团队的测试环境：市场，云等。此外，我们还有一些用于开发目的的硬件服务器。</p>
+<h2 id="fu-zai-ce-shi">负载测试<a class="headerlink" href="#fu-zai-ce-shi" title="Permanent link"> </a></h2>
+<p>部署到测试环境后，我们使用生产群集中的查询运行负载测试。 这是手动完成的。</p>
+<p>确保在生产集群中开启了 <code class="syntax">query_log</code> 选项。</p>
+<p>收集一天或更多的查询日志：</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">clickhouse-client --query="SELECT DISTINCT query FROM system.query_log WHERE event_date = today() AND query LIKE '%ym:%' AND query NOT LIKE '%system.query_log%' AND type = 2 AND is_initial_query" &gt; queries.tsv</span>
+</code></pre></div>
+<p>这是一个复杂的例子。<code class="syntax">type = 2</code> 将过滤成功执行的查询。<code class="syntax">query LIKE'％ym：％'</code> 用于从 Yandex.Metrica 中选择相关查询。<code class="syntax">is_initial_query</code> 是仅选择由客户端发起的查询，而不是由 ClickHouse 本身（作为分布式查询处理的一部分）。</p>
+<p><code class="syntax">scp</code> 这份日志到测试机器，并运行以下操作：</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">clickhouse benchmark --concurrency 16 &lt; queries.tsv</span>
+</code></pre></div>
+<p>(可能你需要指定运行的用户 <code class="syntax">--user</code>)</p>
+<p>然后离开它一晚或周末休息一下。</p>
+<p>你要检查下 <code class="syntax">clickhouse-server</code> 是否崩溃，内存占用是否合理，性能也不会随着时间的推移而降低。</p>
+<p>由于查询和环境的高度可变性，不会记录精确的查询执行时序并且不进行比较。</p>
+<h2 id="bian-yi-ce-shi">编译测试<a class="headerlink" href="#bian-yi-ce-shi" title="Permanent link"> </a></h2>
+<p>构建测试允许检查构建在各种替代配置和某些外部系统上是否被破坏。测试位于<code class="syntax">ci</code>目录。 它们从 Docker，Vagrant 中的源代码运行构建，有时在 Docker 中运行 <code class="syntax">qemu-user-static</code>。这些测试正在开发中，测试运行不是自动化的。</p>
+<p>动机：</p>
+<p>通常我们会在 ClickHouse 构建的单个版本上发布并运行所有测试。 但是有一些未经过彻底测试的替代构建版本。 例子：</p>
+<ul>
+<li>在 FreeBSD 中的构建；</li>
+<li>在 Debian 中使用系统包中的库进行构建；</li>
+<li>使用库的共享链接构建；</li>
+<li>在 AArch64 平台进行构建。</li>
+</ul>
+<p>例如，使用系统包构建是不好的做法，因为我们无法保证系统具有的确切版本的软件包。但 Debian 维护者确实需要这样做。出于这个原因，我们至少必须支持这种构建。另一个例子：共享链接是一个常见的麻烦来源，但是对于一些爱好者来说需要它。</p>
+<p>虽然我们无法对所有构建版本运行所有测试，但我们想要检查至少不会破坏各种构建变体。为此，我们使用构建测试。</p>
+<h2 id="ce-shi-xie-yi-jian-rong-xing">测试协议兼容性<a class="headerlink" href="#ce-shi-xie-yi-jian-rong-xing" title="Permanent link"> </a></h2>
+<p>当我们扩展 ClickHouse 网络协议时，我们手动测试旧的 clickhouse-client 与新的 clickhouse-server 和新的clickhouse-client 一起使用旧的 clickhouse-server (只需从相应的包中运行二进制文件)</p>
+<h2 id="lai-zi-bian-yi-qi-de-ti-shi">来自编译器的提示<a class="headerlink" href="#lai-zi-bian-yi-qi-de-ti-shi" title="Permanent link"> </a></h2>
+<p>ClickHouse 主要的代码 (位于<code class="syntax">dbms</code>目录中) 使用 <code class="syntax">-Wall -Wextra -Werror</code> 构建，并带有一些其他已启用的警告。 虽然没有为第三方库启用这些选项。</p>
+<p>Clang 有更多有用的警告 - 您可以使用 <code class="syntax">-Weverything</code> 查找它们并选择默认构建的东西。</p>
+<p>对于生产构建，使用 gcc（它仍然生成比 clang 稍高效的代码）。对于开发来说，clang 通常更方便使用。您可以使用调试模式在自己的机器上构建（以节省笔记本电脑的电量），但请注意，由于更好的控制流程和过程分析，编译器使用 <code class="syntax">-O3</code> 会生成更多警告。 当使用 clang 构建时，使用 <code class="syntax">libc++</code> 而不是 <code class="syntax">libstdc++</code>，并且在使用调试模式构建时，使用调试版本的 <code class="syntax">libc++</code>，它允许在运行时捕获更多错误。</p>
+<h2 id="sanitizers">消毒剂<a class="headerlink" href="#sanitizers" title="Permanent link"> </a></h2>
+<p><strong>地址消毒剂</strong>.<br/>
+我们在每个提交的基础上在 ASan 下运行功能和集成测试。</p>
+<p><strong>ﾂ暗ｪﾂ氾环催ﾂ団ﾂ法ﾂ人)</strong>.<br/>
+我们在 Valgrind 过夜进行功能测试。 这需要几个小时。 目前在 <code class="syntax">re2</code> 库中有一个已知的误报，请参阅 <a href="https://research.swtch.com/sparse" rel="external nofollow noreferrer" target="_blank">文章</a>。</p>
+<p><strong>螺纹消毒剂</strong>.<br/>
+我们在 TSan 下进行功能测试。ClickHouse 必须通过所有测试。在 TSan 下运行不是自动化的，只是偶尔执行。</p>
+<p><strong>记忆消毒剂</strong>.<br/>
+目前我们不使用 MSan。</p>
+<p><strong>未定义的行为消毒剂。</strong><br/>
+我们仍然不会在每次提交的基础上使用 UBSan。 有一些地方需要解决。</p>
+<p><strong>调试分alloc。</strong><br/>
+您可以使用 <code class="syntax">DEBUG_TCMALLOC</code> CMake 选项启用 <code class="syntax">tcmalloc</code> 的调试版本。我们在每次提交的基础上使用调试分配器运行测试。</p>
+<p>更多请参阅 <code class="syntax">tests/instructions/sanitizers.txt</code>。</p>
+<h2 id="mo-hu-ce-shi">模糊测试<a class="headerlink" href="#mo-hu-ce-shi" title="Permanent link"> </a></h2>
+<p>我们使用简单的模糊测试来生成随机SQL查询并检查服务器是否正常，使用 Address sanitizer 执行模糊测试。你可以在<code class="syntax">00746_sql_fuzzy.pl</code> 找到它。 测试应连续进行（过夜和更长时间）。</p>
+<p>截至2018年12月，我们仍然不使用库代码的孤立模糊测试。</p>
+<h2 id="an-quan-shen-ji">安全审计<a class="headerlink" href="#an-quan-shen-ji" title="Permanent link"> </a></h2>
+<p>Yandex Cloud 部门的人员从安全角度对 ClickHouse 功能进行了一些基本概述。</p>
+<h2 id="jing-tai-fen-xi">静态分析<a class="headerlink" href="#jing-tai-fen-xi" title="Permanent link"> </a></h2>
+<p>我们偶尔使用静态分析。我们已经评估过 <code class="syntax">clang-tidy</code>， <code class="syntax">Coverity</code>， <code class="syntax">cppcheck</code>， <code class="syntax">PVS-Studio</code>， <code class="syntax">tscancode</code>。您将在 <code class="syntax">tests/instructions/</code> 目录中找到使用说明。你也可以阅读<a href="https://habr.com/company/yandex/blog/342018/" rel="external nofollow noreferrer" target="_blank">俄文文章</a>.</p>
+<p>如果您使用 <code class="syntax">CLion</code> 作为 IDE，您可以开箱即用一些 <code class="syntax">clang-tidy</code> 检查。</p>
+<h2 id="qi-ta-qiang-hua">其他强化<a class="headerlink" href="#qi-ta-qiang-hua" title="Permanent link"> </a></h2>
+<p>默认情况下使用 <code class="syntax">FORTIFY_SOURCE</code>。它几乎没用，但在极少数情况下仍然有意义，我们不会禁用它。</p>
+<h2 id="dai-ma-feng-ge">代码风格<a class="headerlink" href="#dai-ma-feng-ge" title="Permanent link"> </a></h2>
+<p>代码风格在<a href="https://clickhouse.tech/docs/en/development/style/" target="_blank">这里</a> 有说明。</p>
+<p>要检查一些常见的样式冲突，您可以使用 <code class="syntax">utils/check-style</code> 脚本。</p>
+<p>为了强制你的代码的正确风格，你可以使用 <code class="syntax">clang-format</code> 文件。<code class="syntax">.clang-format</code> 位于源代码根目录， 它主要与我们的实际代码风格对应。但不建议将 <code class="syntax">clang-format</code> 应用于现有文件，因为它会使格式变得更糟。您可以使用 <code class="syntax">clang-format-diff</code> 工具，您可以在 clang 源代码库中找到</p>
+<p>或者，您可以尝试<code class="syntax">uncrustify</code> 工具来格式化您的代码。配置文件在源代码的根目录中的<code class="syntax">uncrustify.cfg</code>。它比 <code class="syntax">clang-format</code> 经过更少的测试。</p>
+<p><code class="syntax">CLion</code> 有自己的代码格式化程序，必须调整为我们的代码风格。</p>
+<h2 id="metrica-b2b-ce-shi">Metrica B2B 测试<a class="headerlink" href="#metrica-b2b-ce-shi" title="Permanent link"> </a></h2>
+<p>每个 ClickHouse 版本都经过 Yandex Metrica 和 AppMetrica 引擎的测试。测试和稳定版本的 ClickHouse 部署在虚拟机上，并使用处理输入数据固定样本的度量引擎的小副本运行。 将度量引擎的两个实例的结果一起进行比较</p>
+<p>这些测试是由单独的团队自动完成的。由于移动部件的数量很多，大部分时间的测试都是完全无关的，很难弄清楚。很可能这些测试对我们来说是负值。然而，这些测试被证明是有用的大约一个或两个倍的数百。</p>
+<h2 id="ce-shi-fu-gai-lu">测试覆盖率<a class="headerlink" href="#ce-shi-fu-gai-lu" title="Permanent link"> </a></h2>
+<p>截至2018年7月，我们不会跟踪测试复盖率。</p>
+<h2 id="zi-dong-hua-ce-shi">自动化测试<a class="headerlink" href="#zi-dong-hua-ce-shi" title="Permanent link"> </a></h2>
+<p>我们使用 Yandex 内部 CI 和名为«沙箱»的作业自动化系统运行测试。 我们还继续使用 Jenkins（可在Yandex内部使用）。</p>
+<p>构建作业和测试在沙箱中按每次提交的基础上运行。结果包和测试结果发布在 GitHub 上，可以通过直接链接下载，结果会被永久存储。当您在 GitHub 上发送拉取请求时，我们将其标记为«可以测试»，我们的 CI 系统将为您构建 ClickHouse 包（发布，调试，地址消除等）。</p>
+<p>由于时间和计算能力的限制，我们不使用 Travis CI。</p>
+<p>在 Jenkins，我们运行字典测试，指标B2B测试。 我们使用 Jenkins 来准备和发布版本。 Jenkins是一种传统的技术，所有的工作将被转移到沙箱中。</p>
+<p><a href="https://clickhouse.tech/docs/zh/development/tests/" target="_blank">来源文章</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">评分: RATING_VALUE - RATING_COUNT 所得票数</p>
+  <span class="alert-heading display-6">这个内容有帮助?？</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['无法使用', '差', 'OK', '很好', '善乎哉！']"
+     data-documentation="文件"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>建于 <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, 发表于 <span title="2017-10-25T08:27:09+03:00">2017-10-25</span>, 修改于 <span title="2020-04-30T21:19:18+03:00">2020-04-30</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">目录</label>
+    
+    
+        
+        
+        <a href="#gong-neng-xing-ce-shi" title="功能性测试" class="nav-link text-wrap d-inline-block w-100">
+    功能性测试
+</a>
+
+    
+        
+        
+        <a href="#yi-zhi-de-bug" title="已知的bug" class="nav-link text-wrap d-inline-block w-100">
+    已知的bug
+</a>
+
+    
+        
+        
+        <a href="#ji-cheng-ce-shi" title="集成测试" class="nav-link text-wrap d-inline-block w-100">
+    集成测试
+</a>
+
+    
+        
+        
+        <a href="#dan-yuan-ce-shi" title="单元测试" class="nav-link text-wrap d-inline-block w-100">
+    单元测试
+</a>
+
+    
+        
+        
+        <a href="#xing-neng-ce-shi" title="性能测试" class="nav-link text-wrap d-inline-block w-100">
+    性能测试
+</a>
+
+    
+        
+        
+        <a href="#ce-shi-gong-ju-he-jiao-ben" title="测试工具和脚本" class="nav-link text-wrap d-inline-block w-100">
+    测试工具和脚本
+</a>
+
+    
+        
+        
+        <a href="#za-xiang-ce-shi" title="杂项测试" class="nav-link text-wrap d-inline-block w-100">
+    杂项测试
+</a>
+
+    
+        
+        
+        <a href="#shou-dong-ce-shi" title="手动测试" class="nav-link text-wrap d-inline-block w-100">
+    手动测试
+</a>
+
+    
+        
+        
+        <a href="#ce-shi-huan-jing" title="测试环境" class="nav-link text-wrap d-inline-block w-100">
+    测试环境
+</a>
+
+    
+        
+        
+        <a href="#fu-zai-ce-shi" title="负载测试" class="nav-link text-wrap d-inline-block w-100">
+    负载测试
+</a>
+
+    
+        
+        
+        <a href="#bian-yi-ce-shi" title="编译测试" class="nav-link text-wrap d-inline-block w-100">
+    编译测试
+</a>
+
+    
+        
+        
+        <a href="#ce-shi-xie-yi-jian-rong-xing" title="测试协议兼容性" class="nav-link text-wrap d-inline-block w-100">
+    测试协议兼容性
+</a>
+
+    
+        
+        
+        <a href="#lai-zi-bian-yi-qi-de-ti-shi" title="来自编译器的提示" class="nav-link text-wrap d-inline-block w-100">
+    来自编译器的提示
+</a>
+
+    
+        
+        
+        <a href="#sanitizers" title="消毒剂" class="nav-link text-wrap d-inline-block w-100">
+    消毒剂
+</a>
+
+    
+        
+        
+        <a href="#mo-hu-ce-shi" title="模糊测试" class="nav-link text-wrap d-inline-block w-100">
+    模糊测试
+</a>
+
+    
+        
+        
+        <a href="#an-quan-shen-ji" title="安全审计" class="nav-link text-wrap d-inline-block w-100">
+    安全审计
+</a>
+
+    
+        
+        
+        <a href="#jing-tai-fen-xi" title="静态分析" class="nav-link text-wrap d-inline-block w-100">
+    静态分析
+</a>
+
+    
+        
+        
+        <a href="#qi-ta-qiang-hua" title="其他强化" class="nav-link text-wrap d-inline-block w-100">
+    其他强化
+</a>
+
+    
+        
+        
+        <a href="#dai-ma-feng-ge" title="代码风格" class="nav-link text-wrap d-inline-block w-100">
+    代码风格
+</a>
+
+    
+        
+        
+        <a href="#metrica-b2b-ce-shi" title="Metrica B2B 测试" class="nav-link text-wrap d-inline-block w-100">
+    Metrica B2B 测试
+</a>
+
+    
+        
+        
+        <a href="#ce-shi-fu-gai-lu" title="测试覆盖率" class="nav-link text-wrap d-inline-block w-100">
+    测试覆盖率
+</a>
+
+    
+        
+        
+        <a href="#zi-dong-hua-ce-shi" title="自动化测试" class="nav-link text-wrap d-inline-block w-100">
+    自动化测试
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

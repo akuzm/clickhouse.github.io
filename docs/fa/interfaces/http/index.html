@@ -1,0 +1,3514 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="fa" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>رابط قام | مستندات ClickHouse</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="رابط قام | مستندات ClickHouse"/>
+<meta property="og:description" content="رابط قام رابط اچ تی پی به شما امکان استفاده از کلیک بر روی هر پلت فرم از هر زبان برنامه نویسی. ما برای کار از جاوا و پرل" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/fa/interfaces/http/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/fa/interfaces/http/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/fa/interfaces/http/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "رابط قام | مستندات ClickHouse",
+"mainEntityOfPage": "https://clickhouse.tech/docs/fa/interfaces/http/",
+
+"datePublished": "2018-08-11T06:13:25+04:30",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "رابط قام | مستندات ClickHouse",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="رابط قام رابط اچ تی پی به شما امکان استفاده از کلیک بر روی هر پلت فرم از هر زبان برنامه نویسی. ما برای کار از جاوا و پرل" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, متن باز, رابطه, تجزیه و تحلیل, تحلیلی, داده های بزرگ, تجزیه و تحلیل وب سایت" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/interfaces/http/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/interfaces/http/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="rtl" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        رابط قام
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/fa/interfaces/http.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/fa.svg" alt="فارسی" title="فارسی" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/interfaces/http/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/interfaces/http/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/interfaces/http/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/interfaces/http/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/interfaces/http/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/interfaces/http/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/tr/interfaces/http/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/fa/interfaces/http/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid text-right">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="چند صفحه یا یک صفحه">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="نسخه چند صفحه ای" title="نسخه چند صفحه ای" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="نسخه تک صفحه ای" title="نسخه تک صفحه ای" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                نسخه: <span class="text-light">جدیدترین</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/fa/">
+                    <span class="text-light">جدیدترین</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="معرفی شرکت" class="nav-link text-light text-wrap dropdown-toggle px-0">معرفی شرکت</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="ClickHouse چیست؟" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse چیست؟</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/history/" title="تاریخچه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاریخچه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/adopters/" title="پذیرا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پذیرا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/performance/" title="Performance" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performance</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/distinctive-features/" title="ویژگی های برجسته ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ویژگی های برجسته ClickHouse</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="شروع کار" class="nav-link text-light text-wrap dropdown-toggle px-0">شروع کار</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="نصب و راه اندازی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نصب و راه اندازی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="اموزش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اموزش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-4" title="به عنوان مثال مجموعه داده" class="nav-link text-light text-wrap dropdown-toggle px-0">به عنوان مثال مجموعه داده</a>
+<div id="sidebar-sidebar-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="یاندکساطلاعات متریکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">یاندکساطلاعات متریکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="به موقع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به موقع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="داده های تاکسی نیویورک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">داده های تاکسی نیویورک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="معیار بزرگ داده های تقویت کننده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معیار بزرگ داده های تقویت کننده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="ویکیستات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ویکیستات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="ترابایت کلیک سیاهههای مربوط از مخلوق" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ترابایت کلیک سیاهههای مربوط از مخلوق</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="معیار طرحواره ستاره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معیار طرحواره ستاره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="زمین بازی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">زمین بازی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="واسط" class="nav-link text-light text-wrap dropdown-toggle px-0">واسط</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="مشتری خط فرمان" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مشتری خط فرمان</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="رابط کاربری بومی)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط کاربری بومی)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="رابط قام" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">رابط قام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="رابط MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="فرمت های ورودی و خروجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">فرمت های ورودی و خروجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="JDBC Driver" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC Driver</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="ODBC Driver" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC Driver</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="ج++ کتابخانه مشتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ج++ کتابخانه مشتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="شخص ثالث" class="nav-link text-light text-wrap dropdown-toggle px-0">شخص ثالث</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="کتابخانه های مشتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کتابخانه های مشتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="یکپارچگی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">یکپارچگی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="رابط های بصری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رابط های بصری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="پراکسی ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پراکسی ها</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="موتورها" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورها</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="موتورهای جدول" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورهای جدول</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="ادغام خانواده" class="nav-link text-light text-wrap dropdown-toggle px-0">ادغام خانواده</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="تکرار داده ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تکرار داده ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="کلید پارتیشن بندی سفارشی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلید پارتیشن بندی سفارشی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="جایگزینی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جایگزینی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="سامینگمرگتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سامینگمرگتری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="ریزدانه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ریزدانه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="سقوط غذای اصلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سقوط غذای اصلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="در حال بارگذاری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در حال بارگذاری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="نمودار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نمودار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="ثبت خانواده" class="nav-link text-light text-wrap dropdown-toggle px-0">ثبت خانواده</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="خط زدن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خط زدن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="ثبت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ثبت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="جمع شدن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جمع شدن</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="یکپارچگی" class="nav-link text-light text-wrap dropdown-toggle px-0">یکپارچگی</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="کافکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کافکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="ویژه" class="nav-link text-light text-wrap dropdown-toggle px-0">ویژه</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="توزیع شده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توزیع شده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="دادههای خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دادههای خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="واژهنامه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">واژهنامه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="پرونده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پرونده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="خالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="تنظیم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="پیوستن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیوستن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="نما" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نما</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="ماده بینی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ماده بینی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="حافظه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">حافظه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="بافر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بافر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="ژنرال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ژنرال</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="موتورهای پایگاه داده" class="nav-link text-light text-wrap dropdown-toggle px-0">موتورهای پایگاه داده</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="تنبل" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنبل</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="مرجع مربع" class="nav-link text-light text-wrap dropdown-toggle px-0">مرجع مربع</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="بیانیه ها" class="nav-link text-light text-wrap dropdown-toggle px-0">بیانیه ها</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="SELECT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SELECT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="اتحادیه همه بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اتحادیه همه بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="از بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">از بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="با بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">با بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="بند فرمت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند فرمت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="بند مجزا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند مجزا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="بند محدود" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند محدود</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="بند نمونه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند نمونه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="بند کجا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بند کجا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="به OUTFILE بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به OUTFILE بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="داشتن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">داشتن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="در بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="مجموعه پیوستن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مجموعه پیوستن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="محدود کردن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدود کردن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="پیوستن بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیوستن بند</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="گروه بر اساس بند" class="nav-link text-light text-wrap d-inline-block w-100 px-0">گروه بر اساس بند</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="غیره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">غیره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="نحو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="توابع" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="حساب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">حساب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="مقایسه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مقایسه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="منطقی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">منطقی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="تبدیل نوع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تبدیل نوع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="کار با تاریخ و زمان" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با تاریخ و زمان</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="کار با رشته ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با رشته ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="برای جستجوی رشتهها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">برای جستجوی رشتهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="برای جایگزینی در رشتهها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">برای جایگزینی در رشتهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="شرطی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">شرطی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="ریاضی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ریاضی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="گرد کردن" class="nav-link text-light text-wrap d-inline-block w-100 px-0">گرد کردن</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="کار با ارریس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با ارریس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="تقسیم و ادغام رشته ها و ارریس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تقسیم و ادغام رشته ها و ارریس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="بیت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بیت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="نگاشت بیت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نگاشت بیت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="هش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">هش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="تولید اعداد شبه تصادفی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تولید اعداد شبه تصادفی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="کدبندی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کدبندی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="کار با یوید" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با یوید</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="کار با نشانیهای اینترنتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با نشانیهای اینترنتی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="کار با جانسون" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با جانسون</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="بالاتر سفارش" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بالاتر سفارش</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="کار با واژهنامهها خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با واژهنامهها خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="کار با یاندکس.واژهنامهها متریکا" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با یاندکس.واژهنامهها متریکا</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="اجرای اپراتور در" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اجرای اپراتور در</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="ارریجین" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ارریجین</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="کار با مختصات جغرافیایی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با مختصات جغرافیایی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="کار با Nullable استدلال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کار با Nullable استدلال</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="توابع یادگیری ماشین" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توابع یادگیری ماشین</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="درون نگری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">درون نگری</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="غیره" class="nav-link text-light text-wrap d-inline-block w-100 px-0">غیره</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="توابع مجموع" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع مجموع</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="مرجع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مرجع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="ترکیب کنندهها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ترکیب کنندهها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="پارامتری" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پارامتری</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="توابع جدول" class="nav-link text-light text-wrap dropdown-toggle px-0">توابع جدول</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="پرونده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پرونده</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="ادغام" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ادغام</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="اعداد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اعداد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="دور" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دور</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="نشانی وب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نشانی وب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="خروجی زیر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">خروجی زیر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="جستجو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جستجو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="hdfs" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdfs</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="ورودی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ورودی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="ژنرال" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ژنرال</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="واژهنامهها" class="nav-link text-light text-wrap dropdown-toggle px-0">واژهنامهها</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="واژهنامهها خارجی" class="nav-link text-light text-wrap dropdown-toggle px-0">واژهنامهها خارجی</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="توضیحات کلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توضیحات کلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="پیکربندی یک فرهنگ لغت خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پیکربندی یک فرهنگ لغت خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="ذخیره واژهنامهها در حافظه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ذخیره واژهنامهها در حافظه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="به روز رسانی فرهنگ لغت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به روز رسانی فرهنگ لغت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="منابع لغت نامه های خارجی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">منابع لغت نامه های خارجی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="کلید فرهنگ لغت و زمینه های" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلید فرهنگ لغت و زمینه های</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="لغتنامهها سلسله مراتبی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">لغتنامهها سلسله مراتبی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="واژهنامهها داخلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">واژهنامهها داخلی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="انواع داده ها" class="nav-link text-light text-wrap dropdown-toggle px-0">انواع داده ها</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="دهدهی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دهدهی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="بولی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بولی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="رشته" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رشته</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="رشته ثابت)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">رشته ثابت)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="تاریخ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاریخ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="طول تاریخ 64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">طول تاریخ 64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="شمارشی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">شمارشی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="& توری)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">& توری)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="کارکرد(نام و نام خانوادگی..)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کارکرد(نام و نام خانوادگی..)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="تاپل (تی1, تی2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاپل (تی1, تی2,...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-17" title="ساختارهای داده تو در تو" class="nav-link text-light text-wrap dropdown-toggle px-0">ساختارهای داده تو در تو</a>
+<div id="sidebar-sidebar-5-8-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="تو در تو(Name1 Type1, Name2 Type2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تو در تو(Name1 Type1, Name2 Type2, ...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-18" title="انواع داده های ویژه" class="nav-link text-light text-wrap dropdown-toggle px-0">انواع داده های ویژه</a>
+<div id="sidebar-sidebar-5-8-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="عبارت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عبارت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="تنظیم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="هیچی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">هیچی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="فاصله" class="nav-link text-light text-wrap d-inline-block w-100 px-0">فاصله</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8-19" title="دامنه" class="nav-link text-light text-wrap dropdown-toggle px-0">دامنه</a>
+<div id="sidebar-sidebar-5-8-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="IPv4" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv4</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="عملکرد پلاکتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عملکرد پلاکتی</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="اپراتورها" class="nav-link text-light text-wrap dropdown-toggle px-0">اپراتورها</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="اپراتورها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">اپراتورها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="در اپراتورها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">در اپراتورها</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="سازگاری انسی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سازگاری انسی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="راهنما" class="nav-link text-light text-wrap dropdown-toggle px-0">راهنما</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="استفاده از مدل های ادم کودن و احمق" class="nav-link text-light text-wrap d-inline-block w-100 px-0">استفاده از مدل های ادم کودن و احمق</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="عملیات" class="nav-link text-light text-wrap dropdown-toggle px-0">عملیات</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="الزامات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">الزامات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="نظارت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نظارت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="عیب یابی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">عیب یابی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="به روز رسانی کلیک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">به روز رسانی کلیک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="کنترل دسترسی و مدیریت حساب" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کنترل دسترسی و مدیریت حساب</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="پشتیبان گیری داده ها" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پشتیبان گیری داده ها</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="پروندههای پیکربندی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروندههای پیکربندی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="سهمیه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سهمیه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="بهینه سازی عملکرد" class="nav-link text-light text-wrap dropdown-toggle px-0">بهینه سازی عملکرد</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="پروفایل پرس و جو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروفایل پرس و جو</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="جداول سیستم" class="nav-link text-light text-wrap d-inline-block w-100 px-0">جداول سیستم</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="سخت افزار تست" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سخت افزار تست</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="پارامترهای پیکربندی سرور" class="nav-link text-light text-wrap dropdown-toggle px-0">پارامترهای پیکربندی سرور</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="تنظیمات کارگزار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات کارگزار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="تنظیمات" class="nav-link text-light text-wrap dropdown-toggle px-0">تنظیمات</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="معرفی شرکت" class="nav-link text-light text-wrap d-inline-block w-100 px-0">معرفی شرکت</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="مجوز برای نمایش داده شد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مجوز برای نمایش داده شد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="محدودیت در پیچیدگی پرس و جو" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدودیت در پیچیدگی پرس و جو</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="پروفایل تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پروفایل تنظیمات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="محدودیت در تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">محدودیت در تنظیمات</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="تنظیمات کاربر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات کاربر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings/" title="تنظیمات" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تنظیمات</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="تاسیسات" class="nav-link text-light text-wrap dropdown-toggle px-0">تاسیسات</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="بررسی اجمالی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="تاتر-کپی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تاتر-کپی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="کلیک-محلی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلیک-محلی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="کلیک-معیار" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کلیک-معیار</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="توصیه های استفاده" class="nav-link text-light text-wrap d-inline-block w-100 px-0">توصیه های استفاده</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="توسعه" class="nav-link text-light text-wrap dropdown-toggle px-0">توسعه</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="دستورالعمل توسعه دهنده کلیک مبتدی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">دستورالعمل توسعه دهنده کلیک مبتدی</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="بررسی اجمالی از معماری کلیک" class="nav-link text-light text-wrap d-inline-block w-100 px-0">بررسی اجمالی از معماری کلیک</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="مرور کد منبع" class="nav-link text-light text-wrap d-inline-block w-100 px-0">مرور کد منبع</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="نحوه ساخت کلیک در لینوکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحوه ساخت کلیک در لینوکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="چگونه برای ساخت تاتر در سیستم عامل مک ایکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت تاتر در سیستم عامل مک ایکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="چگونه برای ساخت تاتر در لینوکس برای سیستم عامل مک ایکس" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت تاتر در لینوکس برای سیستم عامل مک ایکس</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="چگونه برای ساخت ClickHouse در لینوکس برای AARCH64 (ARM64)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای ساخت ClickHouse در لینوکس برای AARCH64 (ARM64)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="چگونه برای نوشتن ج++ کد" class="nav-link text-light text-wrap d-inline-block w-100 px-0">چگونه برای نوشتن ج++ کد</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="نحوه اجرای تست های کلیک خانه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نحوه اجرای تست های کلیک خانه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="کتابخانه های شخص ثالث استفاده می شود" class="nav-link text-light text-wrap d-inline-block w-100 px-0">کتابخانه های شخص ثالث استفاده می شود</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="بازرگانی" class="nav-link text-light text-wrap dropdown-toggle px-0">بازرگانی</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="ابر" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ابر</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="پشتیبانی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">پشتیبانی</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="چه جدید" class="nav-link text-light text-wrap dropdown-toggle px-0">چه جدید</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="تغییرات" class="nav-link text-light text-wrap dropdown-toggle px-0">تغییرات</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="نقشه راه" class="nav-link text-light text-wrap d-inline-block w-100 px-0">نقشه راه</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="تغییرات امنیتی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">تغییرات امنیتی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="سوالات عمومی" class="nav-link text-light text-wrap d-inline-block w-100 px-0">سوالات عمومی</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../single/clickhouse_fa.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="نسخه PDF" title="نسخه PDF" height="24" class="d-block mr-1 float-left" /><div>نسخه PDF</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">واسط</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">راهنما می خواستم!</p>
+      <p class="lead">محتوای زیر از این صفحه اسناد شده است ماشین ترجمه. اما بر خلاف وب سایت های دیگر, این است که در پرواز انجام نمی. این متن ترجمه شده در مخزن گیتهاب در کنار پایگاه داده اصلی خانه کلیک زندگی می کند و منتظر سخنرانان مادری همکار به انسان بیشتر قابل خواندن است. <a href="/docs/en/interfaces/http/" class="alert-link">شما همچنین می توانید نسخه اصلی انگلیسی به عنوان یک مرجع استفاده کنید.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/fa/interfaces/http.md" target="_blank" rel="external nofollow noreferrer">
+              راهنما مستندات تاتر با ویرایش این صفحه
+          </a>
+      </p>
+    </div>
+
+            <h1 id="http-interface">رابط قام<a class="headerlink" href="#http-interface" title="Permanent link"> </a></h1>
+<p>رابط اچ تی پی به شما امکان استفاده از کلیک بر روی هر پلت فرم از هر زبان برنامه نویسی. ما برای کار از جاوا و پرل و همچنین اسکریپت های پوسته استفاده می کنیم. در بخش های دیگر, رابط قام است از پرل استفاده, پایتون, و رفتن. رابط قام محدود تر از رابط بومی است, اما سازگاری بهتر.</p>
+<p>به طور پیش فرض, کلیک سرور گوش برای اچ تی پی در بندر 8123 (این را می توان در پیکربندی تغییر).</p>
+<p>اگر شما یک دریافت / درخواست بدون پارامتر, باز می گردد 200 کد پاسخ و رشته که در تعریف <a href="../../operations/server-configuration-parameters/settings/#server_configuration_parameters-http_server_default_response">نقلقولهای جدید از این نویسنده</a> مقدار پیشفرض “Ok.” (با خوراک خط در پایان)</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl <span class="s1">'http://localhost:8123/'</span>
+Ok.
+</code></pre></div>
+<p>استفاده از دریافت / درخواست پینگ در بهداشت و درمان چک اسکریپت. این کنترل همیشه باز می گردد “Ok.” (با یک خوراک خط در پایان). موجود از نسخه 18.12.13.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl <span class="s1">'http://localhost:8123/ping'</span>
+Ok.
+</code></pre></div>
+<p>ارسال درخواست به عنوان نشانی وب ‘query’ پارامتر, و یا به عنوان یک پست. و یا ارسال ابتدای پرس و جو در ‘query’ پارامتر, و بقیه در پست (بعدا توضیح خواهیم داد که چرا این لازم است). اندازه نشانی اینترنتی محدود به 16 کیلوبایت است بنابراین این را در نظر داشته باشید در هنگام ارسال نمایش داده شد بزرگ.</p>
+<p>اگر موفق, شما دریافت 200 کد پاسخ و در نتیجه در بدن پاسخ.<br/>
+اگر یک خطا رخ می دهد, شما در دریافت 500 کد پاسخ و یک متن شرح خطا در بدن پاسخ.</p>
+<p>هنگام استفاده از روش دریافت, ‘readonly’ قرار است. به عبارت دیگر برای نمایش داده شد که تغییر داده ها شما فقط می توانید با استفاده از روش پست. شما می توانید پرس و جو خود را در قسمت پست یا در پارامتر نشانی وب ارسال کنید.</p>
+<p>مثالها:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl <span class="s1">'http://localhost:8123/?query=SELECT%201'</span>
+<span class="m">1</span>
+
+$ wget -O- -q <span class="s1">'http://localhost:8123/?query=SELECT 1'</span>
+<span class="m">1</span>
+
+$ <span class="nb">echo</span> -ne <span class="s1">'GET /?query=SELECT%201 HTTP/1.0\r\n\r\n'</span> <span class="p">|</span> nc localhost <span class="m">8123</span>
+HTTP/1.0 <span class="m">200</span> OK
+Date: Wed, <span class="m">27</span> Nov <span class="m">2019</span> <span class="m">10</span>:30:18 GMT
+Connection: Close
+Content-Type: text/tab-separated-values<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+X-ClickHouse-Server-Display-Name: clickhouse.ru-central1.internal
+X-ClickHouse-Query-Id: 5abe861c-239c-467f-b955-8a201abb8b7f
+X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+
+<span class="m">1</span>
+</code></pre></div>
+<p>همانطور که می بینید, حلقه تا حدودی ناخوشایند است که در فضاهای باید نشانی اینترنتی فرار.<br/>
+اگر چه سازمان تجارت جهانی از همه چیز خود فرار می کند ما توصیه نمی کنیم از این استفاده کنیم زیرا هنگام استفاده از زنده ماندن و انتقال رمزگذاری به خوبی کار نمی کند 1.1.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT 1'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/'</span> --data-binary @-
+<span class="m">1</span>
+
+$ <span class="nb">echo</span> <span class="s1">'SELECT 1'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query='</span> --data-binary @-
+<span class="m">1</span>
+
+$ <span class="nb">echo</span> <span class="s1">'1'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=SELECT'</span> --data-binary @-
+<span class="m">1</span>
+</code></pre></div>
+<p>اگر بخشی از پرس و جو در پارامتر ارسال, و بخشی در پست, خوراک خط بین این دو بخش داده قرار داده.<br/>
+مثال (این کار نخواهد کرد):</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'ECT 1'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=SEL'</span> --data-binary @-
+Code: <span class="m">59</span>, e.displayText<span class="o">()</span> <span class="o">=</span> DB::Exception: Syntax error: failed at position <span class="m">0</span>: SEL
+ECT <span class="m">1</span>
+, expected One of: SHOW TABLES, SHOW DATABASES, SELECT, INSERT, CREATE, ATTACH, RENAME, DROP, DETACH, USE, SET, OPTIMIZE., e.what<span class="o">()</span> <span class="o">=</span> DB::Exception
+</code></pre></div>
+<p>به طور پیش فرض, داده ها در قالب جدولبندی بازگشت (برای اطلاعات بیشتر, دیدن “Formats” بخش).<br/>
+شما با استفاده از بند فرمت پرس و جو به درخواست هر فرمت دیگر.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT 1 FORMAT Pretty'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?'</span> --data-binary @-
+┏━━━┓
+┃ <span class="m">1</span> ┃
+┡━━━┩
+│ <span class="m">1</span> │
+└───┘
+</code></pre></div>
+<p>روش پست انتقال داده ها برای درج نمایش داده شد لازم است. در این مورد می توانید ابتدا پرس و جو را در پارامتر نشانی وب بنویسید و از پست برای انتقال داده ها برای وارد کردن استفاده کنید. داده ها برای وارد کردن می تواند, مثلا, تخلیه تب جدا از خروجی زیر. در این راه وارد کردن پرس و جو جایگزین بارگذاری داده های محلی INFILE از MySQL.</p>
+<p>نمونه: ایجاد یک جدول:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'CREATE TABLE t (a UInt8) ENGINE = Memory'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/'</span> --data-binary @-
+</code></pre></div>
+<p>با استفاده از قرار دادن پرس و جو برای درج داده ها:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'INSERT INTO t VALUES (1),(2),(3)'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/'</span> --data-binary @-
+</code></pre></div>
+<p>داده ها را می توان به طور جداگانه از پرس و جو ارسال می شود:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'(4),(5),(6)'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=INSERT%20INTO%20t%20VALUES'</span> --data-binary @-
+</code></pre></div>
+<p>شما می توانید هر فرمت داده را مشخص کنید. این ‘Values’ فرمت همان چیزی است که هنگام نوشتن به مقادیر تی استفاده می شود:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'(7),(8),(9)'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=INSERT%20INTO%20t%20FORMAT%20Values'</span> --data-binary @-
+</code></pre></div>
+<p>برای وارد کردن داده ها از تخلیه زبانه جدا شده فرمت مربوطه را مشخص کنید:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> -ne <span class="s1">'10\n11\n12\n'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=INSERT%20INTO%20t%20FORMAT%20TabSeparated'</span> --data-binary @-
+</code></pre></div>
+<p>خواندن محتویات جدول. داده ها خروجی به صورت تصادفی به دلیل پردازش پرس و جو موازی است:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl <span class="s1">'http://localhost:8123/?query=SELECT%20a%20FROM%20t'</span>
+<span class="m">7</span>
+<span class="m">8</span>
+<span class="m">9</span>
+<span class="m">10</span>
+<span class="m">11</span>
+<span class="m">12</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+</code></pre></div>
+<p>حذف جدول.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'DROP TABLE t'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/'</span> --data-binary @-
+</code></pre></div>
+<p>برای درخواست موفق است که یک جدول داده ها بازگشت نیست, بدن پاسخ خالی بازگشته است.</p>
+<p>شما می توانید فرمت فشرده سازی کلیک داخلی در هنگام انتقال داده ها استفاده کنید. داده های فشرده دارای فرمت غیر استاندارد است و شما باید از ویژه استفاده کنید <code class="syntax">clickhouse-compressor</code> برنامه ای برای کار با ان (با ان نصب شده است <code class="syntax">clickhouse-client</code> بسته). برای افزایش بهره وری از درج داده, شما می توانید سرور سمت تایید کنترلی با استفاده از غیر فعال کردن <a href="../../operations/settings/settings/#settings-http_native_compression_disable_checksumming_on_decompress">تغییر در حسابهای کاربری دستگاه</a> تنظیمات.</p>
+<p>اگر شما مشخص <code class="syntax">compress=1</code> در نشانی وب سرور دادههای ارسالی شما را فشرده میکند.<br/>
+اگر شما مشخص <code class="syntax">decompress=1</code> در نشانی اینترنتی کارگزار دادههای مشابهی را که در <code class="syntax">POST</code> روش.</p>
+<p>شما همچنین می توانید استفاده کنید را انتخاب کنید <a href="https://en.wikipedia.org/wiki/HTTP_compression" rel="external nofollow noreferrer" target="_blank">فشردهسازی قام</a>. برای ارسال یک فشرده <code class="syntax">POST</code> درخواست, اضافه هدر درخواست <code class="syntax">Content-Encoding: compression_method</code>. به منظور کلیک برای فشرده سازی پاسخ, شما باید اضافه <code class="syntax">Accept-Encoding: compression_method</code>. پشتیبانی از کلیک <code class="syntax">gzip</code>, <code class="syntax">br</code> و <code class="syntax">deflate</code> <a href="https://en.wikipedia.org/wiki/HTTP_compression#Content-Encoding_tokens" rel="external nofollow noreferrer" target="_blank">روش های فشرده سازی</a>. برای فعال کردن فشرده سازی قام, شما باید از خانه کلیک استفاده <a href="../../operations/settings/settings/#settings-enable_http_compression">نصب و راه اندازی</a> تنظیمات. شما می توانید سطح فشرده سازی داده ها در پیکربندی <a href="#settings-http_zlib_compression_level">_تنظیم مجدد به حالت اولیه</a> تنظیم برای تمام روش های فشرده سازی.</p>
+<p>شما می توانید این برای کاهش ترافیک شبکه در هنگام انتقال مقدار زیادی از داده ها و یا برای ایجاد افسردگی است که بلافاصله فشرده استفاده کنید.</p>
+<p>نمونه هایی از ارسال داده ها با فشرده سازی:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="c1">#Sending data to the server:</span>
+$ curl -vsS <span class="s2">"http://localhost:8123/?enable_http_compression=1"</span> -d <span class="s1">'SELECT number FROM system.numbers LIMIT 10'</span> -H <span class="s1">'Accept-Encoding: gzip'</span>
+
+<span class="c1">#Sending data to the client:</span>
+$ <span class="nb">echo</span> <span class="s2">"SELECT 1"</span> <span class="p">|</span> gzip -c <span class="p">|</span> curl -sS --data-binary @- -H <span class="s1">'Content-Encoding: gzip'</span> <span class="s1">'http://localhost:8123/'</span>
+</code></pre></div>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">یادداشت</p>
+<p>برخی از مشتریان اچ تی پی ممکن است داده ها را از حالت فشرده خارج از سرور به طور پیش فرض (با <code class="syntax">gzip</code> و <code class="syntax">deflate</code>) و شما ممکن است داده ها از حالت فشرده خارج حتی اگر شما با استفاده از تنظیمات فشرده سازی به درستی.</p>
+</div>
+<p>شما می توانید از ‘database’ پارامتر نشانی وب برای مشخص کردن پایگاه داده به طور پیش فرض.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT number FROM numbers LIMIT 10'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?database=system'</span> --data-binary @-
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="m">7</span>
+<span class="m">8</span>
+<span class="m">9</span>
+</code></pre></div>
+<p>به طور پیش فرض, پایگاه داده است که در تنظیمات سرور ثبت نام به عنوان پایگاه داده به طور پیش فرض استفاده. به طور پیش فرض, این پایگاه داده به نام است ‘default’. متناوبا, شما همیشه می توانید مشخص کردن پایگاه داده با استفاده از یک نقطه قبل از نام جدول.</p>
+<p>نام کاربری و رمز عبور را می توان در یکی از سه راه نشان داد:</p>
+<ol>
+<li>با استفاده از احراز هویت اولیه. مثال:</li>
+</ol>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT 1'</span> <span class="p">|</span> curl <span class="s1">'http://user:password@localhost:8123/'</span> -d @-
+</code></pre></div>
+<ol>
+<li>در ‘user’ و ‘password’ پارامترهای نشانی وب. مثال:</li>
+</ol>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT 1'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?user=user&amp;password=password'</span> -d @-
+</code></pre></div>
+<ol>
+<li>با استفاده از ‘X-ClickHouse-User’ و ‘X-ClickHouse-Key’ سرصفحهها. مثال:</li>
+</ol>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT 1'</span> <span class="p">|</span> curl -H <span class="s1">'X-ClickHouse-User: user'</span> -H <span class="s1">'X-ClickHouse-Key: password'</span> <span class="s1">'http://localhost:8123/'</span> -d @-
+</code></pre></div>
+<p>اگر نام کاربر مشخص نشده است <code class="syntax">default</code> نام استفاده شده است. اگر رمز عبور مشخص نشده است, رمز عبور خالی استفاده شده است.<br/>
+شما همچنین می توانید از پارامترهای نشانی وب برای مشخص کردن هر گونه تنظیمات برای پردازش یک پرس و جو یا کل پروفایل های تنظیمات استفاده کنید. هشدار داده می شودمشخصات=وب و حداکثر_نظیم = 1000000000 &amp; پرس و جو = انتخاب+1</p>
+<p>برای کسب اطلاعات بیشتر, دیدن <a href="../../operations/settings/">تنظیمات</a> بخش.</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'SELECT number FROM system.numbers LIMIT 10'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?'</span> --data-binary @-
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="m">7</span>
+<span class="m">8</span>
+<span class="m">9</span>
+</code></pre></div>
+<p>برای اطلاعات در مورد پارامترهای دیگر, بخش را ببینید “SET”.</p>
+<p>به طور مشابه, شما می توانید جلسات کلیک در پروتکل قام استفاده. برای انجام این کار, شما نیاز به اضافه کردن <code class="syntax">session_id</code> دریافت پارامتر به درخواست. شما می توانید هر رشته به عنوان شناسه جلسه استفاده کنید. به طور پیش فرض جلسه پس از 60 ثانیه عدم فعالیت خاتمه می یابد. برای تغییر این فاصله, تغییر <code class="syntax">default_session_timeout</code> تنظیم در پیکربندی سرور یا اضافه کردن <code class="syntax">session_timeout</code> دریافت پارامتر به درخواست. برای بررسی وضعیت جلسه از <code class="syntax">session_check=1</code> پارامتر. فقط یک پرس و جو در یک زمان می تواند در یک جلسه اجرا شود.</p>
+<p>شما می توانید اطلاعات در مورد پیشرفت یک پرس و جو در دریافت <code class="syntax">X-ClickHouse-Progress</code> هدر پاسخ. برای انجام این کار, فعال کردن <a href="../../operations/settings/settings/#settings-send_progress_in_http_headers">نمایش سایت</a>. مثال توالی هدر:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">X-ClickHouse-Progress: {"read_rows":"2752512","read_bytes":"240570816","total_rows_to_read":"8880128"}
+X-ClickHouse-Progress: {"read_rows":"5439488","read_bytes":"482285394","total_rows_to_read":"8880128"}
+X-ClickHouse-Progress: {"read_rows":"8783786","read_bytes":"819092887","total_rows_to_read":"8880128"}
+</code></pre></div>
+<p>زمینه های سربرگ احتمالی:</p>
+<ul>
+<li><code class="syntax">read_rows</code> — Number of rows read.</li>
+<li><code class="syntax">read_bytes</code> — Volume of data read in bytes.</li>
+<li><code class="syntax">total_rows_to_read</code> — Total number of rows to be read.</li>
+<li><code class="syntax">written_rows</code> — Number of rows written.</li>
+<li><code class="syntax">written_bytes</code> — Volume of data written in bytes.</li>
+</ul>
+<p>درخواست های در حال اجرا به طور خودکار متوقف نمی شود اگر اتصال قام از دست داده است. تجزیه و قالب بندی داده ها در سمت سرور انجام, و با استفاده از شبکه ممکن است بی اثر.<br/>
+اختیاری ‘query_id’ پارامتر را می توان به عنوان شناسه پرس و جو (هر رشته) منتقل می شود. برای کسب اطلاعات بیشتر به بخش مراجعه کنید “Settings, replace_running_query”.</p>
+<p>اختیاری ‘quota_key’ پارامتر را می توان به عنوان کلید سهمیه (هر رشته) منتقل می شود. برای کسب اطلاعات بیشتر به بخش مراجعه کنید “Quotas”.</p>
+<p>رابط اچ تی پی اجازه می دهد تا عبور داده های خارجی (جداول موقت خارجی) برای پرس و جو. برای کسب اطلاعات بیشتر به بخش مراجعه کنید “External data for query processing”.</p>
+<h2 id="response-buffering">بافر پاسخ<a class="headerlink" href="#response-buffering" title="Permanent link"> </a></h2>
+<p>شما می توانید پاسخ بافر در سمت سرور را فعال کنید. این <code class="syntax">buffer_size</code> و <code class="syntax">wait_end_of_query</code> پارامترهای نشانی وب برای این منظور فراهم شده است.</p>
+<p><code class="syntax">buffer_size</code> تعیین تعداد بایت در نتیجه به بافر در حافظه سرور. اگر یک بدن نتیجه بزرگتر از این حد است, بافر به کانال قام نوشته شده, و داده های باقی مانده به طور مستقیم به کانال قام ارسال.</p>
+<p>برای اطمینان از اینکه کل پاسخ بافر شده است, تنظیم <code class="syntax">wait_end_of_query=1</code>. در این مورد داده هایی که در حافظه ذخیره نمی شوند در یک فایل سرور موقت بافر می شوند.</p>
+<p>مثال:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -sS <span class="s1">'http://localhost:8123/?max_result_bytes=4000000&amp;buffer_size=3000000&amp;wait_end_of_query=1'</span> -d <span class="s1">'SELECT toUInt8(number) FROM system.numbers LIMIT 9000000 FORMAT RowBinary'</span>
+</code></pre></div>
+<p>استفاده از بافر برای جلوگیری از شرایطی که یک خطای پردازش پرس و جو رخ داده است پس از کد پاسخ و هدر قام به مشتری ارسال شد. در این وضعیت یک پیغام خطا نوشته شده است در پایان پاسخ بدن و در سمت سرویس گیرنده خطا تنها می تواند تشخیص داده شده در مرحله تجزیه.</p>
+<h3 id="cli-queries-with-parameters">نمایش داده شد با پارامترهای<a class="headerlink" href="#cli-queries-with-parameters" title="Permanent link"> </a></h3>
+<p>شما می توانید پرس و جو را با پارامترها ایجاد کنید و مقادیر را از پارامترهای درخواست مربوط به اچ تی پی منتقل کنید. برای کسب اطلاعات بیشتر, دیدن <a href="../cli/#cli-queries-with-parameters">نمایش داده شد با پارامترهای کلی</a>.</p>
+<h3 id="example">مثال<a class="headerlink" href="#example" title="Permanent link"> </a></h3>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -sS <span class="s2">"&lt;address&gt;?param_id=2&amp;param_phrase=test"</span> -d <span class="s2">"SELECT * FROM table WHERE int_column = {id:UInt8} and string_column = {phrase:String}"</span>
+</code></pre></div>
+<h2 id="predefined_http_interface">حذف میانبر در صفحه خانه<a class="headerlink" href="#predefined_http_interface" title="Permanent link"> </a></h2>
+<p>تاتر پشتیبانی از نمایش داده شد خاص از طریق رابط قام. مثلا, شما می توانید داده ها را به یک جدول به شرح زیر ارسال:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nb">echo</span> <span class="s1">'(4),(5),(6)'</span> <span class="p">|</span> curl <span class="s1">'http://localhost:8123/?query=INSERT%20INTO%20t%20VALUES'</span> --data-binary @-
+</code></pre></div>
+<p>کلیک هاوس همچنین از رابط اچ تی پی از پیش تعریف شده پشتیبانی می کند که می تواند به شما در ادغام راحت تر با ابزارهای شخص ثالث مانند کمک کند <a href="https://github.com/percona-lab/clickhouse_exporter" rel="external nofollow noreferrer" target="_blank">پرومته صادر کننده</a>.</p>
+<p>مثال:</p>
+<ul>
+<li>اول از همه, اضافه کردن این بخش به فایل پیکربندی سرور:</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_handlers&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>
+        <span class="nt">&lt;url&gt;</span>/predefined_query<span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;methods&gt;</span>POST,GET<span class="nt">&lt;/methods&gt;</span>
+        <span class="nt">&lt;handler&gt;</span>
+            <span class="nt">&lt;type&gt;</span>predefined_query_handler<span class="nt">&lt;/type&gt;</span>
+            <span class="nt">&lt;query&gt;</span>SELECT * FROM system.metrics LIMIT 5 FORMAT Template SETTINGS format_template_resultset = 'prometheus_template_output_format_resultset', format_template_row = 'prometheus_template_output_format_row', format_template_rows_between_delimiter = '\n'<span class="nt">&lt;/query&gt;</span>
+        <span class="nt">&lt;/handler&gt;</span>
+    <span class="nt">&lt;/rule&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>...<span class="nt">&lt;/rule&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>...<span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/http_handlers&gt;</span>
+</code></pre></div>
+<ul>
+<li>شما هم اکنون می توانید لینک را مستقیما برای داده ها در قالب پرومته درخواست کنید:</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -v <span class="s1">'http://localhost:8123/predefined_query'</span>
+*   Trying ::1...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8123</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /predefined_query HTTP/1.1
+&gt; Host: localhost:8123
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Date: Tue, <span class="m">28</span> Apr <span class="m">2020</span> <span class="m">08</span>:52:56 GMT
+&lt; Connection: Keep-Alive
+&lt; Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; X-ClickHouse-Server-Display-Name: i-mloy5trc
+&lt; Transfer-Encoding: chunked
+&lt; X-ClickHouse-Query-Id: 96fe0052-01e6-43ce-b12a-6b7370de6e8a
+&lt; X-ClickHouse-Format: Template
+&lt; X-ClickHouse-Timezone: Asia/Shanghai
+&lt; Keep-Alive: <span class="nv">timeout</span><span class="o">=</span><span class="m">3</span>
+&lt; X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+&lt;
+<span class="c1"># HELP "Query" "Number of executing queries"</span>
+<span class="c1"># TYPE "Query" counter</span>
+<span class="s2">"Query"</span> <span class="m">1</span>
+
+<span class="c1"># HELP "Merge" "Number of executing background merges"</span>
+<span class="c1"># TYPE "Merge" counter</span>
+<span class="s2">"Merge"</span> <span class="m">0</span>
+
+<span class="c1"># HELP "PartMutation" "Number of mutations (ALTER DELETE/UPDATE)"</span>
+<span class="c1"># TYPE "PartMutation" counter</span>
+<span class="s2">"PartMutation"</span> <span class="m">0</span>
+
+<span class="c1"># HELP "ReplicatedFetch" "Number of data parts being fetched from replica"</span>
+<span class="c1"># TYPE "ReplicatedFetch" counter</span>
+<span class="s2">"ReplicatedFetch"</span> <span class="m">0</span>
+
+<span class="c1"># HELP "ReplicatedSend" "Number of data parts being sent to replicas"</span>
+<span class="c1"># TYPE "ReplicatedSend" counter</span>
+<span class="s2">"ReplicatedSend"</span> <span class="m">0</span>
+
+* Connection <span class="c1">#0 to host localhost left intact</span>
+
+
+* Connection <span class="c1">#0 to host localhost left intact</span>
+</code></pre></div>
+<p>همانطور که شما می توانید از مثال ببینید, اگر <code class="syntax">&lt;http_handlers&gt;</code> در پیکربندی پیکربندی پیکربندی شده است.فایل و <code class="syntax">&lt;http_handlers&gt;</code> می تواند شامل بسیاری از <code class="syntax">&lt;rule&gt;s</code>. کلیک هاوس خواهد درخواست قام قام دریافت به نوع از پیش تعریف شده در مطابقت <code class="syntax">&lt;rule&gt;</code> و اولین همسان اجرا می شود کنترل. سپس خانه را کلیک کنید پرس و جو از پیش تعریف شده مربوطه اجرا اگر بازی موفق است.</p>
+<blockquote>
+<p>حالا <code class="syntax">&lt;rule&gt;</code> می توانید پیکربندی کنید <code class="syntax">&lt;method&gt;</code>, <code class="syntax">&lt;headers&gt;</code>, <code class="syntax">&lt;url&gt;</code>,<code class="syntax">&lt;handler&gt;</code>:<br/>
+<code class="syntax">&lt;method&gt;</code> برای تطبیق روش بخشی از درخواست قام است. <code class="syntax">&lt;method&gt;</code> به طور کامل مطابق با تعریف <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" rel="external nofollow noreferrer" target="_blank">روش</a> در پروتکل قام. این پیکربندی اختیاری است. اگر در فایل پیکربندی تعریف نشده, این کار بخش روش درخواست قام مطابقت ندارد.</p>
+<p><code class="syntax">&lt;url&gt;</code> وظیفه تطبیق بخشی نشانی وب از درخواست قام است. این سازگار با است <a href="https://github.com/google/re2" rel="external nofollow noreferrer" target="_blank">RE2</a>عبارات منظم است. این پیکربندی اختیاری است. اگر در فایل پیکربندی تعریف نشده باشد با بخش نشانی وب درخواست قام مطابقت ندارد.</p>
+<p><code class="syntax">&lt;headers&gt;</code> برای تطبیق بخش هدر درخواست قام است. این است که سازگار با عبارات منظم را دوباره2 است. این پیکربندی اختیاری است. اگر در فایل پیکربندی تعریف نشده است, این کار بخش هدر درخواست قام مطابقت ندارد.</p>
+<p><code class="syntax">&lt;handler&gt;</code> شامل بخش پردازش اصلی. حالا <code class="syntax">&lt;handler&gt;</code> می توانید پیکربندی کنید <code class="syntax">&lt;type&gt;</code>, <code class="syntax">&lt;status&gt;</code>, <code class="syntax">&lt;content_type&gt;</code>, <code class="syntax">&lt;response_content&gt;</code>, <code class="syntax">&lt;query&gt;</code>, <code class="syntax">&lt;query_param_name&gt;</code>.<br/>
+&gt; <code class="syntax">&lt;type&gt;</code> در حال حاضر پشتیبانی از سه نوع: <strong>باز تعریف</strong>, <strong>هشدار داده می شود</strong>, <strong>ایستا</strong>.<br/>
+&gt;<br/>
+&gt; <code class="syntax">&lt;query&gt;</code> - استفاده از با نوع بازتعریف_کرکی_ هندلر, اجرا پرس و جو زمانی که کنترل نامیده می شود.<br/>
+&gt;<br/>
+&gt; <code class="syntax">&lt;query_param_name&gt;</code> - استفاده با نوع داینامیک_کرکی_خندلر عصارهها و اجرا مقدار مربوط به <code class="syntax">&lt;query_param_name&gt;</code> ارزش در پارامترهای درخواست قام.<br/>
+&gt;<br/>
+&gt; <code class="syntax">&lt;status&gt;</code> - استفاده با نوع استاتیک, پاسخ کد وضعیت.<br/>
+&gt;<br/>
+&gt; <code class="syntax">&lt;content_type&gt;</code> - استفاده با نوع استاتیک پاسخ <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type" rel="external nofollow noreferrer" target="_blank">نوع محتوا</a>.<br/>
+&gt;<br/>
+&gt; <code class="syntax">&lt;response_content&gt;</code> - استفاده با نوع استاتیک, محتوای پاسخ ارسال شده به مشتری, هنگام استفاده از پیشوند ‘file://’ یا ‘config://’, پیدا کردن محتوا از فایل و یا پیکربندی ارسال به مشتری.</p>
+</blockquote>
+<p>بعد روش پیکربندی برای متفاوت هستند <code class="syntax">&lt;type&gt;</code>.</p>
+<h2 id="predefined_query_handler">باز تعریف<a class="headerlink" href="#predefined_query_handler" title="Permanent link"> </a></h2>
+<p><code class="syntax">&lt;predefined_query_handler&gt;</code> پشتیبانی از تنظیمات و مقادیر قوری_پرم. شما می توانید پیکربندی کنید <code class="syntax">&lt;query&gt;</code> در نوع <code class="syntax">&lt;predefined_query_handler&gt;</code>.</p>
+<p><code class="syntax">&lt;query&gt;</code> مقدار پرس و جو از پیش تعریف شده است <code class="syntax">&lt;predefined_query_handler&gt;</code>, است که توسط کلیکهاوس اجرا زمانی که یک درخواست قام همسان است و در نتیجه از پرس و جو بازگشته است. این پیکربندی باید است.</p>
+<p>مثال زیر مقادیر را تعریف می کند <code class="syntax">max_threads</code> و <code class="syntax">max_alter_threads</code> تنظیمات, سپس نمایش داده شد جدول سیستم برای بررسی اینکه این تنظیمات با موفقیت تعیین شد.</p>
+<p>مثال:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_handlers&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>
+        <span class="nt">&lt;url&gt;</span><span class="cp">&lt;![CDATA[/query_param_with_url/\w+/(?P&lt;name_1&gt;[^/]+)(/(?P&lt;name_2&gt;[^/]+))?]]&gt;</span><span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;method&gt;</span>GET<span class="nt">&lt;/method&gt;</span>
+        <span class="nt">&lt;headers&gt;</span>
+            <span class="nt">&lt;XXX&gt;</span>TEST_HEADER_VALUE<span class="nt">&lt;/XXX&gt;</span>
+            <span class="nt">&lt;PARAMS_XXX&gt;</span><span class="cp">&lt;![CDATA[(?P&lt;name_1&gt;[^/]+)(/(?P&lt;name_2&gt;[^/]+))?]]&gt;</span><span class="nt">&lt;/PARAMS_XXX&gt;</span>
+        <span class="nt">&lt;/headers&gt;</span>
+        <span class="nt">&lt;handler&gt;</span>
+            <span class="nt">&lt;type&gt;</span>predefined_query_handler<span class="nt">&lt;/type&gt;</span>
+            <span class="nt">&lt;query&gt;</span>SELECT value FROM system.settings WHERE name = {name_1:String}<span class="nt">&lt;/query&gt;</span>
+            <span class="nt">&lt;query&gt;</span>SELECT name, value FROM system.settings WHERE name = {name_2:String}<span class="nt">&lt;/query&gt;</span>
+        <span class="nt">&lt;/handler&gt;</span>
+    <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/http_handlers&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -H <span class="s1">'XXX:TEST_HEADER_VALUE'</span> -H <span class="s1">'PARAMS_XXX:max_threads'</span> <span class="s1">'http://localhost:8123/query_param_with_url/1/max_threads/max_alter_threads?max_threads=1&amp;max_alter_threads=2'</span>
+<span class="m">1</span>
+max_alter_threads   <span class="m">2</span>
+</code></pre></div>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">احتیاط</p>
+<p>در یک <code class="syntax">&lt;predefined_query_handler&gt;</code> تنها پشتیبانی از یک <code class="syntax">&lt;query&gt;</code> از یک نوع درج.</p>
+</div>
+<h2 id="dynamic_query_handler">هشدار داده می شود<a class="headerlink" href="#dynamic_query_handler" title="Permanent link"> </a></h2>
+<p>داخل <code class="syntax">&lt;dynamic_query_handler&gt;</code>, پرس و جو در قالب پرام از درخواست قام نوشته شده است. تفاوت این است که در <code class="syntax">&lt;predefined_query_handler&gt;</code>, پرس و جو در فایل پیکربندی نوشت. شما می توانید پیکربندی کنید <code class="syntax">&lt;query_param_name&gt;</code> داخل <code class="syntax">&lt;dynamic_query_handler&gt;</code>.</p>
+<p>عصاره کلیک و اجرا ارزش مربوط به <code class="syntax">&lt;query_param_name&gt;</code> مقدار در نشانی وب درخواست قام. مقدار پیش فرض <code class="syntax">&lt;query_param_name&gt;</code> هست <code class="syntax">/query</code> . این پیکربندی اختیاری است. در صورتی که هیچ تعریف در فایل پیکربندی وجود دارد, پرم در تصویب نشده است.</p>
+<p>برای آزمایش این قابلیت به عنوان مثال تعریف ارزش از max_threads و max_alter_threads و پرس و جو که آیا تنظیمات راه اندازی شد با موفقیت.</p>
+<p>مثال:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_handlers&gt;</span>
+    <span class="nt">&lt;rule&gt;</span>
+    <span class="nt">&lt;headers&gt;</span>
+        <span class="nt">&lt;XXX&gt;</span>TEST_HEADER_VALUE_DYNAMIC<span class="nt">&lt;/XXX&gt;</span>    <span class="nt">&lt;/headers&gt;</span>
+    <span class="nt">&lt;handler&gt;</span>
+        <span class="nt">&lt;type&gt;</span>dynamic_query_handler<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;query_param_name&gt;</span>query_param<span class="nt">&lt;/query_param_name&gt;</span>
+    <span class="nt">&lt;/handler&gt;</span>
+    <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/http_handlers&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl  -H <span class="s1">'XXX:TEST_HEADER_VALUE_DYNAMIC'</span>  <span class="s1">'http://localhost:8123/own?max_threads=1&amp;max_alter_threads=2&amp;param_name_1=max_threads&amp;param_name_2=max_alter_threads&amp;query_param=SELECT%20name,value%20FROM%20system.settings%20where%20name%20=%20%7Bname_1:String%7D%20OR%20name%20=%20%7Bname_2:String%7D'</span>
+max_threads <span class="m">1</span>
+max_alter_threads   <span class="m">2</span>
+</code></pre></div>
+<h2 id="static">ایستا<a class="headerlink" href="#static" title="Permanent link"> </a></h2>
+<p><code class="syntax">&lt;static&gt;</code> می توانید بازگشت <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type" rel="external nofollow noreferrer" target="_blank">_نوع تماس</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" rel="external nofollow noreferrer" target="_blank">وضعیت</a> و پاسخ دهنده. پاسخ _حرکتکننده می تواند محتوای مشخص شده را بازگرداند</p>
+<p>مثال:</p>
+<p>بازگشت یک پیام.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_handlers&gt;</span>
+        <span class="nt">&lt;rule&gt;</span>
+            <span class="nt">&lt;methods&gt;</span>GET<span class="nt">&lt;/methods&gt;</span>
+            <span class="nt">&lt;headers&gt;&lt;XXX&gt;</span>xxx<span class="nt">&lt;/XXX&gt;&lt;/headers&gt;</span>
+            <span class="nt">&lt;url&gt;</span>/hi<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;handler&gt;</span>
+                <span class="nt">&lt;type&gt;</span>static<span class="nt">&lt;/type&gt;</span>
+                <span class="nt">&lt;status&gt;</span>402<span class="nt">&lt;/status&gt;</span>
+                <span class="nt">&lt;content_type&gt;</span>text/html; charset=UTF-8<span class="nt">&lt;/content_type&gt;</span>
+                <span class="nt">&lt;response_content&gt;</span>Say Hi!<span class="nt">&lt;/response_content&gt;</span>
+            <span class="nt">&lt;/handler&gt;</span>
+        <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;http_handlers&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -vv  -H <span class="s1">'XXX:xxx'</span> <span class="s1">'http://localhost:8123/hi'</span>
+*   Trying ::1...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8123</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /hi HTTP/1.1
+&gt; Host: localhost:8123
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; XXX:xxx
+&gt;
+&lt; HTTP/1.1 <span class="m">402</span> Payment Required
+&lt; Date: Wed, <span class="m">29</span> Apr <span class="m">2020</span> <span class="m">03</span>:51:26 GMT
+&lt; Connection: Keep-Alive
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Transfer-Encoding: chunked
+&lt; Keep-Alive: <span class="nv">timeout</span><span class="o">=</span><span class="m">3</span>
+&lt; X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+&lt;
+* Connection <span class="c1">#0 to host localhost left intact</span>
+Say Hi!%
+</code></pre></div>
+<p>پیدا کردن محتوا از پیکربندی ارسال به مشتری.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;get_config_static_handler&gt;</span><span class="cp">&lt;![CDATA[&lt;html ng-app="SMI2"&gt;&lt;head&gt;&lt;base href="http://ui.tabix.io/"&gt;&lt;/head&gt;&lt;body&gt;&lt;div ui-view="" class="content-ui"&gt;&lt;/div&gt;&lt;script src="http://loader.tabix.io/master.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;]]&gt;</span><span class="nt">&lt;/get_config_static_handler&gt;</span>
+
+<span class="nt">&lt;http_handlers&gt;</span>
+        <span class="nt">&lt;rule&gt;</span>
+            <span class="nt">&lt;methods&gt;</span>GET<span class="nt">&lt;/methods&gt;</span>
+            <span class="nt">&lt;headers&gt;&lt;XXX&gt;</span>xxx<span class="nt">&lt;/XXX&gt;&lt;/headers&gt;</span>
+            <span class="nt">&lt;url&gt;</span>/get_config_static_handler<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;handler&gt;</span>
+                <span class="nt">&lt;type&gt;</span>static<span class="nt">&lt;/type&gt;</span>
+                <span class="nt">&lt;response_content&gt;</span>config://get_config_static_handler<span class="nt">&lt;/response_content&gt;</span>
+            <span class="nt">&lt;/handler&gt;</span>
+        <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/http_handlers&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">$ curl -v  -H <span class="s1">'XXX:xxx'</span> <span class="s1">'http://localhost:8123/get_config_static_handler'</span>
+*   Trying ::1...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8123</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /get_config_static_handler HTTP/1.1
+&gt; Host: localhost:8123
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; XXX:xxx
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Date: Wed, <span class="m">29</span> Apr <span class="m">2020</span> <span class="m">04</span>:01:24 GMT
+&lt; Connection: Keep-Alive
+&lt; Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Transfer-Encoding: chunked
+&lt; Keep-Alive: <span class="nv">timeout</span><span class="o">=</span><span class="m">3</span>
+&lt; X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+&lt;
+* Connection <span class="c1">#0 to host localhost left intact</span>
+&lt;html ng-app<span class="o">=</span><span class="s2">"SMI2"</span>&gt;&lt;head&gt;&lt;base <span class="nv">href</span><span class="o">=</span><span class="s2">"http://ui.tabix.io/"</span>&gt;&lt;/head&gt;&lt;body&gt;&lt;div ui-view<span class="o">=</span><span class="s2">""</span> <span class="nv">class</span><span class="o">=</span><span class="s2">"content-ui"</span>&gt;&lt;/div&gt;&lt;script <span class="nv">src</span><span class="o">=</span><span class="s2">"http://loader.tabix.io/master.js"</span>&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;%
+</code></pre></div>
+<p>پیدا کردن محتوا از فایل ارسال به مشتری.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;http_handlers&gt;</span>
+        <span class="nt">&lt;rule&gt;</span>
+            <span class="nt">&lt;methods&gt;</span>GET<span class="nt">&lt;/methods&gt;</span>
+            <span class="nt">&lt;headers&gt;&lt;XXX&gt;</span>xxx<span class="nt">&lt;/XXX&gt;&lt;/headers&gt;</span>
+            <span class="nt">&lt;url&gt;</span>/get_absolute_path_static_handler<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;handler&gt;</span>
+                <span class="nt">&lt;type&gt;</span>static<span class="nt">&lt;/type&gt;</span>
+                <span class="nt">&lt;content_type&gt;</span>text/html; charset=UTF-8<span class="nt">&lt;/content_type&gt;</span>
+                <span class="nt">&lt;response_content&gt;</span>file:///absolute_path_file.html<span class="nt">&lt;/response_content&gt;</span>
+            <span class="nt">&lt;/handler&gt;</span>
+        <span class="nt">&lt;/rule&gt;</span>
+        <span class="nt">&lt;rule&gt;</span>
+            <span class="nt">&lt;methods&gt;</span>GET<span class="nt">&lt;/methods&gt;</span>
+            <span class="nt">&lt;headers&gt;&lt;XXX&gt;</span>xxx<span class="nt">&lt;/XXX&gt;&lt;/headers&gt;</span>
+            <span class="nt">&lt;url&gt;</span>/get_relative_path_static_handler<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;handler&gt;</span>
+                <span class="nt">&lt;type&gt;</span>static<span class="nt">&lt;/type&gt;</span>
+                <span class="nt">&lt;content_type&gt;</span>text/html; charset=UTF-8<span class="nt">&lt;/content_type&gt;</span>
+                <span class="nt">&lt;response_content&gt;</span>file://./relative_path_file.html<span class="nt">&lt;/response_content&gt;</span>
+            <span class="nt">&lt;/handler&gt;</span>
+        <span class="nt">&lt;/rule&gt;</span>
+<span class="nt">&lt;/http_handlers&gt;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">$ <span class="nv">user_files_path</span><span class="o">=</span><span class="s1">'/var/lib/clickhouse/user_files'</span>
+$ sudo <span class="nb">echo</span> <span class="s2">"&lt;html&gt;&lt;body&gt;Relative Path File&lt;/body&gt;&lt;/html&gt;"</span> &gt; <span class="nv">$user_files_path</span>/relative_path_file.html
+$ sudo <span class="nb">echo</span> <span class="s2">"&lt;html&gt;&lt;body&gt;Absolute Path File&lt;/body&gt;&lt;/html&gt;"</span> &gt; <span class="nv">$user_files_path</span>/absolute_path_file.html
+$ curl -vv -H <span class="s1">'XXX:xxx'</span> <span class="s1">'http://localhost:8123/get_absolute_path_static_handler'</span>
+*   Trying ::1...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8123</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /get_absolute_path_static_handler HTTP/1.1
+&gt; Host: localhost:8123
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; XXX:xxx
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Date: Wed, <span class="m">29</span> Apr <span class="m">2020</span> <span class="m">04</span>:18:16 GMT
+&lt; Connection: Keep-Alive
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Transfer-Encoding: chunked
+&lt; Keep-Alive: <span class="nv">timeout</span><span class="o">=</span><span class="m">3</span>
+&lt; X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+&lt;
+&lt;html&gt;&lt;body&gt;Absolute Path File&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="c1">#0 to host localhost left intact</span>
+$ curl -vv -H <span class="s1">'XXX:xxx'</span> <span class="s1">'http://localhost:8123/get_relative_path_static_handler'</span>
+*   Trying ::1...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8123</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /get_relative_path_static_handler HTTP/1.1
+&gt; Host: localhost:8123
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; XXX:xxx
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Date: Wed, <span class="m">29</span> Apr <span class="m">2020</span> <span class="m">04</span>:18:31 GMT
+&lt; Connection: Keep-Alive
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Transfer-Encoding: chunked
+&lt; Keep-Alive: <span class="nv">timeout</span><span class="o">=</span><span class="m">3</span>
+&lt; X-ClickHouse-Summary: <span class="o">{</span><span class="s2">"read_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"read_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"written_rows"</span>:<span class="s2">"0"</span>,<span class="s2">"written_bytes"</span>:<span class="s2">"0"</span>,<span class="s2">"total_rows_to_read"</span>:<span class="s2">"0"</span><span class="o">}</span>
+&lt;
+&lt;html&gt;&lt;body&gt;Relative Path File&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="c1">#0 to host localhost left intact</span>
+</code></pre></div>
+<p><a href="https://clickhouse.tech/docs/en/interfaces/http_interface/" target="_blank">مقاله اصلی</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">درجهبندی: RATING_VALUE - RATING_COUNT رای</p>
+  <span class="alert-heading display-6">این مطالب مفید بود?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['غیرقابل استفاده', 'فقیر', 'OK', 'خوبه', 'عالیه']"
+     data-documentation="مستندات"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>ساخته شده از <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, منتشر شده در <span title="2018-08-11T06:13:25+04:30">2018-08-11</span>, تغییریافته <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">جدول محتویات</label>
+    
+    
+        
+        
+        <a href="#response-buffering" title="بافر پاسخ" class="nav-link text-wrap d-inline-block w-100">
+    بافر پاسخ
+</a>
+
+<nav id="toc-toc-1" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#cli-queries-with-parameters" title="نمایش داده شد با پارامترهای" class="nav-link text-wrap d-inline-block w-100">
+    نمایش داده شد با پارامترهای
+</a>
+
+    
+        
+        
+        <a href="#example" title="مثال" class="nav-link text-wrap d-inline-block w-100">
+    مثال
+</a>
+
+    
+</nav>
+
+    
+        
+        
+        <a href="#predefined_http_interface" title="حذف میانبر در صفحه خانه" class="nav-link text-wrap d-inline-block w-100">
+    حذف میانبر در صفحه خانه
+</a>
+
+    
+        
+        
+        <a href="#predefined_query_handler" title="باز تعریف" class="nav-link text-wrap d-inline-block w-100">
+    باز تعریف
+</a>
+
+    
+        
+        
+        <a href="#dynamic_query_handler" title="هشدار داده می شود" class="nav-link text-wrap d-inline-block w-100">
+    هشدار داده می شود
+</a>
+
+    
+        
+        
+        <a href="#static" title="ایستا" class="nav-link text-wrap d-inline-block w-100">
+    ایستا
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

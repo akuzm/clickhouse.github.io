@@ -1,0 +1,3337 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="tr" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Operatörler | ClickHouse Belgeleri</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="Operatörler | ClickHouse Belgeleri"/>
+<meta property="og:description" content="Operatörler ClickHouse onların öncelik, öncelik ve ilişkilendirme göre sorgu ayrıştırma aşamasında karşılık gelen işlevl" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/tr/sql-reference/operators/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/tr/sql-reference/operators/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/tr/sql-reference/operators/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "Operatörler | ClickHouse Belgeleri",
+"mainEntityOfPage": "https://clickhouse.tech/docs/tr/sql-reference/operators/",
+
+"datePublished": "2020-04-15T16:56:49+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "Operatörler | ClickHouse Belgeleri",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="Operatörler ClickHouse onların öncelik, öncelik ve ilişkilendirme göre sorgu ayrıştırma aşamasında karşılık gelen işlevl" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, açık kaynak, ilişkisel, analiz, analitik, Büyük Veri, web-analyt -ics" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/sql-reference/operators/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/sql-reference/operators/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        Operatörler
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/sql-reference/operators/index.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/tr.svg" alt="Türkçe" title="Türkçe" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/sql-reference/operators/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/sql-reference/operators/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/sql-reference/operators/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/sql-reference/operators/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/sql-reference/operators/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/sql-reference/operators/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/tr/sql-reference/operators/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/sql-reference/operators/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="Çok sayfalı veya tek sayfalı">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="Çok sayfalı sürüm" title="Çok sayfalı sürüm" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="Tek sayfalık sürüm" title="Tek sayfalık sürüm" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sürüm: <span class="text-light">son</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/tr/">
+                    <span class="text-light">son</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="Giriş" class="nav-link text-light text-wrap dropdown-toggle px-0">Giriş</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/distinctive-features/" title="Ayırt Edici Özellikler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayırt Edici Özellikler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/performance/" title="Performans" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performans</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/history/" title="Tarih" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/adopters/" title="Benimseyenler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Benimseyenler</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="Başlarken" class="nav-link text-light text-wrap dropdown-toggle px-0">Başlarken</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="Kurulum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kurulum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="Örnek Veri Kümeleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Örnek Veri Kümeleri</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="Üye.Metrica Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Üye.Metrica Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="OnTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">OnTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="New York Taksi Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">New York Taksi Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab Büyük Veri Benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab Büyük Veri Benchmark</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="WikiStat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WikiStat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="Criteo'dan Terabyte tıklama günlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteo'dan Terabyte tıklama günlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="Yıldız Şema Ben Benchmarkch Benchmarkmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yıldız Şema Ben Benchmarkch Benchmarkmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="Öğretici" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Öğretici</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="Bahçe" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bahçe</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="Arabirimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Arabirimler</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="Komut Satırı İstemcisi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Komut Satırı İstemcisi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="Yerel arabirim (TCP)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yerel arabirim (TCP)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="HTTP arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTP arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="MySQL Arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL Arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="Giriş ve çıkış biçimleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş ve çıkış biçimleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="JDBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="ODBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="C++ İstemci Kitaplığı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ İstemci Kitaplığı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="Üçüncü Taraf" class="nav-link text-light text-wrap dropdown-toggle px-0">Üçüncü Taraf</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="İstemci Kitaplıkları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İstemci Kitaplıkları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="Entegrasyonlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Entegrasyonlar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="Görsel Arayüzler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görsel Arayüzler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="Vekiller" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Vekiller</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="Motorlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Motorlar</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="Masa Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Masa Motorları</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="MergeTree Ailesi" class="nav-link text-light text-wrap dropdown-toggle px-0">MergeTree Ailesi</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="MergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="Veri Çoğaltma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Çoğaltma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="Özel Bölümleme Anahtarı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Özel Bölümleme Anahtarı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="ReplacingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ReplacingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="CollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="VersionedCollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">VersionedCollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="Graphıtemergetree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Graphıtemergetree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="Günlük Aile" class="nav-link text-light text-wrap dropdown-toggle px-0">Günlük Aile</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="Günlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Günlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="Entegrasyonlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Entegrasyonlar</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="Özellikli" class="nav-link text-light text-wrap dropdown-toggle px-0">Özellikli</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="Dağılı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dağılı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="Dış veri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış veri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="Sözlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="Birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="Boş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="Katmak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Katmak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="Görünüm" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görünüm</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="MaterializedView" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MaterializedView</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="Hafıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hafıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="Arabellek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arabellek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="Veritabanı Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Veritabanı Motorları</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="Tembel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tembel</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="SQL başvurusu" class="nav-link text-light text-wrap dropdown-toggle px-0">SQL başvurusu</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="Deyimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Deyimler</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="Overview" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Overview</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="Sözdizimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözdizimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="İşlevler" class="nav-link text-light text-wrap dropdown-toggle px-0">İşlevler</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="Aritmetik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aritmetik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="Karşılaştırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karşılaştırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="Mantıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mantıklı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="Tip Dönüştürme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tip Dönüştürme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="Tarih ve Saatlerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih ve Saatlerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="Dizeleri ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="Arama Dizeleri İçin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arama Dizeleri İçin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="Dizelerde değiştirilmesi için" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizelerde değiştirilmesi için</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="Koşullu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koşullu</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="Matematiksel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matematiksel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="Dönmüş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dönmüş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="Dizilerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizilerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="Dizeleri ve dizileri bölme ve birleştirme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ve dizileri bölme ve birleştirme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="Bitlik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bitlik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="Eşlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Eşlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="Karma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="Sözde Rasgele Sayılar Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözde Rasgele Sayılar Oluşturma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="Kodlamış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kodlamış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="UUID ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/url-functions/" title="URL'ler ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL'ler ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="IP adresleriyle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IP adresleriyle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="Json ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Json ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="Yüksek Sipariş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yüksek Sipariş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="Harici Sözlüklerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici Sözlüklerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="Yandex ile çalışmak.Metrica Sözlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex ile çalışmak.Metrica Sözlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="In İşlet theic implementingisinin uygulanması" class="nav-link text-light text-wrap d-inline-block w-100 px-0">In İşlet theic implementingisinin uygulanması</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="arrayJoin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="Coğrafi koordinatlar ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Coğrafi koordinatlar ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="Null argümanlarla çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null argümanlarla çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="Makine Öğrenme Fonksiyonları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Makine Öğrenme Fonksiyonları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="İçgözlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İçgözlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="Toplama Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Toplama Fonksiyonları</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="Başvurma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Başvurma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="Birleştiriciler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştiriciler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="Parametrik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Parametrik</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="Tablo Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Tablo Fonksiyonları</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="şiir" class="nav-link text-light text-wrap d-inline-block w-100 px-0">şiir</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="uzak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">uzak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="hdf'ler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdf'ler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="girdi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">girdi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="Sözlükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Sözlükler</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="Dış Söz Dictionarieslükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Dış Söz Dictionarieslükler</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="Genel Açıklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Açıklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="Harici bir sözlük yapılandırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici bir sözlük yapılandırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="Sözlükleri bellekte saklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlükleri bellekte saklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="Sözlük Güncellemeleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük Güncellemeleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="Dış Sözlüklerin kaynakları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış Sözlüklerin kaynakları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="Sözlük anahtarı ve alanları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük anahtarı ve alanları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="Hiyerarşik sözlükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiyerarşik sözlükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="İç Söz Dictionarieslükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç Söz Dictionarieslükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="Operatörler" class="nav-link text-light text-wrap dropdown-toggle px-0">Operatörler</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="Operatörler" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">Operatörler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="IN Operators" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operators</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Veri Türleri</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="Ondalık" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ondalık</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="Boeanoleanean" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boeanoleanean</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="Dize" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dize</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="FixedString(N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FixedString(N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="Tarihli" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarihli</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="Dizi(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizi(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction (ad, types_of_arguments...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction (ad, types_of_arguments...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="Tuple (T1, T2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple (T1, T2, ...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-17" title="İç İçe Veri Yapıları" class="nav-link text-light text-wrap dropdown-toggle px-0">İç İçe Veri Yapıları</a>
+<div id="sidebar-sidebar-5-9-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="İç İçe (Name1 Type1, Name2 Type2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç İçe (Name1 Type1, Name2 Type2,...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-18" title="Özel Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Özel Veri Türleri</a>
+<div id="sidebar-sidebar-5-9-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="İfade" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İfade</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="Hiçbir şey" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiçbir şey</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="Aralıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aralıklı</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-19" title="Etkiler" class="nav-link text-light text-wrap dropdown-toggle px-0">Etkiler</a>
+<div id="sidebar-sidebar-5-9-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="Ipv44" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ipv44</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="ANSI uyumluluğu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSI uyumluluğu</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="Kılavuzlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Kılavuzlar</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="CatBoost Modellerini Uygulamak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CatBoost Modellerini Uygulamak</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="Harekat" class="nav-link text-light text-wrap dropdown-toggle px-0">Harekat</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="Gereksinimler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Gereksinimler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="İzleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İzleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="Arıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="ClickHouse Güncelleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse Güncelleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="Erişim Kontrolü ve hesap yönetimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Erişim Kontrolü ve hesap yönetimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="Veri Yedekleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Yedekleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="Yapılandırma Dosyaları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yapılandırma Dosyaları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="Kotalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kotalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="Performansı Optimize Etme" class="nav-link text-light text-wrap dropdown-toggle px-0">Performansı Optimize Etme</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="Sorgu Profili Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu Profili Oluşturma</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="Sistem Tabloları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sistem Tabloları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="Donanım Test" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Donanım Test</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="Sunucu Yapılandırma Parametreleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Sunucu Yapılandırma Parametreleri</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="Sunucu Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sunucu Ayarları</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="Ayarlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Ayarlar</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="Sorgular için izinler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgular için izinler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="Sorgu karmaşıklığı üzerindeki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu karmaşıklığı üzerindeki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="Ayarlar Profilleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar Profilleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="Ayarlardaki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlardaki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="Kullanıcı Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanıcı Ayarları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings/" title="Ayarlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="Programlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Programlar</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="clickhouse-fotokopi makinesi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-fotokopi makinesi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="clickhouse-yerel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-yerel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="clickhouse-benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-benchmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="Kullanım Önerileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanım Önerileri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="Gelişme" class="nav-link text-light text-wrap dropdown-toggle px-0">Gelişme</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="Acemi ClickHouse Geliştirici Talimat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Acemi ClickHouse Geliştirici Talimat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="ClickHouse mimarisine genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse mimarisine genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="Kaynak Koduna Gözat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kaynak Koduna Gözat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="Linux üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Linux üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="Mac OS X üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="Mac OS X için Linux'ta ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X için Linux'ta ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="C++ kodu nasıl yazılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ kodu nasıl yazılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="ClickHouse testleri nasıl çalıştırılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse testleri nasıl çalıştırılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="Kullanılan Üçüncü Taraf Kütüphaneleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanılan Üçüncü Taraf Kütüphaneleri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="Ticari" class="nav-link text-light text-wrap dropdown-toggle px-0">Ticari</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="Bulut" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bulut</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="Support" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Support</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="Ne yeni" class="nav-link text-light text-wrap dropdown-toggle px-0">Ne yeni</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="Changelog" class="nav-link text-light text-wrap dropdown-toggle px-0">Changelog</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="Yol haritası" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yol haritası</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="Güvenlik Changelog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Güvenlik Changelog</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="Genel Sorular" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Sorular</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../single/clickhouse_tr.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDF versiyonu" title="PDF versiyonu" height="24" class="d-block mr-1 float-left" /><div>PDF versiyonu</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+                
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">SQL başvurusu</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">Yardım istedi!</p>
+      <p class="lead">Bu Dokümantasyon sayfasının aşağıdaki içeriği makine tarafından çevrilmiştir. Ancak diğer web sitelerinin aksine, anında yapılmaz. Bu çevrilmiş metin, ana ClickHouse kod tabanının yanında GitHub deposunda yaşar ve diğer anadili konuşanların daha insan tarafından okunabilir olmasını bekler. <a href="/docs/en/sql-reference/operators/" class="alert-link">Orijinal İngilizce sürümünü referans olarak da kullanabilirsiniz.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/sql-reference/operators/index.md" target="_blank" rel="external nofollow noreferrer">
+              Bu sayfayı düzenleyerek ClickHouse belgelerine yardım edin
+          </a>
+      </p>
+    </div>
+
+            <h1 id="operators">Operatörler<a class="headerlink" href="#operators" title="Permanent link"> </a></h1>
+<p>ClickHouse onların öncelik, öncelik ve ilişkilendirme göre sorgu ayrıştırma aşamasında karşılık gelen işlevlere işleçleri dönüştürür.</p>
+<h2 id="access-operators">Erişim Operatörleri<a class="headerlink" href="#access-operators" title="Permanent link"> </a></h2>
+<p><code class="syntax">a[N]</code> – Access to an element of an array. The <code class="syntax">arrayElement(a, N)</code> İşlev.</p>
+<p><code class="syntax">a.N</code> – Access to a tuple element. The <code class="syntax">tupleElement(a, N)</code> İşlev.</p>
+<h2 id="numeric-negation-operator">Sayısal Olumsuzlama Operatörü<a class="headerlink" href="#numeric-negation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">-a</code> – The <code class="syntax">negate (a)</code> İşlev.</p>
+<h2 id="multiplication-and-division-operators">Çarpma ve bölme operatörleri<a class="headerlink" href="#multiplication-and-division-operators" title="Permanent link"> </a></h2>
+<p><code class="syntax">a * b</code> – The <code class="syntax">multiply (a, b)</code> İşlev.</p>
+<p><code class="syntax">a / b</code> – The <code class="syntax">divide(a, b)</code> İşlev.</p>
+<p><code class="syntax">a % b</code> – The <code class="syntax">modulo(a, b)</code> İşlev.</p>
+<h2 id="addition-and-subtraction-operators">Toplama ve çıkarma operatörleri<a class="headerlink" href="#addition-and-subtraction-operators" title="Permanent link"> </a></h2>
+<p><code class="syntax">a + b</code> – The <code class="syntax">plus(a, b)</code> İşlev.</p>
+<p><code class="syntax">a - b</code> – The <code class="syntax">minus(a, b)</code> İşlev.</p>
+<h2 id="comparison-operators">Karşılaştırma Operatörleri<a class="headerlink" href="#comparison-operators" title="Permanent link"> </a></h2>
+<p><code class="syntax">a = b</code> – The <code class="syntax">equals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a == b</code> – The <code class="syntax">equals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a != b</code> – The <code class="syntax">notEquals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a &lt;&gt; b</code> – The <code class="syntax">notEquals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a &lt;= b</code> – The <code class="syntax">lessOrEquals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a &gt;= b</code> – The <code class="syntax">greaterOrEquals(a, b)</code> İşlev.</p>
+<p><code class="syntax">a &lt; b</code> – The <code class="syntax">less(a, b)</code> İşlev.</p>
+<p><code class="syntax">a &gt; b</code> – The <code class="syntax">greater(a, b)</code> İşlev.</p>
+<p><code class="syntax">a LIKE s</code> – The <code class="syntax">like(a, b)</code> İşlev.</p>
+<p><code class="syntax">a NOT LIKE s</code> – The <code class="syntax">notLike(a, b)</code> İşlev.</p>
+<p><code class="syntax">a BETWEEN b AND c</code> – The same as <code class="syntax">a &gt;= b AND a &lt;= c</code>.</p>
+<p><code class="syntax">a NOT BETWEEN b AND c</code> – The same as <code class="syntax">a &lt; b OR a &gt; c</code>.</p>
+<h2 id="operators-for-working-with-data-sets">Veri kümeleriyle çalışmak için operatörler<a class="headerlink" href="#operators-for-working-with-data-sets" title="Permanent link"> </a></h2>
+<p><em>Görmek <a href="in/">Operatör İNLERDE</a>.</em></p>
+<p><code class="syntax">a IN ...</code> – The <code class="syntax">in(a, b)</code> İşlev.</p>
+<p><code class="syntax">a NOT IN ...</code> – The <code class="syntax">notIn(a, b)</code> İşlev.</p>
+<p><code class="syntax">a GLOBAL IN ...</code> – The <code class="syntax">globalIn(a, b)</code> İşlev.</p>
+<p><code class="syntax">a GLOBAL NOT IN ...</code> – The <code class="syntax">globalNotIn(a, b)</code> İşlev.</p>
+<h2 id="operators-datetime">Tarih ve Saatlerle çalışmak için operatörler<a class="headerlink" href="#operators-datetime" title="Permanent link"> </a></h2>
+<h3 id="operator-extract">EXTRACT<a class="headerlink" href="#operator-extract" title="Permanent link"> </a></h3>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">EXTRACT</span><span class="p">(</span><span class="n">part</span> <span class="k">FROM</span> <span class="nb">date</span><span class="p">);</span>
+</code></pre></div>
+<p>Belirli bir tarihten parçaları ayıklayın. Örneğin, belirli bir tarihten bir ay veya bir zamandan bir saniye alabilirsiniz.</p>
+<p>Bu <code class="syntax">part</code> parametre almak için tarihin hangi bölümünü belirtir. Aşağıdaki değerler kullanılabilir:</p>
+<ul>
+<li><code class="syntax">DAY</code> — The day of the month. Possible values: 1–31.</li>
+<li><code class="syntax">MONTH</code> — The number of a month. Possible values: 1–12.</li>
+<li><code class="syntax">YEAR</code> — The year.</li>
+<li><code class="syntax">SECOND</code> — The second. Possible values: 0–59.</li>
+<li><code class="syntax">MINUTE</code> — The minute. Possible values: 0–59.</li>
+<li><code class="syntax">HOUR</code> — The hour. Possible values: 0–23.</li>
+</ul>
+<p>Bu <code class="syntax">part</code> parametre büyük / küçük harf duyarsızdır.</p>
+<p>Bu <code class="syntax">date</code> parametre, işlenecek tarihi veya saati belirtir. Ya <a href="../data-types/date/">Tarihli</a> veya <a href="../data-types/datetime/">DateTime</a> türü desteklenir.</p>
+<p>Örnekler:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">DAY</span> <span class="k">FROM</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2017-06-15'</span><span class="p">));</span>
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span> <span class="k">FROM</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2017-06-15'</span><span class="p">));</span>
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2017-06-15'</span><span class="p">));</span>
+</code></pre></div>
+<p>Aşağıdaki örnekte bir tablo oluşturuyoruz ve içine bir değer ekliyoruz <code class="syntax">DateTime</code> tür.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">Orders</span>
+<span class="p">(</span>
+    <span class="n">OrderId</span> <span class="n">UInt64</span><span class="p">,</span>
+    <span class="n">OrderName</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">OrderDate</span> <span class="n">DateTime</span>
+<span class="p">)</span>
+<span class="n">ENGINE</span> <span class="o">=</span> <span class="n">Log</span><span class="p">;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test</span><span class="p">.</span><span class="n">Orders</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Jarlsberg Cheese'</span><span class="p">,</span> <span class="n">toDateTime</span><span class="p">(</span><span class="s1">'2008-10-11 13:23:44'</span><span class="p">));</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span>
+    <span class="n">toYear</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderYear</span><span class="p">,</span>
+    <span class="n">toMonth</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderMonth</span><span class="p">,</span>
+    <span class="n">toDayOfMonth</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderDay</span><span class="p">,</span>
+    <span class="n">toHour</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderHour</span><span class="p">,</span>
+    <span class="n">toMinute</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderMinute</span><span class="p">,</span>
+    <span class="n">toSecond</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span> <span class="k">AS</span> <span class="n">OrderSecond</span>
+<span class="k">FROM</span> <span class="n">test</span><span class="p">.</span><span class="n">Orders</span><span class="p">;</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─OrderYear─┬─OrderMonth─┬─OrderDay─┬─OrderHour─┬─OrderMinute─┬─OrderSecond─┐
+│      2008 │         10 │       11 │        13 │          23 │          44 │
+└───────────┴────────────┴──────────┴───────────┴─────────────┴─────────────┘
+</code></pre></div>
+<p>Daha fazla örnek görebilirsiniz <a href="https://github.com/ClickHouse/ClickHouse/blob/master/tests/queries/0_stateless/00619_extract.sql" rel="external nofollow noreferrer" target="_blank">testler</a>.</p>
+<h3 id="operator-interval">INTERVAL<a class="headerlink" href="#operator-interval" title="Permanent link"> </a></h3>
+<p>Oluşturur bir <a href="../data-types/special-data-types/interval/">Aralıklı</a>- aritmetik işlemlerde kullanılması gereken tip değeri <a href="../data-types/date/">Tarihli</a> ve <a href="../data-types/datetime/">DateTime</a>- tip değerleri.</p>
+<p>Aralık türleri:<br/>
+- <code class="syntax">SECOND</code><br/>
+- <code class="syntax">MINUTE</code><br/>
+- <code class="syntax">HOUR</code><br/>
+- <code class="syntax">DAY</code><br/>
+- <code class="syntax">WEEK</code><br/>
+- <code class="syntax">MONTH</code><br/>
+- <code class="syntax">QUARTER</code><br/>
+- <code class="syntax">YEAR</code></p>
+<div class="admonition warning alert pb-0 mb-4 alert-warning" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Uyarıcı</p>
+<p>Farklı tiplere sahip aralıklar birleştirilemez. Gibi ifadeler kullanamazsınız <code class="syntax">INTERVAL 4 DAY 1 HOUR</code>. Aralıkların, örneğin aralığın en küçük birimine eşit veya daha küçük olan birimlerdeki aralıkları belirtin, <code class="syntax">INTERVAL 25 HOUR</code>. Aşağıdaki örnekte olduğu gibi ardışık işlemleri kullanabilirsiniz.</p>
+</div>
+<p>Örnek:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">now</span><span class="p">()</span> <span class="k">AS</span> <span class="n">current_date_time</span><span class="p">,</span> <span class="n">current_date_time</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">4</span> <span class="k">DAY</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">3</span> <span class="n">HOUR</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">┌───current_date_time─┬─plus(plus(now(), toIntervalDay(4)), toIntervalHour(3))─┐
+│ 2019-10-23 11:16:28 │                                    2019-10-27 14:16:28 │
+└─────────────────────┴────────────────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Ayrıca Bakınız</strong></p>
+<ul>
+<li><a href="../data-types/special-data-types/interval/">Aralıklı</a> veri türü</li>
+<li><a href="../functions/type-conversion-functions/#function-tointerval">toİnterval</a> tip dönüştürme işlevleri</li>
+</ul>
+<h2 id="logical-negation-operator">Mantıksal Olumsuzlama Operatörü<a class="headerlink" href="#logical-negation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">NOT a</code> – The <code class="syntax">not(a)</code> İşlev.</p>
+<h2 id="logical-and-operator">Mantıksal ve operatör<a class="headerlink" href="#logical-and-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">a AND b</code> – The<code class="syntax">and(a, b)</code> İşlev.</p>
+<h2 id="logical-or-operator">Mantıksal veya operatör<a class="headerlink" href="#logical-or-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">a OR b</code> – The <code class="syntax">or(a, b)</code> İşlev.</p>
+<h2 id="conditional-operator">Koşullu Operatör<a class="headerlink" href="#conditional-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">a ? b : c</code> – The <code class="syntax">if(a, b, c)</code> İşlev.</p>
+<p>Not:</p>
+<p>Koşullu işleç B ve c değerlerini hesaplar, ardından a koşulunun karşılanıp karşılanmadığını kontrol eder ve ardından karşılık gelen değeri döndürür. Eğer <code class="syntax">b</code> veya <code class="syntax">C</code> is an <a href="../functions/array-join/#functions_arrayjoin">arrayJoin()</a> işlev, her satır ne olursa olsun çoğaltılır “a” koşul.</p>
+<h2 id="operator_case">Koşullu İfade<a class="headerlink" href="#operator_case" title="Permanent link"> </a></h2>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CASE</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+    <span class="k">WHEN</span> <span class="n">a</span> <span class="k">THEN</span> <span class="n">b</span>
+    <span class="p">[</span><span class="k">WHEN</span> <span class="p">...</span> <span class="k">THEN</span> <span class="p">...]</span>
+    <span class="p">[</span><span class="k">ELSE</span> <span class="k">c</span><span class="p">]</span>
+<span class="k">END</span>
+</code></pre></div>
+<p>Eğer <code class="syntax">x</code> belirtilen sonra <code class="syntax">transform(x, [a, ...], [b, ...], c)</code> function is used. Otherwise – <code class="syntax">multiIf(a, b, ..., c)</code>.</p>
+<p>Eğer herhangi bir <code class="syntax">ELSE c</code> ifadedeki yan tümce, varsayılan değer <code class="syntax">NULL</code>.</p>
+<p>Bu <code class="syntax">transform</code> fonksiyonu ile çalışmıyor <code class="syntax">NULL</code>.</p>
+<h2 id="concatenation-operator">Birleştirme Operatörü<a class="headerlink" href="#concatenation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">s1 || s2</code> – The <code class="syntax">concat(s1, s2) function.</code></p>
+<h2 id="lambda-creation-operator">Lambda Oluşturma Operatörü<a class="headerlink" href="#lambda-creation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">x -&gt; expr</code> – The <code class="syntax">lambda(x, expr) function.</code></p>
+<p>Parantez oldukları için aşağıdaki operatörler bir önceliğe sahip değildir:</p>
+<h2 id="array-creation-operator">Dizi Oluşturma Operatörü<a class="headerlink" href="#array-creation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">[x1, ...]</code> – The <code class="syntax">array(x1, ...) function.</code></p>
+<h2 id="tuple-creation-operator">Tuple Oluşturma Operatörü<a class="headerlink" href="#tuple-creation-operator" title="Permanent link"> </a></h2>
+<p><code class="syntax">(x1, x2, ...)</code> – The <code class="syntax">tuple(x2, x2, ...) function.</code></p>
+<h2 id="associativity">İlişkisellik<a class="headerlink" href="#associativity" title="Permanent link"> </a></h2>
+<p>Tüm ikili operatörler ilişkisellikten ayrıldı. Mesela, <code class="syntax">1 + 2 + 3</code> dönüştür toülür <code class="syntax">plus(plus(1, 2), 3)</code>.<br/>
+Bazen bu beklediğiniz gibi çalışmaz. Mesela, <code class="syntax">SELECT 4 &gt; 2 &gt; 3</code> 0 ile sonuç willlanır.</p>
+<p>Verimlilik için, <code class="syntax">and</code> ve <code class="syntax">or</code> işlevler herhangi bir sayıda bağımsız değişkeni kabul eder. İlgili zincirler <code class="syntax">AND</code> ve <code class="syntax">OR</code> operatörler bu işlevlerin tek bir çağrısına dönüştürülür.</p>
+<h2 id="checking-for-null">İçin kontrol <code class="syntax">NULL</code><a class="headerlink" href="#checking-for-null" title="Permanent link"> </a></h2>
+<p>ClickHouse destekler <code class="syntax">IS NULL</code> ve <code class="syntax">IS NOT NULL</code> operatörler.</p>
+<h3 id="operator-is-null">IS NULL<a class="headerlink" href="#operator-is-null" title="Permanent link"> </a></h3>
+<ul>
+<li>İçin <a href="../data-types/nullable/">Nullable</a> türü değerleri <code class="syntax">IS NULL</code> operatör döner:<ul>
+<li><code class="syntax">1</code> değeri ise <code class="syntax">NULL</code>.</li>
+<li><code class="syntax">0</code> başka.</li>
+</ul>
+</li>
+<li>Diğer değerler için, <code class="syntax">IS NULL</code> operatör her zaman döner <code class="syntax">0</code>.</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">x</span><span class="o">+</span><span class="mi">100</span> <span class="k">FROM</span> <span class="n">t_null</span> <span class="k">WHERE</span> <span class="n">y</span> <span class="k">IS</span> <span class="k">NULL</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─plus(x, 100)─┐
+│          101 │
+└──────────────┘
+</code></pre></div>
+<h3 id="is-not-null">IS NOT NULL<a class="headerlink" href="#is-not-null" title="Permanent link"> </a></h3>
+<ul>
+<li>İçin <a href="../data-types/nullable/">Nullable</a> türü değerleri <code class="syntax">IS NOT NULL</code> operatör döner:<ul>
+<li><code class="syntax">0</code> değeri ise <code class="syntax">NULL</code>.</li>
+<li><code class="syntax">1</code> başka.</li>
+</ul>
+</li>
+<li>Diğer değerler için, <code class="syntax">IS NOT NULL</code> operatör her zaman döner <code class="syntax">1</code>.</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t_null</span> <span class="k">WHERE</span> <span class="n">y</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code class="syntax">┌─x─┬─y─┐
+│ 2 │ 3 │
+└───┴───┘
+</code></pre></div>
+<p><a href="https://clickhouse.tech/docs/en/query_language/operators/" target="_blank">Orijinal makale</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">Verim: RATING_VALUE - RATING_COUNT oylar</p>
+  <span class="alert-heading display-6">Bu içerik yararlı mıydı?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['Kullanışsız', 'Zavallı', 'OK', 'İyi', 'Mükemmel']"
+     data-documentation="belge"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>Dahili <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, yayınlanan <span title="2020-04-15T16:56:49+03:00">2020-04-15</span>, modifiye on <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">İçindekiler tablosu</label>
+    
+    
+        
+        
+        <a href="#access-operators" title="Erişim Operatörleri" class="nav-link text-wrap d-inline-block w-100">
+    Erişim Operatörleri
+</a>
+
+    
+        
+        
+        <a href="#numeric-negation-operator" title="Sayısal Olumsuzlama Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Sayısal Olumsuzlama Operatörü
+</a>
+
+    
+        
+        
+        <a href="#multiplication-and-division-operators" title="Çarpma ve bölme operatörleri" class="nav-link text-wrap d-inline-block w-100">
+    Çarpma ve bölme operatörleri
+</a>
+
+    
+        
+        
+        <a href="#addition-and-subtraction-operators" title="Toplama ve çıkarma operatörleri" class="nav-link text-wrap d-inline-block w-100">
+    Toplama ve çıkarma operatörleri
+</a>
+
+    
+        
+        
+        <a href="#comparison-operators" title="Karşılaştırma Operatörleri" class="nav-link text-wrap d-inline-block w-100">
+    Karşılaştırma Operatörleri
+</a>
+
+    
+        
+        
+        <a href="#operators-for-working-with-data-sets" title="Veri kümeleriyle çalışmak için operatörler" class="nav-link text-wrap d-inline-block w-100">
+    Veri kümeleriyle çalışmak için operatörler
+</a>
+
+    
+        
+        
+        <a href="#operators-datetime" title="Tarih ve Saatlerle çalışmak için operatörler" class="nav-link text-wrap d-inline-block w-100">
+    Tarih ve Saatlerle çalışmak için operatörler
+</a>
+
+<nav id="toc-toc-7" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#operator-extract" title="EXTRACT" class="nav-link text-wrap d-inline-block w-100">
+    EXTRACT
+</a>
+
+    
+        
+        
+        <a href="#operator-interval" title="INTERVAL" class="nav-link text-wrap d-inline-block w-100">
+    INTERVAL
+</a>
+
+    
+</nav>
+
+    
+        
+        
+        <a href="#logical-negation-operator" title="Mantıksal Olumsuzlama Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Mantıksal Olumsuzlama Operatörü
+</a>
+
+    
+        
+        
+        <a href="#logical-and-operator" title="Mantıksal ve operatör" class="nav-link text-wrap d-inline-block w-100">
+    Mantıksal ve operatör
+</a>
+
+    
+        
+        
+        <a href="#logical-or-operator" title="Mantıksal veya operatör" class="nav-link text-wrap d-inline-block w-100">
+    Mantıksal veya operatör
+</a>
+
+    
+        
+        
+        <a href="#conditional-operator" title="Koşullu Operatör" class="nav-link text-wrap d-inline-block w-100">
+    Koşullu Operatör
+</a>
+
+    
+        
+        
+        <a href="#operator_case" title="Koşullu İfade" class="nav-link text-wrap d-inline-block w-100">
+    Koşullu İfade
+</a>
+
+    
+        
+        
+        <a href="#concatenation-operator" title="Birleştirme Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Birleştirme Operatörü
+</a>
+
+    
+        
+        
+        <a href="#lambda-creation-operator" title="Lambda Oluşturma Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Lambda Oluşturma Operatörü
+</a>
+
+    
+        
+        
+        <a href="#array-creation-operator" title="Dizi Oluşturma Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Dizi Oluşturma Operatörü
+</a>
+
+    
+        
+        
+        <a href="#tuple-creation-operator" title="Tuple Oluşturma Operatörü" class="nav-link text-wrap d-inline-block w-100">
+    Tuple Oluşturma Operatörü
+</a>
+
+    
+        
+        
+        <a href="#associativity" title="İlişkisellik" class="nav-link text-wrap d-inline-block w-100">
+    İlişkisellik
+</a>
+
+    
+        
+        
+        <a href="#checking-for-null" title="İçin kontrol NULL" class="nav-link text-wrap d-inline-block w-100">
+    İçin kontrol NULL
+</a>
+
+<nav id="toc-toc-18" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#operator-is-null" title="IS NULL" class="nav-link text-wrap d-inline-block w-100">
+    IS NULL
+</a>
+
+    
+        
+        
+        <a href="#is-not-null" title="IS NOT NULL" class="nav-link text-wrap d-inline-block w-100">
+    IS NOT NULL
+</a>
+
+    
+</nav>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

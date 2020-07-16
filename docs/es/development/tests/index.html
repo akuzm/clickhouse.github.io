@@ -1,0 +1,3302 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="es" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Cómo ejecutar pruebas de ClickHouse | Documentación de ClickHouse</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="Cómo ejecutar pruebas de ClickHouse | Documentación de ClickHouse"/>
+<meta property="og:description" content="Pruebas de ClickHouse Pruebas funcionales Las pruebas funcionales son las más simples y cómodas de usar. La mayoría de l" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/es/development/tests/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/es/development/tests/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/es/development/tests/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "Cómo ejecutar pruebas de ClickHouse | Documentación de ClickHouse",
+"mainEntityOfPage": "https://clickhouse.tech/docs/es/development/tests/",
+
+"datePublished": "2020-03-21T07:11:51+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "Cómo ejecutar pruebas de ClickHouse | Documentación de ClickHouse",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="Pruebas de ClickHouse Pruebas funcionales Las pruebas funcionales son las más simples y cómodas de usar. La mayoría de l" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, de código abierto, relacional, analítica, analítico, Grandes Datos, Sistema abierto." />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/development/tests/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/development/tests/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/development/tests/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/development/tests/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/development/tests/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/development/tests/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/development/tests/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/development/tests/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/development/tests/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        Cómo ejecutar pruebas de ClickHouse
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/es/development/tests.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/es.svg" alt="Español" title="Español" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/development/tests/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/development/tests/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/es/development/tests/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/development/tests/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/development/tests/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/development/tests/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/tr/development/tests/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/development/tests/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="Multi-página o de una sola página">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="Versión de varias páginas" title="Versión de varias páginas" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="Versión de una sola página" title="Versión de una sola página" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Versión: <span class="text-light">reciente</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/es/">
+                    <span class="text-light">reciente</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="Implantación" class="nav-link text-light text-wrap dropdown-toggle px-0">Implantación</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="Descripción" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/distinctive-features/" title="Características distintivas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Características distintivas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/performance/" title="Rendimiento" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Rendimiento</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/history/" title="Historia" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Historia</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/adopters/" title="Adoptante" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Adoptante</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="Primeros pasos" class="nav-link text-light text-wrap dropdown-toggle px-0">Primeros pasos</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="Instalación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Instalación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="Datos De Ejemplo" class="nav-link text-light text-wrap dropdown-toggle px-0">Datos De Ejemplo</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="El Yandex.Metrica Datos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">El Yandex.Metrica Datos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="A tiempo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">A tiempo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="Datos de taxis de Nueva York" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Datos de taxis de Nueva York</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="Referencia de Big Data de AMPLab" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Referencia de Big Data de AMPLab</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="Nombre de la red inalámbrica (SSID):" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nombre de la red inalámbrica (SSID):</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="Registros de clics de Terabyte de Criteo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Registros de clics de Terabyte de Criteo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="Estrella Schema Benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Estrella Schema Benchmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="Tutorial" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tutorial</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="Infantil" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Infantil</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="Interfaz" class="nav-link text-light text-wrap dropdown-toggle px-0">Interfaz</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="Cliente de línea de comandos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cliente de línea de comandos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="Interfaz nativa (TCP)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Interfaz nativa (TCP)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="Interfaz HTTP" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Interfaz HTTP</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="Interfaz MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Interfaz MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="Formatos de entrada y salida" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Formatos de entrada y salida</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="Controlador JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Controlador JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="Conductor ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Conductor ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="Biblioteca de clientes de C++" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Biblioteca de clientes de C++</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="tercero" class="nav-link text-light text-wrap dropdown-toggle px-0">tercero</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="Client Libraries" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Client Libraries</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="Integrations" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Integrations</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="Interfaces Visuales" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Interfaces Visuales</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="Proxy" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Proxy</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="Motor" class="nav-link text-light text-wrap dropdown-toggle px-0">Motor</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="Motores de mesa" class="nav-link text-light text-wrap dropdown-toggle px-0">Motores de mesa</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="Familia MergeTree" class="nav-link text-light text-wrap dropdown-toggle px-0">Familia MergeTree</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="Método de codificación de datos:" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Método de codificación de datos:</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="Replicación de datos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Replicación de datos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="Clave de partición personalizada" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Clave de partición personalizada</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="ReplacingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ReplacingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AgregaciónMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AgregaciónMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="ColapsarMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ColapsarMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="VersionedCollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">VersionedCollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="GraphiteMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GraphiteMergeTree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="Familia de registro" class="nav-link text-light text-wrap dropdown-toggle px-0">Familia de registro</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="Registro" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Registro</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="Integración" class="nav-link text-light text-wrap dropdown-toggle px-0">Integración</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="Especial" class="nav-link text-light text-wrap dropdown-toggle px-0">Especial</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="Distribuido" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Distribuido</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="Datos externos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Datos externos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="Diccionario" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diccionario</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="Fusionar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Fusionar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="File" class="nav-link text-light text-wrap d-inline-block w-100 px-0">File</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="Nulo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nulo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="Establecer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Establecer</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="Unir" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Unir</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="Vista" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Vista</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="Método de codificación de datos:" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Método de codificación de datos:</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="Memoria" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Memoria</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="Búfer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Búfer</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="Motores de base de datos" class="nav-link text-light text-wrap dropdown-toggle px-0">Motores de base de datos</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="Perezoso" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Perezoso</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="Referencia SQL" class="nav-link text-light text-wrap dropdown-toggle px-0">Referencia SQL</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="Instrucción" class="nav-link text-light text-wrap dropdown-toggle px-0">Instrucción</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="SELECT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SELECT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="ARRAY JOIN Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="CON Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CON Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="Cláusula DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="Cláusula FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="Cláusula HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="Cláusula JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="Cláusula LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="Cláusula SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cláusula SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="DONDE Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DONDE Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="FORMAT Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="GRUPO POR Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRUPO POR Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="LIMITAR POR Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMITAR POR Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDEN POR CLÁUSULA" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDEN POR CLÁUSULA</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="PREWHERE Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE Cláusula</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="UNION ALL Cláusula" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL Cláusula</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="Otro" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Otro</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="Sintaxis" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sintaxis</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="Función" class="nav-link text-light text-wrap dropdown-toggle px-0">Función</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="Aritmética" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aritmética</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="Comparación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Comparación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="Lógico" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Lógico</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="Conversión de tipo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Conversión de tipo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="Trabajar con fechas y horas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con fechas y horas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="Trabajar con cadenas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con cadenas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="Para buscar cadenas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Para buscar cadenas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="Para reemplazar en cadenas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Para reemplazar en cadenas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="Condicional" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Condicional</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="Matemática" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matemática</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="Redondeo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Redondeo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="Trabajar con matrices" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con matrices</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="División y fusión de cuerdas y matrices" class="nav-link text-light text-wrap d-inline-block w-100 px-0">División y fusión de cuerdas y matrices</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="Trozo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trozo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="Bits" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bits</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="Hash" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hash</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="Generación de números pseudo-aleatorios" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Generación de números pseudo-aleatorios</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="Codificación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Codificación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="Trabajando con UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajando con UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/url-functions/" title="Trabajar con URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="Trabajar con direcciones IP" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con direcciones IP</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="Trabajar con JSON" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con JSON</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="Orden superior" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Orden superior</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="Trabajar con diccionarios externos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con diccionarios externos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="Trabajando con Yandex.Diccionarios de Metrica" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajando con Yandex.Diccionarios de Metrica</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="Implementación del operador IN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implementación del operador IN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="arrayJoin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="Trabajar con coordenadas geográficas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con coordenadas geográficas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="Trabajar con argumentos Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Trabajar con argumentos Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="Funciones de aprendizaje automático" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Funciones de aprendizaje automático</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="Introspección" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Introspección</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="Otro" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Otro</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="Funciones agregadas" class="nav-link text-light text-wrap dropdown-toggle px-0">Funciones agregadas</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="Referencia" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Referencia</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="Combinadores" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Combinadores</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="Paramétrico" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Paramétrico</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="Funciones de tabla" class="nav-link text-light text-wrap dropdown-toggle px-0">Funciones de tabla</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="file" class="nav-link text-light text-wrap d-inline-block w-100 px-0">file</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="fusionar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">fusionar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="numero" class="nav-link text-light text-wrap d-inline-block w-100 px-0">numero</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="remoto" class="nav-link text-light text-wrap d-inline-block w-100 px-0">remoto</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="Nosotros" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nosotros</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="Hdfs" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hdfs</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="entrada" class="nav-link text-light text-wrap d-inline-block w-100 px-0">entrada</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="Diccionario" class="nav-link text-light text-wrap dropdown-toggle px-0">Diccionario</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="Diccionarios externos" class="nav-link text-light text-wrap dropdown-toggle px-0">Diccionarios externos</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="Descripción General" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción General</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="Configuración de un diccionario externo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Configuración de un diccionario externo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="Almacenamiento de diccionarios en la memoria" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Almacenamiento de diccionarios en la memoria</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="Actualizaciones del diccionario" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Actualizaciones del diccionario</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="Fuentes de diccionarios externos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Fuentes de diccionarios externos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="Clave y campos del diccionario" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Clave y campos del diccionario</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="Diccionarios jerárquicos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diccionarios jerárquicos</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="Diccionarios internos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diccionarios internos</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="Operador" class="nav-link text-light text-wrap dropdown-toggle px-0">Operador</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="Operador" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Operador</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="IN Operadores" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operadores</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="Tipos de datos" class="nav-link text-light text-wrap dropdown-toggle px-0">Tipos de datos</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UInt8, UInt16, UInt32, UInt64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Descripción del producto" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción del producto</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="Decimal" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Decimal</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="Booleana" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Booleana</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="Cadena" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cadena</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="Cadena fija (N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cadena fija (N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="Fecha" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Fecha</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="FechaHora" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FechaHora</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="Matriz (T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matriz (T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="Agregar función (nombre, types_of_arguments)...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Agregar función (nombre, types_of_arguments)...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="Tuple (T1, T2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple (T1, T2, ...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-16" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-16" title="Estructuras de datos anidados" class="nav-link text-light text-wrap dropdown-toggle px-0">Estructuras de datos anidados</a>
+<div id="sidebar-sidebar-5-9-16" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="Anidado (Nombre1 Tipo1, Nombre2 Tipo2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Anidado (Nombre1 Tipo1, Nombre2 Tipo2, ...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="NULL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">NULL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-18" title="Tipos de datos especiales" class="nav-link text-light text-wrap dropdown-toggle px-0">Tipos de datos especiales</a>
+<div id="sidebar-sidebar-5-9-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="Expresion" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Expresion</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="Establecer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Establecer</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="Nada" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nada</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="Intervalo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Intervalo</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-19" title="Dominio" class="nav-link text-light text-wrap dropdown-toggle px-0">Dominio</a>
+<div id="sidebar-sidebar-5-9-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="Descripción" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="IPv4" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv4</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="Compatibilidad con ANSI" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Compatibilidad con ANSI</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="Guiar" class="nav-link text-light text-wrap dropdown-toggle px-0">Guiar</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="Descripción" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="Aplicación de modelos CatBoost" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aplicación de modelos CatBoost</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="Operación" class="nav-link text-light text-wrap dropdown-toggle px-0">Operación</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="Requisito" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Requisito</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="Monitoreo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Monitoreo</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="Solución de problemas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Solución de problemas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="Actualización de ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Actualización de ClickHouse</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="Control de acceso y gestión de cuentas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Control de acceso y gestión de cuentas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="Copia de seguridad de datos" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Copia de seguridad de datos</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="Archivos de configuración" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Archivos de configuración</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="Cuota" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cuota</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="Optimización del rendimiento" class="nav-link text-light text-wrap dropdown-toggle px-0">Optimización del rendimiento</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="Generación de perfiles de consultas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Generación de perfiles de consultas</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="Tablas del sistema" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tablas del sistema</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-12" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-12" title="Parámetros de configuración del servidor" class="nav-link text-light text-wrap dropdown-toggle px-0">Parámetros de configuración del servidor</a>
+<div id="sidebar-sidebar-7-12" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="Configuración del servidor" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Configuración del servidor</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="Prueba de hardware" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Prueba de hardware</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="Configuración" class="nav-link text-light text-wrap dropdown-toggle px-0">Configuración</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="Implantación" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Implantación</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="Permisos para consultas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Permisos para consultas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="Restricciones en la complejidad de consultas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Restricciones en la complejidad de consultas</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="Perfiles de configuración" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Perfiles de configuración</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="Restricciones en la configuración" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Restricciones en la configuración</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="Configuración del usuario" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Configuración del usuario</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings/" title="Configuración" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Configuración</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="Utilidad" class="nav-link text-light text-wrap dropdown-toggle px-0">Utilidad</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="Descripción" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="Método de codificación de datos:" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Método de codificación de datos:</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="clickhouse-local" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-local</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="Sistema abierto" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sistema abierto</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="Recomendaciones de uso" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Recomendaciones de uso</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="Desarrollo" class="nav-link text-light text-wrap dropdown-toggle px-0">Desarrollo</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="La instrucción para desarrolladores de ClickHouse para principiantes" class="nav-link text-light text-wrap d-inline-block w-100 px-0">La instrucción para desarrolladores de ClickHouse para principiantes</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="Descripción general de la arquitectura ClickHouse" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Descripción general de la arquitectura ClickHouse</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="Buscar código fuente" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Buscar código fuente</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="Cómo crear ClickHouse en Linux" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cómo crear ClickHouse en Linux</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="Cómo crear ClickHouse en Mac OS X" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cómo crear ClickHouse en Mac OS X</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="Cómo construir ClickHouse en Linux para Mac OS X" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cómo construir ClickHouse en Linux para Mac OS X</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="Cómo construir ClickHouse en Linux para AARCH64 (ARM64)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cómo construir ClickHouse en Linux para AARCH64 (ARM64)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="Cómo escribir código C ++" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Cómo escribir código C ++</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="Cómo ejecutar pruebas de ClickHouse" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">Cómo ejecutar pruebas de ClickHouse</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="Bibliotecas de terceros utilizadas" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bibliotecas de terceros utilizadas</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="Comercial" class="nav-link text-light text-wrap dropdown-toggle px-0">Comercial</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="Nube" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nube</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="Apoyo" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Apoyo</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="Qué hay de Nuevo" class="nav-link text-light text-wrap dropdown-toggle px-0">Qué hay de Nuevo</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="Changelog" class="nav-link text-light text-wrap dropdown-toggle px-0">Changelog</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="Hoja de ruta" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hoja de ruta</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="Seguridad Changelog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Seguridad Changelog</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="Preguntas generales" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Preguntas generales</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="../../roadmap/" title="Hoja De Ruta" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hoja De Ruta</a>
+
+
+            
+            <a href="../../single/clickhouse_es.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="Versión PDF" title="Versión PDF" height="24" class="d-block mr-1 float-left" /><div>Versión PDF</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">Desarrollo</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">Ayuda quería!</p>
+      <p class="lead">El siguiente contenido de esta página de documentación ha sido traducido por máquina. Pero a diferencia de otros sitios web, no se hace sobre la marcha. Este texto traducido vive en el repositorio de GitHub junto con la base de código principal de ClickHouse y espera a que otros hablantes nativos lo hagan más legible por humanos. <a href="/docs/en/development/tests/" class="alert-link">También puede usar la versión original en inglés como referencia.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/es/development/tests.md" target="_blank" rel="external nofollow noreferrer">
+              Ayuda a la documentación de ClickHouse editando esta página
+          </a>
+      </p>
+    </div>
+
+            <h1 id="clickhouse-testing">Pruebas de ClickHouse<a class="headerlink" href="#clickhouse-testing" title="Permanent link"> </a></h1>
+<h2 id="functional-tests">Pruebas funcionales<a class="headerlink" href="#functional-tests" title="Permanent link"> </a></h2>
+<p>Las pruebas funcionales son las más simples y cómodas de usar. La mayoría de las características de ClickHouse se pueden probar con pruebas funcionales y son obligatorias para cada cambio en el código de ClickHouse que se puede probar de esa manera.</p>
+<p>Cada prueba funcional envía una o varias consultas al servidor ClickHouse en ejecución y compara el resultado con la referencia.</p>
+<p>Las pruebas se encuentran en <code class="syntax">queries</code> directorio. Hay dos subdirectorios: <code class="syntax">stateless</code> y <code class="syntax">stateful</code>. Las pruebas sin estado ejecutan consultas sin datos de prueba precargados: a menudo crean pequeños conjuntos de datos sintéticos sobre la marcha, dentro de la prueba misma. Las pruebas estatales requieren datos de prueba precargados de Yandex.Métrica y no está disponible para el público en general. Tendemos a usar sólo <code class="syntax">stateless</code> pruebas y evitar la adición de nuevos <code class="syntax">stateful</code> prueba.</p>
+<p>Cada prueba puede ser de dos tipos: <code class="syntax">.sql</code> y <code class="syntax">.sh</code>. <code class="syntax">.sql</code> test es el script SQL simple que se canaliza a <code class="syntax">clickhouse-client --multiquery --testmode</code>. <code class="syntax">.sh</code> test es un script que se ejecuta por sí mismo.</p>
+<p>Para ejecutar todas las pruebas, use <code class="syntax">clickhouse-test</code> herramienta. Mira <code class="syntax">--help</code> para la lista de posibles opciones. Simplemente puede ejecutar todas las pruebas o ejecutar un subconjunto de pruebas filtradas por subcadena en el nombre de la prueba: <code class="syntax">./clickhouse-test substring</code>.</p>
+<p>La forma más sencilla de invocar pruebas funcionales es copiar <code class="syntax">clickhouse-client</code> a <code class="syntax">/usr/bin/</code>, ejecutar <code class="syntax">clickhouse-server</code> y luego ejecutar <code class="syntax">./clickhouse-test</code> de su propio directorio.</p>
+<p>Para agregar una nueva prueba, cree un <code class="syntax">.sql</code> o <code class="syntax">.sh</code> archivo en <code class="syntax">queries/0_stateless</code> directorio, compruébelo manualmente y luego genere <code class="syntax">.reference</code> archivo de la siguiente manera: <code class="syntax">clickhouse-client -n --testmode &lt; 00000_test.sql &gt; 00000_test.reference</code> o <code class="syntax">./00000_test.sh &gt; ./00000_test.reference</code>.</p>
+<p>Las pruebas deben usar (crear, soltar, etc.) solo tablas en <code class="syntax">test</code> base de datos que se supone que se crea de antemano; también las pruebas pueden usar tablas temporales.</p>
+<p>Si desea utilizar consultas distribuidas en pruebas funcionales, puede aprovechar <code class="syntax">remote</code> función de la tabla con <code class="syntax">127.0.0.{1..2}</code> direcciones para que el servidor se consulte; o puede usar clústeres de prueba predefinidos en el archivo de configuración del servidor como <code class="syntax">test_shard_localhost</code>.</p>
+<p>Algunas pruebas están marcadas con <code class="syntax">zookeeper</code>, <code class="syntax">shard</code> o <code class="syntax">long</code> en sus nombres.<br/>
+<code class="syntax">zookeeper</code> es para pruebas que están usando ZooKeeper. <code class="syntax">shard</code> es para pruebas que<br/>
+requiere servidor para escuchar <code class="syntax">127.0.0.*</code>; <code class="syntax">distributed</code> o <code class="syntax">global</code> tienen el mismo<br/>
+significado. <code class="syntax">long</code> es para pruebas que duran un poco más de un segundo. Usted puede<br/>
+deshabilitar estos grupos de pruebas utilizando <code class="syntax">--no-zookeeper</code>, <code class="syntax">--no-shard</code> y<br/>
+<code class="syntax">--no-long</code> opciones, respectivamente.</p>
+<h2 id="known-bugs">Bugs Conocidos<a class="headerlink" href="#known-bugs" title="Permanent link"> </a></h2>
+<p>Si conocemos algunos errores que se pueden reproducir fácilmente mediante pruebas funcionales, colocamos pruebas funcionales preparadas en <code class="syntax">tests/queries/bugs</code> directorio. Estas pruebas se moverán a <code class="syntax">tests/queries/0_stateless</code> cuando se corrigen errores.</p>
+<h2 id="integration-tests">Pruebas de integración<a class="headerlink" href="#integration-tests" title="Permanent link"> </a></h2>
+<p>Las pruebas de integración permiten probar ClickHouse en la configuración agrupada y la interacción de ClickHouse con otros servidores como MySQL, Postgres, MongoDB. Son útiles para emular divisiones de red, caídas de paquetes, etc. Estas pruebas se ejecutan bajo Docker y crean múltiples contenedores con varios software.</p>
+<p>Ver <code class="syntax">tests/integration/README.md</code> sobre cómo ejecutar estas pruebas.</p>
+<p>Tenga en cuenta que la integración de ClickHouse con controladores de terceros no se ha probado. Además, actualmente no tenemos pruebas de integración con nuestros controladores JDBC y ODBC.</p>
+<h2 id="unit-tests">Pruebas unitarias<a class="headerlink" href="#unit-tests" title="Permanent link"> </a></h2>
+<p>Las pruebas unitarias son útiles cuando desea probar no ClickHouse como un todo, sino una sola biblioteca o clase aislada. Puede habilitar o deshabilitar la compilación de pruebas con <code class="syntax">ENABLE_TESTS</code> Opción CMake. Las pruebas unitarias (y otros programas de prueba) se encuentran en <code class="syntax">tests</code> subdirectorios en todo el código. Para ejecutar pruebas unitarias, escriba <code class="syntax">ninja test</code>. Algunas pruebas usan <code class="syntax">gtest</code>, pero algunos son solo programas que devuelven un código de salida distinto de cero en caso de fallo de prueba.</p>
+<p>No es necesariamente tener pruebas unitarias si el código ya está cubierto por pruebas funcionales (y las pruebas funcionales suelen ser mucho más simples de usar).</p>
+<h2 id="performance-tests">Pruebas de rendimiento<a class="headerlink" href="#performance-tests" title="Permanent link"> </a></h2>
+<p>Las pruebas de rendimiento permiten medir y comparar el rendimiento de alguna parte aislada de ClickHouse en consultas sintéticas. Las pruebas se encuentran en <code class="syntax">tests/performance</code>. Cada prueba está representada por <code class="syntax">.xml</code> archivo con la descripción del caso de prueba. Las pruebas se ejecutan con <code class="syntax">clickhouse performance-test</code> herramienta (que está incrustada en <code class="syntax">clickhouse</code> binario). Ver <code class="syntax">--help</code> para la invocación.</p>
+<p>Cada prueba ejecuta una o varias consultas (posiblemente con combinaciones de parámetros) en un bucle con algunas condiciones para detener (como “maximum execution speed is not changing in three seconds”) y medir algunas métricas sobre el rendimiento de las consultas (como “maximum execution speed”). Algunas pruebas pueden contener condiciones previas en el conjunto de datos de pruebas precargado.</p>
+<p>Si desea mejorar el rendimiento de ClickHouse en algún escenario, y si se pueden observar mejoras en consultas simples, se recomienda encarecidamente escribir una prueba de rendimiento. Siempre tiene sentido usar <code class="syntax">perf top</code> u otras herramientas de perf durante sus pruebas.</p>
+<h2 id="test-tools-and-scripts">Herramientas de prueba y secuencias de comandos<a class="headerlink" href="#test-tools-and-scripts" title="Permanent link"> </a></h2>
+<p>Algunos programas en <code class="syntax">tests</code> directorio no son pruebas preparadas, pero son herramientas de prueba. Por ejemplo, para <code class="syntax">Lexer</code> hay una herramienta <code class="syntax">src/Parsers/tests/lexer</code> que solo hacen la tokenización de stdin y escriben el resultado coloreado en stdout. Puede usar este tipo de herramientas como ejemplos de código y para exploración y pruebas manuales.</p>
+<p>También puede colocar un par de archivos <code class="syntax">.sh</code> y <code class="syntax">.reference</code> junto con la herramienta para ejecutarlo en alguna entrada predefinida, entonces el resultado del script se puede comparar con <code class="syntax">.reference</code> file. Este tipo de pruebas no están automatizadas.</p>
+<h2 id="miscellaneous-tests">Pruebas diversas<a class="headerlink" href="#miscellaneous-tests" title="Permanent link"> </a></h2>
+<p>Hay pruebas para diccionarios externos ubicados en <code class="syntax">tests/external_dictionaries</code> y para modelos aprendidos a máquina en <code class="syntax">tests/external_models</code>. Estas pruebas no se actualizan y deben transferirse a pruebas de integración.</p>
+<p>Hay una prueba separada para inserciones de quórum. Esta prueba ejecuta el clúster ClickHouse en servidores separados y emula varios casos de fallas: división de red, caída de paquetes (entre nodos ClickHouse, entre ClickHouse y ZooKeeper, entre el servidor ClickHouse y el cliente, etc.), <code class="syntax">kill -9</code>, <code class="syntax">kill -STOP</code> y <code class="syntax">kill -CONT</code> , como <a href="https://aphyr.com/tags/Jepsen" rel="external nofollow noreferrer" target="_blank">Jepsen</a>. A continuación, la prueba comprueba que todas las inserciones reconocidas se escribieron y todas las inserciones rechazadas no.</p>
+<p>La prueba de quórum fue escrita por un equipo separado antes de que ClickHouse fuera de código abierto. Este equipo ya no trabaja con ClickHouse. La prueba fue escrita accidentalmente en Java. Por estas razones, la prueba de quórum debe reescribirse y trasladarse a pruebas de integración.</p>
+<h2 id="manual-testing">Pruebas manuales<a class="headerlink" href="#manual-testing" title="Permanent link"> </a></h2>
+<p>Cuando desarrolla una nueva característica, es razonable probarla también manualmente. Puede hacerlo con los siguientes pasos:</p>
+<p>Construir ClickHouse. Ejecute ClickHouse desde el terminal: cambie el directorio a <code class="syntax">programs/clickhouse-server</code> y ejecutarlo con <code class="syntax">./clickhouse-server</code>. Se utilizará la configuración (<code class="syntax">config.xml</code>, <code class="syntax">users.xml</code> y archivos dentro de <code class="syntax">config.d</code> y <code class="syntax">users.d</code> directorios) desde el directorio actual de forma predeterminada. Para conectarse al servidor ClickHouse, ejecute <code class="syntax">programs/clickhouse-client/clickhouse-client</code>.</p>
+<p>Tenga en cuenta que todas las herramientas de clickhouse (servidor, cliente, etc.) son solo enlaces simbólicos a un único binario llamado <code class="syntax">clickhouse</code>. Puede encontrar este binario en <code class="syntax">programs/clickhouse</code>. Todas las herramientas también se pueden invocar como <code class="syntax">clickhouse tool</code> en lugar de <code class="syntax">clickhouse-tool</code>.</p>
+<p>Alternativamente, puede instalar el paquete ClickHouse: ya sea una versión estable del repositorio de Yandex o puede crear un paquete para usted con <code class="syntax">./release</code> en la raíz de fuentes de ClickHouse. Luego inicie el servidor con <code class="syntax">sudo service clickhouse-server start</code> (o detener para detener el servidor). Busque registros en <code class="syntax">/etc/clickhouse-server/clickhouse-server.log</code>.</p>
+<p>Cuando ClickHouse ya está instalado en su sistema, puede crear un nuevo <code class="syntax">clickhouse</code> binario y reemplazar el binario existente:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo service clickhouse-server stop
+$ sudo cp ./clickhouse /usr/bin/
+$ sudo service clickhouse-server start
+</code></pre></div>
+<p>También puede detener el servidor de clickhouse del sistema y ejecutar el suyo propio con la misma configuración pero con el registro en la terminal:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo service clickhouse-server stop
+$ sudo -u clickhouse /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml
+</code></pre></div>
+<p>Ejemplo con gdb:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo -u clickhouse gdb --args /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml
+</code></pre></div>
+<p>Si el servidor de clickhouse del sistema ya se está ejecutando y no desea detenerlo, puede cambiar los números de <code class="syntax">config.xml</code> (o anularlos en un archivo en <code class="syntax">config.d</code> directorio), proporcione la ruta de datos adecuada y ejecútela.</p>
+<p><code class="syntax">clickhouse</code> binary casi no tiene dependencias y funciona en una amplia gama de distribuciones de Linux. Para probar rápidamente y sucio sus cambios en un servidor, simplemente puede <code class="syntax">scp</code> su fresco construido <code class="syntax">clickhouse</code> binario a su servidor y luego ejecútelo como en los ejemplos anteriores.</p>
+<h2 id="testing-environment">Entorno de prueba<a class="headerlink" href="#testing-environment" title="Permanent link"> </a></h2>
+<p>Antes de publicar la versión como estable, la implementamos en el entorno de prueba. El entorno de prueba es un clúster que procesa 1/39 parte de <a href="https://metrica.yandex.com/" rel="external nofollow noreferrer" target="_blank">El Yandex.Métrica</a> datos. Compartimos nuestro entorno de pruebas con Yandex.Equipo de Metrica. ClickHouse se actualiza sin tiempo de inactividad sobre los datos existentes. Nos fijamos en un primer momento que los datos se procesan con éxito sin retraso de tiempo real, la replicación continúan trabajando y no hay problemas visibles para Yandex.Equipo de Metrica. La primera comprobación se puede hacer de la siguiente manera:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">hostName</span><span class="p">()</span> <span class="k">AS</span> <span class="n">h</span><span class="p">,</span> <span class="k">any</span><span class="p">(</span><span class="k">version</span><span class="p">()),</span> <span class="k">any</span><span class="p">(</span><span class="n">uptime</span><span class="p">()),</span> <span class="k">max</span><span class="p">(</span><span class="n">UTCEventTime</span><span class="p">),</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="n">remote</span><span class="p">(</span><span class="s1">'example01-01-{1..3}t'</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">hits</span><span class="p">)</span> <span class="k">WHERE</span> <span class="n">EventDate</span> <span class="o">&gt;=</span> <span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">h</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">h</span><span class="p">;</span>
+</code></pre></div>
+<p>En algunos casos también implementamos en el entorno de prueba de nuestros equipos de amigos en Yandex: Market, Cloud, etc. También tenemos algunos servidores de hardware que se utilizan con fines de desarrollo.</p>
+<h2 id="load-testing">Pruebas de carga<a class="headerlink" href="#load-testing" title="Permanent link"> </a></h2>
+<p>Después de implementar en el entorno de prueba, ejecutamos pruebas de carga con consultas del clúster de producción. Esto se hace manualmente.</p>
+<p>Asegúrese de que ha habilitado <code class="syntax">query_log</code> en su clúster de producción.</p>
+<p>Recopilar el registro de consultas para un día o más:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ clickhouse-client --query<span class="o">=</span><span class="s2">"SELECT DISTINCT query FROM system.query_log WHERE event_date = today() AND query LIKE '%ym:%' AND query NOT LIKE '%system.query_log%' AND type = 2 AND is_initial_query"</span> &gt; queries.tsv
+</code></pre></div>
+<p>Este es un ejemplo complicado. <code class="syntax">type = 2</code> filtrará las consultas que se ejecutan correctamente. <code class="syntax">query LIKE '%ym:%'</code> es seleccionar consultas relevantes de Yandex.Métrica. <code class="syntax">is_initial_query</code> es seleccionar solo las consultas iniciadas por el cliente, no por ClickHouse (como partes del procesamiento de consultas distribuidas).</p>
+<p><code class="syntax">scp</code> este registro en su clúster de prueba y ejecútelo de la siguiente manera:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ clickhouse benchmark --concurrency <span class="m">16</span> &lt; queries.tsv
+</code></pre></div>
+<p>(probablemente también desee especificar un <code class="syntax">--user</code>)</p>
+<p>Luego déjalo por una noche o un fin de semana e ir a tomar un descanso.</p>
+<p>Usted debe comprobar que <code class="syntax">clickhouse-server</code> no se bloquea, la huella de memoria está limitada y el rendimiento no se degrada con el tiempo.</p>
+<p>Los tiempos de ejecución de consultas precisos no se registran y no se comparan debido a la alta variabilidad de las consultas y el entorno.</p>
+<h2 id="build-tests">Pruebas de construcción<a class="headerlink" href="#build-tests" title="Permanent link"> </a></h2>
+<p>Las pruebas de compilación permiten verificar que la compilación no esté rota en varias configuraciones alternativas y en algunos sistemas extranjeros. Las pruebas se encuentran en <code class="syntax">ci</code> directorio. Ejecutan compilación desde la fuente dentro de Docker, Vagrant y, a veces, con <code class="syntax">qemu-user-static</code> dentro de Docker. Estas pruebas están en desarrollo y las ejecuciones de pruebas no están automatizadas.</p>
+<p>Motivación:</p>
+<p>Normalmente lanzamos y ejecutamos todas las pruebas en una sola variante de compilación ClickHouse. Pero hay variantes de construcción alternativas que no se prueban a fondo. Ejemplos:</p>
+<ul>
+<li>construir en FreeBSD;</li>
+<li>construir en Debian con bibliotecas de paquetes del sistema;</li>
+<li>construir con enlaces compartidos de bibliotecas;</li>
+<li>construir en la plataforma AArch64;</li>
+<li>construir en la plataforma PowerPc.</li>
+</ul>
+<p>Por ejemplo, construir con paquetes del sistema es una mala práctica, porque no podemos garantizar qué versión exacta de paquetes tendrá un sistema. Pero esto es realmente necesario para los mantenedores de Debian. Por esta razón, al menos tenemos que admitir esta variante de construcción. Otro ejemplo: la vinculación compartida es una fuente común de problemas, pero es necesaria para algunos entusiastas.</p>
+<p>Aunque no podemos ejecutar todas las pruebas en todas las variantes de compilaciones, queremos verificar al menos que varias variantes de compilación no estén rotas. Para este propósito utilizamos pruebas de construcción.</p>
+<h2 id="testing-for-protocol-compatibility">Pruebas de Compatibilidad de protocolos<a class="headerlink" href="#testing-for-protocol-compatibility" title="Permanent link"> </a></h2>
+<p>Cuando ampliamos el protocolo de red ClickHouse, probamos manualmente que el antiguo clickhouse-client funciona con el nuevo clickhouse-server y el nuevo clickhouse-client funciona con el antiguo clickhouse-server (simplemente ejecutando binarios de los paquetes correspondientes).</p>
+<h2 id="help-from-the-compiler">Ayuda del compilador<a class="headerlink" href="#help-from-the-compiler" title="Permanent link"> </a></h2>
+<p>Código principal de ClickHouse (que se encuentra en <code class="syntax">dbms</code> directorio) se construye con <code class="syntax">-Wall -Wextra -Werror</code> y con algunas advertencias habilitadas adicionales. Aunque estas opciones no están habilitadas para bibliotecas de terceros.</p>
+<p>Clang tiene advertencias aún más útiles: puedes buscarlas con <code class="syntax">-Weverything</code> y elige algo para la compilación predeterminada.</p>
+<p>Para las compilaciones de producción, se usa gcc (todavía genera un código ligeramente más eficiente que clang). Para el desarrollo, el clang suele ser más conveniente de usar. Puede construir en su propia máquina con el modo de depuración (para ahorrar batería de su computadora portátil), pero tenga en cuenta que el compilador puede generar más advertencias con <code class="syntax">-O3</code> debido a un mejor flujo de control y análisis entre procedimientos. Al construir con clang, <code class="syntax">libc++</code> se utiliza en lugar de <code class="syntax">libstdc++</code> y al construir con el modo de depuración, la versión de depuración de <code class="syntax">libc++</code> se utiliza que permite detectar más errores en tiempo de ejecución.</p>
+<h2 id="sanitizers">Desinfectantes<a class="headerlink" href="#sanitizers" title="Permanent link"> </a></h2>
+<p><strong>Dirección desinfectante</strong>.<br/>
+Ejecutamos pruebas funcionales y de integración bajo ASan por compromiso.</p>
+<p><strong>Valgrind (Memcheck)</strong>.<br/>
+Realizamos pruebas funcionales bajo Valgrind durante la noche. Se tarda varias horas. Actualmente hay un falso positivo conocido en <code class="syntax">re2</code> biblioteca, ver <a href="https://research.swtch.com/sparse" rel="external nofollow noreferrer" target="_blank">este artículo</a>.</p>
+<p><strong>Desinfectante de comportamiento indefinido.</strong><br/>
+Ejecutamos pruebas funcionales y de integración bajo ASan por compromiso.</p>
+<p><strong>Desinfectante de hilo</strong>.<br/>
+Ejecutamos pruebas funcionales bajo TSan por compromiso. Todavía no ejecutamos pruebas de integración bajo TSan por compromiso.</p>
+<p><strong>Desinfectante de memoria</strong>.<br/>
+Actualmente todavía no usamos MSan.</p>
+<p><strong>Asignador de depuración.</strong><br/>
+Versión de depuración de <code class="syntax">jemalloc</code> se utiliza para la compilación de depuración.</p>
+<h2 id="fuzzing">Fuzzing<a class="headerlink" href="#fuzzing" title="Permanent link"> </a></h2>
+<p>ClickHouse fuzzing se implementa tanto usando <a href="https://llvm.org/docs/LibFuzzer.html" rel="external nofollow noreferrer" target="_blank">LibFuzzer</a> y consultas SQL aleatorias.<br/>
+Todas las pruebas de fuzz deben realizarse con desinfectantes (Dirección y Undefined).</p>
+<p>LibFuzzer se usa para pruebas de fuzz aisladas del código de la biblioteca. Fuzzers se implementan como parte del código de prueba y tienen “_fuzzer” nombre postfixes.<br/>
+El ejemplo de Fuzzer se puede encontrar en <code class="syntax">src/Parsers/tests/lexer_fuzzer.cpp</code>. Las configuraciones, diccionarios y corpus específicos de LibFuzzer se almacenan en <code class="syntax">tests/fuzz</code>.<br/>
+Le recomendamos que escriba pruebas fuzz para cada funcionalidad que maneje la entrada del usuario.</p>
+<p>Fuzzers no se construyen de forma predeterminada. Para construir fuzzers ambos <code class="syntax">-DENABLE_FUZZING=1</code> y <code class="syntax">-DENABLE_TESTS=1</code> se deben establecer opciones.<br/>
+Recomendamos deshabilitar Jemalloc mientras se construyen fuzzers. Configuración utilizada para integrar<br/>
+Google OSS-Fuzz se puede encontrar en <code class="syntax">docker/fuzz</code>.</p>
+<p>También usamos una prueba de fuzz simple para generar consultas SQL aleatorias y verificar que el servidor no muera al ejecutarlas.<br/>
+Lo puedes encontrar en <code class="syntax">00746_sql_fuzzy.pl</code>. Esta prueba debe ejecutarse de forma continua (de la noche a la mañana y más).</p>
+<h2 id="security-audit">Auditoría de seguridad<a class="headerlink" href="#security-audit" title="Permanent link"> </a></h2>
+<p>La gente de Yandex Security Team hace una visión general básica de las capacidades de ClickHouse desde el punto de vista de la seguridad.</p>
+<h2 id="static-analyzers">Analizadores estáticos<a class="headerlink" href="#static-analyzers" title="Permanent link"> </a></h2>
+<p>Corremos <code class="syntax">PVS-Studio</code> por compromiso. Hemos evaluado <code class="syntax">clang-tidy</code>, <code class="syntax">Coverity</code>, <code class="syntax">cppcheck</code>, <code class="syntax">PVS-Studio</code>, <code class="syntax">tscancode</code>. Encontrará instrucciones de uso en <code class="syntax">tests/instructions/</code> directorio. También puedes leer <a href="https://habr.com/company/yandex/blog/342018/" rel="external nofollow noreferrer" target="_blank">el artículo en ruso</a>.</p>
+<p>Si usted usa <code class="syntax">CLion</code> como IDE, puede aprovechar algunos <code class="syntax">clang-tidy</code> comprueba fuera de la caja.</p>
+<h2 id="hardening">Endurecer<a class="headerlink" href="#hardening" title="Permanent link"> </a></h2>
+<p><code class="syntax">FORTIFY_SOURCE</code> se utiliza de forma predeterminada. Es casi inútil, pero todavía tiene sentido en casos raros y no lo desactivamos.</p>
+<h2 id="code-style">Estilo de código<a class="headerlink" href="#code-style" title="Permanent link"> </a></h2>
+<p>Se describen las reglas de estilo de código <a href="https://clickhouse.tech/docs/en/development/style/" target="_blank">aqui</a>.</p>
+<p>Para comprobar si hay algunas violaciones de estilo comunes, puede usar <code class="syntax">utils/check-style</code> script.</p>
+<p>Para forzar el estilo adecuado de su código, puede usar <code class="syntax">clang-format</code>. File <code class="syntax">.clang-format</code> se encuentra en la raíz de las fuentes. Se corresponde principalmente con nuestro estilo de código real. Pero no se recomienda aplicar <code class="syntax">clang-format</code> a los archivos existentes porque empeora el formato. Usted puede utilizar <code class="syntax">clang-format-diff</code> herramienta que puede encontrar en el repositorio de origen clang.</p>
+<p>Alternativamente, puede intentar <code class="syntax">uncrustify</code> herramienta para reformatear su código. La configuración está en <code class="syntax">uncrustify.cfg</code> en la raíz de las fuentes. Es menos probado que <code class="syntax">clang-format</code>.</p>
+<p><code class="syntax">CLion</code> tiene su propio formateador de código que debe ajustarse para nuestro estilo de código.</p>
+<h2 id="metrica-b2b-tests">Pruebas Metrica B2B<a class="headerlink" href="#metrica-b2b-tests" title="Permanent link"> </a></h2>
+<p>Cada lanzamiento de ClickHouse se prueba con los motores Yandex Metrica y AppMetrica. Las pruebas y las versiones estables de ClickHouse se implementan en máquinas virtuales y se ejecutan con una copia pequeña del motor Metrica que procesa una muestra fija de datos de entrada. A continuación, los resultados de dos instancias del motor Metrica se comparan juntos.</p>
+<p>Estas pruebas son automatizadas por un equipo separado. Debido a la gran cantidad de piezas móviles, las pruebas fallan la mayor parte del tiempo por razones completamente no relacionadas, que son muy difíciles de descubrir. Lo más probable es que estas pruebas tengan un valor negativo para nosotros. Sin embargo, se demostró que estas pruebas son útiles en aproximadamente una o dos veces de cada cientos.</p>
+<h2 id="test-coverage">Cobertura de prueba<a class="headerlink" href="#test-coverage" title="Permanent link"> </a></h2>
+<p>A partir de julio de 2018, no realizamos un seguimiento de la cobertura de las pruebas.</p>
+<h2 id="test-automation">Automatización de pruebas<a class="headerlink" href="#test-automation" title="Permanent link"> </a></h2>
+<p>Realizamos pruebas con el CI interno de Yandex y el sistema de automatización de trabajos llamado “Sandbox”.</p>
+<p>Los trabajos de compilación y las pruebas se ejecutan en Sandbox por confirmación. Los paquetes resultantes y los resultados de las pruebas se publican en GitHub y se pueden descargar mediante enlaces directos. Los artefactos se almacenan eternamente. Cuando envías una solicitud de extracción en GitHub, la etiquetamos como “can be tested” y nuestro sistema CI construirá paquetes ClickHouse (liberación, depuración, con desinfectante de direcciones, etc.) para usted.</p>
+<p>No usamos Travis CI debido al límite de tiempo y potencia computacional.<br/>
+No usamos Jenkins. Se usó antes y ahora estamos felices de no estar usando Jenkins.</p>
+<p><a href="https://clickhouse.tech/docs/en/development/tests/" target="_blank">Artículo Original</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">Clasificación: RATING_VALUE - RATING_COUNT voto</p>
+  <span class="alert-heading display-6">¿Este contenido fue útil?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['Inutilizable', 'Pobre', 'OK', 'Bien', 'Excelente']"
+     data-documentation="documentación"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>Construido a partir de <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, publicado en <span title="2020-03-21T07:11:51+03:00">2020-03-21</span>, modificado en <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">Tabla de contenido</label>
+    
+    
+        
+        
+        <a href="#functional-tests" title="Pruebas funcionales" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas funcionales
+</a>
+
+    
+        
+        
+        <a href="#known-bugs" title="Bugs Conocidos" class="nav-link text-wrap d-inline-block w-100">
+    Bugs Conocidos
+</a>
+
+    
+        
+        
+        <a href="#integration-tests" title="Pruebas de integración" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas de integración
+</a>
+
+    
+        
+        
+        <a href="#unit-tests" title="Pruebas unitarias" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas unitarias
+</a>
+
+    
+        
+        
+        <a href="#performance-tests" title="Pruebas de rendimiento" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas de rendimiento
+</a>
+
+    
+        
+        
+        <a href="#test-tools-and-scripts" title="Herramientas de prueba y secuencias de comandos" class="nav-link text-wrap d-inline-block w-100">
+    Herramientas de prueba y secuencias de comandos
+</a>
+
+    
+        
+        
+        <a href="#miscellaneous-tests" title="Pruebas diversas" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas diversas
+</a>
+
+    
+        
+        
+        <a href="#manual-testing" title="Pruebas manuales" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas manuales
+</a>
+
+    
+        
+        
+        <a href="#testing-environment" title="Entorno de prueba" class="nav-link text-wrap d-inline-block w-100">
+    Entorno de prueba
+</a>
+
+    
+        
+        
+        <a href="#load-testing" title="Pruebas de carga" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas de carga
+</a>
+
+    
+        
+        
+        <a href="#build-tests" title="Pruebas de construcción" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas de construcción
+</a>
+
+    
+        
+        
+        <a href="#testing-for-protocol-compatibility" title="Pruebas de Compatibilidad de protocolos" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas de Compatibilidad de protocolos
+</a>
+
+    
+        
+        
+        <a href="#help-from-the-compiler" title="Ayuda del compilador" class="nav-link text-wrap d-inline-block w-100">
+    Ayuda del compilador
+</a>
+
+    
+        
+        
+        <a href="#sanitizers" title="Desinfectantes" class="nav-link text-wrap d-inline-block w-100">
+    Desinfectantes
+</a>
+
+    
+        
+        
+        <a href="#fuzzing" title="Fuzzing" class="nav-link text-wrap d-inline-block w-100">
+    Fuzzing
+</a>
+
+    
+        
+        
+        <a href="#security-audit" title="Auditoría de seguridad" class="nav-link text-wrap d-inline-block w-100">
+    Auditoría de seguridad
+</a>
+
+    
+        
+        
+        <a href="#static-analyzers" title="Analizadores estáticos" class="nav-link text-wrap d-inline-block w-100">
+    Analizadores estáticos
+</a>
+
+    
+        
+        
+        <a href="#hardening" title="Endurecer" class="nav-link text-wrap d-inline-block w-100">
+    Endurecer
+</a>
+
+    
+        
+        
+        <a href="#code-style" title="Estilo de código" class="nav-link text-wrap d-inline-block w-100">
+    Estilo de código
+</a>
+
+    
+        
+        
+        <a href="#metrica-b2b-tests" title="Pruebas Metrica B2B" class="nav-link text-wrap d-inline-block w-100">
+    Pruebas Metrica B2B
+</a>
+
+    
+        
+        
+        <a href="#test-coverage" title="Cobertura de prueba" class="nav-link text-wrap d-inline-block w-100">
+    Cobertura de prueba
+</a>
+
+    
+        
+        
+        <a href="#test-automation" title="Automatización de pruebas" class="nav-link text-wrap d-inline-block w-100">
+    Automatización de pruebas
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

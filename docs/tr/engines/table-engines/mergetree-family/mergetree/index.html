@@ -1,0 +1,3808 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="tr" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>MergeTree | ClickHouse Belgeleri</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="MergeTree | ClickHouse Belgeleri"/>
+<meta property="og:description" content="MergeTree Bu MergeTree bu ailenin motoru ve diğer motorları (*MergeTree) en sağlam ClickHouse masa motorlarıdır. Motor i" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/tr/engines/table-engines/mergetree-family/mergetree/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/tr/engines/table-engines/mergetree-family/mergetree/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/tr/engines/table-engines/mergetree-family/mergetree/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "MergeTree | ClickHouse Belgeleri",
+"mainEntityOfPage": "https://clickhouse.tech/docs/tr/engines/table-engines/mergetree-family/mergetree/",
+
+"datePublished": "2020-04-15T16:56:49+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "MergeTree | ClickHouse Belgeleri",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="MergeTree Bu MergeTree bu ailenin motoru ve diğer motorları (*MergeTree) en sağlam ClickHouse masa motorlarıdır. Motor i" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, açık kaynak, ilişkisel, analiz, analitik, Büyük Veri, web-analyt -ics" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/engines/table-engines/mergetree-family/mergetree/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/mergetree/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        MergeTree
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/engines/table-engines/mergetree-family/mergetree.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/tr.svg" alt="Türkçe" title="Türkçe" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/tr/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/engines/table-engines/mergetree-family/mergetree/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="Çok sayfalı veya tek sayfalı">
+            <a href="../../../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="Çok sayfalı sürüm" title="Çok sayfalı sürüm" />
+            </a>
+            <a href="../../../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="Tek sayfalık sürüm" title="Tek sayfalık sürüm" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sürüm: <span class="text-light">son</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/tr/">
+                    <span class="text-light">son</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="Giriş" class="nav-link text-light text-wrap dropdown-toggle px-0">Giriş</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../introduction/distinctive-features/" title="Ayırt Edici Özellikler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayırt Edici Özellikler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../introduction/performance/" title="Performans" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performans</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../introduction/history/" title="Tarih" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../introduction/adopters/" title="Benimseyenler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Benimseyenler</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="Başlarken" class="nav-link text-light text-wrap dropdown-toggle px-0">Başlarken</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/install/" title="Kurulum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kurulum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="Örnek Veri Kümeleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Örnek Veri Kümeleri</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/metrica/" title="Üye.Metrica Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Üye.Metrica Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/ontime/" title="OnTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">OnTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/nyc-taxi/" title="New York Taksi Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">New York Taksi Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab Büyük Veri Benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab Büyük Veri Benchmark</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/wikistat/" title="WikiStat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WikiStat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/criteo/" title="Criteo'dan Terabyte tıklama günlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteo'dan Terabyte tıklama günlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/example-datasets/star-schema/" title="Yıldız Şema Ben Benchmarkch Benchmarkmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yıldız Şema Ben Benchmarkch Benchmarkmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/tutorial/" title="Öğretici" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Öğretici</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../getting-started/playground/" title="Bahçe" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bahçe</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="Arabirimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Arabirimler</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/cli/" title="Komut Satırı İstemcisi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Komut Satırı İstemcisi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/tcp/" title="Yerel arabirim (TCP)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yerel arabirim (TCP)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/http/" title="HTTP arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTP arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/mysql/" title="MySQL Arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL Arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/formats/" title="Giriş ve çıkış biçimleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş ve çıkış biçimleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/jdbc/" title="JDBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/odbc/" title="ODBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/cpp/" title="C++ İstemci Kitaplığı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ İstemci Kitaplığı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="Üçüncü Taraf" class="nav-link text-light text-wrap dropdown-toggle px-0">Üçüncü Taraf</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/third-party/client-libraries/" title="İstemci Kitaplıkları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İstemci Kitaplıkları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/third-party/integrations/" title="Entegrasyonlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Entegrasyonlar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/third-party/gui/" title="Görsel Arayüzler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görsel Arayüzler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../interfaces/third-party/proxy/" title="Vekiller" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Vekiller</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="Motorlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Motorlar</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="Masa Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Masa Motorları</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="MergeTree Ailesi" class="nav-link text-light text-wrap dropdown-toggle px-0">MergeTree Ailesi</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/mergetree/" title="MergeTree" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/replication/" title="Veri Çoğaltma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Çoğaltma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="Özel Bölümleme Anahtarı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Özel Bölümleme Anahtarı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/replacingmergetree/" title="ReplacingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ReplacingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/collapsingmergetree/" title="CollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="VersionedCollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">VersionedCollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/mergetree-family/graphitemergetree/" title="Graphıtemergetree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Graphıtemergetree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="Günlük Aile" class="nav-link text-light text-wrap dropdown-toggle px-0">Günlük Aile</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/log-family/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/log-family/log/" title="Günlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Günlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="Entegrasyonlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Entegrasyonlar</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="Özellikli" class="nav-link text-light text-wrap dropdown-toggle px-0">Özellikli</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/distributed/" title="Dağılı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dağılı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/external-data/" title="Dış veri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış veri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/dictionary/" title="Sözlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/merge/" title="Birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/null/" title="Boş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/join/" title="Katmak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Katmak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/view/" title="Görünüm" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görünüm</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/materializedview/" title="MaterializedView" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MaterializedView</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/memory/" title="Hafıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hafıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/buffer/" title="Arabellek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arabellek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="Veritabanı Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Veritabanı Motorları</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../engines/database-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../engines/database-engines/lazy/" title="Tembel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tembel</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="SQL başvurusu" class="nav-link text-light text-wrap dropdown-toggle px-0">SQL başvurusu</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="Deyimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Deyimler</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/" title="Overview" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Overview</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/statements/misc/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/syntax/" title="Sözdizimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözdizimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="İşlevler" class="nav-link text-light text-wrap dropdown-toggle px-0">İşlevler</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/arithmetic-functions/" title="Aritmetik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aritmetik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/comparison-functions/" title="Karşılaştırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karşılaştırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/logical-functions/" title="Mantıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mantıklı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/type-conversion-functions/" title="Tip Dönüştürme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tip Dönüştürme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/date-time-functions/" title="Tarih ve Saatlerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih ve Saatlerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/string-functions/" title="Dizeleri ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/string-search-functions/" title="Arama Dizeleri İçin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arama Dizeleri İçin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/string-replace-functions/" title="Dizelerde değiştirilmesi için" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizelerde değiştirilmesi için</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/conditional-functions/" title="Koşullu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koşullu</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/math-functions/" title="Matematiksel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matematiksel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/rounding-functions/" title="Dönmüş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dönmüş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/array-functions/" title="Dizilerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizilerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/splitting-merging-functions/" title="Dizeleri ve dizileri bölme ve birleştirme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ve dizileri bölme ve birleştirme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/bit-functions/" title="Bitlik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bitlik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/bitmap-functions/" title="Eşlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Eşlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/hash-functions/" title="Karma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/random-functions/" title="Sözde Rasgele Sayılar Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözde Rasgele Sayılar Oluşturma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/encoding-functions/" title="Kodlamış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kodlamış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/uuid-functions/" title="UUID ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/url-functions/" title="URL'ler ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL'ler ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/ip-address-functions/" title="IP adresleriyle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IP adresleriyle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/json-functions/" title="Json ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Json ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/higher-order-functions/" title="Yüksek Sipariş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yüksek Sipariş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/ext-dict-functions/" title="Harici Sözlüklerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici Sözlüklerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/ym-dict-functions/" title="Yandex ile çalışmak.Metrica Sözlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex ile çalışmak.Metrica Sözlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/in-functions/" title="In İşlet theic implementingisinin uygulanması" class="nav-link text-light text-wrap d-inline-block w-100 px-0">In İşlet theic implementingisinin uygulanması</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/array-join/" title="arrayJoin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/geo/" title="Coğrafi koordinatlar ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Coğrafi koordinatlar ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/functions-for-nulls/" title="Null argümanlarla çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null argümanlarla çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/machine-learning-functions/" title="Makine Öğrenme Fonksiyonları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Makine Öğrenme Fonksiyonları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/introspection/" title="İçgözlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İçgözlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/functions/other-functions/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="Toplama Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Toplama Fonksiyonları</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/aggregate-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/aggregate-functions/reference/" title="Başvurma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Başvurma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/aggregate-functions/combinators/" title="Birleştiriciler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştiriciler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/aggregate-functions/parametric-functions/" title="Parametrik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Parametrik</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="Tablo Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Tablo Fonksiyonları</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/merge/" title="birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/numbers/" title="şiir" class="nav-link text-light text-wrap d-inline-block w-100 px-0">şiir</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/remote/" title="uzak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">uzak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/hdfs/" title="hdf'ler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdf'ler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/input/" title="girdi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">girdi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="Sözlükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Sözlükler</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="Dış Söz Dictionarieslükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Dış Söz Dictionarieslükler</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="Genel Açıklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Açıklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="Harici bir sözlük yapılandırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici bir sözlük yapılandırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="Sözlükleri bellekte saklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlükleri bellekte saklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="Sözlük Güncellemeleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük Güncellemeleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="Dış Sözlüklerin kaynakları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış Sözlüklerin kaynakları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="Sözlük anahtarı ve alanları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük anahtarı ve alanları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="Hiyerarşik sözlükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiyerarşik sözlükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/dictionaries/internal-dicts/" title="İç Söz Dictionarieslükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç Söz Dictionarieslükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="Operatörler" class="nav-link text-light text-wrap dropdown-toggle px-0">Operatörler</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/operators/" title="Operatörler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Operatörler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/operators/in/" title="IN Operators" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operators</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Veri Türleri</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/int-uint/" title="Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/decimal/" title="Ondalık" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ondalık</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/boolean/" title="Boeanoleanean" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boeanoleanean</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/string/" title="Dize" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dize</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/fixedstring/" title="FixedString(N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FixedString(N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/date/" title="Tarihli" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarihli</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/array/" title="Dizi(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizi(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction (ad, types_of_arguments...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction (ad, types_of_arguments...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/tuple/" title="Tuple (T1, T2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple (T1, T2, ...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-17" title="İç İçe Veri Yapıları" class="nav-link text-light text-wrap dropdown-toggle px-0">İç İçe Veri Yapıları</a>
+<div id="sidebar-sidebar-5-9-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/nested-data-structures/nested/" title="İç İçe (Name1 Type1, Name2 Type2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç İçe (Name1 Type1, Name2 Type2,...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-18" title="Özel Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Özel Veri Türleri</a>
+<div id="sidebar-sidebar-5-9-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/special-data-types/expression/" title="İfade" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İfade</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/special-data-types/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/special-data-types/nothing/" title="Hiçbir şey" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiçbir şey</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/special-data-types/interval/" title="Aralıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aralıklı</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-19" title="Etkiler" class="nav-link text-light text-wrap dropdown-toggle px-0">Etkiler</a>
+<div id="sidebar-sidebar-5-9-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/domains/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/domains/ipv4/" title="Ipv44" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ipv44</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../sql-reference/ansi/" title="ANSI uyumluluğu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSI uyumluluğu</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="Kılavuzlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Kılavuzlar</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../guides/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../guides/apply-catboost-model/" title="CatBoost Modellerini Uygulamak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CatBoost Modellerini Uygulamak</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="Harekat" class="nav-link text-light text-wrap dropdown-toggle px-0">Harekat</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../operations/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/requirements/" title="Gereksinimler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Gereksinimler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/monitoring/" title="İzleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İzleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/troubleshooting/" title="Arıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/update/" title="ClickHouse Güncelleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse Güncelleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/access-rights/" title="Erişim Kontrolü ve hesap yönetimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Erişim Kontrolü ve hesap yönetimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/backup/" title="Veri Yedekleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Yedekleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/configuration-files/" title="Yapılandırma Dosyaları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yapılandırma Dosyaları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/quotas/" title="Kotalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kotalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="Performansı Optimize Etme" class="nav-link text-light text-wrap dropdown-toggle px-0">Performansı Optimize Etme</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/optimizing-performance/sampling-query-profiler/" title="Sorgu Profili Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu Profili Oluşturma</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/system-tables/" title="Sistem Tabloları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sistem Tabloları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/performance-test/" title="Donanım Test" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Donanım Test</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="Sunucu Yapılandırma Parametreleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Sunucu Yapılandırma Parametreleri</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../operations/server-configuration-parameters/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/server-configuration-parameters/settings/" title="Sunucu Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sunucu Ayarları</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="Ayarlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Ayarlar</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/permissions-for-queries/" title="Sorgular için izinler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgular için izinler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/query-complexity/" title="Sorgu karmaşıklığı üzerindeki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu karmaşıklığı üzerindeki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/settings-profiles/" title="Ayarlar Profilleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar Profilleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/constraints-on-settings/" title="Ayarlardaki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlardaki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/settings-users/" title="Kullanıcı Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanıcı Ayarları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/settings/settings/" title="Ayarlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="Programlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Programlar</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../operations/utilities/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/utilities/clickhouse-copier/" title="clickhouse-fotokopi makinesi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-fotokopi makinesi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/utilities/clickhouse-local/" title="clickhouse-yerel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-yerel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/utilities/clickhouse-benchmark/" title="clickhouse-benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-benchmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../operations/tips/" title="Kullanım Önerileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanım Önerileri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="Gelişme" class="nav-link text-light text-wrap dropdown-toggle px-0">Gelişme</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/developer-instruction/" title="Acemi ClickHouse Geliştirici Talimat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Acemi ClickHouse Geliştirici Talimat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/architecture/" title="ClickHouse mimarisine genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse mimarisine genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/browse-code/" title="Kaynak Koduna Gözat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kaynak Koduna Gözat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/build/" title="Linux üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Linux üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/build-osx/" title="Mac OS X üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/build-cross-osx/" title="Mac OS X için Linux'ta ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X için Linux'ta ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/build-cross-arm/" title="AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/style/" title="C++ kodu nasıl yazılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ kodu nasıl yazılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/tests/" title="ClickHouse testleri nasıl çalıştırılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse testleri nasıl çalıştırılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../development/contrib/" title="Kullanılan Üçüncü Taraf Kütüphaneleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanılan Üçüncü Taraf Kütüphaneleri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="Ticari" class="nav-link text-light text-wrap dropdown-toggle px-0">Ticari</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../commercial/cloud/" title="Bulut" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bulut</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../commercial/support/" title="Support" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Support</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="Ne yeni" class="nav-link text-light text-wrap dropdown-toggle px-0">Ne yeni</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="Changelog" class="nav-link text-light text-wrap dropdown-toggle px-0">Changelog</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/roadmap/" title="Yol haritası" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yol haritası</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../../../whats-new/security-changelog/" title="Güvenlik Changelog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Güvenlik Changelog</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../../../faq/general/" title="Genel Sorular" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Sorular</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../../../single/clickhouse_tr.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDF versiyonu" title="PDF versiyonu" height="24" class="d-block mr-1 float-left" /><div>PDF versiyonu</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../../../" class="text-reset">Motorlar</a>
+                            
+                        </li>
+                       
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../../" class="text-reset">Masa Motorları</a>
+                            
+                        </li>
+                       
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">MergeTree Ailesi</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">Yardım istedi!</p>
+      <p class="lead">Bu Dokümantasyon sayfasının aşağıdaki içeriği makine tarafından çevrilmiştir. Ancak diğer web sitelerinin aksine, anında yapılmaz. Bu çevrilmiş metin, ana ClickHouse kod tabanının yanında GitHub deposunda yaşar ve diğer anadili konuşanların daha insan tarafından okunabilir olmasını bekler. <a href="/docs/en/engines/table-engines/mergetree-family/mergetree/" class="alert-link">Orijinal İngilizce sürümünü referans olarak da kullanabilirsiniz.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/engines/table-engines/mergetree-family/mergetree.md" target="_blank" rel="external nofollow noreferrer">
+              Bu sayfayı düzenleyerek ClickHouse belgelerine yardım edin
+          </a>
+      </p>
+    </div>
+
+            <h1 id="table_engines-mergetree">MergeTree<a class="headerlink" href="#table_engines-mergetree" title="Permanent link"> </a></h1>
+<p>Bu <code class="syntax">MergeTree</code> bu ailenin motoru ve diğer motorları (<code class="syntax">*MergeTree</code>) en sağlam ClickHouse masa motorlarıdır.</p>
+<p>Motor inlarda <code class="syntax">MergeTree</code> aile, bir tabloya çok büyük miktarda veri eklemek için tasarlanmıştır. Veriler hızlı bir şekilde tabloya kısmen yazılır, daha sonra parçaları arka planda birleştirmek için kurallar uygulanır. Bu yöntem, ınsert sırasında depolama alanındaki verileri sürekli olarak yeniden yazmaktan çok daha etkilidir.</p>
+<p>Ana özellikler:</p>
+<ul>
+<li>
+<p>Birincil anahtara göre sıralanmış verileri saklar.</p>
+<p>Bu, verileri daha hızlı bulmanıza yardımcı olan küçük bir seyrek dizin oluşturmanıza olanak sağlar.</p>
+</li>
+<li>
+<p>Bölümler eğer kullanılabilir <a href="../custom-partitioning-key/">bölümleme anahtarı</a> belirt .ilmektedir.</p>
+<p>ClickHouse, aynı sonuçla aynı veriler üzerindeki genel işlemlerden daha etkili olan bölümlerle belirli işlemleri destekler. ClickHouse, bölümleme anahtarının sorguda belirtildiği bölüm verilerini de otomatik olarak keser. Bu da sorgu performansını artırır.</p>
+</li>
+<li>
+<p>Veri çoğaltma desteği.</p>
+<p>The family of <code class="syntax">ReplicatedMergeTree</code> tablolar veri çoğaltma sağlar. Daha fazla bilgi için, bkz. <a href="../replication/">Veri çoğaltma</a>.</p>
+</li>
+<li>
+<p>Veri örnekleme desteği.</p>
+<p>Gerekirse, tabloda veri örnekleme yöntemini ayarlayabilirsiniz.</p>
+</li>
+</ul>
+<div class="admonition info alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Bilgin</p>
+<p>Bu <a class="alert-link" href="../../special/merge/#merge">Birleştirmek</a> motor ait değil <code class="syntax">*MergeTree</code> aile.</p>
+</div>
+<h2 id="table_engine-mergetree-creating-a-table">Tablo oluşturma<a class="headerlink" href="#table_engine-mergetree-creating-a-table" title="Permanent link"> </a></h2>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="k">table_name</span> <span class="p">[</span><span class="k">ON</span> <span class="k">CLUSTER</span> <span class="k">cluster</span><span class="p">]</span>
+<span class="p">(</span>
+    <span class="n">name1</span> <span class="p">[</span><span class="n">type1</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span><span class="o">|</span><span class="n">MATERIALIZED</span><span class="o">|</span><span class="k">ALIAS</span> <span class="n">expr1</span><span class="p">]</span> <span class="p">[</span><span class="n">TTL</span> <span class="n">expr1</span><span class="p">],</span>
+    <span class="n">name2</span> <span class="p">[</span><span class="n">type2</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span><span class="o">|</span><span class="n">MATERIALIZED</span><span class="o">|</span><span class="k">ALIAS</span> <span class="n">expr2</span><span class="p">]</span> <span class="p">[</span><span class="n">TTL</span> <span class="n">expr2</span><span class="p">],</span>
+    <span class="p">...</span>
+    <span class="k">INDEX</span> <span class="n">index_name1</span> <span class="n">expr1</span> <span class="k">TYPE</span> <span class="n">type1</span><span class="p">(...)</span> <span class="n">GRANULARITY</span> <span class="n">value1</span><span class="p">,</span>
+    <span class="k">INDEX</span> <span class="n">index_name2</span> <span class="n">expr2</span> <span class="k">TYPE</span> <span class="n">type2</span><span class="p">(...)</span> <span class="n">GRANULARITY</span> <span class="n">value2</span>
+<span class="p">)</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span><span class="p">()</span>
+<span class="p">[</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">expr</span><span class="p">]</span>
+<span class="p">[</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">expr</span><span class="p">]</span>
+<span class="p">[</span><span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">expr</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SAMPLE</span> <span class="k">BY</span> <span class="n">expr</span><span class="p">]</span>
+<span class="p">[</span><span class="n">TTL</span> <span class="n">expr</span> <span class="p">[</span><span class="k">DELETE</span><span class="o">|</span><span class="k">TO</span> <span class="n">DISK</span> <span class="s1">'xxx'</span><span class="o">|</span><span class="k">TO</span> <span class="n">VOLUME</span> <span class="s1">'xxx'</span><span class="p">],</span> <span class="p">...]</span>
+<span class="p">[</span><span class="n">SETTINGS</span> <span class="n">name</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="p">...]</span>
+</code></pre></div>
+<p>Parametrelerin açıklaması için bkz. <a href="../../../../sql-reference/statements/create/">Sorgu açıklaması oluştur</a>.</p>
+<div class="admonition note alert pb-0 mb-4 alert-primary" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Not</p>
+<p><code class="syntax">INDEX</code> deneysel bir özelliktir, bkz <a class="alert-link" href="#table_engine-mergetree-data_skipping-indexes">Veri Atlama Dizinleri</a>.</p>
+</div>
+<h3 id="mergetree-query-clauses">Sorgu Yan Tümceleri<a class="headerlink" href="#mergetree-query-clauses" title="Permanent link"> </a></h3>
+<ul>
+<li>
+<p><code class="syntax">ENGINE</code> — Name and parameters of the engine. <code class="syntax">ENGINE = MergeTree()</code>. Bu <code class="syntax">MergeTree</code> motor parametreleri yok.</p>
+</li>
+<li>
+<p><code class="syntax">PARTITION BY</code> — The <a href="../custom-partitioning-key/">bölümleme anahtarı</a>.</p>
+<p>Aylara göre bölümleme için <code class="syntax">toYYYYMM(date_column)</code> ifade, nerede <code class="syntax">date_column</code> türün tarihi olan bir sütun mu <a href="../../../../sql-reference/data-types/date/">Tarihli</a>. Burada bölüm isimleri var <code class="syntax">"YYYYMM"</code> biçimli.</p>
+</li>
+<li>
+<p><code class="syntax">ORDER BY</code> — The sorting key.</p>
+<p>Sütun veya keyfi ifadeler bir tuple. Örnek: <code class="syntax">ORDER BY (CounterID, EventDate)</code>.</p>
+</li>
+<li>
+<p><code class="syntax">PRIMARY KEY</code> — The primary key if it <a href="#choosing-a-primary-key-that-differs-from-the-sorting-key">sıralama anahtarından farklıdır</a>.</p>
+<p>Varsayılan olarak, birincil anahtar sıralama anahtarıyla aynıdır (bu anahtar tarafından belirtilir). <code class="syntax">ORDER BY</code> yan). Bu nedenle çoğu durumda ayrı bir belirtmek gereksizdir <code class="syntax">PRIMARY KEY</code> yan.</p>
+</li>
+<li>
+<p><code class="syntax">SAMPLE BY</code> — An expression for sampling.</p>
+<p>Bir örnekleme ifadesi kullanılırsa, birincil anahtar onu içermelidir. Örnek: <code class="syntax">SAMPLE BY intHash32(UserID) ORDER BY (CounterID, EventDate, intHash32(UserID))</code>.</p>
+</li>
+<li>
+<p><code class="syntax">TTL</code> — A list of rules specifying storage duration of rows and defining logic of automatic parts movement <a href="#table_engine-mergetree-multiple-volumes">diskler ve birimler arasında</a>.</p>
+<p>İfade bir olmalıdır <code class="syntax">Date</code> veya <code class="syntax">DateTime</code> sonuç olarak sütun. Örnek:<br/>
+<code class="syntax">TTL date + INTERVAL 1 DAY</code></p>
+<p>Kuralın türü <code class="syntax">DELETE|TO DISK 'xxx'|TO VOLUME 'xxx'</code> ifade tatmin edildiyse (geçerli zamana ulaşırsa) parça ile yapılacak bir eylemi belirtir: süresi dolmuş satırların kaldırılması, bir parçanın (bir parçadaki tüm satırlar için ifade tatmin edildiyse) belirtilen diske taşınması (<code class="syntax">TO DISK 'xxx'</code>) veya hacim (<code class="syntax">TO VOLUME 'xxx'</code>). Kuralın varsayılan türü kaldırma (<code class="syntax">DELETE</code>). Birden fazla kural listesi belirtilebilir, ancak birden fazla olmamalıdır <code class="syntax">DELETE</code> kural.</p>
+<p>Daha fazla ayrıntı için bkz. <a href="#table_engine-mergetree-ttl">Sütunlar ve tablolar için TTL</a></p>
+</li>
+<li>
+<p><code class="syntax">SETTINGS</code> — Additional parameters that control the behavior of the <code class="syntax">MergeTree</code>:</p>
+<ul>
+<li><code class="syntax">index_granularity</code> — Maximum number of data rows between the marks of an index. Default value: 8192. See <a href="#mergetree-data-storage">Veri Depolama</a>.</li>
+<li><code class="syntax">index_granularity_bytes</code> — Maximum size of data granules in bytes. Default value: 10Mb. To restrict the granule size only by number of rows, set to 0 (not recommended). See <a href="#mergetree-data-storage">Veri Depolama</a>.</li>
+<li><code class="syntax">enable_mixed_granularity_parts</code> — Enables or disables transitioning to control the granule size with the <code class="syntax">index_granularity_bytes</code> ayar. 19.11 sürümünden önce, sadece <code class="syntax">index_granularity</code> granül boyutunu kısıtlamak için ayar. Bu <code class="syntax">index_granularity_bytes</code> büyük satırlar (onlarca ve megabayt yüzlerce) ile tablolardan veri seçerken ayarı ClickHouse performansını artırır. Büyük satırlara sahip tablolarınız varsa, tabloların verimliliğini artırmak için bu ayarı etkinleştirebilirsiniz. <code class="syntax">SELECT</code> sorgular.</li>
+<li><code class="syntax">use_minimalistic_part_header_in_zookeeper</code> — Storage method of the data parts headers in ZooKeeper. If <code class="syntax">use_minimalistic_part_header_in_zookeeper=1</code>, daha sonra ZooKeeper daha az veri depolar. Daha fazla bilgi için, bkz: <a href="../../../../operations/server-configuration-parameters/settings/#server-settings-use_minimalistic_part_header_in_zookeeper">ayar açıklaması</a> içinde “Server configuration parameters”.</li>
+<li><code class="syntax">min_merge_bytes_to_use_direct_io</code> — The minimum data volume for merge operation that is required for using direct I/O access to the storage disk. When merging data parts, ClickHouse calculates the total storage volume of all the data to be merged. If the volume exceeds <code class="syntax">min_merge_bytes_to_use_direct_io</code> bayt, ClickHouse okur ve doğrudan I/O arabirimi kullanarak depolama diskine veri yazar (<code class="syntax">O_DIRECT</code> seçenek). Eğer <code class="syntax">min_merge_bytes_to_use_direct_io = 0</code>, sonra doğrudan g / Ç devre dışı bırakılır. Varsayılan değer: <code class="syntax">10 * 1024 * 1024 * 1024</code> baytlar.<br/>
+<a name="mergetree_setting-merge_with_ttl_timeout"></a></li>
+<li><code class="syntax">merge_with_ttl_timeout</code> — Minimum delay in seconds before repeating a merge with TTL. Default value: 86400 (1 day).</li>
+<li><code class="syntax">write_final_mark</code> — Enables or disables writing the final index mark at the end of data part (after the last byte). Default value: 1. Don't turn it off.</li>
+<li><code class="syntax">merge_max_block_size</code> — Maximum number of rows in block for merge operations. Default value: 8192.</li>
+<li><code class="syntax">storage_policy</code> — Storage policy. See <a href="#table_engine-mergetree-multiple-volumes">Veri depolama için birden fazla blok cihazı kullanma</a>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Bölüm ayarı örneği</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">ENGINE</span> <span class="n">MergeTree</span><span class="p">()</span> <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">EventDate</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">CounterID</span><span class="p">,</span> <span class="n">EventDate</span><span class="p">,</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">))</span> <span class="n">SAMPLE</span> <span class="k">BY</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">)</span> <span class="n">SETTINGS</span> <span class="n">index_granularity</span><span class="o">=</span><span class="mi">8192</span>
+</code></pre></div>
+<p>Örnekte, aylara göre bölümleme ayarladık.</p>
+<p>Biz de kullanıcı kimliği ile karma olarak örnekleme için bir ifade ayarlayın. Bu, her biri için tablodaki verileri pseudorandomize etmenizi sağlar <code class="syntax">CounterID</code> ve <code class="syntax">EventDate</code>. Tanım yoularsanız bir <a href="../../../../sql-reference/statements/select/sample/#select-sample-clause">SAMPLE</a> yan tümcesi verileri seçerken, ClickHouse kullanıcıların bir alt kümesi için eşit pseudorandom veri örneği döndürür.</p>
+<p>Bu <code class="syntax">index_granularity</code> 8192 varsayılan değer olduğundan ayarı atlanabilir.</p>
+<details><summary>Bir tablo oluşturmak için kullanımdan kaldırılan yöntem</summary>
+<p></p>
+<div class="admonition attention alert pb-0 mb-4 alert-warning" role="alert">
+<p class="admonition-title alert-heading display-6 mb-2">Dikkat</p>
+<p>Bu yöntemi yeni projelerde kullanmayın. Mümkünse, eski projeleri yukarıda açıklanan yönteme geçin.</p>
+</div>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="k">table_name</span> <span class="p">[</span><span class="k">ON</span> <span class="k">CLUSTER</span> <span class="k">cluster</span><span class="p">]</span>
+<span class="p">(</span>
+    <span class="n">name1</span> <span class="p">[</span><span class="n">type1</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span><span class="o">|</span><span class="n">MATERIALIZED</span><span class="o">|</span><span class="k">ALIAS</span> <span class="n">expr1</span><span class="p">],</span>
+    <span class="n">name2</span> <span class="p">[</span><span class="n">type2</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span><span class="o">|</span><span class="n">MATERIALIZED</span><span class="o">|</span><span class="k">ALIAS</span> <span class="n">expr2</span><span class="p">],</span>
+    <span class="p">...</span>
+<span class="p">)</span> <span class="n">ENGINE</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span> <span class="n">MergeTree</span><span class="p">(</span><span class="nb">date</span><span class="o">-</span><span class="k">column</span> <span class="p">[,</span> <span class="n">sampling_expression</span><span class="p">],</span> <span class="p">(</span><span class="k">primary</span><span class="p">,</span> <span class="k">key</span><span class="p">),</span> <span class="n">index_granularity</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>MergeTree () Parametreleri</strong></p>
+<ul>
+<li><code class="syntax">date-column</code> — The name of a column of the <a href="../../../../sql-reference/data-types/date/">Tarihli</a> tür. ClickHouse otomatik olarak bu sütuna göre ay bölümleri oluşturur. Bölüm adları <code class="syntax">"YYYYMM"</code> biçimli.</li>
+<li><code class="syntax">sampling_expression</code> — An expression for sampling.</li>
+<li><code class="syntax">(primary, key)</code> — Primary key. Type: <a href="../../../../sql-reference/data-types/tuple/">Demet()</a></li>
+<li><code class="syntax">index_granularity</code> — The granularity of an index. The number of data rows between the “marks” bir dizinin. 8192 değeri çoğu görev için uygundur.</li>
+</ul>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">MergeTree</span><span class="p">(</span><span class="n">EventDate</span><span class="p">,</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">),</span> <span class="p">(</span><span class="n">CounterID</span><span class="p">,</span> <span class="n">EventDate</span><span class="p">,</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">)),</span> <span class="mi">8192</span><span class="p">)</span>
+</code></pre></div>
+<p>Bu <code class="syntax">MergeTree</code> motor, Ana motor yapılandırma yöntemi için yukarıdaki örnekte olduğu gibi yapılandırılır.</p>
+</details>
+<h2 id="mergetree-data-storage">Veri Depolama<a class="headerlink" href="#mergetree-data-storage" title="Permanent link"> </a></h2>
+<p>Bir tabloda birincil anahtar tarafından sıralanmış verileri bölümden oluşmaktadır.</p>
+<p>Veri bir tabloya eklendiğinde, ayrı veri parçaları oluşturulur ve bunların her biri birincil anahtara göre lexicographically sıralanır. Örneğin, birincil anahtar <code class="syntax">(CounterID, Date)</code>, parçadaki veriler şu şekilde sıralanır <code class="syntax">CounterID</code> ve içinde her <code class="syntax">CounterID</code> tarafından sipariş edilir <code class="syntax">Date</code>.</p>
+<p>Farklı bölümlere ait veriler farklı parçalara ayrılır. Arka planda, ClickHouse daha verimli depolama için veri parçalarını birleştirir. Farklı bölümlere ait parçalar birleştirilmez. Birleştirme mekanizması, aynı birincil anahtara sahip tüm satırların aynı veri bölümünde olacağını garanti etmez.</p>
+<p>Her veri parçası mantıksal olarak granüllere ayrılmıştır. Bir granül, Clickhouse'un veri seçerken okuduğu en küçük bölünmez veri kümesidir. ClickHouse satırları veya değerleri bölmez, bu nedenle her granül her zaman bir tamsayı satır içerir. Bir granülün ilk satırı, satır için birincil anahtarın değeri ile işaretlenir. Her veri bölümü için ClickHouse işaretleri depolayan bir dizin dosyası oluşturur. Her sütun için, birincil anahtarda olsun ya da olmasın, ClickHouse aynı işaretleri de saklar. Bu işaretler, verileri doğrudan sütun dosyalarında bulmanızı sağlar.</p>
+<p>Granül boyutu ile sınırlıdır <code class="syntax">index_granularity</code> ve <code class="syntax">index_granularity_bytes</code> tablo motorunun ayarları. Bir granüldeki satır sayısı <code class="syntax">[1, index_granularity]</code> Aralık, satırların boyutuna bağlı olarak. Bir granülün boyutu aşabilir <code class="syntax">index_granularity_bytes</code> tek bir satırın boyutu ayarın değerinden büyükse. Bu durumda, granülün boyutu satırın boyutuna eşittir.</p>
+<h2 id="primary-keys-and-indexes-in-queries">Sorgularda birincil anahtarlar ve dizinler<a class="headerlink" href="#primary-keys-and-indexes-in-queries" title="Permanent link"> </a></h2>
+<p>Tak thee the <code class="syntax">(CounterID, Date)</code> örnek olarak birincil anahtar. Bu durumda, sıralama ve dizin aşağıdaki gibi gösterilebilir:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="w">  </span><span class="n">Whole</span><span class="w"> </span><span class="k">data</span><span class="err">:</span><span class="w">     </span><span class="o">[</span><span class="n">---------------------------------------------</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nl">CounterID</span><span class="p">:</span><span class="w">      </span><span class="o">[</span><span class="n">aaaaaaaaaaaaaaaaaabbbbcdeeeeeeeeeeeeefgggggggghhhhhhhhhiiiiiiiiikllllllll</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nc">Date</span><span class="err">:</span><span class="w">           </span><span class="o">[</span><span class="n">1111111222222233331233211111222222333211111112122222223111112223311122333</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nl">Marks</span><span class="p">:</span><span class="w">           </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="w">                  </span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="n">a</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="n">b</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="n">e</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="n">e</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="n">g</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="n">h</span><span class="p">,</span><span class="mi">2</span><span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="w">    </span><span class="n">l</span><span class="p">,</span><span class="mi">3</span><span class="w"></span>
+<span class="w">  </span><span class="n">Marks</span><span class="w"> </span><span class="nl">numbers</span><span class="p">:</span><span class="w">   </span><span class="mi">0</span><span class="w">      </span><span class="mi">1</span><span class="w">      </span><span class="mi">2</span><span class="w">      </span><span class="mi">3</span><span class="w">      </span><span class="mi">4</span><span class="w">      </span><span class="mi">5</span><span class="w">      </span><span class="mi">6</span><span class="w">      </span><span class="mi">7</span><span class="w">      </span><span class="mi">8</span><span class="w">      </span><span class="mi">9</span><span class="w">      </span><span class="mi">10</span><span class="w"></span>
+</code></pre></div>
+<p>Veri sorgusu belirtirse:</p>
+<ul>
+<li><code class="syntax">CounterID in ('a', 'h')</code>, sunucu işaretleri aralıklarında verileri okur <code class="syntax">[0, 3)</code> ve <code class="syntax">[6, 8)</code>.</li>
+<li><code class="syntax">CounterID IN ('a', 'h') AND Date = 3</code>, sunucu işaretleri aralıklarında verileri okur <code class="syntax">[1, 3)</code> ve <code class="syntax">[7, 8)</code>.</li>
+<li><code class="syntax">Date = 3</code>, sunucu işaretleri aralığında veri okur <code class="syntax">[1, 10]</code>.</li>
+</ul>
+<p>Yukarıdaki örnekler, her zaman bir dizin tam taramadan daha etkili olduğunu göstermektedir.</p>
+<p>Seyrek bir dizin, ekstra verilerin okunmasına izin verir. Birincil anahtarın tek bir aralığını okurken, <code class="syntax">index_granularity * 2</code> her veri bloğundaki ekstra satırlar okunabilir.</p>
+<p>Seyrek dizinler, çok sayıda tablo satırı ile çalışmanıza izin verir, çünkü çoğu durumda, bu tür dizinler bilgisayarın RAM'İNE sığar.</p>
+<p>ClickHouse benzersiz bir birincil anahtar gerektirmez. Aynı birincil anahtar ile birden çok satır ekleyebilirsiniz.</p>
+<h3 id="selecting-the-primary-key">Birincil anahtar seçme<a class="headerlink" href="#selecting-the-primary-key" title="Permanent link"> </a></h3>
+<p>Birincil anahtardaki sütun sayısı açıkça sınırlı değildir. Veri yapısına bağlı olarak, birincil anahtara daha fazla veya daha az sütun ekleyebilirsiniz. Bu Mayıs:</p>
+<ul>
+<li>
+<p>Bir dizin performansını artırın.</p>
+<p>Birincil anahtar ise <code class="syntax">(a, b)</code>, sonra başka bir sütun ekleyerek <code class="syntax">c</code> aşağıdaki koşullar yerine getirilirse performansı artıracaktır:</p>
+<ul>
+<li>Sütun üzerinde bir koşulu olan sorgular var <code class="syntax">c</code>.</li>
+<li>Uzun veri aralıkları (birkaç kat daha uzun <code class="syntax">index_granularity</code>) için aynı değer withlerle <code class="syntax">(a, b)</code> yaygındır. Başka bir deyişle, başka bir sütun eklerken oldukça uzun veri aralıklarını atlamanıza izin verir.</li>
+</ul>
+</li>
+<li>
+<p>Veri sıkıştırmasını geliştirin.</p>
+<p>ClickHouse verileri birincil anahtarla sıralar, bu nedenle tutarlılık ne kadar yüksek olursa sıkıştırma o kadar iyi olur.</p>
+</li>
+<li>
+<p>Veri parçalarını birleştirirken ek mantık sağlayın <a href="../collapsingmergetree/#table_engine-collapsingmergetree">CollapsingMergeTree</a> ve <a href="../summingmergetree/">SummingMergeTree</a> motorlar.</p>
+<p>Bu durumda belirtmek mantıklı <em>sıralama anahtarı</em> bu birincil anahtardan farklıdır.</p>
+</li>
+</ul>
+<p>Uzun bir birincil anahtar, ekleme performansını ve bellek tüketimini olumsuz yönde etkiler, ancak birincil anahtardaki ek sütunlar, ClickHouse performansını etkilemez <code class="syntax">SELECT</code> sorgular.</p>
+<h3 id="choosing-a-primary-key-that-differs-from-the-sorting-key">Sıralama anahtarından farklı bir birincil anahtar seçme<a class="headerlink" href="#choosing-a-primary-key-that-differs-from-the-sorting-key" title="Permanent link"> </a></h3>
+<p>Sıralama anahtarından (veri bölümlerindeki satırları sıralamak için bir ifade) farklı bir birincil anahtar (her işaret için dizin dosyasında yazılan değerlere sahip bir ifade) belirtmek mümkündür. Bu durumda, birincil anahtar ifadesi tuple, sıralama anahtarı ifadesi tuple'ın bir öneki olmalıdır.</p>
+<p>Bu özellik kullanırken yararlıdır <a href="../summingmergetree/">SummingMergeTree</a> ve<br/>
+<a href="../aggregatingmergetree/">AggregatingMergeTree</a> masa motorları. Bu motorları kullanırken yaygın bir durumda, tablonun iki tür sütunu vardır: <em>boyutlar</em> ve <em>ölçümler</em>. Tipik sorgular, rasgele ölçü sütunlarının değerlerini toplar <code class="syntax">GROUP BY</code> ve boyutlara göre filtreleme. Çünkü SummingMergeTree ve AggregatingMergeTree sıralama anahtarının aynı değere sahip satırları toplamak, tüm boyutları eklemek doğaldır. Sonuç olarak, anahtar ifadesi uzun bir sütun listesinden oluşur ve bu liste yeni eklenen boyutlarla sık sık güncelleştirilmelidir.</p>
+<p>Bu durumda, birincil anahtarda verimli Aralık taramaları sağlayacak ve kalan boyut sütunlarını sıralama anahtarı kümesine ekleyecek yalnızca birkaç sütun bırakmak mantıklıdır.</p>
+<p><a href="../../../../sql-reference/statements/alter/">ALTER</a> yeni bir sütun aynı anda tabloya ve sıralama anahtarı eklendiğinde, varolan veri parçaları değiştirilmesi gerekmez, çünkü sıralama anahtarının hafif bir işlemdir. Eski sıralama anahtarı yeni sıralama anahtarının bir öneki olduğundan ve yeni eklenen sütunda veri olmadığından, veriler tablo değişikliği anında hem eski hem de yeni sıralama anahtarlarına göre sıralanır.</p>
+<h3 id="use-of-indexes-and-partitions-in-queries">Sorgularda dizin ve bölümlerin kullanımı<a class="headerlink" href="#use-of-indexes-and-partitions-in-queries" title="Permanent link"> </a></h3>
+<p>İçin <code class="syntax">SELECT</code> sorgular, ClickHouse bir dizin kullanılabilir olup olmadığını analiz eder. Eğer bir dizin kullanılabilir <code class="syntax">WHERE/PREWHERE</code> yan tümce, bir eşitlik veya eşitsizlik karşılaştırma işlemini temsil eden bir ifadeye (bağlantı öğelerinden biri olarak veya tamamen) sahiptir veya varsa <code class="syntax">IN</code> veya <code class="syntax">LIKE</code> sütun veya birincil anahtar veya bölümleme anahtar veya bu sütunların belirli kısmen tekrarlayan işlevleri veya bu ifadelerin mantıksal ilişkileri olan ifadeler üzerinde sabit bir önek ile.</p>
+<p>Bu nedenle, birincil anahtarın bir veya daha fazla aralığındaki sorguları hızlı bir şekilde çalıştırmak mümkündür. Bu örnekte, belirli bir izleme etiketi, belirli bir etiket ve tarih aralığı, belirli bir etiket ve tarih için, tarih aralığına sahip birden çok etiket için vb. çalıştırıldığında sorgular hızlı olacaktır.</p>
+<p>Aşağıdaki gibi yapılandırılmış motora bakalım:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">  ENGINE MergeTree() PARTITION BY toYYYYMM(EventDate) ORDER BY (CounterID, EventDate) SETTINGS index_granularity=8192</span>
+</code></pre></div>
+<p>Bu durumda, sorgularda:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="n">EventDate</span> <span class="o">=</span> <span class="n">toDate</span><span class="p">(</span><span class="n">now</span><span class="p">())</span> <span class="k">AND</span> <span class="n">CounterID</span> <span class="o">=</span> <span class="mi">34</span>
+<span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="n">EventDate</span> <span class="o">=</span> <span class="n">toDate</span><span class="p">(</span><span class="n">now</span><span class="p">())</span> <span class="k">AND</span> <span class="p">(</span><span class="n">CounterID</span> <span class="o">=</span> <span class="mi">34</span> <span class="k">OR</span> <span class="n">CounterID</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+<span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="p">((</span><span class="n">EventDate</span> <span class="o">&gt;=</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2014-01-01'</span><span class="p">)</span> <span class="k">AND</span> <span class="n">EventDate</span> <span class="o">&lt;=</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2014-01-31'</span><span class="p">))</span> <span class="k">OR</span> <span class="n">EventDate</span> <span class="o">=</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2014-05-01'</span><span class="p">))</span> <span class="k">AND</span> <span class="n">CounterID</span> <span class="k">IN</span> <span class="p">(</span><span class="mi">101500</span><span class="p">,</span> <span class="mi">731962</span><span class="p">,</span> <span class="mi">160656</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="n">CounterID</span> <span class="o">=</span> <span class="mi">101500</span> <span class="k">OR</span> <span class="n">EventDate</span> <span class="o">!=</span> <span class="n">toDate</span><span class="p">(</span><span class="s1">'2014-05-01'</span><span class="p">))</span>
+</code></pre></div>
+<p>ClickHouse, uygun olmayan verileri kırpmak için birincil anahtar dizinini ve uygun olmayan tarih aralıklarındaki bölümleri kırpmak için aylık bölümleme anahtarını kullanır.</p>
+<p>Yukarıdaki sorgular, dizinin karmaşık ifadeler için bile kullanıldığını göstermektedir. Tablodan okuma, dizini kullanarak tam taramadan daha yavaş olamayacak şekilde düzenlenmiştir.</p>
+<p>Aşağıdaki örnekte, dizin kullanılamaz.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="n">CounterID</span> <span class="o">=</span> <span class="mi">34</span> <span class="k">OR</span> <span class="n">URL</span> <span class="k">LIKE</span> <span class="s1">'%upyachka%'</span>
+</code></pre></div>
+<p>Clickhouse'un bir sorgu çalıştırırken dizini kullanıp kullanamayacağını kontrol etmek için ayarları kullanın <a href="../../../../operations/settings/settings/#settings-force_index_by_date">force_index_by_date</a> ve <a href="../../../../operations/settings/settings/">force_primary_key</a>.</p>
+<p>Aylara göre bölümleme anahtarı, yalnızca uygun aralıktaki tarihleri içeren veri bloklarını okumanıza izin verir. Bu durumda, veri bloğu birçok tarih için veri içerebilir (bir aya kadar). Bir blok içinde veriler, ilk sütun olarak tarihi içermeyen birincil anahtara göre sıralanır. Bu nedenle, birincil anahtar önekini belirtmeyen yalnızca bir tarih koşulu ile bir sorgu kullanarak tek bir tarih için okunacak daha fazla veri neden olur.</p>
+<h3 id="use-of-index-for-partially-monotonic-primary-keys">Kısmen monotonik birincil anahtarlar için Endeks kullanımı<a class="headerlink" href="#use-of-index-for-partially-monotonic-primary-keys" title="Permanent link"> </a></h3>
+<p>Örneğin, Ayın günlerini düşünün. Onlar formu bir <a href="https://en.wikipedia.org/wiki/Monotonic_function" rel="external nofollow noreferrer" target="_blank">monotonik dizisi</a> bir ay boyunca, ancak daha uzun süreler için monotonik değil. Bu kısmen monotonik bir dizidir. Bir kullanıcı kısmen monoton birincil anahtar ile tablo oluşturursa, ClickHouse her zamanki gibi seyrek bir dizin oluşturur. Bir kullanıcı bu tür bir tablodan veri seçtiğinde, ClickHouse sorgu koşullarını analiz eder. Kullanıcı, dizinin iki işareti arasında veri almak isterse ve bu işaretlerin her ikisi de bir ay içinde düşerse, ClickHouse bu özel durumda dizini kullanabilir, çünkü sorgu parametreleri ile dizin işaretleri arasındaki mesafeyi hesaplayabilir.</p>
+<p>Sorgu parametresi aralığındaki birincil anahtarın değerleri monotonik bir sırayı temsil etmiyorsa, ClickHouse bir dizin kullanamaz. Bu durumda, ClickHouse Tam Tarama yöntemini kullanır.</p>
+<p>ClickHouse bu mantığı yalnızca ay dizilerinin günleri için değil, kısmen monotonik bir diziyi temsil eden herhangi bir birincil anahtar için kullanır.</p>
+<h3 id="table_engine-mergetree-data_skipping-indexes">Veri atlama indeksleri (deneysel)<a class="headerlink" href="#table_engine-mergetree-data_skipping-indexes" title="Permanent link"> </a></h3>
+<p>Dizin bildirimi sütunlar bölümünde <code class="syntax">CREATE</code> sorgu.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">INDEX</span> <span class="n">index_name</span> <span class="n">expr</span> <span class="k">TYPE</span> <span class="k">type</span><span class="p">(...)</span> <span class="n">GRANULARITY</span> <span class="n">granularity_value</span>
+</code></pre></div>
+<p>Tablolar için <code class="syntax">*MergeTree</code> aile, veri atlama endeksleri belirtilebilir.</p>
+<p>Bu endeksler, bloklarda belirtilen ifade hakkında bazı bilgileri toplar ve bunlardan oluşur <code class="syntax">granularity_value</code> granüller (granül boyutu kullanılarak belirtilir <code class="syntax">index_granularity</code> tablo motoru ayarı). Daha sonra bu agregalar <code class="syntax">SELECT</code> büyük veri bloklarını atlayarak diskten okunacak veri miktarını azaltmak için sorgular <code class="syntax">where</code> sorgu tatmin edilemez.</p>
+<p><strong>Örnek</strong></p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">table_name</span>
+<span class="p">(</span>
+    <span class="n">u64</span> <span class="n">UInt64</span><span class="p">,</span>
+    <span class="n">i32</span> <span class="n">Int32</span><span class="p">,</span>
+    <span class="n">s</span> <span class="n">String</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="k">INDEX</span> <span class="n">a</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="n">i32</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">TYPE</span> <span class="n">minmax</span> <span class="n">GRANULARITY</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="k">INDEX</span> <span class="n">b</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="k">length</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="k">TYPE</span> <span class="k">set</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="n">GRANULARITY</span> <span class="mi">4</span>
+<span class="p">)</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span><span class="p">()</span>
+<span class="p">...</span>
+</code></pre></div>
+<p>Örneğin endeksleri aşağıdaki sorgularda diskten okunacak veri miktarını azaltmak için ClickHouse tarafından kullanılabilir:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="s1">'z'</span>
+<span class="k">SELECT</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">WHERE</span> <span class="n">u64</span> <span class="o">*</span> <span class="n">i32</span> <span class="o">==</span> <span class="mi">10</span> <span class="k">AND</span> <span class="n">u64</span> <span class="o">*</span> <span class="k">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1234</span>
+</code></pre></div>
+<h4 id="available-types-of-indices">Mevcut Endeks türleri<a class="headerlink" href="#available-types-of-indices" title="Permanent link"> </a></h4>
+<ul>
+<li>
+<p><code class="syntax">minmax</code></p>
+<p>Belirtilen ifad (eyi saklar (ifad (enin <code class="syntax">tuple</code>, sonra her eleman için aşırı depolar <code class="syntax">tuple</code>), birincil anahtar gibi veri bloklarını atlamak için saklanan bilgileri kullanır.</p>
+</li>
+<li>
+<p><code class="syntax">set(max_rows)</code></p>
+<p>Belirtilen ifadenin benzersiz değerlerini depolar (en fazla <code class="syntax">max_rows</code> satırlar, <code class="syntax">max_rows=0</code> Anlamına geliyor “no limits”). Kontrol etmek için değerleri kullanır <code class="syntax">WHERE</code> ifade, bir veri bloğu üzerinde tatmin edilemez değildir.</p>
+</li>
+<li>
+<p><code class="syntax">ngrambf_v1(n, size_of_bloom_filter_in_bytes, number_of_hash_functions, random_seed)</code></p>
+<p>Mağazalar a <a href="https://en.wikipedia.org/wiki/Bloom_filter" rel="external nofollow noreferrer" target="_blank">Blo filterom filtre</a> bu, bir veri bloğundaki tüm ngramları içerir. Sadece dizeleri ile çalışır. Optimizasyonu için kullanılabilir <code class="syntax">equals</code>, <code class="syntax">like</code> ve <code class="syntax">in</code> ifadeler.</p>
+<ul>
+<li><code class="syntax">n</code> — ngram size,</li>
+<li><code class="syntax">size_of_bloom_filter_in_bytes</code> — Bloom filter size in bytes (you can use large values here, for example, 256 or 512, because it can be compressed well).</li>
+<li><code class="syntax">number_of_hash_functions</code> — The number of hash functions used in the Bloom filter.</li>
+<li><code class="syntax">random_seed</code> — The seed for Bloom filter hash functions.</li>
+</ul>
+</li>
+<li>
+<p><code class="syntax">tokenbf_v1(size_of_bloom_filter_in_bytes, number_of_hash_functions, random_seed)</code></p>
+<p>Olarak aynı <code class="syntax">ngrambf_v1</code>, ancak ngrams yerine simgeleri saklar. Belirteçler alfasayısal olmayan karakterlerle ayrılmış dizilerdir.</p>
+</li>
+<li>
+<p><code class="syntax">bloom_filter([false_positive])</code> — Stores a <a href="https://en.wikipedia.org/wiki/Bloom_filter" rel="external nofollow noreferrer" target="_blank">Blo filterom filtre</a> belirtilen sütunlar için.</p>
+<p>Opsiyonel <code class="syntax">false_positive</code> parametre, filtreden yanlış pozitif yanıt alma olasılığıdır. Olası değerler: (0, 1). Varsayılan değer: 0.025.</p>
+<p>Desteklenen veri türleri: <code class="syntax">Int*</code>, <code class="syntax">UInt*</code>, <code class="syntax">Float*</code>, <code class="syntax">Enum</code>, <code class="syntax">Date</code>, <code class="syntax">DateTime</code>, <code class="syntax">String</code>, <code class="syntax">FixedString</code>, <code class="syntax">Array</code>, <code class="syntax">LowCardinality</code>, <code class="syntax">Nullable</code>.</p>
+<p>Aşağıdaki işlevleri kullanabilirsiniz: <a href="../../../../sql-reference/functions/comparison-functions/">eşitlikler</a>, <a href="../../../../sql-reference/functions/comparison-functions/">notEquals</a>, <a href="../../../../sql-reference/functions/in-functions/">içinde</a>, <a href="../../../../sql-reference/functions/in-functions/">notİn</a>, <a href="../../../../sql-reference/functions/array-functions/">var</a>.</p>
+</li>
+</ul>
+<!-- -->
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">INDEX</span> <span class="n">sample_index</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="k">length</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="k">TYPE</span> <span class="n">minmax</span> <span class="n">GRANULARITY</span> <span class="mi">4</span>
+<span class="k">INDEX</span> <span class="n">sample_index2</span> <span class="p">(</span><span class="n">u64</span> <span class="o">*</span> <span class="k">length</span><span class="p">(</span><span class="n">str</span><span class="p">),</span> <span class="n">i32</span> <span class="o">+</span> <span class="n">f64</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="nb">date</span><span class="p">,</span> <span class="n">str</span><span class="p">)</span> <span class="k">TYPE</span> <span class="k">set</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="n">GRANULARITY</span> <span class="mi">4</span>
+<span class="k">INDEX</span> <span class="n">sample_index3</span> <span class="p">(</span><span class="k">lower</span><span class="p">(</span><span class="n">str</span><span class="p">),</span> <span class="n">str</span><span class="p">)</span> <span class="k">TYPE</span> <span class="n">ngrambf_v1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="n">GRANULARITY</span> <span class="mi">4</span>
+</code></pre></div>
+<h4 id="functions-support">Fonksiyonları Destek<a class="headerlink" href="#functions-support" title="Permanent link"> </a></h4>
+<p>Koşulları <code class="syntax">WHERE</code> yan tümcesi, sütunlarla çalışan işlevlerin çağrılarını içerir. Sütun bir dizinin bir parçasıysa, ClickHouse işlevleri gerçekleştirirken bu dizini kullanmaya çalışır. ClickHouse, dizinleri kullanmak için farklı işlev alt kümelerini destekler.</p>
+<p>Bu <code class="syntax">set</code> dizin tüm fonksiyonları ile kullanılabilir. Diğer dizinler için işlev alt kümeleri aşağıdaki tabloda gösterilmiştir.</p>
+<table>
+<thead>
+<tr>
+<th>Fonksiyon (operatör) / dizin</th>
+<th>birincil anahtar</th>
+<th>minmax</th>
+<th>ngrambf_v1</th>
+<th>tokenbf_v1</th>
+<th>bloom_filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-equals">eşitlikler (=, ==)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-notequals">notEquals(!=, \&lt;&gt;)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/string-search-functions/#function-like">hoşlanmak</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/string-search-functions/#function-notlike">notLike</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/string-functions/#startswith">startsWith</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/string-functions/#endswith">endsWith</a></td>
+<td>✗</td>
+<td>✗</td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/string-search-functions/#function-multisearchany">multiSearchAny</a></td>
+<td>✗</td>
+<td>✗</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/in-functions/#in-functions">içinde</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/in-functions/#in-functions">notİn</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-less">daha az (\&lt;)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-greater">büyük (&gt;)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-lessorequals">lessOrEquals (\&lt;=)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/comparison-functions/#function-greaterorequals">greaterOrEquals (&gt;=)</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/array-functions/#function-empty">boş</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><a href="../../../../sql-reference/functions/array-functions/#function-notempty">notEmpty</a></td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>hasToken</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✔</td>
+<td>✗</td>
+</tr>
+</tbody>
+</table>
+<p>Ngram boyutundan daha az olan sabit bir argümana sahip işlevler tarafından kullanılamaz <code class="syntax">ngrambf_v1</code> sorgu optimizasyonu için.</p>
+<p>Bloom filtreleri yanlış pozitif eşleşmelere sahip olabilir, bu yüzden <code class="syntax">ngrambf_v1</code>, <code class="syntax">tokenbf_v1</code>, ve <code class="syntax">bloom_filter</code> dizinler, örneğin bir işlevin sonucunun false olması beklenen sorguları en iyi duruma getirmek için kullanılamaz:</p>
+<ul>
+<li>Optimize edilebilir:<ul>
+<li><code class="syntax">s LIKE '%test%'</code></li>
+<li><code class="syntax">NOT s NOT LIKE '%test%'</code></li>
+<li><code class="syntax">s = 1</code></li>
+<li><code class="syntax">NOT s != 1</code></li>
+<li><code class="syntax">startsWith(s, 'test')</code></li>
+</ul>
+</li>
+<li>Optimize edilemez:<ul>
+<li><code class="syntax">NOT s LIKE '%test%'</code></li>
+<li><code class="syntax">s NOT LIKE '%test%'</code></li>
+<li><code class="syntax">NOT s = 1</code></li>
+<li><code class="syntax">s != 1</code></li>
+<li><code class="syntax">NOT startsWith(s, 'test')</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="concurrent-data-access">Eşzamanlı Veri Erişimi<a class="headerlink" href="#concurrent-data-access" title="Permanent link"> </a></h2>
+<p>Eşzamanlı tablo erişimi için çoklu sürüm kullanıyoruz. Başka bir deyişle, bir tablo aynı anda okunup güncelleştirildiğinde, sorgu sırasında geçerli olan bir parça kümesinden veri okunur. Uzun kilitler yok. Ekler okuma işlemlerinin yoluna girmez.</p>
+<p>Bir tablodan okuma otomatik olarak paralelleştirilir.</p>
+<h2 id="table_engine-mergetree-ttl">Sütunlar ve tablolar için TTL<a class="headerlink" href="#table_engine-mergetree-ttl" title="Permanent link"> </a></h2>
+<p>Değerlerin ömrünü belirler.</p>
+<p>Bu <code class="syntax">TTL</code> yan tümcesi tüm tablo ve her sütun için ayarlanabilir. Tablo düzeyinde TTL ayrıca diskler ve birimler arasında otomatik veri taşıma mantığını belirtebilirsiniz.</p>
+<p>İfadeleri değerlendirmek gerekir <a href="../../../../sql-reference/data-types/date/">Tarihli</a> veya <a href="../../../../sql-reference/data-types/datetime/">DateTime</a> veri türü.</p>
+<p>Örnek:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">TTL</span> <span class="n">time_column</span>
+<span class="n">TTL</span> <span class="n">time_column</span> <span class="o">+</span> <span class="nb">interval</span>
+</code></pre></div>
+<p>Tanımlamak <code class="syntax">interval</code>, kullanma <a href="../../../../sql-reference/operators/#operators-datetime">zaman aralığı</a> operatörler.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">TTL</span> <span class="n">date_time</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span>
+<span class="n">TTL</span> <span class="n">date_time</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">15</span> <span class="n">HOUR</span>
+</code></pre></div>
+<h3 id="mergetree-column-ttl">Sütun TTL<a class="headerlink" href="#mergetree-column-ttl" title="Permanent link"> </a></h3>
+<p>Sütundaki değerler sona erdiğinde, ClickHouse bunları sütun veri türü için varsayılan değerlerle değiştirir. Veri bölümündeki tüm sütun değerleri sona ererse, ClickHouse bu sütunu bir dosya sistemindeki veri bölümünden siler.</p>
+<p>Bu <code class="syntax">TTL</code> yan tümcesi anahtar sütunlar için kullanılamaz.</p>
+<p>Örnekler:</p>
+<p>TTL ile tablo oluşturma</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">example_table</span>
+<span class="p">(</span>
+    <span class="n">d</span> <span class="n">DateTime</span><span class="p">,</span>
+    <span class="n">a</span> <span class="nb">Int</span> <span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span><span class="p">,</span>
+    <span class="n">b</span> <span class="nb">Int</span> <span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span><span class="p">,</span>
+    <span class="k">c</span> <span class="n">String</span>
+<span class="p">)</span>
+<span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span>
+<span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">d</span><span class="p">;</span>
+</code></pre></div>
+<p>Varolan bir tablonun sütununa TTL ekleme</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">example_table</span>
+    <span class="k">MODIFY</span> <span class="k">COLUMN</span>
+    <span class="k">c</span> <span class="n">String</span> <span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">;</span>
+</code></pre></div>
+<p>Sütun TTL değiştirme</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">example_table</span>
+    <span class="k">MODIFY</span> <span class="k">COLUMN</span>
+    <span class="k">c</span> <span class="n">String</span> <span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="mergetree-table-ttl">Tablo TTL<a class="headerlink" href="#mergetree-table-ttl" title="Permanent link"> </a></h3>
+<p>Tablo, süresi dolmuş satırların kaldırılması için bir ifadeye ve parçaların arasında otomatik olarak taşınması için birden fazla ifadeye sahip olabilir <a href="#table_engine-mergetree-multiple-volumes">diskler veya birimler</a>. Tablodaki satırların süresi dolduğunda, ClickHouse ilgili tüm satırları siler. Parça taşıma özelliği için, bir parçanın tüm satırları hareket ifadesi ölçütlerini karşılaması gerekir.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">TTL</span> <span class="n">expr</span> <span class="p">[</span><span class="k">DELETE</span><span class="o">|</span><span class="k">TO</span> <span class="n">DISK</span> <span class="s1">'aaa'</span><span class="o">|</span><span class="k">TO</span> <span class="n">VOLUME</span> <span class="s1">'bbb'</span><span class="p">],</span> <span class="p">...</span>
+</code></pre></div>
+<p>TTL kuralı türü her TTL ifadesini takip edebilir. İfade tatmin edildikten sonra yapılacak bir eylemi etkiler (şimdiki zamana ulaşır):</p>
+<ul>
+<li><code class="syntax">DELETE</code> - süresi dolmuş satırları sil (varsayılan eylem);</li>
+<li><code class="syntax">TO DISK 'aaa'</code> - parçayı diske taşı <code class="syntax">aaa</code>;</li>
+<li><code class="syntax">TO VOLUME 'bbb'</code> - parçayı diske taşı <code class="syntax">bbb</code>.</li>
+</ul>
+<p>Örnekler:</p>
+<p>TTL ile tablo oluşturma</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">example_table</span>
+<span class="p">(</span>
+    <span class="n">d</span> <span class="n">DateTime</span><span class="p">,</span>
+    <span class="n">a</span> <span class="nb">Int</span>
+<span class="p">)</span>
+<span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span>
+<span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">d</span>
+<span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">MONTH</span> <span class="p">[</span><span class="k">DELETE</span><span class="p">],</span>
+    <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="n">WEEK</span> <span class="k">TO</span> <span class="n">VOLUME</span> <span class="s1">'aaa'</span><span class="p">,</span>
+    <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">2</span> <span class="n">WEEK</span> <span class="k">TO</span> <span class="n">DISK</span> <span class="s1">'bbb'</span><span class="p">;</span>
+</code></pre></div>
+<p>Tablonun TTL değiştirme</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">example_table</span>
+    <span class="k">MODIFY</span> <span class="n">TTL</span> <span class="n">d</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>Verileri Kaldırma</strong></p>
+<p>ClickHouse veri parçalarını birleştirdiğinde süresi dolmuş bir TTL ile veri kaldırılır.</p>
+<p>ClickHouse, verilerin süresi dolduğunu gördüğünde, zamanlama dışı bir birleştirme gerçekleştirir. Bu tür birleştirmelerin sıklığını kontrol etmek için şunları ayarlayabilirsiniz <code class="syntax">merge_with_ttl_timeout</code>. Değer çok düşükse, çok fazla kaynak tüketebilecek birçok zamanlama dışı birleştirme gerçekleştirir.</p>
+<p>Gerçekleştir theirseniz <code class="syntax">SELECT</code> birleştirme arasında sorgu, süresi dolmuş veri alabilirsiniz. Bunu önlemek için, <a href="../../../../sql-reference/statements/misc/#misc_operations-optimize">OPTIMIZE</a> önce sorgu <code class="syntax">SELECT</code>.</p>
+<h2 id="table_engine-mergetree-multiple-volumes">Veri depolama için birden fazla blok cihazı kullanma<a class="headerlink" href="#table_engine-mergetree-multiple-volumes" title="Permanent link"> </a></h2>
+<h3 id="introduction">Giriş<a class="headerlink" href="#introduction" title="Permanent link"> </a></h3>
+<p><code class="syntax">MergeTree</code> aile tablo motorları birden fazla blok cihazlarda veri saklayabilirsiniz. Örneğin, belirli bir tablonun verileri örtük olarak bölündüğünde yararlı olabilir “hot” ve “cold”. En son veriler düzenli olarak talep edilir, ancak yalnızca az miktarda alan gerektirir. Aksine, yağ kuyruklu tarihsel veriler nadiren talep edilir. Birkaç disk varsa, “hot” veriler hızlı disklerde (örneğin, NVMe SSD'ler veya bellekte) bulunabilir; “cold” veri-nispeten yavaş olanlar (örneğin, HDD).</p>
+<p>Veri kısmı için minimum hareketli birimdir <code class="syntax">MergeTree</code>- motor masaları. Bir parçaya ait veriler bir diskte saklanır. Veri parçaları arka planda diskler arasında (kullanıcı ayarlarına göre) ve aynı zamanda <a href="../../../../sql-reference/statements/alter/#alter_move-partition">ALTER</a> sorgular.</p>
+<h3 id="terms">Şartlar<a class="headerlink" href="#terms" title="Permanent link"> </a></h3>
+<ul>
+<li>Disk — Block device mounted to the filesystem.</li>
+<li>Default disk — Disk that stores the path specified in the <a href="../../../../operations/server-configuration-parameters/settings/#server_configuration_parameters-path">yol</a> sunucu ayarı.</li>
+<li>Volume — Ordered set of equal disks (similar to <a href="https://en.wikipedia.org/wiki/Non-RAID_drive_architectures" rel="external nofollow noreferrer" target="_blank">JBOD</a>).</li>
+<li>Storage policy — Set of volumes and the rules for moving data between them.</li>
+</ul>
+<p>Açıklanan varlıklara verilen isimler sistem tablolarında bulunabilir, <a href="../../../../operations/system-tables/#system_tables-storage_policies">sistem.storage_policies</a> ve <a href="../../../../operations/system-tables/#system_tables-disks">sistem.diskler</a>. Bir tablo için yapılandırılmış depolama ilkelerinden birini uygulamak için <code class="syntax">storage_policy</code> ayarı <code class="syntax">MergeTree</code>- motor aile tabloları.</p>
+<h3 id="table_engine-mergetree-multiple-volumes_configure">Yapılandırma<a class="headerlink" href="#table_engine-mergetree-multiple-volumes_configure" title="Permanent link"> </a></h3>
+<p>Diskler, birimler ve depolama politikaları içinde bildirilmelidir <code class="syntax">&lt;storage_configuration&gt;</code> ana dosyada ya etiket <code class="syntax">config.xml</code> veya farklı bir dosyada <code class="syntax">config.d</code> dizin.</p>
+<p>Yapılandırma yapısı:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;storage_configuration&gt;</span>
+    <span class="nt">&lt;disks&gt;</span>
+        <span class="nt">&lt;disk_name_1&gt;</span> <span class="c">&lt;!-- disk name --&gt;</span>
+            <span class="nt">&lt;path&gt;</span>/mnt/fast_ssd/clickhouse/<span class="nt">&lt;/path&gt;</span>
+        <span class="nt">&lt;/disk_name_1&gt;</span>
+        <span class="nt">&lt;disk_name_2&gt;</span>
+            <span class="nt">&lt;path&gt;</span>/mnt/hdd1/clickhouse/<span class="nt">&lt;/path&gt;</span>
+            <span class="nt">&lt;keep_free_space_bytes&gt;</span>10485760<span class="nt">&lt;/keep_free_space_bytes&gt;</span>
+        <span class="nt">&lt;/disk_name_2&gt;</span>
+        <span class="nt">&lt;disk_name_3&gt;</span>
+            <span class="nt">&lt;path&gt;</span>/mnt/hdd2/clickhouse/<span class="nt">&lt;/path&gt;</span>
+            <span class="nt">&lt;keep_free_space_bytes&gt;</span>10485760<span class="nt">&lt;/keep_free_space_bytes&gt;</span>
+        <span class="nt">&lt;/disk_name_3&gt;</span>
+
+        ...
+    <span class="nt">&lt;/disks&gt;</span>
+
+    ...
+<span class="nt">&lt;/storage_configuration&gt;</span>
+</code></pre></div>
+<p>Etiketler:</p>
+<ul>
+<li><code class="syntax">&lt;disk_name_N&gt;</code> — Disk name. Names must be different for all disks.</li>
+<li><code class="syntax">path</code> — path under which a server will store data (<code class="syntax">data</code> ve <code class="syntax">shadow</code> klasörler) ile Sonlandır shouldılmalıdır ‘/’.</li>
+<li><code class="syntax">keep_free_space_bytes</code> — the amount of free disk space to be reserved.</li>
+</ul>
+<p>Disk tanımının sırası önemli değildir.</p>
+<p>Depolama ilkeleri yapılandırma biçimlendirme:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;storage_configuration&gt;</span>
+    ...
+    <span class="nt">&lt;policies&gt;</span>
+        <span class="nt">&lt;policy_name_1&gt;</span>
+            <span class="nt">&lt;volumes&gt;</span>
+                <span class="nt">&lt;volume_name_1&gt;</span>
+                    <span class="nt">&lt;disk&gt;</span>disk_name_from_disks_configuration<span class="nt">&lt;/disk&gt;</span>
+                    <span class="nt">&lt;max_data_part_size_bytes&gt;</span>1073741824<span class="nt">&lt;/max_data_part_size_bytes&gt;</span>
+                <span class="nt">&lt;/volume_name_1&gt;</span>
+                <span class="nt">&lt;volume_name_2&gt;</span>
+                    <span class="c">&lt;!-- configuration --&gt;</span>
+                <span class="nt">&lt;/volume_name_2&gt;</span>
+                <span class="c">&lt;!-- more volumes --&gt;</span>
+            <span class="nt">&lt;/volumes&gt;</span>
+            <span class="nt">&lt;move_factor&gt;</span>0.2<span class="nt">&lt;/move_factor&gt;</span>
+        <span class="nt">&lt;/policy_name_1&gt;</span>
+        <span class="nt">&lt;policy_name_2&gt;</span>
+            <span class="c">&lt;!-- configuration --&gt;</span>
+        <span class="nt">&lt;/policy_name_2&gt;</span>
+
+        <span class="c">&lt;!-- more policies --&gt;</span>
+    <span class="nt">&lt;/policies&gt;</span>
+    ...
+<span class="nt">&lt;/storage_configuration&gt;</span>
+</code></pre></div>
+<p>Etiketler:</p>
+<ul>
+<li><code class="syntax">policy_name_N</code> — Policy name. Policy names must be unique.</li>
+<li><code class="syntax">volume_name_N</code> — Volume name. Volume names must be unique.</li>
+<li><code class="syntax">disk</code> — a disk within a volume.</li>
+<li><code class="syntax">max_data_part_size_bytes</code> — the maximum size of a part that can be stored on any of the volume's disks.</li>
+<li><code class="syntax">move_factor</code> — when the amount of available space gets lower than this factor, data automatically start to move on the next volume if any (by default, 0.1).</li>
+</ul>
+<p>Cofiguration örnekleri:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="nt">&lt;storage_configuration&gt;</span>
+    ...
+    <span class="nt">&lt;policies&gt;</span>
+        <span class="nt">&lt;hdd_in_order&gt;</span> <span class="c">&lt;!-- policy name --&gt;</span>
+            <span class="nt">&lt;volumes&gt;</span>
+                <span class="nt">&lt;single&gt;</span> <span class="c">&lt;!-- volume name --&gt;</span>
+                    <span class="nt">&lt;disk&gt;</span>disk1<span class="nt">&lt;/disk&gt;</span>
+                    <span class="nt">&lt;disk&gt;</span>disk2<span class="nt">&lt;/disk&gt;</span>
+                <span class="nt">&lt;/single&gt;</span>
+            <span class="nt">&lt;/volumes&gt;</span>
+        <span class="nt">&lt;/hdd_in_order&gt;</span>
+
+        <span class="nt">&lt;moving_from_ssd_to_hdd&gt;</span>
+            <span class="nt">&lt;volumes&gt;</span>
+                <span class="nt">&lt;hot&gt;</span>
+                    <span class="nt">&lt;disk&gt;</span>fast_ssd<span class="nt">&lt;/disk&gt;</span>
+                    <span class="nt">&lt;max_data_part_size_bytes&gt;</span>1073741824<span class="nt">&lt;/max_data_part_size_bytes&gt;</span>
+                <span class="nt">&lt;/hot&gt;</span>
+                <span class="nt">&lt;cold&gt;</span>
+                    <span class="nt">&lt;disk&gt;</span>disk1<span class="nt">&lt;/disk&gt;</span>
+                <span class="nt">&lt;/cold&gt;</span>
+            <span class="nt">&lt;/volumes&gt;</span>
+            <span class="nt">&lt;move_factor&gt;</span>0.2<span class="nt">&lt;/move_factor&gt;</span>
+        <span class="nt">&lt;/moving_from_ssd_to_hdd&gt;</span>
+    <span class="nt">&lt;/policies&gt;</span>
+    ...
+<span class="nt">&lt;/storage_configuration&gt;</span>
+</code></pre></div>
+<p>Verilen örnekte, <code class="syntax">hdd_in_order</code> politika uygular <a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" rel="external nofollow noreferrer" target="_blank">Ro -und-robin</a> yaklaşmak. Böylece bu politika yalnızca bir birim tanımlar (<code class="syntax">single</code>), veri parçaları tüm disklerinde dairesel sırayla saklanır. Bu tür bir politika, sisteme birkaç benzer disk takılıysa, ancak RAID yapılandırılmamışsa oldukça yararlı olabilir. Her bir disk sürücüsünün güvenilir olmadığını ve bunu 3 veya daha fazla çoğaltma faktörü ile telafi etmek isteyebileceğinizi unutmayın.</p>
+<p>Sistemde farklı türde diskler varsa, <code class="syntax">moving_from_ssd_to_hdd</code> politika yerine kullanılabilir. Birim <code class="syntax">hot</code> bir SSD disk oluşur (<code class="syntax">fast_ssd</code>) ve bu birimde saklanabilecek bir parçanın maksimum boyutu 1GB. Tüm parçaları ile boyutu daha büyük 1 GB üzerinde doğrudan saklanır <code class="syntax">cold</code> bir HDD diski içeren birim <code class="syntax">disk1</code>.<br/>
+Ayrıca, bir kez disk <code class="syntax">fast_ssd</code> 80'den fazla % tarafından doldurulur, veri transfer edilecektir <code class="syntax">disk1</code> bir arka plan işlemi ile.</p>
+<p>Depolama ilkesi içindeki birim numaralandırma sırası önemlidir. Bir birim aşırı doldurulduktan sonra, veriler bir sonrakine taşınır. Disk numaralandırma sırası da önemlidir, çünkü veriler sırayla depolanır.</p>
+<p>Bir tablo oluştururken, yapılandırılmış depolama ilkelerinden birini ona uygulayabilirsiniz:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">table_with_non_default_policy</span> <span class="p">(</span>
+    <span class="n">EventDate</span> <span class="nb">Date</span><span class="p">,</span>
+    <span class="n">OrderID</span> <span class="n">UInt64</span><span class="p">,</span>
+    <span class="n">BannerID</span> <span class="n">UInt64</span><span class="p">,</span>
+    <span class="n">SearchPhrase</span> <span class="n">String</span>
+<span class="p">)</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">BannerID</span><span class="p">)</span>
+<span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">EventDate</span><span class="p">)</span>
+<span class="n">SETTINGS</span> <span class="n">storage_policy</span> <span class="o">=</span> <span class="s1">'moving_from_ssd_to_hdd'</span>
+</code></pre></div>
+<p>Bu <code class="syntax">default</code> depolama ilkesi, Yalnızca verilen bir diskten oluşan yalnızca bir birim kullanmayı ima eder <code class="syntax">&lt;path&gt;</code>. Bir tablo oluşturulduktan sonra, depolama ilkesi değiştirilemez.</p>
+<h3 id="details">Ayrıntı<a class="headerlink" href="#details" title="Permanent link"> </a></h3>
+<p>Bu durumda <code class="syntax">MergeTree</code> tablolar, veriler diske farklı şekillerde giriyor:</p>
+<ul>
+<li>Bir ekleme sonucunda (<code class="syntax">INSERT</code> sorgu).</li>
+<li>Arka plan birleştirmeleri sırasında ve <a href="../../../../sql-reference/statements/alter/#alter-mutations">mutasyonlar</a>.</li>
+<li>Başka bir kopyadan indirirken.</li>
+<li>Bölüm Don ofması sonucu <a href="../../../../sql-reference/statements/alter/#alter_freeze-partition">ALTER TABLE … FREEZE PARTITION</a>.</li>
+</ul>
+<p>Mutasyonlar ve bölüm dondurma hariç tüm bu durumlarda, bir parça verilen depolama politikasına göre bir birim ve bir diskte saklanır:</p>
+<ol>
+<li>Bir parçayı depolamak için yeterli disk alanına sahip olan ilk birim (tanım sırasına göre) (<code class="syntax">unreserved_space &gt; current_part_size</code>) ve belirli bir boyuttaki parçaların saklanmasına izin verir (<code class="syntax">max_data_part_size_bytes &gt; current_part_size</code>) seçilir.</li>
+<li>Bu birimde, önceki veri yığınını depolamak için kullanılan ve parça boyutundan daha fazla boş alana sahip olan diski izleyen disk seçilir (<code class="syntax">unreserved_space - keep_free_space_bytes &gt; current_part_size</code>).</li>
+</ol>
+<p>Kap hoodut underun altında, <a href="https://en.wikipedia.org/wiki/Hard_link" rel="external nofollow noreferrer" target="_blank">sabit linkler</a>. Farklı diskler arasındaki sabit bağlantılar desteklenmez, bu nedenle bu gibi durumlarda ortaya çıkan parçalar ilk disklerle aynı disklerde saklanır.</p>
+<p>Arka planda, parçalar boş alan miktarına göre hacimler arasında taşınır (<code class="syntax">move_factor</code> parametre) sırasına göre birimler yapılandırma dosyasında beyan edilir.<br/>
+Veriler asla sonuncudan ve birincisine aktarılmaz. Bir sistem tabloları kullanabilirsiniz <a href="../../../../operations/system-tables/#system_tables-part-log">sistem.part_log</a> (alan <code class="syntax">type = MOVE_PART</code>) ve <a href="../../../../operations/system-tables/#system_tables-parts">sistem.parçalar</a> (alanlar <code class="syntax">path</code> ve <code class="syntax">disk</code>) arka plan hareketlerini izlemek için. Ayrıca, ayrıntılı bilgi sunucu günlüklerinde bulunabilir.</p>
+<p>Kullanıcı, sorguyu kullanarak bir bölümü veya bölümü bir birimden diğerine taşımaya zorlayabilir <a href="../../../../sql-reference/statements/alter/#alter_move-partition">ALTER TABLE … MOVE PART|PARTITION … TO VOLUME|DISK …</a>, arka plan işlemleri için tüm kısıtlamalar dikkate alınır. Sorgu, kendi başına bir hareket başlatır ve tamamlanması için arka plan işlemleri beklemez. Yeterli boş alan yoksa veya gerekli koşullardan herhangi biri karşılanmazsa kullanıcı bir hata mesajı alır.</p>
+<p>Veri taşıma veri çoğaltma ile müdahale etmez. Bu nedenle, farklı depolama ilkeleri aynı tablo için farklı yinelemeler üzerinde belirtilebilir.</p>
+<p>Arka plan birleşimlerinin ve mutasyonlarının tamamlanmasından sonra, eski parçalar yalnızca belirli bir süre sonra çıkarılır (<code class="syntax">old_parts_lifetime</code>).<br/>
+Bu süre zarfında, diğer birimlere veya disklere taşınmazlar. Bu nedenle, parçalar nihayet çıkarılıncaya kadar, işgal edilen disk alanının değerlendirilmesi için hala dikkate alınır.</p>
+<p><a href="https://clickhouse.tech/docs/ru/operations/table_engines/mergetree/" target="_blank">Orijinal makale</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">Verim: RATING_VALUE - RATING_COUNT oylar</p>
+  <span class="alert-heading display-6">Bu içerik yararlı mıydı?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['Kullanışsız', 'Zavallı', 'OK', 'İyi', 'Mükemmel']"
+     data-documentation="belge"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>Dahili <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, yayınlanan <span title="2020-04-15T16:56:49+03:00">2020-04-15</span>, modifiye on <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">İçindekiler tablosu</label>
+    
+    
+        
+        
+        <a href="#table_engine-mergetree-creating-a-table" title="Tablo oluşturma" class="nav-link text-wrap d-inline-block w-100">
+    Tablo oluşturma
+</a>
+
+<nav id="toc-toc-1" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#mergetree-query-clauses" title="Sorgu Yan Tümceleri" class="nav-link text-wrap d-inline-block w-100">
+    Sorgu Yan Tümceleri
+</a>
+
+    
+</nav>
+
+    
+        
+        
+        <a href="#mergetree-data-storage" title="Veri Depolama" class="nav-link text-wrap d-inline-block w-100">
+    Veri Depolama
+</a>
+
+    
+        
+        
+        <a href="#primary-keys-and-indexes-in-queries" title="Sorgularda birincil anahtarlar ve dizinler" class="nav-link text-wrap d-inline-block w-100">
+    Sorgularda birincil anahtarlar ve dizinler
+</a>
+
+<nav id="toc-toc-3" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#selecting-the-primary-key" title="Birincil anahtar seçme" class="nav-link text-wrap d-inline-block w-100">
+    Birincil anahtar seçme
+</a>
+
+    
+        
+        
+        <a href="#choosing-a-primary-key-that-differs-from-the-sorting-key" title="Sıralama anahtarından farklı bir birincil anahtar seçme" class="nav-link text-wrap d-inline-block w-100">
+    Sıralama anahtarından farklı bir birincil anahtar seçme
+</a>
+
+    
+        
+        
+        <a href="#use-of-indexes-and-partitions-in-queries" title="Sorgularda dizin ve bölümlerin kullanımı" class="nav-link text-wrap d-inline-block w-100">
+    Sorgularda dizin ve bölümlerin kullanımı
+</a>
+
+    
+        
+        
+        <a href="#use-of-index-for-partially-monotonic-primary-keys" title="Kısmen monotonik birincil anahtarlar için Endeks kullanımı" class="nav-link text-wrap d-inline-block w-100">
+    Kısmen monotonik birincil anahtarlar için Endeks kullanımı
+</a>
+
+    
+        
+        
+        <a href="#table_engine-mergetree-data_skipping-indexes" title="Veri atlama indeksleri (deneysel)" class="nav-link text-wrap d-inline-block w-100">
+    Veri atlama indeksleri (deneysel)
+</a>
+
+<nav id="toc-toc-3-5" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#available-types-of-indices" title="Mevcut Endeks türleri" class="nav-link text-wrap d-inline-block w-100">
+    Mevcut Endeks türleri
+</a>
+
+    
+        
+        
+        <a href="#functions-support" title="Fonksiyonları Destek" class="nav-link text-wrap d-inline-block w-100">
+    Fonksiyonları Destek
+</a>
+
+    
+</nav>
+
+    
+</nav>
+
+    
+        
+        
+        <a href="#concurrent-data-access" title="Eşzamanlı Veri Erişimi" class="nav-link text-wrap d-inline-block w-100">
+    Eşzamanlı Veri Erişimi
+</a>
+
+    
+        
+        
+        <a href="#table_engine-mergetree-ttl" title="Sütunlar ve tablolar için TTL" class="nav-link text-wrap d-inline-block w-100">
+    Sütunlar ve tablolar için TTL
+</a>
+
+<nav id="toc-toc-5" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#mergetree-column-ttl" title="Sütun TTL" class="nav-link text-wrap d-inline-block w-100">
+    Sütun TTL
+</a>
+
+    
+        
+        
+        <a href="#mergetree-table-ttl" title="Tablo TTL" class="nav-link text-wrap d-inline-block w-100">
+    Tablo TTL
+</a>
+
+    
+</nav>
+
+    
+        
+        
+        <a href="#table_engine-mergetree-multiple-volumes" title="Veri depolama için birden fazla blok cihazı kullanma" class="nav-link text-wrap d-inline-block w-100">
+    Veri depolama için birden fazla blok cihazı kullanma
+</a>
+
+<nav id="toc-toc-6" class="nav flex-column pl-2">
+    
+    
+        
+        
+        <a href="#introduction" title="Giriş" class="nav-link text-wrap d-inline-block w-100">
+    Giriş
+</a>
+
+    
+        
+        
+        <a href="#terms" title="Şartlar" class="nav-link text-wrap d-inline-block w-100">
+    Şartlar
+</a>
+
+    
+        
+        
+        <a href="#table_engine-mergetree-multiple-volumes_configure" title="Yapılandırma" class="nav-link text-wrap d-inline-block w-100">
+    Yapılandırma
+</a>
+
+    
+        
+        
+        <a href="#details" title="Ayrıntı" class="nav-link text-wrap d-inline-block w-100">
+    Ayrıntı
+</a>
+
+    
+</nav>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

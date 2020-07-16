@@ -1,0 +1,3237 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="ja" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>ClickHouseテストの実行方法 | ClickHouseドキュメント</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="ClickHouseテストの実行方法 | ClickHouseドキュメント"/>
+<meta property="og:description" content="ClickHouseのテスト 機能テスト 機能テストは、最も簡単で使いやすいです。 ClickHouseの機能のほとんどは機能テストでテストすることができ、そのようにテストできるClickHouseコードのすべての変更に使用することが必須で" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/ja/development/tests/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/ja/development/tests/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/ja/development/tests/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "ClickHouseテストの実行方法 | ClickHouseドキュメント",
+"mainEntityOfPage": "https://clickhouse.tech/docs/ja/development/tests/",
+
+"datePublished": "2017-10-25T08:27:09+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "ClickHouseテストの実行方法 | ClickHouseドキュメント",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="ClickHouseのテスト 機能テスト 機能テストは、最も簡単で使いやすいです。 ClickHouseの機能のほとんどは機能テストでテストすることができ、そのようにテストできるClickHouseコードのすべての変更に使用することが必須で" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, オープンソース, 関係, analytics, 分析, ビッグデータ, ウェブ分析" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/development/tests/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/development/tests/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/development/tests/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/development/tests/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/development/tests/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/development/tests/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/development/tests/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/development/tests/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/development/tests/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        ClickHouseテストの実行方法
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/ja/development/tests.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/ja.svg" alt="日本語" title="日本語" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/development/tests/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/development/tests/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/development/tests/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/development/tests/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/development/tests/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/ja/development/tests/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/tr/development/tests/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/development/tests/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="複数ページまたは単一ページ">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="複数ページバージョン" title="複数ページバージョン" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="単一ページ版" title="単一ページ版" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                バージョン: <span class="text-light">最新の</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/ja/">
+                    <span class="text-light">最新の</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="はじめに" class="nav-link text-light text-wrap dropdown-toggle px-0">はじめに</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="概観" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概観</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="設置" class="nav-link text-light text-wrap d-inline-block w-100 px-0">設置</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="チュートリ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">チュートリ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-1-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1-5" title="データセット例" class="nav-link text-light text-wrap dropdown-toggle px-0">データセット例</a>
+<div id="sidebar-sidebar-1-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="Yandex.メトリカデータ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex.メトリカデータ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="オンタイム" class="nav-link text-light text-wrap d-inline-block w-100 px-0">オンタイム</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="ニューヨークタクシ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ニューヨークタクシ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab Big Dataベンチマーク" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab Big Dataベンチマーク</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="ウィキスタット" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ウィキスタット</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="Criteoからテラバイトのクリックログ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteoからテラバイトのクリックログ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="Star Schemaベンチマーク" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Star Schemaベンチマーク</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="遊び場" class="nav-link text-light text-wrap d-inline-block w-100 px-0">遊び場</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="インター" class="nav-link text-light text-wrap dropdown-toggle px-0">インター</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="コマンド行クライアント" class="nav-link text-light text-wrap d-inline-block w-100 px-0">コマンド行クライアント</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="ネイティブイ)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ネイティブイ)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="HTTPインターフェ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTPインターフェ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="MySQLインタ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQLインタ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="入力および出力フォーマット" class="nav-link text-light text-wrap d-inline-block w-100 px-0">入力および出力フォーマット</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="JDBCドライバ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBCドライバ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="ODBCドライバ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBCドライバ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="C++クライアントライ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++クライアントライ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-10" title="サードパーティ" class="nav-link text-light text-wrap dropdown-toggle px-0">サードパーティ</a>
+<div id="sidebar-sidebar-2-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="クライアント" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クライアント</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="統合" class="nav-link text-light text-wrap d-inline-block w-100 px-0">統合</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="視界面" class="nav-link text-light text-wrap d-inline-block w-100 px-0">視界面</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="プロキシ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">プロキシ</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="エンジン" class="nav-link text-light text-wrap dropdown-toggle px-0">エンジン</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-2" title="表エンジン" class="nav-link text-light text-wrap dropdown-toggle px-0">表エンジン</a>
+<div id="sidebar-sidebar-3-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-2-2" title="メルゲツリー族" class="nav-link text-light text-wrap dropdown-toggle px-0">メルゲツリー族</a>
+<div id="sidebar-sidebar-3-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="メルゲツリー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">メルゲツリー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="データ複製" class="nav-link text-light text-wrap d-inline-block w-100 px-0">データ複製</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="カスタム分割キー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">カスタム分割キー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="置換マージツリー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">置換マージツリー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="サミングマーゲツリー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">サミングマーゲツリー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="折りたたみマージツリー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">折りたたみマージツリー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="バージョニングコラプシングマーゲットリー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">バージョニングコラプシングマーゲットリー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="GraphiteMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GraphiteMergeTree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-2-3" title="ログファミリ" class="nav-link text-light text-wrap dropdown-toggle px-0">ログファミリ</a>
+<div id="sidebar-sidebar-3-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="ストリップログ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ストリップログ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="ログ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ログ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-2-4" title="統合" class="nav-link text-light text-wrap dropdown-toggle px-0">統合</a>
+<div id="sidebar-sidebar-3-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="カフカ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">カフカ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-2-5" title="スペシャル" class="nav-link text-light text-wrap dropdown-toggle px-0">スペシャル</a>
+<div id="sidebar-sidebar-3-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="分散" class="nav-link text-light text-wrap d-inline-block w-100 px-0">分散</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="外部データ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">外部データ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="辞書" class="nav-link text-light text-wrap d-inline-block w-100 px-0">辞書</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="マージ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">マージ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="ファイル" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ファイル</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="Null" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="セット" class="nav-link text-light text-wrap d-inline-block w-100 px-0">セット</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="参加" class="nav-link text-light text-wrap d-inline-block w-100 px-0">参加</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="表示" class="nav-link text-light text-wrap d-inline-block w-100 px-0">表示</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="マテリアライズドビュー" class="nav-link text-light text-wrap d-inline-block w-100 px-0">マテリアライズドビュー</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="メモリ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">メモリ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="バッファ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">バッファ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-3" title="データベース" class="nav-link text-light text-wrap dropdown-toggle px-0">データベース</a>
+<div id="sidebar-sidebar-3-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="怠け者" class="nav-link text-light text-wrap d-inline-block w-100 px-0">怠け者</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="SQLリファレンス" class="nav-link text-light text-wrap dropdown-toggle px-0">SQLリファレンス</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="文" class="nav-link text-light text-wrap dropdown-toggle px-0">文</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="Overview" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Overview</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="その他" class="nav-link text-light text-wrap d-inline-block w-100 px-0">その他</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="構文" class="nav-link text-light text-wrap d-inline-block w-100 px-0">構文</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-4" title="関数" class="nav-link text-light text-wrap dropdown-toggle px-0">関数</a>
+<div id="sidebar-sidebar-4-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="算術" class="nav-link text-light text-wrap d-inline-block w-100 px-0">算術</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="比較" class="nav-link text-light text-wrap d-inline-block w-100 px-0">比較</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="論理" class="nav-link text-light text-wrap d-inline-block w-100 px-0">論理</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="タイプ変換" class="nav-link text-light text-wrap d-inline-block w-100 px-0">タイプ変換</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="日付と時刻の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日付と時刻の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="文字列の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文字列の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="文字列を検索する場合" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文字列を検索する場合</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="文字列で置換する場合" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文字列で置換する場合</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="条件付き" class="nav-link text-light text-wrap d-inline-block w-100 px-0">条件付き</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="数学" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数学</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="丸め" class="nav-link text-light text-wrap d-inline-block w-100 px-0">丸め</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="配列の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">配列の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="文字列と配列の分割とマージ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文字列と配列の分割とマージ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="ビット" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ビット</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="ビットマ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ビットマ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="ハッシュ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ハッシュ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="擬似乱数の生成" class="nav-link text-light text-wrap d-inline-block w-100 px-0">擬似乱数の生成</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="エンコード" class="nav-link text-light text-wrap d-inline-block w-100 px-0">エンコード</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="UUIDの操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUIDの操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/url-functions/" title="Urlの操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Urlの操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="IPアドレスの操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPアドレスの操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="JSONでの作業" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JSONでの作業</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="高次" class="nav-link text-light text-wrap d-inline-block w-100 px-0">高次</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="外部辞書の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">外部辞書の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="Yandexでの作業。メトリカ辞書" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandexでの作業。メトリカ辞書</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="IN演算子の実装" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN演算子の実装</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="アレイジョイン" class="nav-link text-light text-wrap d-inline-block w-100 px-0">アレイジョイン</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="地理座標の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">地理座標の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="Null許容引数の操作" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null許容引数の操作</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="機械学習機能" class="nav-link text-light text-wrap d-inline-block w-100 px-0">機械学習機能</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="内省" class="nav-link text-light text-wrap d-inline-block w-100 px-0">内省</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="その他" class="nav-link text-light text-wrap d-inline-block w-100 px-0">その他</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-5" title="集計関数" class="nav-link text-light text-wrap dropdown-toggle px-0">集計関数</a>
+<div id="sidebar-sidebar-4-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="参照" class="nav-link text-light text-wrap d-inline-block w-100 px-0">参照</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="コンビネータ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">コンビネータ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="パラメトリック" class="nav-link text-light text-wrap d-inline-block w-100 px-0">パラメトリック</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-6" title="テーブル関数" class="nav-link text-light text-wrap dropdown-toggle px-0">テーブル関数</a>
+<div id="sidebar-sidebar-4-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="ファイル" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ファイル</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="マージ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">マージ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="数字" class="nav-link text-light text-wrap d-inline-block w-100 px-0">数字</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="リモート" class="nav-link text-light text-wrap d-inline-block w-100 px-0">リモート</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="hdfs" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdfs</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="入力" class="nav-link text-light text-wrap d-inline-block w-100 px-0">入力</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-7" title="辞書" class="nav-link text-light text-wrap dropdown-toggle px-0">辞書</a>
+<div id="sidebar-sidebar-4-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-7-2" title="外部辞書" class="nav-link text-light text-wrap dropdown-toggle px-0">外部辞書</a>
+<div id="sidebar-sidebar-4-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="一般的な説明" class="nav-link text-light text-wrap d-inline-block w-100 px-0">一般的な説明</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="外部ディクショナリの構成" class="nav-link text-light text-wrap d-inline-block w-100 px-0">外部ディクショナリの構成</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="メモリへの辞書の格納" class="nav-link text-light text-wrap d-inline-block w-100 px-0">メモリへの辞書の格納</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="辞書の更新" class="nav-link text-light text-wrap d-inline-block w-100 px-0">辞書の更新</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="外部辞書のソース" class="nav-link text-light text-wrap d-inline-block w-100 px-0">外部辞書のソース</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="辞書キーとフィールド" class="nav-link text-light text-wrap d-inline-block w-100 px-0">辞書キーとフィールド</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="階層辞書" class="nav-link text-light text-wrap d-inline-block w-100 px-0">階層辞書</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="内部辞書" class="nav-link text-light text-wrap d-inline-block w-100 px-0">内部辞書</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-8" title="データ型" class="nav-link text-light text-wrap dropdown-toggle px-0">データ型</a>
+<div id="sidebar-sidebar-4-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="UInt8、UInt16、UInt32、UInt64、Int8、Int16、Int32、Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UInt8、UInt16、UInt32、UInt64、Int8、Int16、Int32、Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Float32、Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32、Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="小数点" class="nav-link text-light text-wrap d-inline-block w-100 px-0">小数点</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="ブール値" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ブール値</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="文字列" class="nav-link text-light text-wrap d-inline-block w-100 px-0">文字列</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="固定文字列(N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">固定文字列(N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="日付" class="nav-link text-light text-wrap d-inline-block w-100 px-0">日付</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="配列(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">配列(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction(名前,types_of_arguments...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction(名前,types_of_arguments...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="Tuple(T1,T2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple(T1,T2,...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="Null可能" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null可能</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-8-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-8-17" title="入れ子データ構造" class="nav-link text-light text-wrap dropdown-toggle px-0">入れ子データ構造</a>
+<div id="sidebar-sidebar-4-8-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="ネストされた(Name1Type1,Name2Type2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ネストされた(Name1Type1,Name2Type2,...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-8-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-8-18" title="特殊データ型" class="nav-link text-light text-wrap dropdown-toggle px-0">特殊データ型</a>
+<div id="sidebar-sidebar-4-8-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="式" class="nav-link text-light text-wrap d-inline-block w-100 px-0">式</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="セット" class="nav-link text-light text-wrap d-inline-block w-100 px-0">セット</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="何もない" class="nav-link text-light text-wrap d-inline-block w-100 px-0">何もない</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="間隔" class="nav-link text-light text-wrap d-inline-block w-100 px-0">間隔</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-8-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-8-19" title="ドメイン" class="nav-link text-light text-wrap dropdown-toggle px-0">ドメイン</a>
+<div id="sidebar-sidebar-4-8-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="概要" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概要</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="IPv4" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv4</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-9" title="演算子" class="nav-link text-light text-wrap dropdown-toggle px-0">演算子</a>
+<div id="sidebar-sidebar-4-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="演算子" class="nav-link text-light text-wrap d-inline-block w-100 px-0">演算子</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="IN Operators" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operators</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="ANSIの互換性" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSIの互換性</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="ガイド" class="nav-link text-light text-wrap dropdown-toggle px-0">ガイド</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="概要" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概要</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="CatBoostモデルの適用" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CatBoostモデルの適用</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="操作" class="nav-link text-light text-wrap dropdown-toggle px-0">操作</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="要件" class="nav-link text-light text-wrap d-inline-block w-100 px-0">要件</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="監視" class="nav-link text-light text-wrap d-inline-block w-100 px-0">監視</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="トラブルシ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">トラブルシ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="クリックハウスの更新" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クリックハウスの更新</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="アクセス制御とアカウント管理" class="nav-link text-light text-wrap d-inline-block w-100 px-0">アクセス制御とアカウント管理</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="データバックア" class="nav-link text-light text-wrap d-inline-block w-100 px-0">データバックア</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="設定ファイル" class="nav-link text-light text-wrap d-inline-block w-100 px-0">設定ファイル</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="クォータ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クォータ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="システム表" class="nav-link text-light text-wrap d-inline-block w-100 px-0">システム表</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-6-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6-11" title="性能の最適化" class="nav-link text-light text-wrap dropdown-toggle px-0">性能の最適化</a>
+<div id="sidebar-sidebar-6-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="Queryプロファイリング" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Queryプロファイリング</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-6-12" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6-12" title="サーバ構成パラメータ" class="nav-link text-light text-wrap dropdown-toggle px-0">サーバ構成パラメータ</a>
+<div id="sidebar-sidebar-6-12" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="サーバー設定" class="nav-link text-light text-wrap d-inline-block w-100 px-0">サーバー設定</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="ハードウェア試験" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ハードウェア試験</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-6-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6-14" title="設定" class="nav-link text-light text-wrap dropdown-toggle px-0">設定</a>
+<div id="sidebar-sidebar-6-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="はじめに" class="nav-link text-light text-wrap d-inline-block w-100 px-0">はじめに</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="クエリの権限" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クエリの権限</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="クエリの複雑さの制限" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クエリの複雑さの制限</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="設定プロファイル" class="nav-link text-light text-wrap d-inline-block w-100 px-0">設定プロファイル</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="設定の制約" class="nav-link text-light text-wrap d-inline-block w-100 px-0">設定の制約</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="ユーザー設定" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ユーザー設定</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings/" title="設定" class="nav-link text-light text-wrap d-inline-block w-100 px-0">設定</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-6-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6-15" title="ユーティリ" class="nav-link text-light text-wrap dropdown-toggle px-0">ユーティリ</a>
+<div id="sidebar-sidebar-6-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="概要" class="nav-link text-light text-wrap d-inline-block w-100 px-0">概要</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="クリックハウス-複写機" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クリックハウス-複写機</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="ﾂつｨﾂ姪"ﾂ債ﾂつｹ" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ﾂつｨﾂ姪"ﾂ債ﾂつｹ</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="clickhouse-ベンチマーク" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-ベンチマーク</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="使用法の推奨事項" class="nav-link text-light text-wrap d-inline-block w-100 px-0">使用法の推奨事項</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="開発" class="nav-link text-light text-wrap dropdown-toggle px-0">開発</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="初心者ClickHouse開発者の指示" class="nav-link text-light text-wrap d-inline-block w-100 px-0">初心者ClickHouse開発者の指示</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="クリックハウス建築の概要" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クリックハウス建築の概要</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="ソースコードの参照" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ソースコードの参照</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="Linux上でClickHouseを構築する方法" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Linux上でClickHouseを構築する方法</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="Mac OS XでClickHouseを構築する方法" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS XでClickHouseを構築する方法</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="Mac OS X用のLinux上でClickHouseを構築する方法" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X用のLinux上でClickHouseを構築する方法</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="Aarch64用のLinux上でClickHouseを構築する方法(ARM64)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aarch64用のLinux上でClickHouseを構築する方法(ARM64)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="C++コードの書き方" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++コードの書き方</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="ClickHouseテストの実行方法" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">ClickHouseテストの実行方法</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="サードパーティ製ライブラリを使用" class="nav-link text-light text-wrap d-inline-block w-100 px-0">サードパーティ製ライブラリを使用</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="商業" class="nav-link text-light text-wrap dropdown-toggle px-0">商業</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="クラウド" class="nav-link text-light text-wrap d-inline-block w-100 px-0">クラウド</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="Support" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Support</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="新着情報" class="nav-link text-light text-wrap dropdown-toggle px-0">新着情報</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="ロード" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ロード</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-9-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9-3" title="変更履歴" class="nav-link text-light text-wrap dropdown-toggle px-0">変更履歴</a>
+<div id="sidebar-sidebar-9-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="セキュリティ変更履歴" class="nav-link text-light text-wrap d-inline-block w-100 px-0">セキュリティ変更履歴</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="一般的な質問" class="nav-link text-light text-wrap d-inline-block w-100 px-0">一般的な質問</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../single/clickhouse_ja.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDFバージョン" title="PDFバージョン" height="24" class="d-block mr-1 float-left" /><div>PDFバージョン</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">開発</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">助けが欲しかった！</p>
+      <p class="lead">このドキュメントページの以下の内容は機械翻訳されています。 異な他のウェブサイトで行われませんができます。 この翻訳テキスト生活をGitHubリポジトリとClickHouseコードベース、待ち員ネイティブスピーカーで人間が読む. <a href="/docs/en/development/tests/" class="alert-link">また、参照として、元の英語版を使用することができます。</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/ja/development/tests.md" target="_blank" rel="external nofollow noreferrer">
+              このページを編集してClickHouseの文書を編集する
+          </a>
+      </p>
+    </div>
+
+            <h1 id="clickhouse-testing">ClickHouseのテスト<a class="headerlink" href="#clickhouse-testing" title="Permanent link"> </a></h1>
+<h2 id="functional-tests">機能テスト<a class="headerlink" href="#functional-tests" title="Permanent link"> </a></h2>
+<p>機能テストは、最も簡単で使いやすいです。 ClickHouseの機能のほとんどは機能テストでテストすることができ、そのようにテストできるClickHouseコードのすべての変更に使用することが必須です。</p>
+<p>各機能テストは、実行中のClickHouseサーバーに一つまたは複数のクエリを送信し、結果を参照と比較します。</p>
+<p>テストは <code class="syntax">queries</code> ディレクトリ。 サブディレクトリは二つあります: <code class="syntax">stateless</code> と <code class="syntax">stateful</code>. ステートレステストは、プリロードされたテストデータなしでクエリを実行します。 状態での検査が必要とな予圧試験データからのYandex.Metricaおよび一般に利用できない。 私たちは使用する傾向があります <code class="syntax">stateless</code> テストと新しい追加を避ける <code class="syntax">stateful</code> テストだ</p>
+<p>それぞれの試験できるの種類: <code class="syntax">.sql</code> と <code class="syntax">.sh</code>. <code class="syntax">.sql</code> testは、パイプ処理される単純なSQLスクリプトです <code class="syntax">clickhouse-client --multiquery --testmode</code>. <code class="syntax">.sh</code> testは、それ自体で実行されるスクリプトです。</p>
+<p>すべてのテストを実行するには、 <code class="syntax">clickhouse-test</code> ツール。 見て！ <code class="syntax">--help</code> 可能なオプションのリスト。 できるだけ実行すべての試験または実行のサブセットの試験フィルター部分文字列の試験名: <code class="syntax">./clickhouse-test substring</code>.</p>
+<p>機能テストを呼び出す最も簡単な方法は、コピーすることです <code class="syntax">clickhouse-client</code> に <code class="syntax">/usr/bin/</code>,run <code class="syntax">clickhouse-server</code> そして、実行 <code class="syntax">./clickhouse-test</code> 独自のディレクトリから。</p>
+<p>新しいテストを追加するには、 <code class="syntax">.sql</code> または <code class="syntax">.sh</code> ファイル <code class="syntax">queries/0_stateless</code> ディレクトリでチェックを手動でその生成 <code class="syntax">.reference</code> 次の方法でファイル: <code class="syntax">clickhouse-client -n --testmode &lt; 00000_test.sql &gt; 00000_test.reference</code> または <code class="syntax">./00000_test.sh &gt; ./00000_test.reference</code>.</p>
+<p>テストでは、テーブルのみを使用（create、dropなど）する必要があります <code class="syntax">test</code> また、テストでは一時テーブルを使用することもできます。</p>
+<p>機能テストで分散クエリを使用する場合は、以下を利用できます <code class="syntax">remote</code> テーブル関数 <code class="syntax">127.0.0.{1..2}</code> または、サーバー設定ファイルで次のように定義済みのテストクラスタを使用できます <code class="syntax">test_shard_localhost</code>.</p>
+<p>いくつかのテストには <code class="syntax">zookeeper</code>, <code class="syntax">shard</code> または <code class="syntax">long</code> 彼らの名前で。<br/>
+<code class="syntax">zookeeper</code> ZooKeeperを使用しているテスト用です。 <code class="syntax">shard</code> そのテストのためです<br/>
+サーバーにリッスンが必要 <code class="syntax">127.0.0.*</code>; <code class="syntax">distributed</code> または <code class="syntax">global</code> 同じを持っている<br/>
+意味だ <code class="syntax">long</code> 少し長く実行されるテストのためのものです。 あなたはできる<br/>
+disableこれらのグループの試験を使用 <code class="syntax">--no-zookeeper</code>, <code class="syntax">--no-shard</code> と<br/>
+<code class="syntax">--no-long</code> オプション、それぞれ。</p>
+<h2 id="known-bugs">既知のバグ<a class="headerlink" href="#known-bugs" title="Permanent link"> </a></h2>
+<p>機能テストで簡単に再現できるいくつかのバグがわかっている場合は、準備された機能テストを <code class="syntax">tests/queries/bugs</code> ディレクトリ。 これらのテストは <code class="syntax">tests/queries/0_stateless</code> バグが修正されたとき。</p>
+<h2 id="integration-tests">統合テスト<a class="headerlink" href="#integration-tests" title="Permanent link"> </a></h2>
+<p>統合テストでは、クラスター化された構成でClickHouseをテストし、Mysql、Postgres、MongoDBなどの他のサーバーとClickHouseの相互作用をテストできます。 これらをエミュレートするネットワーク分割、パケットの落下など。 これらの試験する方向に作用しDockerを複数の容器を様々なソフトウェアです。</p>
+<p>見る <code class="syntax">tests/integration/README.md</code> これらのテストを実行する方法について。</p>
+<p>この統合ClickHouse第三者によるドライバーではない。 また、現在、JDBCおよびODBCドライバとの統合テストはありません。</p>
+<h2 id="unit-tests">単体テスト<a class="headerlink" href="#unit-tests" title="Permanent link"> </a></h2>
+<p>単体テストは、ClickHouse全体ではなく、単一の孤立したライブラリまたはクラスをテストする場合に便利です。 テストのビルドを有効または無効にするには <code class="syntax">ENABLE_TESTS</code> CMakeオプション。 単体テスト(およびその他のテストプログラム)は <code class="syntax">tests</code> コード全体のサブディレクトリ。 単体テストを実行するには、 <code class="syntax">ninja test</code>. 一部のテストでは <code class="syntax">gtest</code> しかし、いくつかは、テストの失敗でゼロ以外の終了コードを返すプログラムです。</p>
+<p>コードがすでに機能テストでカバーされている場合は、必ずしも単体テストを持つとは限りません（機能テストは通常ははるかに簡単です）。</p>
+<h2 id="performance-tests">性能テスト<a class="headerlink" href="#performance-tests" title="Permanent link"> </a></h2>
+<p>パフォーマ テストは <code class="syntax">tests/performance</code>. それぞれの試験に代表される <code class="syntax">.xml</code> テストケースの説明を持つファイル。 テストは以下で実行されます <code class="syntax">clickhouse performance-test</code> ツール(埋め込まれている <code class="syntax">clickhouse</code> バイナリ）。 見る <code class="syntax">--help</code> 呼び出し用。</p>
+<p>それぞれの試験実行または複数のクエリ(このパラメータの組み合わせ）のループ条件のための停止など “maximum execution speed is not changing in three seconds” 測定一部の指標につクエリの性能など “maximum execution speed”). いくつかの試験を含むことができ前提条件に予圧試験データを得る。</p>
+<p>いくつかのシナリオでClickHouseのパフォーマンスを向上させたい場合や、単純なクエリで改善が見られる場合は、パフォーマンステストを作成することを強 いう意味があるのに使用 <code class="syntax">perf top</code> またはあなたのテストの間の他のperf用具。</p>
+<h2 id="test-tools-and-scripts">テストツールとスクリプ<a class="headerlink" href="#test-tools-and-scripts" title="Permanent link"> </a></h2>
+<p>一部のプログラム <code class="syntax">tests</code> ディレク 例えば、 <code class="syntax">Lexer</code> ツールがあります <code class="syntax">src/Parsers/tests/lexer</code> それはstdinのトークン化を行い、色付けされた結果をstdoutに書き込みます。 これらの種類のツールは、コード例として、また探索と手動テストに使用できます。</p>
+<p>でも一対のファイル <code class="syntax">.sh</code> と <code class="syntax">.reference</code> いくつかの事前定義された入力でそれを実行するためのツールと一緒に-その後、スクリプトの結果は <code class="syntax">.reference</code> ファイル これらの種類のテストは自動化されていません。</p>
+<h2 id="miscellaneous-tests">その他のテスト<a class="headerlink" href="#miscellaneous-tests" title="Permanent link"> </a></h2>
+<p>外部辞書のテストは次の場所にあります <code class="syntax">tests/external_dictionaries</code> そして機械学んだモデルのために <code class="syntax">tests/external_models</code>. これらのテストは更新されず、統合テストに転送する必要があります。</p>
+<p>クォーラム挿入には別のテストがあります。 このテストでは、ネットワーク分割、パケットドロップ（ClickHouseノード間、ClickHouseとZooKeeper間、ClickHouseサーバーとクライアント間など）など、さまざまな障害ケースをエミュレートします。), <code class="syntax">kill -9</code>, <code class="syntax">kill -STOP</code> と <code class="syntax">kill -CONT</code> 例えば <a href="https://aphyr.com/tags/Jepsen" rel="external nofollow noreferrer" target="_blank">ジェプセン</a>. その後、試験チェックすべての認識を挿入したすべて拒否された挿入しました。</p>
+<p>定足数を緩和試験の筆に別々のチーム前ClickHouseしたオープン達した. このチームはClickHouseでは動作しなくなりました。 テストは誤ってJavaで書かれました。 これらのことから、決議の定足数テストを書き換え及び移転統合。</p>
+<h2 id="manual-testing">手動テスト<a class="headerlink" href="#manual-testing" title="Permanent link"> </a></h2>
+<p>新しい機能を開発するときは、手動でもテストするのが妥当です。 これを行うには、次の手順を実行します:</p>
+<p>ClickHouseを構築します。 ターミナルからClickHouseを実行します。 <code class="syntax">programs/clickhouse-server</code> そして、それを実行します <code class="syntax">./clickhouse-server</code>. それは構成を使用します (<code class="syntax">config.xml</code>, <code class="syntax">users.xml</code> そして内のファイル <code class="syntax">config.d</code> と <code class="syntax">users.d</code> ディレクトリ)から、現在のディレクトリがデフォルトです。 ClickHouseサーバーに接続するには、以下を実行します <code class="syntax">programs/clickhouse-client/clickhouse-client</code>.</p>
+<p>これらのclickhouseツール（サーバ、クライアント、などだそうでsymlinks単一のバイナリ名 <code class="syntax">clickhouse</code>. このバイナリは <code class="syntax">programs/clickhouse</code>. すべてのツ <code class="syntax">clickhouse tool</code> 代わりに <code class="syntax">clickhouse-tool</code>.</p>
+<p>またインストールすることができClickHouseパッケージは安定したリリースからのYandexリポジトリあるいはすることで作ることができるパッケージで <code class="syntax">./release</code> ClickHouseソースルートで. 次に、サーバーを起動します <code class="syntax">sudo service clickhouse-server start</code> (または停止してサーバーを停止します)。 ログを探す <code class="syntax">/etc/clickhouse-server/clickhouse-server.log</code>.</p>
+<p>時ClickHouseでに既にインストールされているシステムを構築できる新しい <code class="syntax">clickhouse</code> 既存のバイナリを置き換えます:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo service clickhouse-server stop
+$ sudo cp ./clickhouse /usr/bin/
+$ sudo service clickhouse-server start
+</code></pre></div>
+<p>また、システムclickhouse-serverを停止し、同じ構成ではなく端末にログインして独自のものを実行することもできます:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo service clickhouse-server stop
+$ sudo -u clickhouse /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml
+</code></pre></div>
+<p>Gdbの例:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ sudo -u clickhouse gdb --args /usr/bin/clickhouse server --config-file /etc/clickhouse-server/config.xml
+</code></pre></div>
+<p>システムclickhouse-serverがすでに実行されていて、それを停止したくない場合は、次のポート番号を変更できます <code class="syntax">config.xml</code> （または、ファイル内でそれらを上書きする <code class="syntax">config.d</code> ディレクトリ）、適切なデータパスを提供し、それを実行します。</p>
+<p><code class="syntax">clickhouse</code> バイナリーはほとんどない依存関係の作品を広い範囲のLinuxディストリビューション. サーバー上で変更を迅速かつ汚いテストするには、次のことができます <code class="syntax">scp</code> あなたの新鮮な構築 <code class="syntax">clickhouse</code> あなたのサーバーにバイナリし、上記の例のように実行します。</p>
+<h2 id="testing-environment">テスト環境<a class="headerlink" href="#testing-environment" title="Permanent link"> </a></h2>
+<p>リリースを安定版として公開する前に、テスト環境に展開します。 テスト環境は1/39の部分を処理する集りです <a href="https://metrica.yandex.com/" rel="external nofollow noreferrer" target="_blank">Yandex.メトリカ</a> データ テスト環境をYandexと共有しています。メトリカ-チーム ClickHouseは既存のデータの上にダウンタイムなしで改善される。 私たちは、データがリアルタイムから遅れることなく正常に処理され、複製が動作し続け、Yandexに見える問題はないことを最初に見ています。メトリカ-チーム 最初のチェックは、次の方法で行うことができます:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="k">SELECT</span> <span class="n">hostName</span><span class="p">()</span> <span class="k">AS</span> <span class="n">h</span><span class="p">,</span> <span class="k">any</span><span class="p">(</span><span class="k">version</span><span class="p">()),</span> <span class="k">any</span><span class="p">(</span><span class="n">uptime</span><span class="p">()),</span> <span class="k">max</span><span class="p">(</span><span class="n">UTCEventTime</span><span class="p">),</span> <span class="k">count</span><span class="p">()</span> <span class="k">FROM</span> <span class="n">remote</span><span class="p">(</span><span class="s1">'example01-01-{1..3}t'</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">hits</span><span class="p">)</span> <span class="k">WHERE</span> <span class="n">EventDate</span> <span class="o">&gt;=</span> <span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">h</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">h</span><span class="p">;</span>
+</code></pre></div>
+<p>市場、クラウドなど：いくつかのケースでは、我々はまた、Yandexの中で私たちの友人チームのテスト環境に展開します また、開発目的で使用されるハードウェアサーバーもあります。</p>
+<h2 id="load-testing">負荷テスト<a class="headerlink" href="#load-testing" title="Permanent link"> </a></h2>
+<p>後の展開を試験環境を実行負荷テストクエリから生産ます。 これは手動で行われます。</p>
+<p>有効にしていることを確認します <code class="syntax">query_log</code> 運用クラスター上。</p>
+<p>一日以上のクエリログを収集する:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ clickhouse-client --query<span class="o">=</span><span class="s2">"SELECT DISTINCT query FROM system.query_log WHERE event_date = today() AND query LIKE '%ym:%' AND query NOT LIKE '%system.query_log%' AND type = 2 AND is_initial_query"</span> &gt; queries.tsv
+</code></pre></div>
+<p>これは複雑な例です。 <code class="syntax">type = 2</code> 正常に実行されたクエリをフィルタ処理します。 <code class="syntax">query LIKE '%ym:%'</code> Yandexから関連するクエリを選択することです。メトリカ <code class="syntax">is_initial_query</code> ClickHouse自体ではなく、クライアントによって開始されたクエリのみを選択することです（分散クエリ処理の一部として）。</p>
+<p><code class="syntax">scp</code> このログをテストクラスタに記録し、次のように実行します:</p>
+<div class="codehilite"><pre><span></span><code class="syntax">$ clickhouse benchmark --concurrency <span class="m">16</span> &lt; queries.tsv
+</code></pre></div>
+<p>（おそらくあなたはまた、 <code class="syntax">--user</code>)</p>
+<p>それから夜または週末のためにそれを残し、残りを取る行きなさい。</p>
+<p>きることを確認 <code class="syntax">clickhouse-server</code> なクラッシュメモリのフットプリントは有界性なつ品位を傷つける。</p>
+<p>クエリと環境の変動が大きいため、正確なクエリ実行タイミングは記録されず、比較されません。</p>
+<h2 id="build-tests">ビルドテスト<a class="headerlink" href="#build-tests" title="Permanent link"> </a></h2>
+<p>構築を試験できることを確認の構築においても様々な代替構成されており、外国のシステム。 テストは <code class="syntax">ci</code> ディレクトリ。 Docker、Vagrant、時には以下のようなソースからビルドを実行します <code class="syntax">qemu-user-static</code> ドッカー内部。 これらのテストは開発中であり、テストの実行は自動化されません。</p>
+<p>動機:</p>
+<p>通常、ClickHouse buildの単一のバリアントですべてのテストをリリースして実行します。 しかし、徹底的にテストされていない別のビルド変種があります。 例:</p>
+<ul>
+<li>FreeBSD上でビルド;</li>
+<li>をDebianを対象として図書館システムのパッケージ;</li>
+<li>ライブラリの共有リンクでビルド;</li>
+<li>AArch64プラットフォ;</li>
+<li>PowerPcプラットフォーム上で構築。</li>
+</ul>
+<p>たとえば、システムパッケージを使用したビルドは悪い習慣です。 しかし、これは本当にDebianメンテナに必要です。 このため、少なくともこのビルドの変種をサポートする必要があります。 別の例：共有リンクは一般的な問題の原因ですが、一部の愛好家にとって必要です。</p>
+<p>ができませんので実行した全試験はすべての変異体を構築し、チェックしたい少なくとも上記に記載された各種の構築異な破となりました。 この目的のためにビルドテストを使用します。</p>
+<h2 id="testing-for-protocol-compatibility">プロトコル互換性のテスト<a class="headerlink" href="#testing-for-protocol-compatibility" title="Permanent link"> </a></h2>
+<p>ClickHouse network protocolを拡張すると、古いclickhouse-clientが新しいclickhouse-serverで動作し、新しいclickhouse-clientが古いclickhouse-serverで動作することを手動でテストします（対応するパッケージからバイナリを</p>
+<h2 id="help-from-the-compiler">コンパイラからのヘルプ<a class="headerlink" href="#help-from-the-compiler" title="Permanent link"> </a></h2>
+<p>メインクリックハウスコード（にある <code class="syntax">dbms</code> ディレクトリ)は <code class="syntax">-Wall -Wextra -Werror</code> そして、いくつかの追加の有効な警告と。 これらのオプションは有効になっていないためにサードパーティーのライブラリ.</p>
+<p>Clangにはさらに便利な警告があります。 <code class="syntax">-Weverything</code> デフォルトのビルドに何かを選ぶ。</p>
+<p>本番ビルドでは、gccが使用されます（clangよりもやや効率的なコードが生成されます）。 開発のために、clangは通常、使用する方が便利です。 あなたは（あなたのラップトップのバッテリーを節約するために）デバッグモードで自分のマシン上で構築することができますが、コンパイラがでより <code class="syntax">-O3</code> よりよい制御フローおよびinter-procedure分析が原因で。 Clangでビルドする場合, <code class="syntax">libc++</code> の代わりに使用されます。 <code class="syntax">libstdc++</code> そして、デバッグモードでビルドするとき、 <code class="syntax">libc++</code> 使用可能にするにはより誤差があります。.</p>
+<h2 id="sanitizers">サニタイザー<a class="headerlink" href="#sanitizers" title="Permanent link"> </a></h2>
+<p><strong>アドレスsanitizer</strong>.<br/>
+私たちは、コミットごとにASanの下で機能テストと統合テストを実行します。</p>
+<p><strong>ヴァルグリンド(曖昧さ回避)</strong>.<br/>
+私たちは一晩Valgrindの下で機能テストを実行します。 数時間かかります。 現在知られている偽陽性があります <code class="syntax">re2</code> 図書館、参照 <a href="https://research.swtch.com/sparse" rel="external nofollow noreferrer" target="_blank">この記事</a>.</p>
+<p><strong>未定義の動作のサニタイザー。</strong><br/>
+私たちは、コミットごとにASanの下で機能テストと統合テストを実行します。</p>
+<p><strong>糸のsanitizer</strong>.<br/>
+私たちは、コミットごとにTSanの下で機能テストを実行します。 コミットごとにTSanの下で統合テストを実行することはまだありません。</p>
+<p><strong>メモリサニタイザー</strong>.<br/>
+現在、我々はまだMSanを使用していません。</p>
+<p><strong>デバッグアロケータ。</strong><br/>
+デバッグバージョン <code class="syntax">jemalloc</code> デバッグビルドに使用されます。</p>
+<h2 id="fuzzing">ファジング<a class="headerlink" href="#fuzzing" title="Permanent link"> </a></h2>
+<p>ClickHouseファジングは、両方を使用して実装されます <a href="https://llvm.org/docs/LibFuzzer.html" rel="external nofollow noreferrer" target="_blank">libFuzzer</a> とランダムSQLクエリ。<br/>
+すべてのファズテストは、サニタイザー（アドレスと未定義）で実行する必要があります。</p>
+<p>LibFuzzerは、ライブラリコードの分離ファズテストに使用されます。 ファザーはテストコードの一部として実装され “_fuzzer” 名前の接尾辞。<br/>
+Fuzzerの例はで見つけることができます <code class="syntax">src/Parsers/tests/lexer_fuzzer.cpp</code>. LibFuzzer固有の設定、辞書、およびコーパスは次の場所に格納されます <code class="syntax">tests/fuzz</code>.<br/>
+ご協力をお願いいたし書きファズ試験べての機能を取り扱うユーザー入力します。</p>
+<p>ファザーはデフォルトではビルドされません。 両方のファザーを構築するには <code class="syntax">-DENABLE_FUZZING=1</code> と <code class="syntax">-DENABLE_TESTS=1</code> 選択は置かれるべきである。<br/>
+ファザーのビルド中にJemallocを無効にすることをお勧めします。 ClickHouseファジングを統合するために使用される設定<br/>
+Google OSS-Fuzzは次の場所にあります <code class="syntax">docker/fuzz</code>.</p>
+<p>また簡単なファズ試験をランダムなSQLクエリーやことを確認するにはサーバーにな金型を実行します。<br/>
+それを見つけることができる <code class="syntax">00746_sql_fuzzy.pl</code>. このテストは、継続的に実行する必要があります（一晩と長い）。</p>
+<h2 id="security-audit">セキュリティ監査<a class="headerlink" href="#security-audit" title="Permanent link"> </a></h2>
+<p>人からのYandexセキュリティチームはいくつかの基本的な概要ClickHouse力からのセキュリティの観点から.</p>
+<h2 id="static-analyzers">静的アナライザ<a class="headerlink" href="#static-analyzers" title="Permanent link"> </a></h2>
+<p>私たちは走る <code class="syntax">PVS-Studio</code> コミットごと。 私達は評価しました <code class="syntax">clang-tidy</code>, <code class="syntax">Coverity</code>, <code class="syntax">cppcheck</code>, <code class="syntax">PVS-Studio</code>, <code class="syntax">tscancode</code>. 使用のための指示をで見つけます <code class="syntax">tests/instructions/</code> ディレクトリ。 また読むことができます <a href="https://habr.com/company/yandex/blog/342018/" rel="external nofollow noreferrer" target="_blank">ロシア語の記事</a>.</p>
+<p>を使用する場合 <code class="syntax">CLion</code> IDEとして、いくつかを活用できます <code class="syntax">clang-tidy</code> 箱から出してチェックします。</p>
+<h2 id="hardening">硬化<a class="headerlink" href="#hardening" title="Permanent link"> </a></h2>
+<p><code class="syntax">FORTIFY_SOURCE</code> デフォルトで使用されます。 それはほとんど役に立たないですが、まれに理にかなっており、それを無効にしません。</p>
+<h2 id="code-style">コードスタイル<a class="headerlink" href="#code-style" title="Permanent link"> </a></h2>
+<p>コードのスタイルのルールを記述 <a href="https://clickhouse.tech/docs/en/development/style/" target="_blank">ここに</a>.</p>
+<p>チェックのための、共通したスタイル違反、利用できる <code class="syntax">utils/check-style</code> スクリプト</p>
+<p>コードの適切なスタイルを強制するには、次のようにします <code class="syntax">clang-format</code>. ファイル <code class="syntax">.clang-format</code> ソースルートにあります。 実際のコードスタイルにほとんど対応しています。 しかし、適用することはお勧めしません <code class="syntax">clang-format</code> 既存のファイルへの書式設定が悪化するためです。 以下を使用できます <code class="syntax">clang-format-diff</code> clangソースリポジトリで見つけることができるツール。</p>
+<p>あるいは、 <code class="syntax">uncrustify</code> コードを再フォーマットするツール。 設定は次のとおりです <code class="syntax">uncrustify.cfg</code> ソースルートで。 それはより少なくテストさ <code class="syntax">clang-format</code>.</p>
+<p><code class="syntax">CLion</code> 独自のコードをフォーマッタしていると見ることができる調整のためのコードです。</p>
+<h2 id="metrica-b2b-tests">Metrica B2Bテスト<a class="headerlink" href="#metrica-b2b-tests" title="Permanent link"> </a></h2>
+<p>各ClickHouseリリースはYandex MetricaとAppMetricaエンジンでテストされます。 ClickHouseのテスト版と安定版はVmにデプロイされ、入力データの固定サンプルを処理するMetrica engineの小さなコピーで実行されます。 次に，Ｍｅｔｒｉｃａエンジンの二つのインスタンスの結果を比較した。</p>
+<p>これらの試験により自動化されており、別のチームです。 可動部分の高い数が原因で、テストは把握し非常ににくい完全に無関係な理由によって失敗ほとんどの時間です。 がこれらの試験は負の値です。 しかしこれらの試験することが明らかとなったが有用である一又は二倍の数百名</p>
+<h2 id="test-coverage">テスト範囲<a class="headerlink" href="#test-coverage" title="Permanent link"> </a></h2>
+<p>2018年現在、テストカバーは行っていない。</p>
+<h2 id="test-automation">テスト自動化<a class="headerlink" href="#test-automation" title="Permanent link"> </a></h2>
+<p>Yandex内部CIとジョブ自動化システムという名前のテストを実行します “Sandbox”.</p>
+<p>ビルドジョブとテストは、コミットごとにSandboxで実行されます。 結果のパッケージとテスト結果はGitHubに公開され、直接リンクでダウンロードできます。 成果物は永遠に保存されます。 GitHubでプルリクエストを送信すると、次のようにタグ付けします “can be tested” そして私達のCIシステムはあなたのためのClickHouseのパッケージ（住所sanitizerの解放、デバッグ、等）を造ります。</p>
+<p>時間と計算能力の限界のため、Travis CIは使用しません。<br/>
+ジェンキンスは使わない 以前は使用されていましたが、今はJenkinsを使用していません。</p>
+<p><a href="https://clickhouse.tech/docs/en/development/tests/" target="_blank">元の記事</a> <!--hide--></p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">評価: RATING_VALUE - RATING_COUNT 投票</p>
+  <span class="alert-heading display-6">この内容は有用だったか。</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['使用不可', '貧しい', 'OK', 'よし', '優れた']"
+     data-documentation="文書"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>から構築 <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, 掲載され <span title="2017-10-25T08:27:09+03:00">2017-10-25</span>, に変更 <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+        <label for="toc">テーブルの内容</label>
+    
+    
+        
+        
+        <a href="#functional-tests" title="機能テスト" class="nav-link text-wrap d-inline-block w-100">
+    機能テスト
+</a>
+
+    
+        
+        
+        <a href="#known-bugs" title="既知のバグ" class="nav-link text-wrap d-inline-block w-100">
+    既知のバグ
+</a>
+
+    
+        
+        
+        <a href="#integration-tests" title="統合テスト" class="nav-link text-wrap d-inline-block w-100">
+    統合テスト
+</a>
+
+    
+        
+        
+        <a href="#unit-tests" title="単体テスト" class="nav-link text-wrap d-inline-block w-100">
+    単体テスト
+</a>
+
+    
+        
+        
+        <a href="#performance-tests" title="性能テスト" class="nav-link text-wrap d-inline-block w-100">
+    性能テスト
+</a>
+
+    
+        
+        
+        <a href="#test-tools-and-scripts" title="テストツールとスクリプ" class="nav-link text-wrap d-inline-block w-100">
+    テストツールとスクリプ
+</a>
+
+    
+        
+        
+        <a href="#miscellaneous-tests" title="その他のテスト" class="nav-link text-wrap d-inline-block w-100">
+    その他のテスト
+</a>
+
+    
+        
+        
+        <a href="#manual-testing" title="手動テスト" class="nav-link text-wrap d-inline-block w-100">
+    手動テスト
+</a>
+
+    
+        
+        
+        <a href="#testing-environment" title="テスト環境" class="nav-link text-wrap d-inline-block w-100">
+    テスト環境
+</a>
+
+    
+        
+        
+        <a href="#load-testing" title="負荷テスト" class="nav-link text-wrap d-inline-block w-100">
+    負荷テスト
+</a>
+
+    
+        
+        
+        <a href="#build-tests" title="ビルドテスト" class="nav-link text-wrap d-inline-block w-100">
+    ビルドテスト
+</a>
+
+    
+        
+        
+        <a href="#testing-for-protocol-compatibility" title="プロトコル互換性のテスト" class="nav-link text-wrap d-inline-block w-100">
+    プロトコル互換性のテスト
+</a>
+
+    
+        
+        
+        <a href="#help-from-the-compiler" title="コンパイラからのヘルプ" class="nav-link text-wrap d-inline-block w-100">
+    コンパイラからのヘルプ
+</a>
+
+    
+        
+        
+        <a href="#sanitizers" title="サニタイザー" class="nav-link text-wrap d-inline-block w-100">
+    サニタイザー
+</a>
+
+    
+        
+        
+        <a href="#fuzzing" title="ファジング" class="nav-link text-wrap d-inline-block w-100">
+    ファジング
+</a>
+
+    
+        
+        
+        <a href="#security-audit" title="セキュリティ監査" class="nav-link text-wrap d-inline-block w-100">
+    セキュリティ監査
+</a>
+
+    
+        
+        
+        <a href="#static-analyzers" title="静的アナライザ" class="nav-link text-wrap d-inline-block w-100">
+    静的アナライザ
+</a>
+
+    
+        
+        
+        <a href="#hardening" title="硬化" class="nav-link text-wrap d-inline-block w-100">
+    硬化
+</a>
+
+    
+        
+        
+        <a href="#code-style" title="コードスタイル" class="nav-link text-wrap d-inline-block w-100">
+    コードスタイル
+</a>
+
+    
+        
+        
+        <a href="#metrica-b2b-tests" title="Metrica B2Bテスト" class="nav-link text-wrap d-inline-block w-100">
+    Metrica B2Bテスト
+</a>
+
+    
+        
+        
+        <a href="#test-coverage" title="テスト範囲" class="nav-link text-wrap d-inline-block w-100">
+    テスト範囲
+</a>
+
+    
+        
+        
+        <a href="#test-automation" title="テスト自動化" class="nav-link text-wrap d-inline-block w-100">
+    テスト自動化
+</a>
+
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>

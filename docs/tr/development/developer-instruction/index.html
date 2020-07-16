@@ -1,0 +1,3184 @@
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+        
+        
+    
+    <!DOCTYPE html>
+<html lang="tr" data-version="master" data-single-page="false">
+<head>
+    
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Acemi ClickHouse Geliştirici Talimat | ClickHouse Belgeleri</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/logo-180x180.png" />
+
+<meta property="og:title" content="Acemi ClickHouse Geliştirici Talimat | ClickHouse Belgeleri"/>
+<meta property="og:description" content="ClickHouse binası Linux, FreeBSD ve Mac OS X üzerinde desteklenmektedir. Windows Kullanıyorsanız Windows kullanıyorsanız" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="https://clickhouse.tech/images/logo.png" />
+
+<meta property="og:url" content="https://clickhouse.tech/docs/tr/development/developer-instruction/"/>
+<link rel="canonical" href="https://clickhouse.tech/docs/tr/development/developer-instruction/" />
+
+<link rel="amphtml" href="https://clickhouse.tech/docs/tr/development/developer-instruction/amp/" />
+
+<link rel="search" href="/opensearch.xml" title="ClickHouse" type="application/opensearchdescription+xml" />
+
+<script type="application/ld+json">[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "Acemi ClickHouse Geliştirici Talimat | ClickHouse Belgeleri",
+"mainEntityOfPage": "https://clickhouse.tech/docs/tr/development/developer-instruction/",
+
+"datePublished": "2020-04-15T16:56:49+03:00",
+"dateModified": "2020-05-15T07:34:54+03:00",
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "Acemi ClickHouse Geliştirici Talimat | ClickHouse Belgeleri",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script>
+
+
+<meta name="description" content="ClickHouse binası Linux, FreeBSD ve Mac OS X üzerinde desteklenmektedir. Windows Kullanıyorsanız Windows kullanıyorsanız" />
+
+<meta name="keywords"
+      content="ClickHouse, DBMS, OLAP, SQL, açık kaynak, ilişkisel, analiz, analitik, Büyük Veri, web-analyt -ics" />
+
+
+
+
+    
+    <link rel="alternate" hreflang="en" href="https://clickhouse.tech/docs/en/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="zh" href="https://clickhouse.tech/docs/zh/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="es" href="https://clickhouse.tech/docs/es/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="fr" href="https://clickhouse.tech/docs/fr/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="ru" href="https://clickhouse.tech/docs/ru/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="ja" href="https://clickhouse.tech/docs/ja/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="tr" href="https://clickhouse.tech/docs/tr/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="fa" href="https://clickhouse.tech/docs/fa/development/developer-instruction/" />
+    
+    <link rel="alternate" hreflang="x-default" href="https://clickhouse.tech/docs/en/development/developer-instruction/" />
+
+
+
+
+
+    
+    <link href="/css/base.css?css_digest" media="all" rel="stylesheet" />
+
+
+</head>
+<body dir="ltr" data-spy="scroll" data-target="#toc" data-offset="80">
+
+    
+        <nav id="top-nav" class="navbar navbar-dark navbar-expand-md bg-dark-alt text-white sticky-top">
+    <div class="container-fluid justify-content-between">
+        <a class="d-block navbar-brand mr-3" href="/">
+            <img id="docs-logo-icon" src="/images/logo.svg" alt="ClickHouse logo" title="ClickHouse logo"/>
+        </a>
+        <div class="w-100 navbar-text text-left d-none d-md-block">
+            <h1 class="h3 m-0 p-0 d-inline">
+                <a href="#" class="text-white text-decoration-none">
+                    
+                        Acemi ClickHouse Geliştirici Talimat
+                    
+                </a>
+            </h1>
+        </div>
+
+        <div class="d-none d-md-block">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 justify-content-end">
+                
+                    
+                
+                
+                <li id="edit-wrapper" class="nav-item">
+                    <a id="edit-link" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/development/developer-instruction.md" title="Edit this article" class="nav-link" rel="external nofollow noreferrer" target="_blank"><img src="/images/mkdocs/edit.svg" alt="Edit this article" class="mt-1" height="22" /></a>
+                </li>
+                
+                <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/ClickHouse/ClickHouse" rel="external nofollow noreferrer">
+                        <img src="/images/index/github.svg" alt="GitHub repository" title="Go to GitHub" height="32" />
+                    </a>
+                </li>
+                <li id="languages-wrapper" class="nav-item dropdown">
+                    <div id="languages-dropdown">
+                        <a class="nav-link dropdown-toggle d-inline-block mt-1 text-muted" href="#" id="lang-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/flags/tr.svg" alt="Türkçe" title="Türkçe" width="32" class="d-inline-block mt-n1" />
+                        </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="lang-dropdown">
+                            
+                            <a class="dropdown-item"
+                               href="/docs/en/development/developer-instruction/">
+                                <img src="/images/flags/en.svg" alt="" title="" width="32" class="d-inline-block mr-2" />English
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/zh/development/developer-instruction/">
+                                <img src="/images/flags/zh.svg" alt="" title="" width="32" class="d-inline-block mr-2" />中文
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/es/development/developer-instruction/">
+                                <img src="/images/flags/es.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Español
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fr/development/developer-instruction/">
+                                <img src="/images/flags/fr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Français
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ru/development/developer-instruction/">
+                                <img src="/images/flags/ru.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Русский
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/ja/development/developer-instruction/">
+                                <img src="/images/flags/ja.svg" alt="" title="" width="32" class="d-inline-block mr-2" />日本語
+                            </a>
+                            
+                            <a class="dropdown-item disabled"
+                               href="/docs/tr/development/developer-instruction/">
+                                <img src="/images/flags/tr.svg" alt="" title="" width="32" class="d-inline-block mr-2" />Türkçe
+                            </a>
+                            
+                            <a class="dropdown-item"
+                               href="/docs/fa/development/developer-instruction/">
+                                <img src="/images/flags/fa.svg" alt="" title="" width="32" class="d-inline-block mr-2" />فارسی
+                            </a>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <form id="search-form" class="form-inline m-0">
+            <div class="input-group">
+                <div class="input-group-prepend w-100">
+                    <span class="input-group-text bg-secondary-alt text-muted border-0 mr-n1" id="search-icon">
+                        <img src="/images/mkdocs/search.svg" />
+                    </span>
+                    <input id="docsearch-input" class="form-control bg-secondary-alt text-muted border-0 pl-1" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        </form>
+
+        <button id="navbar-toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+        <div class="container-fluid">
+            <div class="row justify-content-end justify-content-xl-center">
+                <div id="sidebar" class="col-xl-2 col-md-4 bg-secondary-alt p-3 d-print-none min-vh-100 overflow-auto">
+    <div class="overflow-auto">
+        <div id="single-page-switch" class="btn-group mb-2 float-right" role="group" aria-label="Çok sayfalı veya tek sayfalı">
+            <a href="../.." role="button" class="btn btn-dark active" aria-pressed="true">
+                <img src="/images/mkdocs/multi.svg" alt="Çok sayfalı sürüm" title="Çok sayfalı sürüm" />
+            </a>
+            <a href="../../single/" role="button" class="btn btn-dark-alt active" aria-pressed="true">
+                <img src="/images/mkdocs/single.svg" alt="Tek sayfalık sürüm" title="Tek sayfalık sürüm" />
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <a class="btn btn-dark dropdown-toggle text-muted" href="#" role="button" id="select-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sürüm: <span class="text-light">son</span>
+            </a>
+
+            <div class="dropdown-menu bg-dark text-muted p-1" aria-labelledby="select-version">
+                <a class="dropdown-item disable"
+                   href="/docs/tr/">
+                    <span class="text-light">son</span>
+                </a>
+
+                
+            </div>
+        </div>
+        
+        <nav id="sidebar-nav" class="nav flex-column mb-5">
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-1" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-1" title="Giriş" class="nav-link text-light text-wrap dropdown-toggle px-0">Giriş</a>
+<div id="sidebar-sidebar-1" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/distinctive-features/" title="Ayırt Edici Özellikler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayırt Edici Özellikler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/performance/" title="Performans" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Performans</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/history/" title="Tarih" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../introduction/adopters/" title="Benimseyenler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Benimseyenler</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2" title="Başlarken" class="nav-link text-light text-wrap dropdown-toggle px-0">Başlarken</a>
+<div id="sidebar-sidebar-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/install/" title="Kurulum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kurulum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-2-3" title="Örnek Veri Kümeleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Örnek Veri Kümeleri</a>
+<div id="sidebar-sidebar-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/metrica/" title="Üye.Metrica Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Üye.Metrica Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/ontime/" title="OnTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">OnTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/nyc-taxi/" title="New York Taksi Verileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">New York Taksi Verileri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/amplab-benchmark/" title="AMPLab Büyük Veri Benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AMPLab Büyük Veri Benchmark</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/wikistat/" title="WikiStat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WikiStat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/criteo/" title="Criteo'dan Terabyte tıklama günlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Criteo'dan Terabyte tıklama günlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/example-datasets/star-schema/" title="Yıldız Şema Ben Benchmarkch Benchmarkmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yıldız Şema Ben Benchmarkch Benchmarkmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/tutorial/" title="Öğretici" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Öğretici</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../getting-started/playground/" title="Bahçe" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bahçe</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3" title="Arabirimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Arabirimler</a>
+<div id="sidebar-sidebar-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../interfaces/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cli/" title="Komut Satırı İstemcisi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Komut Satırı İstemcisi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/tcp/" title="Yerel arabirim (TCP)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yerel arabirim (TCP)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/http/" title="HTTP arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HTTP arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/mysql/" title="MySQL Arayüzü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL Arayüzü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/formats/" title="Giriş ve çıkış biçimleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş ve çıkış biçimleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/jdbc/" title="JDBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/odbc/" title="ODBC sürücüsü" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC sürücüsü</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/cpp/" title="C++ İstemci Kitaplığı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ İstemci Kitaplığı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-3-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-3-10" title="Üçüncü Taraf" class="nav-link text-light text-wrap dropdown-toggle px-0">Üçüncü Taraf</a>
+<div id="sidebar-sidebar-3-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/client-libraries/" title="İstemci Kitaplıkları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İstemci Kitaplıkları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/integrations/" title="Entegrasyonlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Entegrasyonlar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/gui/" title="Görsel Arayüzler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görsel Arayüzler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../interfaces/third-party/proxy/" title="Vekiller" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Vekiller</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4" title="Motorlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Motorlar</a>
+<div id="sidebar-sidebar-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2" title="Masa Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Masa Motorları</a>
+<div id="sidebar-sidebar-4-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-2" title="MergeTree Ailesi" class="nav-link text-light text-wrap dropdown-toggle px-0">MergeTree Ailesi</a>
+<div id="sidebar-sidebar-4-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/mergetree/" title="MergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replication/" title="Veri Çoğaltma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Çoğaltma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/custom-partitioning-key/" title="Özel Bölümleme Anahtarı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Özel Bölümleme Anahtarı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/replacingmergetree/" title="ReplacingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ReplacingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/summingmergetree/" title="SummingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SummingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/aggregatingmergetree/" title="AggregatingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregatingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/collapsingmergetree/" title="CollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/versionedcollapsingmergetree/" title="VersionedCollapsingMergeTree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">VersionedCollapsingMergeTree</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/mergetree-family/graphitemergetree/" title="Graphıtemergetree" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Graphıtemergetree</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-3" title="Günlük Aile" class="nav-link text-light text-wrap dropdown-toggle px-0">Günlük Aile</a>
+<div id="sidebar-sidebar-4-2-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/stripelog/" title="StripeLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">StripeLog</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/log/" title="Günlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Günlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/log-family/tinylog/" title="TinyLog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">TinyLog</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-4" title="Entegrasyonlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Entegrasyonlar</a>
+<div id="sidebar-sidebar-4-2-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/kafka/" title="Kafka" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kafka</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/jdbc/" title="JDBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JDBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/odbc/" title="ODBC" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ODBC</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/integrations/hdfs/" title="HDFS" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HDFS</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-2-5" title="Özellikli" class="nav-link text-light text-wrap dropdown-toggle px-0">Özellikli</a>
+<div id="sidebar-sidebar-4-2-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/distributed/" title="Dağılı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dağılı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/external-data/" title="Dış veri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış veri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/dictionary/" title="Sözlük" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/merge/" title="Birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/null/" title="Boş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/join/" title="Katmak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Katmak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/url/" title="URL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/view/" title="Görünüm" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Görünüm</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/materializedview/" title="MaterializedView" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MaterializedView</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/memory/" title="Hafıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hafıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/buffer/" title="Arabellek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arabellek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/table-engines/special/generate/" title="GenerateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GenerateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-4-3" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-4-3" title="Veritabanı Motorları" class="nav-link text-light text-wrap dropdown-toggle px-0">Veritabanı Motorları</a>
+<div id="sidebar-sidebar-4-3" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/mysql/" title="MySQL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">MySQL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../engines/database-engines/lazy/" title="Tembel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tembel</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5" title="SQL başvurusu" class="nav-link text-light text-wrap dropdown-toggle px-0">SQL başvurusu</a>
+<div id="sidebar-sidebar-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2" title="Deyimler" class="nav-link text-light text-wrap dropdown-toggle px-0">Deyimler</a>
+<div id="sidebar-sidebar-5-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-2-2" title="SELECT" class="nav-link text-light text-wrap dropdown-toggle px-0">SELECT</a>
+<div id="sidebar-sidebar-5-2-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/" title="Overview" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Overview</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/array-join/" title="ARRAY JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ARRAY JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/distinct/" title="DISTINCT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DISTINCT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/format/" title="FORMAT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FORMAT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/from/" title="FROM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FROM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/group-by/" title="GROUP BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GROUP BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/having/" title="HAVING" class="nav-link text-light text-wrap d-inline-block w-100 px-0">HAVING</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/into-outfile/" title="INTO OUTFILE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INTO OUTFILE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/join/" title="JOIN" class="nav-link text-light text-wrap d-inline-block w-100 px-0">JOIN</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit/" title="LIMIT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/limit-by/" title="LIMIT BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">LIMIT BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/order-by/" title="ORDER BY" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ORDER BY</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/prewhere/" title="PREWHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">PREWHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/sample/" title="SAMPLE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SAMPLE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/union-all/" title="UNION ALL" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UNION ALL</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/where/" title="WHERE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WHERE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/select/with/" title="WITH" class="nav-link text-light text-wrap d-inline-block w-100 px-0">WITH</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/insert-into/" title="INSERT INTO" class="nav-link text-light text-wrap d-inline-block w-100 px-0">INSERT INTO</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/create/" title="CREATE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CREATE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/alter/" title="ALTER" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ALTER</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/system/" title="SYSTEM" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SYSTEM</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/show/" title="SHOW" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SHOW</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/grant/" title="GRANT" class="nav-link text-light text-wrap d-inline-block w-100 px-0">GRANT</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/revoke/" title="REVOKE" class="nav-link text-light text-wrap d-inline-block w-100 px-0">REVOKE</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/statements/misc/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/syntax/" title="Sözdizimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözdizimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-4" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-4" title="İşlevler" class="nav-link text-light text-wrap dropdown-toggle px-0">İşlevler</a>
+<div id="sidebar-sidebar-5-4" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/arithmetic-functions/" title="Aritmetik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aritmetik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/comparison-functions/" title="Karşılaştırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karşılaştırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/logical-functions/" title="Mantıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mantıklı</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/type-conversion-functions/" title="Tip Dönüştürme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tip Dönüştürme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/date-time-functions/" title="Tarih ve Saatlerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarih ve Saatlerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-functions/" title="Dizeleri ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-search-functions/" title="Arama Dizeleri İçin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arama Dizeleri İçin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/string-replace-functions/" title="Dizelerde değiştirilmesi için" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizelerde değiştirilmesi için</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/conditional-functions/" title="Koşullu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koşullu</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/math-functions/" title="Matematiksel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Matematiksel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/rounding-functions/" title="Dönmüş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dönmüş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-functions/" title="Dizilerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizilerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/splitting-merging-functions/" title="Dizeleri ve dizileri bölme ve birleştirme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizeleri ve dizileri bölme ve birleştirme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bit-functions/" title="Bitlik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bitlik</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/bitmap-functions/" title="Eşlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Eşlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/hash-functions/" title="Karma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Karma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/random-functions/" title="Sözde Rasgele Sayılar Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözde Rasgele Sayılar Oluşturma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/encoding-functions/" title="Kodlamış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kodlamış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/uuid-functions/" title="UUID ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/url-functions/" title="URL'ler ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">URL'ler ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ip-address-functions/" title="IP adresleriyle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IP adresleriyle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/json-functions/" title="Json ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Json ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/higher-order-functions/" title="Yüksek Sipariş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yüksek Sipariş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ext-dict-functions/" title="Harici Sözlüklerle çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici Sözlüklerle çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/ym-dict-functions/" title="Yandex ile çalışmak.Metrica Sözlükleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yandex ile çalışmak.Metrica Sözlükleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/in-functions/" title="In İşlet theic implementingisinin uygulanması" class="nav-link text-light text-wrap d-inline-block w-100 px-0">In İşlet theic implementingisinin uygulanması</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/array-join/" title="arrayJoin" class="nav-link text-light text-wrap d-inline-block w-100 px-0">arrayJoin</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/geo/" title="Coğrafi koordinatlar ile çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Coğrafi koordinatlar ile çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/functions-for-nulls/" title="Null argümanlarla çalışma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Null argümanlarla çalışma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/machine-learning-functions/" title="Makine Öğrenme Fonksiyonları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Makine Öğrenme Fonksiyonları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/introspection/" title="İçgözlem" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İçgözlem</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/functions/other-functions/" title="Diğer" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Diğer</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-5" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-5" title="Toplama Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Toplama Fonksiyonları</a>
+<div id="sidebar-sidebar-5-5" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/reference/" title="Başvurma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Başvurma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/combinators/" title="Birleştiriciler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Birleştiriciler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/aggregate-functions/parametric-functions/" title="Parametrik" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Parametrik</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-6" title="Tablo Fonksiyonları" class="nav-link text-light text-wrap dropdown-toggle px-0">Tablo Fonksiyonları</a>
+<div id="sidebar-sidebar-5-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/file/" title="Dosya" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dosya</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/merge/" title="birleştirmek" class="nav-link text-light text-wrap d-inline-block w-100 px-0">birleştirmek</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/numbers/" title="şiir" class="nav-link text-light text-wrap d-inline-block w-100 px-0">şiir</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/remote/" title="uzak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">uzak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/url/" title="url" class="nav-link text-light text-wrap d-inline-block w-100 px-0">url</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/mysql/" title="mysql" class="nav-link text-light text-wrap d-inline-block w-100 px-0">mysql</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/jdbc/" title="jdbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">jdbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/odbc/" title="odbc" class="nav-link text-light text-wrap d-inline-block w-100 px-0">odbc</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/hdfs/" title="hdf'ler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">hdf'ler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/input/" title="girdi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">girdi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/table-functions/generate/" title="generateRandom" class="nav-link text-light text-wrap d-inline-block w-100 px-0">generateRandom</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7" title="Sözlükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Sözlükler</a>
+<div id="sidebar-sidebar-5-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-7-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-7-2" title="Dış Söz Dictionarieslükler" class="nav-link text-light text-wrap dropdown-toggle px-0">Dış Söz Dictionarieslükler</a>
+<div id="sidebar-sidebar-5-7-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts/" title="Genel Açıklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Açıklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict/" title="Harici bir sözlük yapılandırma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Harici bir sözlük yapılandırma</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-layout/" title="Sözlükleri bellekte saklama" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlükleri bellekte saklama</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-lifetime/" title="Sözlük Güncellemeleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük Güncellemeleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-sources/" title="Dış Sözlüklerin kaynakları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dış Sözlüklerin kaynakları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-structure/" title="Sözlük anahtarı ve alanları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sözlük anahtarı ve alanları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/external-dictionaries/external-dicts-dict-hierarchical/" title="Hiyerarşik sözlükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiyerarşik sözlükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/dictionaries/internal-dicts/" title="İç Söz Dictionarieslükler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç Söz Dictionarieslükler</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-8" title="Operatörler" class="nav-link text-light text-wrap dropdown-toggle px-0">Operatörler</a>
+<div id="sidebar-sidebar-5-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/" title="Operatörler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Operatörler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/operators/in/" title="IN Operators" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IN Operators</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9" title="Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Veri Türleri</a>
+<div id="sidebar-sidebar-5-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/int-uint/" title="Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Uİnt8, Uİnt16, Uİnt32, Uint64, Int8, Int16, Int32, Int64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/float/" title="Float32, Float64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Float32, Float64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/decimal/" title="Ondalık" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ondalık</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/boolean/" title="Boeanoleanean" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Boeanoleanean</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/string/" title="Dize" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dize</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/fixedstring/" title="FixedString(N)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">FixedString(N)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/uuid/" title="UUID" class="nav-link text-light text-wrap d-inline-block w-100 px-0">UUID</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/date/" title="Tarihli" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tarihli</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime/" title="DateTime" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/datetime64/" title="DateTime64" class="nav-link text-light text-wrap d-inline-block w-100 px-0">DateTime64</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/enum/" title="Enum" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Enum</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/array/" title="Dizi(T)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Dizi(T)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/aggregatefunction/" title="AggregateFunction (ad, types_of_arguments...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AggregateFunction (ad, types_of_arguments...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/tuple/" title="Tuple (T1, T2, ...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Tuple (T1, T2, ...)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nullable/" title="Nullable" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Nullable</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-17" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-17" title="İç İçe Veri Yapıları" class="nav-link text-light text-wrap dropdown-toggle px-0">İç İçe Veri Yapıları</a>
+<div id="sidebar-sidebar-5-9-17" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/nested-data-structures/nested/" title="İç İçe (Name1 Type1, Name2 Type2,...)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İç İçe (Name1 Type1, Name2 Type2,...)</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-18" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-18" title="Özel Veri Türleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Özel Veri Türleri</a>
+<div id="sidebar-sidebar-5-9-18" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/expression/" title="İfade" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İfade</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/set/" title="Koymak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Koymak</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/nothing/" title="Hiçbir şey" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Hiçbir şey</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/special-data-types/interval/" title="Aralıklı" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Aralıklı</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-5-9-19" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-5-9-19" title="Etkiler" class="nav-link text-light text-wrap dropdown-toggle px-0">Etkiler</a>
+<div id="sidebar-sidebar-5-9-19" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv4/" title="Ipv44" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ipv44</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/domains/ipv6/" title="IPv6" class="nav-link text-light text-wrap d-inline-block w-100 px-0">IPv6</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/data-types/simpleaggregatefunction/" title="SimpleAggregateFunction" class="nav-link text-light text-wrap d-inline-block w-100 px-0">SimpleAggregateFunction</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../sql-reference/ansi/" title="ANSI uyumluluğu" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ANSI uyumluluğu</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-6" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-6" title="Kılavuzlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Kılavuzlar</a>
+<div id="sidebar-sidebar-6" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../guides/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../guides/apply-catboost-model/" title="CatBoost Modellerini Uygulamak" class="nav-link text-light text-wrap d-inline-block w-100 px-0">CatBoost Modellerini Uygulamak</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-7" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7" title="Harekat" class="nav-link text-light text-wrap dropdown-toggle px-0">Harekat</a>
+<div id="sidebar-sidebar-7" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/requirements/" title="Gereksinimler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Gereksinimler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/monitoring/" title="İzleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">İzleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/troubleshooting/" title="Arıza" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Arıza</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/update/" title="ClickHouse Güncelleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse Güncelleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/access-rights/" title="Erişim Kontrolü ve hesap yönetimi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Erişim Kontrolü ve hesap yönetimi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/backup/" title="Veri Yedekleme" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Veri Yedekleme</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/configuration-files/" title="Yapılandırma Dosyaları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yapılandırma Dosyaları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/quotas/" title="Kotalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kotalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-10" title="Performansı Optimize Etme" class="nav-link text-light text-wrap dropdown-toggle px-0">Performansı Optimize Etme</a>
+<div id="sidebar-sidebar-7-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../operations/optimizing-performance/sampling-query-profiler/" title="Sorgu Profili Oluşturma" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu Profili Oluşturma</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/system-tables/" title="Sistem Tabloları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sistem Tabloları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/performance-test/" title="Donanım Test" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Donanım Test</a>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-13" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-13" title="Sunucu Yapılandırma Parametreleri" class="nav-link text-light text-wrap dropdown-toggle px-0">Sunucu Yapılandırma Parametreleri</a>
+<div id="sidebar-sidebar-7-13" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/server-configuration-parameters/settings/" title="Sunucu Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sunucu Ayarları</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-14" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-14" title="Ayarlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Ayarlar</a>
+<div id="sidebar-sidebar-7-14" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/" title="Giriş" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Giriş</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/permissions-for-queries/" title="Sorgular için izinler" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgular için izinler</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/query-complexity/" title="Sorgu karmaşıklığı üzerindeki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Sorgu karmaşıklığı üzerindeki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-profiles/" title="Ayarlar Profilleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar Profilleri</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/constraints-on-settings/" title="Ayarlardaki kısıtlamalar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlardaki kısıtlamalar</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings-users/" title="Kullanıcı Ayarları" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanıcı Ayarları</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/settings/settings/" title="Ayarlar" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Ayarlar</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-7-15" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-7-15" title="Programlar" class="nav-link text-light text-wrap dropdown-toggle px-0">Programlar</a>
+<div id="sidebar-sidebar-7-15" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/" title="Genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-copier/" title="clickhouse-fotokopi makinesi" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-fotokopi makinesi</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-local/" title="clickhouse-yerel" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-yerel</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/utilities/clickhouse-benchmark/" title="clickhouse-benchmark" class="nav-link text-light text-wrap d-inline-block w-100 px-0">clickhouse-benchmark</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../operations/tips/" title="Kullanım Önerileri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanım Önerileri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-8" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-8" title="Gelişme" class="nav-link text-light text-wrap dropdown-toggle px-0">Gelişme</a>
+<div id="sidebar-sidebar-8" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../development/developer-instruction/" title="Acemi ClickHouse Geliştirici Talimat" class="nav-link text-white active text-wrap d-inline-block w-100 px-0">Acemi ClickHouse Geliştirici Talimat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/architecture/" title="ClickHouse mimarisine genel bakış" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse mimarisine genel bakış</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/browse-code/" title="Kaynak Koduna Gözat" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kaynak Koduna Gözat</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build/" title="Linux üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Linux üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-osx/" title="Mac OS X üzerinde ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X üzerinde ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-osx/" title="Mac OS X için Linux'ta ClickHouse nasıl oluşturulur" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Mac OS X için Linux'ta ClickHouse nasıl oluşturulur</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/build-cross-arm/" title="AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)" class="nav-link text-light text-wrap d-inline-block w-100 px-0">AARCH64 (ARM64) için Linux'ta ClickHouse nasıl oluşturulur)</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/style/" title="C++ kodu nasıl yazılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">C++ kodu nasıl yazılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/tests/" title="ClickHouse testleri nasıl çalıştırılır" class="nav-link text-light text-wrap d-inline-block w-100 px-0">ClickHouse testleri nasıl çalıştırılır</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../development/contrib/" title="Kullanılan Üçüncü Taraf Kütüphaneleri" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Kullanılan Üçüncü Taraf Kütüphaneleri</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-9" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-9" title="Ticari" class="nav-link text-light text-wrap dropdown-toggle px-0">Ticari</a>
+<div id="sidebar-sidebar-9" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../commercial/cloud/" title="Bulut" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Bulut</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../commercial/support/" title="Support" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Support</a>
+
+
+    
+        
+        
+        
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-10" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10" title="Ne yeni" class="nav-link text-light text-wrap dropdown-toggle px-0">Ne yeni</a>
+<div id="sidebar-sidebar-10" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="#sidebar-sidebar-10-2" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-10-2" title="Changelog" class="nav-link text-light text-wrap dropdown-toggle px-0">Changelog</a>
+<div id="sidebar-sidebar-10-2" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/" title="2020" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2020</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2019/" title="2019" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2019</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2018/" title="2018" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2018</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/changelog/2017/" title="2017" class="nav-link text-light text-wrap d-inline-block w-100 px-0">2017</a>
+
+
+    
+    </nav>
+</div>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/roadmap/" title="Yol haritası" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Yol haritası</a>
+
+
+    
+        
+        
+        
+
+
+<a href="../../whats-new/security-changelog/" title="Güvenlik Changelog" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Güvenlik Changelog</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+                
+                
+                
+
+
+<a href="#sidebar-sidebar-11" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-sidebar-11" title="F.A.Q." class="nav-link text-light text-wrap dropdown-toggle px-0">F.A.Q.</a>
+<div id="sidebar-sidebar-11" class="nav flex-column collapse">
+    <nav class="nav flex-column pl-2">
+    
+    
+        
+        
+        
+
+    
+        
+        
+        
+
+
+<a href="../../faq/general/" title="Genel Sorular" class="nav-link text-light text-wrap d-inline-block w-100 px-0">Genel Sorular</a>
+
+
+    
+    </nav>
+</div>
+
+
+            
+            <a href="../../single/clickhouse_tr.pdf" class="nav-link border-top border-secondary mt-3 px-0 pt-3 text-light">
+                <img src="/images/mkdocs/pdf.svg" alt="PDF versiyonu" title="PDF versiyonu" height="24" class="d-block mr-1 float-left" /><div>PDF versiyonu</div>
+            </a>
+        </nav>
+        
+    </div>
+</div>
+                <div id="content-wrapper" class="col-md-8 p-2 p-md-5">
+    <div id="content" class="mt-md-n3">
+        
+            
+            
+            
+                
+                <nav class="text-muted" aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0">
+                        
+                        
+                        
+                        <li class="breadcrumb-item"><a href="../" class="text-reset">Gelişme</a>
+                            
+                        </li>
+                       
+                    </ol>
+                </nav>
+            
+
+            
+    <div class="alert alert-primary" role="alert">
+      <p class="display-5 mb-2">Yardım istedi!</p>
+      <p class="lead">Bu Dokümantasyon sayfasının aşağıdaki içeriği makine tarafından çevrilmiştir. Ancak diğer web sitelerinin aksine, anında yapılmaz. Bu çevrilmiş metin, ana ClickHouse kod tabanının yanında GitHub deposunda yaşar ve diğer anadili konuşanların daha insan tarafından okunabilir olmasını bekler. <a href="/docs/en/development/developer-instruction/" class="alert-link">Orijinal İngilizce sürümünü referans olarak da kullanabilirsiniz.</a></p>
+      <p class="lead">
+          <a class="btn btn-lg btn-primary text-white" href="https://github.com/ClickHouse/ClickHouse/edit/master/docs/tr/development/developer-instruction.md" target="_blank" rel="external nofollow noreferrer">
+              Bu sayfayı düzenleyerek ClickHouse belgelerine yardım edin
+          </a>
+      </p>
+    </div>
+
+            <p>ClickHouse binası Linux, FreeBSD ve Mac OS X üzerinde desteklenmektedir.</p>
+<h1 id="if-you-use-windows">Windows Kullanıyorsanız<a class="headerlink" href="#if-you-use-windows" title="Permanent link"> </a></h1>
+<p>Windows kullanıyorsanız, Ubuntu ile bir sanal makine oluşturmanız gerekir. Bir sanal makine ile çalışmaya başlamak için VirtualBox yükleyin. UB :unt :u'yu web sitesinden indirebilirsiniz: <a href="https://www.ubuntu.com/" target="_blank">https://www.ubuntu.com/</a>#download. lütfen indirilen görüntüden bir sanal makine oluşturun (bunun için en az 4GB RAM ayırmalısınız). Ubuntu'da bir komut satırı terminali çalıştırmak için lütfen kelimeyi içeren bir program bulun “terminal” adına (gnome-terminal, konsole vb.)) veya sadece Ctrl+Alt+T tuşlarına basın.</p>
+<h1 id="if-you-use-a-32-bit-system">32 bit sistem kullanıyorsanız<a class="headerlink" href="#if-you-use-a-32-bit-system" title="Permanent link"> </a></h1>
+<p>ClickHouse çalışamaz veya 32-bit bir sistem üzerinde oluşturun. 64-bit bir sisteme erişim kazanmanız gerekir ve okumaya devam edebilirsiniz.</p>
+<h1 id="creating-a-repository-on-github">Github'da bir depo oluşturma<a class="headerlink" href="#creating-a-repository-on-github" title="Permanent link"> </a></h1>
+<p>ClickHouse repository ile çalışmaya başlamak için bir GitHub hesabına ihtiyacınız olacaktır.</p>
+<p>Muhtemelen zaten bir tane var, ama yapmazsanız, lütfen kayıt olun <a href="https://github.com" target="_blank">https://github.com</a>. SSH anahtarlarınız yoksa, bunları üretmeli ve daha sonra Github'a yüklemelisiniz. Bu yamalar üzerinden göndermek için gereklidir. Diğer SSH sunucularıyla kullandığınız aynı SSH anahtarlarını kullanmak da mümkündür - muhtemelen zaten bunlara sahipsiniz.</p>
+<p>ClickHouse deposunun bir çatalı oluşturun. Bunu yapmak için lütfen tıklayın “fork” sağ üst köşedeki düğme <a href="https://github.com/ClickHouse/ClickHouse" target="_blank">https://github.com/ClickHouse/ClickHouse</a>. bu hesabınıza ClickHouse / ClickHouse kendi kopyasını çatal olacaktır.</p>
+<p>Geliştirme süreci ilk ClickHouse sizin çatal içine amaçlanan değişiklikleri işlemekle ve daha sonra bir oluşturma oluşur “pull request” bu değişikliklerin ana depoya kabul edilmesi için (ClickHouse/ClickHouse).</p>
+<p>Git depoları ile çalışmak için lütfen yükleyin <code class="syntax">git</code>.</p>
+<p>Bunu Ubuntu'da yapmak için komut satırı terminalinde çalışırsınız:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo apt update</span>
+<span class="err">sudo apt install git</span>
+</code></pre></div>
+<p>Git kullanımı ile ilgili kısa bir el kitabı burada bulunabilir: <a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf" target="_blank">https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf</a>.<br/>
+Git ile ilgili ayrıntılı bir el kitabı için bkz. <a href="https://git-scm.com/book/en/v2" target="_blank">https://git-scm.com/book/en/v2</a>.</p>
+<h1 id="cloning-a-repository-to-your-development-machine">Geliştirme Makinenize bir depo klonlama<a class="headerlink" href="#cloning-a-repository-to-your-development-machine" title="Permanent link"> </a></h1>
+<p>Ardından, kaynak dosyaları çalışma makinenize indirmeniz gerekir. Bu denir “to clone a repository” çünkü çalışma makinenizde deponun yerel bir kopyasını oluşturur.</p>
+<p>Komut satırında terminal Çalıştır:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">git clone --recursive git@github.com:your_github_username/ClickHouse.git</span>
+<span class="err">cd ClickHouse</span>
+</code></pre></div>
+<p>Not: lütfen, yerine <em>your_github_username</em> uygun olanı ile!</p>
+<p>Bu komut bir dizin oluşturacaktır <code class="syntax">ClickHouse</code> projenin çalışma kopyasını içeren.</p>
+<p>Yapı sistemini çalıştırmakla ilgili sorunlara yol açabileceğinden, çalışma dizininin yolunun hiçbir boşluk içermemesi önemlidir.</p>
+<p>ClickHouse deposunun kullandığını lütfen unutmayın <code class="syntax">submodules</code>. That is what the references to additional repositories are called (i.e. external libraries on which the project depends). It means that when cloning the repository you need to specify the <code class="syntax">--recursive</code> yukarıdaki örnekte olduğu gibi bayrak. Depo alt modüller olmadan klonlanmışsa, bunları indirmek için aşağıdakileri çalıştırmanız gerekir:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">git submodule init</span>
+<span class="err">git submodule update</span>
+</code></pre></div>
+<p>Komutu ile durumunu kontrol edebilirsiniz: <code class="syntax">git submodule status</code>.</p>
+<p>Aşağıdaki hata iletisini alırsanız:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">Permission</span> <span class="n">denied</span> <span class="p">(</span><span class="n">publickey</span><span class="p">).</span>
+<span class="n">fatal</span><span class="p">:</span> <span class="n">Could</span> <span class="k">not</span> <span class="k">read</span> <span class="k">from</span> <span class="n">remote</span> <span class="n">repository</span><span class="p">.</span>
+
+<span class="n">Please</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">have</span> <span class="n">the</span> <span class="n">correct</span> <span class="k">access</span> <span class="n">rights</span>
+<span class="k">and</span> <span class="n">the</span> <span class="n">repository</span> <span class="k">exists</span><span class="p">.</span>
+</code></pre></div>
+<p>Genellikle Github'a bağlanmak için SSH anahtarlarının eksik olduğu anlamına gelir. Bu anahtarlar normalde <code class="syntax">~/.ssh</code>. SSH anahtarlarının kabul edilmesi için bunları GitHub kullanıcı arayüzünün ayarlar bölümüne yüklemeniz gerekir.</p>
+<p>Depoyu https protokolü aracılığıyla da klonlayabilirsiniz:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">git clone https://github.com/ClickHouse/ClickHouse.git</span>
+</code></pre></div>
+<p>Ancak bu, değişikliklerinizi sunucuya göndermenize izin vermez. Yine de geçici olarak kullanabilir ve SSH anahtarlarını daha sonra deponun uzak adresini değiştirerek ekleyebilirsiniz <code class="syntax">git remote</code> komut.</p>
+<p>Oradan güncellemeleri çekmek için orijinal ClickHouse repo'nun adresini yerel deponuza da ekleyebilirsiniz:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">git remote add upstream git@github.com:ClickHouse/ClickHouse.git</span>
+</code></pre></div>
+<p>Başarıyla bu komutu çalıştırdıktan sonra çalıştırarak ana ClickHouse repo güncellemeleri çekmek mümkün olacak <code class="syntax">git pull upstream master</code>.</p>
+<h2 id="working-with-submodules">Alt modüllerle çalışma<a class="headerlink" href="#working-with-submodules" title="Permanent link"> </a></h2>
+<p>Git'teki alt modüllerle çalışmak acı verici olabilir. Sonraki komutlar onu yönetmeye yardımcı olacaktır:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err"># ! each command accepts --recursive</span>
+<span class="err"># Update remote URLs for submodules. Barely rare case</span>
+<span class="err">git submodule sync</span>
+<span class="err"># Add new submodules</span>
+<span class="err">git submodule init</span>
+<span class="err"># Update existing submodules to the current state</span>
+<span class="err">git submodule update</span>
+<span class="err"># Two last commands could be merged together</span>
+<span class="err">git submodule update --init</span>
+</code></pre></div>
+<p>Bir sonraki komutlar, tüm alt modülleri başlangıç durumuna sıfırlamanıza yardımcı olacaktır (!UYARI! - herhangi bir değişiklik içinde silinecektir):</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err"># Synchronizes submodules' remote URL with .gitmodules</span>
+<span class="err">git submodule sync --recursive</span>
+<span class="err"># Update the registered submodules with initialize not yet initialized</span>
+<span class="err">git submodule update --init --recursive</span>
+<span class="err"># Reset all changes done after HEAD</span>
+<span class="err">git submodule foreach git reset --hard</span>
+<span class="err"># Clean files from .gitignore</span>
+<span class="err">git submodule foreach git clean -xfd</span>
+<span class="err"># Repeat last 4 commands for all submodule</span>
+<span class="err">git submodule foreach git submodule sync --recursive</span>
+<span class="err">git submodule foreach git submodule update --init --recursive</span>
+<span class="err">git submodule foreach git submodule foreach git reset --hard</span>
+<span class="err">git submodule foreach git submodule foreach git clean -xfd</span>
+</code></pre></div>
+<h1 id="build-system">Yapı Sistemi<a class="headerlink" href="#build-system" title="Permanent link"> </a></h1>
+<p>ClickHouse bina için Cmake ve Ninja kullanır.</p>
+<p>Cmake-ninja dosyaları (yapı görevleri) üretebilir bir meta-yapı sistemi.<br/>
+Ninja-bu cmake oluşturulan görevleri yürütmek için kullanılan hıza odaklanarak daha küçük bir yapı sistemi.</p>
+<p>Ubuntu, Debian veya Mint run'a yüklemek için <code class="syntax">sudo apt install cmake ninja-build</code>.</p>
+<p>Centos'ta, RedHat koşusu <code class="syntax">sudo yum install cmake ninja-build</code>.</p>
+<p>Arch veya Gentoo kullanıyorsanız, muhtemelen cmake'i nasıl kuracağınızı kendiniz biliyorsunuz.</p>
+<p>Mac OS X üzerinde cmake ve Ninja yüklemek için ilk homebrew yüklemek ve daha sonra demlemek yoluyla her şeyi yüklemek:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span>
+<span class="err">brew install cmake ninja</span>
+</code></pre></div>
+<p>Ardından, cmake sürümünü kontrol edin: <code class="syntax">cmake --version</code>. 3.3'ün altındaysa, web sitesinden daha yeni bir sürüm yüklemelisiniz: <a href="https://cmake.org/download/" target="_blank">https://cmake.org/download/</a>.</p>
+<h1 id="optional-external-libraries">İsteğe Bağlı Harici Kütüphaneler<a class="headerlink" href="#optional-external-libraries" title="Permanent link"> </a></h1>
+<p>ClickHouse, bina için birkaç dış kütüphane kullanır. Alt modüllerde bulunan kaynaklardan ClickHouse ile birlikte oluşturuldukları için hepsinin ayrı olarak kurulması gerekmez. Listeyi kontrol edebilirsiniz <code class="syntax">contrib</code>.</p>
+<h1 id="c-compiler">C++ Derleyici<a class="headerlink" href="#c-compiler" title="Permanent link"> </a></h1>
+<p>Derleyiciler gcc sürüm 9 ve Clang sürüm 8 veya üzeri başlayarak ClickHouse bina için desteklenmektedir.</p>
+<p>Resmi Yandex şu anda GCC'Yİ kullanıyor çünkü biraz daha iyi performansa sahip makine kodu üretiyor (kriterlerimize göre yüzde birkaçına kadar bir fark yaratıyor). Ve Clang genellikle geliştirme için daha uygundur. Yine de, sürekli entegrasyon (CI) platformumuz yaklaşık bir düzine yapı kombinasyonunu denetler.</p>
+<p>Ubuntu run GCC yüklemek için: <code class="syntax">sudo apt install gcc g++</code></p>
+<p>Gcc sürümünü kontrol edin: <code class="syntax">gcc --version</code>. 9'un altındaysa, buradaki talimatları izleyin: <a href="https://clickhouse.tech/docs/tr/development/build/#install-gcc-9" target="_blank">https://clickhouse.tech/docs/tr/development/build/#install-gcc-9</a>.</p>
+<p>Mac OS X build sadece Clang için desteklenir. Sadece koş <code class="syntax">brew install llvm</code></p>
+<p>Eğer Clang kullanmaya karar verirseniz, ayrıca yükleyebilirsiniz <code class="syntax">libc++</code> ve <code class="syntax">lld</code> eğer ne olduğunu biliyorsan. Kullanım <code class="syntax">ccache</code> ayrıca tavsiye edilir.</p>
+<h1 id="the-building-process">İnşaat Süreci<a class="headerlink" href="#the-building-process" title="Permanent link"> </a></h1>
+<p>Artık ClickHouse oluşturmaya hazır olduğunuza göre ayrı bir dizin oluşturmanızı öneririz <code class="syntax">build</code> için <code class="syntax">ClickHouse</code> bu, tüm yapı eserlerini içerecek:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">mkdir build</span>
+<span class="err">cd build</span>
+</code></pre></div>
+<p>Birkaç farklı dizine (build_release, build_debug, vb.) sahip olabilirsiniz.) farklı yapı türleri için.</p>
+<p>İçinde iken <code class="syntax">build</code> dizin, cmake çalıştırarak yapı yapılandırın. İlk çalıştırmadan önce, derleyici belirten ortam değişkenlerini tanımlamanız gerekir (bu örnekte sürüm 9 gcc derleyicisi).</p>
+<p>Linux:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">export CC=gcc-9 CXX=g++-9</span>
+<span class="err">cmake ..</span>
+</code></pre></div>
+<p>Mac OS X:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">export CC=clang CXX=clang++</span>
+<span class="err">cmake ..</span>
+</code></pre></div>
+<p>Bu <code class="syntax">CC</code> değişken C için derleyiciyi belirtir (C derleyicisi için kısa) ve <code class="syntax">CXX</code> değişken, hangi C++ derleyicisinin bina için kullanılacağını bildirir.</p>
+<p>Daha hızlı bir yapı için, <code class="syntax">debug</code> yapı türü-hiçbir optimizasyonları ile bir yapı. Bunun için aşağıdaki parametreyi sağlayın <code class="syntax">-D CMAKE_BUILD_TYPE=Debug</code>:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">cmake -D CMAKE_BUILD_TYPE=Debug ..</span>
+</code></pre></div>
+<p>Bu komutu çalıştırarak yapı türünü değiştirebilirsiniz. <code class="syntax">build</code> dizin.</p>
+<p>İnşa etmek için ninja çalıştırın:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">ninja clickhouse-server clickhouse-client</span>
+</code></pre></div>
+<p>Bu örnekte yalnızca gerekli ikili dosyalar oluşturulacaktır.</p>
+<p>Tüm ikili dosyaları (Yardımcı Programlar ve testler) oluşturmanız gerekiyorsa, ninja'yı parametre olmadan çalıştırmalısınız:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">ninja</span>
+</code></pre></div>
+<p>Tam yapı, ana ikili dosyaları oluşturmak için yaklaşık 30GB boş disk alanı veya 15GB gerektirir.</p>
+<p>Yapı makinesinde büyük miktarda RAM mevcut olduğunda, paralel olarak çalışan yapı görevlerinin sayısını sınırlamanız gerekir <code class="syntax">-j</code> param:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">ninja -j 1 clickhouse-server clickhouse-client</span>
+</code></pre></div>
+<p>4GB RAM'Lİ makinelerde, 8GB RAM için 1 belirtmeniz önerilir <code class="syntax">-j 2</code> tavsiye edilir.</p>
+<p>Mesajı alırsanız: <code class="syntax">ninja: error: loading 'build.ninja': No such file or directory</code> bu, bir yapı yapılandırması oluşturmanın başarısız olduğu ve yukarıdaki mesajı incelemeniz gerektiği anlamına gelir.</p>
+<p>Bina işleminin başarılı bir şekilde başlatılmasının ardından, yapı ilerlemesini görürsünüz-işlenmiş görevlerin sayısı ve toplam görev sayısı.</p>
+<p>Libhdfs2 kütüphanesinde protobuf dosyaları hakkında mesajlar oluştururken <code class="syntax">libprotobuf WARNING</code> ortaya çıkabilir. Hiçbir şeyi etkilemezler ve göz ardı edilmeleri güvenlidir.</p>
+<p>Başarılı bir yapı üzerine yürütülebilir bir dosya alırsınız <code class="syntax">ClickHouse/&lt;build_dir&gt;/programs/clickhouse</code>:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">ls -l programs/clickhouse</span>
+</code></pre></div>
+<h1 id="running-the-built-executable-of-clickhouse">Clickhouse'un yerleşik yürütülebilir dosyasını çalıştırma<a class="headerlink" href="#running-the-built-executable-of-clickhouse" title="Permanent link"> </a></h1>
+<p>Sunucuyu geçerli kullanıcı altında çalıştırmak için aşağıdakilere gitmeniz gerekir <code class="syntax">ClickHouse/programs/server/</code> (dışında bulunan <code class="syntax">build</code>) ve koş:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="cp">../../build/programs/clickhouse server</span>
+</code></pre></div>
+<p>Bu durumda, ClickHouse geçerli dizinde bulunan yapılandırma dosyalarını kullanır. Koş youabilirsiniz <code class="syntax">clickhouse server</code> komut satırı parametresi olarak bir yapılandırma dosyasının yolunu belirten herhangi bir dizinden <code class="syntax">--config-file</code>.</p>
+<p>Başka bir terminalde clickhouse-client ile Clickhouse'a bağlanmak için <code class="syntax">ClickHouse/build/programs/</code> ve koş <code class="syntax">clickhouse client</code>.</p>
+<p>Eğer alırsanız <code class="syntax">Connection refused</code> Mac OS X veya Freebsd'de mesaj, ana bilgisayar adresi 127.0.0.1 belirtmeyi deneyin:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">clickhouse client --host 127.0.0.1</span>
+</code></pre></div>
+<p>Sisteminizde yüklü olan ClickHouse binary'nin üretim sürümünü özel olarak oluşturulmuş ClickHouse binaryinizle değiştirebilirsiniz. Bunu yapmak için resmi web sitesinden talimatları izleyerek Makinenize ClickHouse yükleyin. Ardından, aşağıdakileri çalıştırın:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo service clickhouse-server stop</span>
+<span class="err">sudo cp ClickHouse/build/programs/clickhouse /usr/bin/</span>
+<span class="err">sudo service clickhouse-server start</span>
+</code></pre></div>
+<p>Not thate that <code class="syntax">clickhouse-client</code>, <code class="syntax">clickhouse-server</code> ve diğerleri yaygın olarak paylaşılan sembolik bağlardır <code class="syntax">clickhouse</code> ikilik.</p>
+<p>Ayrıca sisteminizde yüklü ClickHouse paketinden yapılandırma dosyası ile özel inşa ClickHouse ikili çalıştırabilirsiniz:</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="err">sudo service clickhouse-server stop</span>
+<span class="err">sudo -u clickhouse ClickHouse/build/programs/clickhouse server --config-file /etc/clickhouse-server/config.xml</span>
+</code></pre></div>
+<h1 id="ide-integrated-development-environment">IDE (entegre geliştirme ortamı)<a class="headerlink" href="#ide-integrated-development-environment" title="Permanent link"> </a></h1>
+<p>Hangi IDE kullanmak bilmiyorsanız, clion kullanmanızı öneririz. CLion ticari bir yazılımdır, ancak 30 günlük ücretsiz deneme süresi sunar. Öğrenciler için de ücretsizdir. CLion Linux ve Mac OS X hem de kullanılabilir.</p>
+<p>KDevelop ve QTCreator, ClickHouse geliştirmek için bir IDE'NİN diğer harika alternatifleridir. KDevelop kararsız olmasına rağmen çok kullanışlı bir IDE olarak geliyor. KDevelop projeyi açtıktan sonra bir süre sonra çökerse, tıklamanız gerekir “Stop All” proje dosyalarının listesini açar açmaz düğme. Bunu yaptıktan sonra KDevelop ile çalışmak iyi olmalıdır.</p>
+<p>Basit kod editörleri olarak, Yüce metin veya Visual Studio kodunu veya Kate'i (hepsi Linux'ta kullanılabilir) kullanabilirsiniz.</p>
+<p>Her ihtimale karşı, Clion'un yarattığını belirtmek gerekir <code class="syntax">build</code> kendi başına yol, aynı zamanda kendi seçtikleri <code class="syntax">debug</code> yapı türü için, yapılandırma için Clion'da tanımlanan ve sizin tarafınızdan yüklenmeyen bir cmake sürümünü kullanır ve son olarak CLion kullanacaktır <code class="syntax">make</code> yerine yapı görevlerini çalıştırmak için <code class="syntax">ninja</code>. Bu normal bir davranıştır, sadece karışıklığı önlemek için bunu aklınızda bulundurun.</p>
+<h1 id="writing-code">Kod Yazma<a class="headerlink" href="#writing-code" title="Permanent link"> </a></h1>
+<p>Açıklaması ClickHouse mimarisi burada bulabilirsiniz: <a href="https://clickhouse.tech" target="_blank">https://clickhouse.tech</a> / doscs/TR / development / Arch /it /ec /ture/</p>
+<p>Kod stili Kılavuzu: <a href="https://clickhouse.tech" target="_blank">https://clickhouse.tech</a> / doscs / TR / development / style/</p>
+<p>Yazma testleri: <a href="https://clickhouse.teknoloji" target="_blank">https://clickhouse.teknoloji</a> / doscs / TR / geliştirme / testler/</p>
+<p>Görevlerin listesi: <a href="https://github.com/ClickHouse/ClickHouse/contribute" target="_blank">https://github.com/ClickHouse/ClickHouse/contribute</a></p>
+<h1 id="test-data">Test Verileri<a class="headerlink" href="#test-data" title="Permanent link"> </a></h1>
+<p>Clickhouse'un geliştirilmesi genellikle gerçekçi veri kümelerinin yüklenmesini gerektirir. Performans testi için özellikle önemlidir. Yandex'ten özel olarak hazırlanmış anonim veri setimiz var.Metrica. Ayrıca bazı 3GB boş disk alanı gerektirir. Bu verilerin geliştirme görevlerinin çoğunu gerçekleştirmek için gerekli olmadığını unutmayın.</p>
+<div class="codehilite"><pre><span></span><code class="syntax"><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">wget</span> <span class="n">xz</span><span class="o">-</span><span class="n">utils</span>
+
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">clickhouse</span><span class="o">-</span><span class="n">datasets</span><span class="p">.</span><span class="n">s3</span><span class="p">.</span><span class="n">yandex</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">hits</span><span class="o">/</span><span class="n">tsv</span><span class="o">/</span><span class="n">hits_v1</span><span class="p">.</span><span class="n">tsv</span><span class="p">.</span><span class="n">xz</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">clickhouse</span><span class="o">-</span><span class="n">datasets</span><span class="p">.</span><span class="n">s3</span><span class="p">.</span><span class="n">yandex</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">visits</span><span class="o">/</span><span class="n">tsv</span><span class="o">/</span><span class="n">visits_v1</span><span class="p">.</span><span class="n">tsv</span><span class="p">.</span><span class="n">xz</span>
+
+<span class="n">xz</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">d</span> <span class="n">hits_v1</span><span class="p">.</span><span class="n">tsv</span><span class="p">.</span><span class="n">xz</span>
+<span class="n">xz</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">d</span> <span class="n">visits_v1</span><span class="p">.</span><span class="n">tsv</span><span class="p">.</span><span class="n">xz</span>
+
+<span class="n">clickhouse</span><span class="o">-</span><span class="n">client</span>
+
+<span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">test</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">hits</span> <span class="p">(</span> <span class="n">WatchID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">JavaEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Title</span> <span class="n">String</span><span class="p">,</span>  <span class="n">GoodEvent</span> <span class="n">Int16</span><span class="p">,</span>  <span class="n">EventTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">EventDate</span> <span class="nb">Date</span><span class="p">,</span>  <span class="n">CounterID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClientIP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClientIP6</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">RegionID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">UserID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">CounterClass</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">OS</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">UserAgent</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">URL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">Referer</span> <span class="n">String</span><span class="p">,</span>  <span class="n">URLDomain</span> <span class="n">String</span><span class="p">,</span>  <span class="n">RefererDomain</span> <span class="n">String</span><span class="p">,</span>  <span class="n">Refresh</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsRobot</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">RefererCategories</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">URLCategories</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">URLRegions</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">RefererRegions</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">ResolutionWidth</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ResolutionHeight</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ResolutionDepth</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FlashMajor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FlashMinor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FlashMinor2</span> <span class="n">String</span><span class="p">,</span>  <span class="n">NetMajor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">NetMinor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">UserAgentMajor</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">UserAgentMinor</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>  <span class="n">CookieEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">JavascriptEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsMobile</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">MobilePhone</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">MobilePhoneModel</span> <span class="n">String</span><span class="p">,</span>  <span class="n">Params</span> <span class="n">String</span><span class="p">,</span>  <span class="n">IPNetworkID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">TraficSourceID</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">SearchEngineID</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">SearchPhrase</span> <span class="n">String</span><span class="p">,</span>  <span class="n">AdvEngineID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsArtifical</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">WindowClientWidth</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">WindowClientHeight</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ClientTimeZone</span> <span class="n">Int16</span><span class="p">,</span>  <span class="n">ClientEventTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">SilverlightVersion1</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SilverlightVersion2</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SilverlightVersion3</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">SilverlightVersion4</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">PageCharset</span> <span class="n">String</span><span class="p">,</span>  <span class="n">CodeVersion</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">IsLink</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsDownload</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsNotBounce</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FUniqID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">HID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">IsOldCounter</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsEvent</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsParameter</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">DontCountHits</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">WithHash</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">HitColor</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>  <span class="n">UTCEventTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">Age</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Sex</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Income</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Interests</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">Robotness</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">GeneralInterests</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">RemoteIP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">RemoteIP6</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">WindowName</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">OpenerName</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">HistoryLength</span> <span class="n">Int16</span><span class="p">,</span>  <span class="n">BrowserLanguage</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>  <span class="n">BrowserCountry</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>  <span class="n">SocialNetwork</span> <span class="n">String</span><span class="p">,</span>  <span class="n">SocialAction</span> <span class="n">String</span><span class="p">,</span>  <span class="n">HTTPError</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">SendTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">DNSTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ConnectTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ResponseStartTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ResponseEndTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">FetchTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">RedirectTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">DOMInteractiveTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">DOMContentLoadedTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">DOMCompleteTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">LoadEventStartTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">LoadEventEndTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">NSToDOMContentLoadedTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">FirstPaintTiming</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">RedirectCount</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">SocialSourceNetworkID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SocialSourcePage</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ParamPrice</span> <span class="n">Int64</span><span class="p">,</span>  <span class="n">ParamOrderID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ParamCurrency</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">ParamCurrencyID</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">GoalsReached</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">OpenstatServiceName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatCampaignID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatAdID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatSourceID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMSource</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMMedium</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMCampaign</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMContent</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMTerm</span> <span class="n">String</span><span class="p">,</span>  <span class="n">FromTag</span> <span class="n">String</span><span class="p">,</span>  <span class="n">HasGCLID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">RefererHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">URLHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">CLID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">YCLID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">ShareService</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ShareURL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ShareTitle</span> <span class="n">String</span><span class="p">,</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key1</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key2</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key3</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key4</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key5</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">ValueDouble</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Float64</span><span class="p">),</span>  <span class="n">IslandID</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">RequestNum</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">RequestTry</span> <span class="n">UInt8</span><span class="p">)</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MergeTree</span> <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">EventDate</span><span class="p">)</span> <span class="n">SAMPLE</span> <span class="k">BY</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">CounterID</span><span class="p">,</span> <span class="n">EventDate</span><span class="p">,</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">),</span> <span class="n">EventTime</span><span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">visits</span> <span class="p">(</span> <span class="n">CounterID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">StartDate</span> <span class="nb">Date</span><span class="p">,</span>  <span class="n">Sign</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">IsNew</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">VisitID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UserID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">StartTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">Duration</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">UTCStartTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">PageViews</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">Hits</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">IsBounce</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Referer</span> <span class="n">String</span><span class="p">,</span>  <span class="n">StartURL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">RefererDomain</span> <span class="n">String</span><span class="p">,</span>  <span class="n">StartURLDomain</span> <span class="n">String</span><span class="p">,</span>  <span class="n">EndURL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">LinkURL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">IsDownload</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">TraficSourceID</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">SearchEngineID</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">SearchPhrase</span> <span class="n">String</span><span class="p">,</span>  <span class="n">AdvEngineID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">PlaceID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">RefererCategories</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">URLCategories</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">URLRegions</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">RefererRegions</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">IsYandex</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">GoalReachesDepth</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">GoalReachesURL</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">GoalReachesAny</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">SocialSourceNetworkID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SocialSourcePage</span> <span class="n">String</span><span class="p">,</span>  <span class="n">MobilePhoneModel</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClientEventTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">RegionID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClientIP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClientIP6</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">RemoteIP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">RemoteIP6</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">IPNetworkID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">SilverlightVersion3</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">CodeVersion</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ResolutionWidth</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ResolutionHeight</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">UserAgentMajor</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">UserAgentMinor</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">WindowClientWidth</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">WindowClientHeight</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">SilverlightVersion2</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SilverlightVersion4</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">FlashVersion3</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">FlashVersion4</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ClientTimeZone</span> <span class="n">Int16</span><span class="p">,</span>  <span class="n">OS</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">UserAgent</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">ResolutionDepth</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FlashMajor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FlashMinor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">NetMajor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">NetMinor</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">MobilePhone</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">SilverlightVersion1</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Age</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Sex</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">Income</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">JavaEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">CookieEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">JavascriptEnable</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">IsMobile</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">BrowserLanguage</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">BrowserCountry</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">Interests</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">Robotness</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">GeneralInterests</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="n">Params</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="n">ID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="nb">Serial</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="n">EventTime</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">DateTime</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="n">Price</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="n">OrderID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">Goals</span><span class="p">.</span><span class="n">CurrencyID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="n">WatchIDs</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt64</span><span class="p">),</span>  <span class="n">ParamSumPrice</span> <span class="n">Int64</span><span class="p">,</span>  <span class="n">ParamCurrency</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">ParamCurrencyID</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ClickLogID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">ClickEventID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickGoodEvent</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickEventTime</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">ClickPriorityID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickPhraseID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickPageID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickPlaceID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickTypeID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickResourceID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">ClickCost</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickClientIP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickDomainID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickURL</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickAttempt</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">ClickOrderID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickBannerID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickMarketCategoryID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickMarketPP</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">ClickMarketCategoryName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickMarketPPName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickAWAPSCampaignName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickPageName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickTargetType</span> <span class="n">UInt16</span><span class="p">,</span>  <span class="n">ClickTargetPhraseID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">ClickContextType</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">ClickSelectType</span> <span class="nb">Int8</span><span class="p">,</span>  <span class="n">ClickOptions</span> <span class="n">String</span><span class="p">,</span>  <span class="n">ClickGroupBannerID</span> <span class="n">Int32</span><span class="p">,</span>  <span class="n">OpenstatServiceName</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatCampaignID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatAdID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">OpenstatSourceID</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMSource</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMMedium</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMCampaign</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMContent</span> <span class="n">String</span><span class="p">,</span>  <span class="n">UTMTerm</span> <span class="n">String</span><span class="p">,</span>  <span class="n">FromTag</span> <span class="n">String</span><span class="p">,</span>  <span class="n">HasGCLID</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">FirstVisit</span> <span class="n">DateTime</span><span class="p">,</span>  <span class="n">PredLastVisit</span> <span class="nb">Date</span><span class="p">,</span>  <span class="n">LastVisit</span> <span class="nb">Date</span><span class="p">,</span>  <span class="n">TotalVisits</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">ID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="nb">Int8</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">SearchEngineID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">AdvEngineID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt8</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">PlaceID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt16</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">SocialSourceNetworkID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt8</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="k">Domain</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">SearchPhrase</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">TraficSource</span><span class="p">.</span><span class="n">SocialSourcePage</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="n">Attendance</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>  <span class="n">CLID</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="n">YCLID</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">NormalizedRefererHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">SearchPhraseHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">RefererDomainHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">NormalizedStartURLHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">StartURLDomainHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">NormalizedEndURLHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">TopLevelDomain</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">URLScheme</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">OpenstatServiceNameHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">OpenstatCampaignIDHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">OpenstatAdIDHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">OpenstatSourceIDHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UTMSourceHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UTMMediumHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UTMCampaignHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UTMContentHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">UTMTermHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">FromHash</span> <span class="n">UInt64</span><span class="p">,</span>  <span class="n">WebVisorEnabled</span> <span class="n">UInt8</span><span class="p">,</span>  <span class="n">WebVisorActivity</span> <span class="n">UInt32</span><span class="p">,</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key1</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key2</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key3</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key4</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">Key5</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">ParsedParams</span><span class="p">.</span><span class="n">ValueDouble</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Float64</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="k">Type</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt8</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">GoalID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">OrderID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">OrderPrice</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">PP</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">DirectPlaceID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">DirectOrderID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">DirectBannerID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">UInt32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">GoodID</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">GoodName</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">GoodQuantity</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">),</span>  <span class="o">`</span><span class="n">Market</span><span class="p">.</span><span class="n">GoodPrice</span><span class="o">`</span> <span class="nb">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">),</span>  <span class="n">IslandID</span> <span class="n">FixedString</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">CollapsingMergeTree</span><span class="p">(</span><span class="n">Sign</span><span class="p">)</span> <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">toYYYYMM</span><span class="p">(</span><span class="n">StartDate</span><span class="p">)</span> <span class="n">SAMPLE</span> <span class="k">BY</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">CounterID</span><span class="p">,</span> <span class="n">StartDate</span><span class="p">,</span> <span class="n">intHash32</span><span class="p">(</span><span class="n">UserID</span><span class="p">),</span> <span class="n">VisitID</span><span class="p">);</span>
+
+<span class="n">clickhouse</span><span class="o">-</span><span class="n">client</span> <span class="c1">--max_insert_block_size 100000 --query "INSERT INTO test.hits FORMAT TSV" &lt; hits_v1.tsv</span>
+<span class="n">clickhouse</span><span class="o">-</span><span class="n">client</span> <span class="c1">--max_insert_block_size 100000 --query "INSERT INTO test.visits FORMAT TSV" &lt; visits_v1.tsv</span>
+</code></pre></div>
+<h1 id="creating-pull-request">Çekme İsteği Oluşturma<a class="headerlink" href="#creating-pull-request" title="Permanent link"> </a></h1>
+<p>Github'un kullanıcı arayüzünde çatal deposuna gidin. Bir dalda gelişiyorsanız, o Dalı seçmeniz gerekir. Bir olacak “Pull request” ekranda bulunan düğme. Özünde, bu demektir “create a request for accepting my changes into the main repository”.</p>
+<p>Çalışma henüz tamamlanmamış olsa bile bir çekme isteği oluşturulabilir. Bu durumda lütfen kelimeyi koyun “WIP” (devam eden çalışma) başlığın başında, daha sonra değiştirilebilir. Bu, kooperatif Gözden geçirme ve değişikliklerin tartışılması ve mevcut tüm testlerin çalıştırılması için kullanışlıdır. Değişikliklerinizin kısa bir açıklamasını sağlamanız önemlidir, daha sonra sürüm değişiklikleri oluşturmak için kullanılacaktır.</p>
+<p>Yandex çalışanları PR'NİZİ bir etiketle etiketlediğinde testler başlayacaktır “can be tested”. The results of some first checks (e.g. code style) will come in within several minutes. Build check results will arrive within half an hour. And the main set of tests will report itself within an hour.</p>
+<p>Sistem, çekme isteğiniz için ayrı ayrı ClickHouse ikili yapıları hazırlayacaktır. Bu yapıları almak için tıklayın “Details” yanındaki bağlantı “ClickHouse build check” çekler listesinde giriş. Orada inşa doğrudan bağlantılar bulacaksınız .eğer üretim sunucularında bile dağıtabilirsiniz ClickHouse DEB paketleri (eğer hiçbir korku varsa).</p>
+<p>Büyük olasılıkla bazı yapılar ilk kez başarısız olur. Bunun nedeni, hem gcc hem de clang ile, hemen hemen tüm mevcut uyarılarla (her zaman <code class="syntax">-Werror</code> bayrak) clang için etkin. Aynı sayfada, tüm yapı günlüklerini bulabilirsiniz, böylece tüm olası yollarla ClickHouse oluşturmak zorunda kalmazsınız.</p>
+        
+
+        
+    </div>
+
+    
+<div class="alert alert-light my-3">
+  <p class="float-right mb-0">Verim: RATING_VALUE - RATING_COUNT oylar</p>
+  <span class="alert-heading display-6">Bu içerik yararlı mıydı?</span>
+  <div id="rating-stars" class="display-6 mb-0"
+     
+     data-titles="['Kullanışsız', 'Zavallı', 'OK', 'İyi', 'Mükemmel']"
+     data-documentation="belge"
+     
+  >RATING_STARS</div>
+</div>
+
+<div id="content-footer" class="text-muted pt-3 mb-5">
+    <div class="float-md-right">©2016–2020 Yandex LLC</div>
+    <div>Dahili <a href="https://github.com/ClickHouse/ClickHouse/commit/782f2179ce4ad0b9a9c898a5f32557555b59e4d0" rel="external nofollow noreferrer" target="_blank" class="text-reset">782f2179ce</a>, yayınlanan <span title="2020-04-15T16:56:49+03:00">2020-04-15</span>, modifiye on <span title="2020-05-15T07:34:54+03:00">2020-05-15</span>
+    
+    </div>
+</div>
+
+</div>
+
+                
+                    <div id="toc" class="col-xl-2 d-none d-xl-block d-print-none p-3 overflow-auto toc-right mb-5">
+    
+    
+        
+    
+    <nav class="nav flex-column text-wrap">
+    
+    
+    </nav>
+</div>
+                
+            </div>
+        </div>
+    
+
+    
+
+<script async type="text/javascript" src="/js/base.js?js_digest"></script>
+
+
+
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/18343495" alt="Yandex"/></div>
+</noscript>
+</body>
+</html>
